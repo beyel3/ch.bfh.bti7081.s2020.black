@@ -7,3 +7,23 @@ Meeting 18.03.2020 20:30 - 21:00:
 	attendance: all group members
 	todo's: conduct interviews, gather ideas
 	next meeting: 23.03.2020
+	
+Meeting 23.03.2020 20:40 - 17:00:
+	attendance: all group members
+	todo's: discuss progress, work out new ideas, split up further tasks
+	next meeting: 18.03.2020
+	
+Meeting 24.03.2020 20:40 - 17:00:
+	attendance: all group members
+	todo's: revise our work
+	next meeting: 18.03.2020
+	
+Meeting 25.03.2020 20:40 - 17:00:
+	attendance: all group members
+	todo's: revise our work, refine scope and ideas, started work on prototype
+	next meeting: 18.03.2020
+	
+Meeting 27.03.2020 20:40 - 17:00:
+	attendance: all group members
+	todo's: finish prototype and split up tasks for the presentation
+	next meeting: 18.03.2020
