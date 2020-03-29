@@ -27,3 +27,8 @@ Meeting 27.03.2020 20:40 - 17:00:
 	attendance: all group members
 	todo's: finish prototype and split up tasks for the presentation
 	next meeting: 18.03.2020
+
+Meeting 29.03.2020 20:40 - 13:00:
+	attendance: all group members
+	todo's: finish cs2 task1 and push pdf into git repo
+	next meeting: 18.03.2020
