@@ -1,6 +1,6 @@
 Meeting 17.03.2020 20:40 - 20:51:
 	attendance: all group members
-	todo's: evaluate interview questions and partners, Luca & Robin / Ramon & Mario, due 18.03.2020 / 19.03.2020 if potential interview partner is not available
+	todo's: evaluate interview questions and partners, Luca & Robin / Ramon & Mario, due 18.03.2020 / 19.03.2020 if 		potential interview partner is not available
 	next meeting: 18.03.2020
 	
 Meeting 18.03.2020 20:30 - 21:00:
@@ -8,27 +8,33 @@ Meeting 18.03.2020 20:30 - 21:00:
 	todo's: conduct interviews, gather ideas
 	next meeting: 23.03.2020
 	
-Meeting 23.03.2020 20:40 - 17:00:
+Meeting 23.03.2020 17:00 - 19:00:
 	attendance: all group members
 	todo's: discuss progress, work out new ideas, split up further tasks
-	next meeting: 18.03.2020
+	next meeting: 24.03.2020
 	
-Meeting 24.03.2020 20:40 - 17:00:
+Meeting 24.03.2020 17:00 - 19:30:
 	attendance: all group members
 	todo's: revise our work
-	next meeting: 18.03.2020
+	next meeting: 25.03.2020
 	
-Meeting 25.03.2020 20:40 - 17:00:
+Meeting 25.03.2020 17:00 - 20:40:
 	attendance: all group members
 	todo's: revise our work, refine scope and ideas, started work on prototype
-	next meeting: 18.03.2020
+	next meeting: 27.03.2020
 	
-Meeting 27.03.2020 20:40 - 17:00:
+Meeting 27.03.2020 17:00 - 20:00:
 	attendance: all group members
 	todo's: finish prototype and split up tasks for the presentation
-	next meeting: 18.03.2020
+	next meeting: 29.03.2020
 
-Meeting 29.03.2020 20:40 - 13:00:
+Meeting 29.03.2020 13:00 - 15:00:
 	attendance: all group members
 	todo's: finish cs2 task1 and push pdf into git repo
+	next meeting: 30.03.2020
+	
+	
+Meeting 30.03.2020 15:00 - 16:00:
+	attendance: all group members
+	todo's: finish and test persenntation for task 1
 	next meeting: 18.03.2020
