@@ -37,4 +37,14 @@ Meeting 29.03.2020 13:00 - 15:00:
 Meeting 30.03.2020 15:00 - 16:00:
 	attendance: all group members
 	todo's: finish and test persenntation for task 1
-	next meeting: 18.03.2020
+	next meeting: 31.03.2020
+
+Meeting 31.03.2020 18:00 - 18:30:
+	attendance: Luca, Mario, Robin
+	todo's: split up work for task 2
+	next meeting: 03.04.2020
+	
+Meeting 03.04.2020 13:00 - XX:XX:
+	attendance: all group members
+	todo's: 
+	next meeting: 
