@@ -44,7 +44,7 @@ Meeting 31.03.2020 18:00 - 18:30:
 	todo's: split up work for task 2
 	next meeting: 03.04.2020
 	
-Meeting 03.04.2020 13:00 - XX:XX:
+Meeting 03.04.2020 13:00 - 14:00:
 	attendance: all group members
-	todo's: 
-	next meeting: 
+	todo's: split up further task set up next meeting, discuss work done so far
+	next meeting: 06.04.2020
