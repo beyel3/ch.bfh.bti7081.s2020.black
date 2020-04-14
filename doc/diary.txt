@@ -47,4 +47,9 @@ Meeting 31.03.2020 18:00 - 18:30:
 Meeting 03.04.2020 13:00 - 14:00:
 	attendance: all group members
 	todo's: split up further task set up next meeting, discuss work done so far
-	next meeting: 06.04.2020
+	next meeting: 13.04.2020
+	
+Meeting 13.04.2020 16:00 - 16:15:
+	attendance: all group members
+	todo's: discuss progress and finish final version of the requirements doc
+	next meeting: to be determined
