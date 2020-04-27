@@ -33,7 +33,6 @@ Meeting 29.03.2020 13:00 - 15:00:
 	todo's: finish cs2 task1 and push pdf into git repo
 	next meeting: 30.03.2020
 	
-	
 Meeting 30.03.2020 15:00 - 16:00:
 	attendance: all group members
 	todo's: finish and test persenntation for task 1
@@ -53,3 +52,22 @@ Meeting 13.04.2020 16:00 - 16:15:
 	attendance: all group members
 	todo's: discuss progress and finish final version of the requirements doc
 	next meeting: to be determined
+
+Meeting 17.04.2020 16:00 - 18:00:
+	attendance: all group members
+	todo's: discuss progress and finish final version of the requirements doc
+	next meeting: to be determined
+
+Meeting 24.04.2020 13:00 - 16:00:
+	attendance: all group members
+	todo's: discuss progress and finish final version of the requirements doc
+	next meeting: 26.04.2020
+
+Meeting 26.04.2020 16:00 - 18:00:
+	attendance: all group members
+	todo's: discuss progress and finish final version of the requirements doc
+	next meeting: to be determined
+
+
+
+
