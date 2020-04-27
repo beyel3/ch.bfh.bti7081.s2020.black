@@ -55,17 +55,22 @@ Meeting 13.04.2020 16:00 - 16:15:
 
 Meeting 17.04.2020 16:00 - 18:00:
 	attendance: all group members
-	todo's: discuss progress and finish final version of the requirements doc
+	todo's: Review requirements document of Team Blue
 	next meeting: to be determined
 
 Meeting 24.04.2020 13:00 - 16:00:
 	attendance: all group members
-	todo's: discuss progress and finish final version of the requirements doc
+	todo's: discuss meaning of domain model, sequence diagram and class diagram, generate first version
 	next meeting: 26.04.2020
 
 Meeting 26.04.2020 16:00 - 18:00:
 	attendance: all group members
-	todo's: discuss progress and finish final version of the requirements doc
+	todo's: finish domain model and sequence diagram, generate class diagram  
+	next meeting: 27.04.2020
+
+Meeting 27.04.2020 16:00 - 16:15:
+	attendance: all group members
+	todo's: finalize documents
 	next meeting: to be determined
 
 
