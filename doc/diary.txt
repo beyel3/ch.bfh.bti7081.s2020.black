@@ -90,6 +90,10 @@ Meeting 01.05.2020 17.00 - 17-30:
 
 Meeting 02.05.2020 18.00 - 19-00:
 	attendance: all group members
-	todo's: finalize Task5 and Task6, every team member pulls the maven project and tests if it runs
+	todo's: further work on Task5 and Task6, every team member pulls the maven project and tests if it runs
 	next meeting: 03.05.2020
 
+Meeting 03.05.2020 17.00 - 17-30:
+	attendance: all group members
+	todo's: finalize Task5 and Task6, upload files to git
+	next meeting: 04.05.2020
