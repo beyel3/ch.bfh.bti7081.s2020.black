@@ -73,6 +73,23 @@ Meeting 27.04.2020 16:00 - 16:15:
 	todo's: finalize documents
 	next meeting: to be determined
 
+Meeting 28.04.2020 21.20 - 21-30:
+	attendance: all group members
+	todo's: discuss Task5 / Task6, Ramon & Mario begin with task5, Robin & Luca begin with Task6
+	next meeting: 29.04.2020
 
+Meeting 29.04.2020 18.00 - 21-15:
+	attendance: all group members
+	todo's: discuss Task5 and Task6, further work on both tasks
+	next meeting: 01.05.2020
+	
+Meeting 01.05.2020 17.00 - 17-30:
+	attendance: all group members
+	todo's: discuss Task5 and Task6, further work on both tasks, Ramon sets up the maven project
+	next meeting: 02.05.2020
 
+Meeting 02.05.2020 18.00 - 19-00:
+	attendance: all group members
+	todo's: finalize Task5 and Task6, every team member pulls the maven project and tests if it runs
+	next meeting: 03.05.2020
 
