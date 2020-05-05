@@ -1,12 +1,10 @@
-package ch.bfh.btx8081;
+package ch.bfh.bti7081.s2020.black.views;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
-
-import Views.EventCreaterView;
 
 /**
  * The main view contains a button and a click listener.
