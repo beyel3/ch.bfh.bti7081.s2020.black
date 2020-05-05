@@ -6,6 +6,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
 
+import Views.EventCreaterView;
+
 /**
  * The main view contains a button and a click listener.
  */
@@ -14,8 +16,8 @@ import com.vaadin.flow.server.PWA;
 public class MainView extends VerticalLayout {
 
     public MainView() {
-        Button button = new Button("Click me",
-                event -> Notification.show("Clicked!"));
+        Button button = new Button("Click me", 
+        		event -> Notification.show("Clicked!"));                      		
         add(button);
     }
 }
