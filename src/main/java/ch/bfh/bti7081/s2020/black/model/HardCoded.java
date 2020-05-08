@@ -25,14 +25,14 @@ public class HardCoded {
 				1, 
 				"hike", 
 				"hiking in the swiss alps",
-				tags, 
+				tags.subList(0, 2), 
 				null));
 		
 		eventTemplates.add(new EventTemplate(
 				2,
-				"cook dinner with friends",
-				"Invite your relative to this activity and let them participate in cooking",
-				tags, 
+				"cook dinner",
+				"Invite your friends to this activity and let them participate in cooking",
+				tags.subList(2, 4), 
 				null));
 		
 	}

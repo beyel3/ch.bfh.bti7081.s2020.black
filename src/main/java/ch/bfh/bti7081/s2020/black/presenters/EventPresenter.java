@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import com.vaadin.flow.component.ClickEvent;
@@ -27,8 +28,8 @@ public class EventPresenter {
 		return hardCoded.getTags();
 	}
 
-	public EventTemplate getEventTemplate() {
-		return hardCoded.getEventTemplates().get(0);
+	public List<EventTemplate> getEventTemplates() {
+		return hardCoded.getEventTemplates();
 	}
 	
 }

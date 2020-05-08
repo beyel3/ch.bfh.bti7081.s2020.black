@@ -18,7 +18,7 @@ public class EventTemplate {
 		this.description = description;
 		this.tags = tags;
 		this.events = events;
-		this.avgRating = 0;		
+		this.avgRating = 10;		
 		
 	}
 
@@ -45,6 +45,10 @@ public class EventTemplate {
 
 	public Collection<Tag> getTags() {
 		return this.tags;
+	}
+
+	public double getRating() {
+		return this.avgRating;
 	}
 
 }
