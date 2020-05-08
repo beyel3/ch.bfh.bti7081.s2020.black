@@ -18,7 +18,7 @@ import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 import ch.bfh.bti7081.s2020.black.presenters.EventPresenter;
 
-import static ch.bfh.bti7081.s2020.black.views.MainView.eventPresenter;
+import static ch.bfh.bti7081.s2020.black.views.MainView.EventPresenter;
 
 @Route("EventCreaterView")
 public class EventCreaterView extends HorizontalLayout {

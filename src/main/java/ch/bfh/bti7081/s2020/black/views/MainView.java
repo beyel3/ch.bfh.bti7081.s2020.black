@@ -21,11 +21,11 @@ import ch.bfh.bti7081.s2020.black.presenters.EventPresenter;
  * The main view contains a button and a click listener.
  */
 @Route("")
-@PWA(name = "Project Base for Vaadin", shortName = "Project Base")
+@Theme(value = Lumo.class, variant = Lumo.DARK)
 public class MainView extends VerticalLayout {
 	
 	public static final EventPresenter eventPresenter =  new EventPresenter();
-
+	private final VerticalLayout contentLayout;
     public MainView() {
        			     	
         Button createEventButton = new Button("Create Event");
