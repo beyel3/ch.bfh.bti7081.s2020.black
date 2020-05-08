@@ -1,0 +1,114 @@
+.open ch.bfh.bti7081.s2020.black/src/main/java/ch/bfh/bti7081/s2020/black/persistence/burnOUTevents_db.db
+
+CREATE TABLE tbl_account (
+    accountID INTEGER,
+    first_name VARCHAR NOT NULL,
+    last_name VARCHAR NOT NULL,
+    email VARCHAR NOT NULL,
+    password VARCHAR NOT NULL,
+    accountTypeID INTEGER,
+
+    PRIMARY KEY (accountID),
+    FOREIGN KEY (accountTypeID)
+        REFERENCES tbl_accountType (accountTypeID)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION
+);
+
+CREATE TABLE tbl_accountType (
+    accountTypeID INTEGER,
+    accountType VARCHAR,
+    PRIMARY KEY (accountTypeID)
+);
+
+CREATE TABLE tbl_friendship (
+    accountID1 INTEGER,
+    accountID2 INTEGER,
+
+    FOREIGN KEY (accountID1)
+        REFERENCES tbl_account (accountID)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION,
+    FOREIGN KEY (accountID2)
+        REFERENCES tbl_account (accountID)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION
+);
+
+CREATE TABLE tbl_participants (
+    accountID INTEGER,
+    eventID INTEGER,
+
+    FOREIGN KEY (accountID)
+        REFERENCES tbl_account (accountID)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION,
+    FOREIGN KEY (eventID)
+        REFERENCES tbl_event (eventID)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION
+);
+
+CREATE TABLE tbl_post (
+    accountID INTEGER,
+    eventID INTEGER,
+    content VARCHAR,
+    creationTime DATE,
+
+    FOREIGN KEY (accountID)
+        REFERENCES tbl_account (accountID)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION,
+    FOREIGN KEY (eventID)
+        REFERENCES tbl_event (eventID)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION
+);
+
+CREATE TABLE tbl_event (
+    eventID INTEGER,
+    info VARCHAR,
+    isPrivate BOOLEAN,
+    rating INTEGER,
+    state VARCHAR,
+    maxParticipants INTEGER,
+    eventTemplateID INTEGER,
+    imagePath VARCHAR,
+
+    PRIMARY KEY (eventID),
+    FOREIGN KEY (eventTemplateID)
+        REFERENCES tbl_eventTemplate (eventTemplateID)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION
+);
+
+CREATE TABLE tbl_eventTemplate (
+    eventTemplateID INTEGER,
+    title VARCHAR,
+    description VARCHAR,
+    rating DOUBLE,
+
+    PRIMARY KEY (eventTemplateID)
+);
+
+CREATE TABLE tbl_tagEventTemplateREL (
+    tagID INTEGER,
+    eventTemplateID INTEGER,
+
+    FOREIGN KEY (tagID)
+        REFERENCES tbl_tag (tagID)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION,
+    FOREIGN KEY (eventTemplateID)
+        REFERENCES tbl_eventTemplate (eventTemplateID)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION
+);
+
+CREATE TABLE tbl_tag (
+    tagID INTEGER,
+    tag_name VARCHAR,
+
+    PRIMARY KEY (tagID)
+);
+
