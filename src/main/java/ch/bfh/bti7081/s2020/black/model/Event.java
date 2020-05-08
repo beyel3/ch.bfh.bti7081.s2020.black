@@ -7,16 +7,18 @@ public class Event {
 	private int id;
 	private EventTemplate eventTemplate;
 	private String info;
-	private int rating;
+	private boolean isPublic;
+	private List<Coreuser> participants;
 	private Status status;
+	private int rating;
 	private int pictureId;
-	private List<CoreUser> participants;
+
 	
-	public Event(int id, EventTemplate eventTemplate, String info, List<CoreUser> participants) {
+	public Event(int id, EventTemplate eventTemplate, List<Coreuser> participants) {
 		
 		this.id = id;
 		this.eventTemplate = eventTemplate;
-		this.info = info;
+		this.info = "";
 		this.rating = 0;
 		this.status = Status.open;
 		this.pictureId = 0;		

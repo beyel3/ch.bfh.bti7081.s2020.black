@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2020.black.model;
 
+import java.util.Collection;
 import java.util.List;
 
 public class EventTemplate {
@@ -32,6 +33,18 @@ public class EventTemplate {
 			}
 		}
 		this.avgRating = sum/count;
+	}
+
+	public String getTitle() {
+		return this.title;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public Collection<Tag> getTags() {
+		return this.tags;
 	}
 
 }

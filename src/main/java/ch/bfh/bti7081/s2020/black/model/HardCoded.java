@@ -38,7 +38,10 @@ public class HardCoded {
 	}
 
 	public List<Tag> getTags() {
-		return this.tags;
+		return tags;
 	}
 	
+	public List<EventTemplate> getEventTemplates(){
+		return eventTemplates;
+	}
 }
