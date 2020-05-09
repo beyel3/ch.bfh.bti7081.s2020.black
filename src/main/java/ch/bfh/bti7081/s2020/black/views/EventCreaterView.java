@@ -9,16 +9,16 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.router.BeforeEvent;
-import com.vaadin.flow.router.HasUrlParameter;
-import com.vaadin.flow.router.OptionalParameter;
 import com.vaadin.flow.router.Route;
 
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Tag;
+<<<<<<< HEAD
+=======
 import ch.bfh.bti7081.s2020.black.presenters.EventPresenter;
 
 //import static ch.bfh.bti7081.s2020.black.views.MainView.EventPresenter;
+>>>>>>> Luca
 
 @Route("EventCreaterView")
 public class EventCreaterView extends HorizontalLayout {
@@ -53,7 +53,11 @@ public class EventCreaterView extends HorizontalLayout {
 		description = new TextArea();
 		
 		tags = new MultiSelectListBox<>();
+<<<<<<< HEAD
+		//tags.setItems(EventPresenter.getTags());
+=======
 		//tags.setItems(eventPresenter.getTags());
+>>>>>>> Luca
 		
 		Checkbox publicEvent = new Checkbox("public");
 		TextField maxParticipants = new TextField();
