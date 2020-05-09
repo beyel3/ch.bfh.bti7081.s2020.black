@@ -1,16 +1,11 @@
 package ch.bfh.bti7081.s2020.black.views;
 
-<<<<<<< HEAD
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.formlayout.FormLayout;
-=======
 import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.contextmenu.MenuItem;
 import com.vaadin.flow.component.contextmenu.SubMenu;
 import com.vaadin.flow.component.dependency.CssImport;
->>>>>>> Luca
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.Span;
@@ -23,13 +18,10 @@ import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-<<<<<<< HEAD
-=======
 import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.component.splitlayout.SplitLayout.Orientation;
 import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
->>>>>>> Luca
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
@@ -41,46 +33,9 @@ import ch.bfh.bti7081.s2020.black.presenters.EventPresenter;
  */
 @Route("")
 @Theme(value = Lumo.class, variant = Lumo.DARK)
-<<<<<<< HEAD
-
-public class MainView extends VerticalLayout {
-	
-	public static final EventPresenter eventPresenter =  new EventPresenter();
-	private final VerticalLayout contentLayout;
-	
-    public MainView() {
-    	
-    	contentLayout = new VerticalLayout();
-		final FormLayout mainFormLayout = new FormLayout();
-		
-        Button createEventButton = new Button("Create Event");
-        createEventButton.addClickListener(event -> 
-        		getUI().ifPresent(ui ->  ui.navigate("EventCreaterView/")));
-        
-        Button browseEventButton = new Button("Create From Template Eventtemplates");
-        browseEventButton.addClickListener(event -> 
-        		browseEventButton.getUI().ifPresent(ui ->  ui.navigate("EventCreaterView/CreatedFromTemplate")));
-        
-		contentLayout.setAlignItems(Alignment.CENTER);
-		contentLayout.setAlignSelf(Alignment.END);       
-        mainFormLayout.add(createEventButton, browseEventButton);
- 
-		final Div header = new Div();
-		header.setText("Test");
-		header.setClassName("header");
-		header.setHeight("50px");
-
-		contentLayout.add(mainFormLayout);
-		add(header);
-		add(contentLayout);
-        
-    }
-    
-=======
 @CssImport("./styles/shared-styles.css")
 
 public class MainView extends VerticalLayout {
->>>>>>> Luca
 
 	private static final long serialVersionUID = 1L;
 
