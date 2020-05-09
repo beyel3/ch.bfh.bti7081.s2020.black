@@ -14,14 +14,21 @@ import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.HardCoded;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 import ch.bfh.bti7081.s2020.black.views.EventCreaterView;
+import ch.bfh.bti7081.s2020.black.views.EventCreaterViewImplementaion;
 
-public class EventPresenter {
+public class EventPresenter implements EventCreaterView.EventCreaterViewListener{
 
+	private MainViewPresenter mainViewPresenter;
 	private HardCoded hardCoded;
-	private EventCreaterView eventCreaterView;
+	private EventCreaterViewImplementaion eventCreaterView;
 
-	public EventPresenter() {
+	public EventPresenter(MainViewPresenter mainViewPresenter) {
+		this.mainViewPresenter = mainViewPresenter;
+		this.eventCreaterView = new EventCreaterViewImplementaion();
+	
+		
 		hardCoded = new HardCoded();
+		
 	}
 
 	public Collection<Tag> getTags() {
@@ -30,6 +37,12 @@ public class EventPresenter {
 
 	public List<EventTemplate> getEventTemplates() {
 		return hardCoded.getEventTemplates();
+	}
+
+	@Override
+	public void buttonClick(char operation) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

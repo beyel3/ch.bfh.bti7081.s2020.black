@@ -1,6 +1,8 @@
 package ch.bfh.bti7081.s2020.black.views;
 
-import com.vaadin.flow.component.Component;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -11,17 +13,14 @@ import com.vaadin.flow.router.Route;
 
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Tag;
-import static ch.bfh.bti7081.s2020.black.views.MainView.eventPresenter;
-
-import java.util.List;
 
 @Route("EventSearchView")
-public class EventSearchView extends VerticalLayout{
+public class EventSearchViewImplementation extends VerticalLayout{
 
 	
-	public EventSearchView() {
+	public EventSearchViewImplementation() {
 		
-		List<EventTemplate> eventTemplates = eventPresenter.getEventTemplates();
+		List<EventTemplate> eventTemplates = new ArrayList<EventTemplate>();
 		
 		for(EventTemplate t : eventTemplates) {
 
