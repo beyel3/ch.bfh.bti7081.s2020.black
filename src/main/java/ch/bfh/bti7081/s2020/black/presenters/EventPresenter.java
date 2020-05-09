@@ -44,5 +44,11 @@ public class EventPresenter implements EventCreaterView.EventCreaterViewListener
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void buttonClick(String buttonText) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

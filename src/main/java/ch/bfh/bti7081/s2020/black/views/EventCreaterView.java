@@ -13,6 +13,8 @@ public interface EventCreaterView {
 
 	interface EventCreaterViewListener {
 		void buttonClick(String buttonText);
+
+		void buttonClick(char operation);
 	}
 
 	public void addListener(EventCreaterViewListener listener);
