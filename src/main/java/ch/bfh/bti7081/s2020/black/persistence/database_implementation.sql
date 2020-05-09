@@ -1,26 +1,29 @@
-.open ch.bfh.bti7081.s2020.black/src/main/java/ch/bfh/bti7081/s2020/black/persistence/burnOUTevents_db.db
-
+DROP TABLE IF EXISTS tbl_account;
 CREATE TABLE tbl_account (
-    accountID INTEGER,
+    accountID INTEGER PRIMARY KEY,
     first_name VARCHAR NOT NULL,
     last_name VARCHAR NOT NULL,
     email VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
     accountTypeID INTEGER,
 
-    PRIMARY KEY (accountID),
     FOREIGN KEY (accountTypeID)
         REFERENCES tbl_accountType (accountTypeID)
             ON DELETE CASCADE
             ON UPDATE NO ACTION
 );
 
+DROP TABLE IF EXISTS tbl_accountType;
 CREATE TABLE tbl_accountType (
-    accountTypeID INTEGER,
-    accountType VARCHAR,
-    PRIMARY KEY (accountTypeID)
+    accountTypeID INTEGER PRIMARY KEY,
+    accountType VARCHAR
 );
 
+INSERT INTO tbl_accountType VALUES (NULL,"relative");
+INSERT INTO tbl_accountType VALUES (NULL,"patient");
+INSERT INTO tbl_accountType VALUES (NULL,"admin");
+
+DROP TABLE IF EXISTS tbl_friendship;
 CREATE TABLE tbl_friendship (
     accountID1 INTEGER,
     accountID2 INTEGER,
@@ -35,6 +38,7 @@ CREATE TABLE tbl_friendship (
             ON UPDATE NO ACTION
 );
 
+DROP TABLE IF EXISTS tbl_participants;
 CREATE TABLE tbl_participants (
     accountID INTEGER,
     eventID INTEGER,
@@ -49,6 +53,7 @@ CREATE TABLE tbl_participants (
             ON UPDATE NO ACTION
 );
 
+DROP TABLE IF EXISTS tbl_post;
 CREATE TABLE tbl_post (
     accountID INTEGER,
     eventID INTEGER,
@@ -65,8 +70,9 @@ CREATE TABLE tbl_post (
             ON UPDATE NO ACTION
 );
 
+DROP TABLE IF EXISTS tbl_event;
 CREATE TABLE tbl_event (
-    eventID INTEGER,
+    eventID INTEGER PRIMARY KEY,
     info VARCHAR,
     isPrivate BOOLEAN,
     rating INTEGER,
@@ -75,22 +81,21 @@ CREATE TABLE tbl_event (
     eventTemplateID INTEGER,
     imagePath VARCHAR,
 
-    PRIMARY KEY (eventID),
     FOREIGN KEY (eventTemplateID)
         REFERENCES tbl_eventTemplate (eventTemplateID)
             ON DELETE CASCADE
             ON UPDATE NO ACTION
 );
 
+DROP TABLE IF EXISTS tbl_eventTemplate;
 CREATE TABLE tbl_eventTemplate (
-    eventTemplateID INTEGER,
+    eventTemplateID INTEGER PRIMARY KEY,
     title VARCHAR,
     description VARCHAR,
-    rating DOUBLE,
-
-    PRIMARY KEY (eventTemplateID)
+    rating DOUBLE
 );
 
+DROP TABLE IF EXISTS tbl_tagEventTemplateREL;
 CREATE TABLE tbl_tagEventTemplateREL (
     tagID INTEGER,
     eventTemplateID INTEGER,
@@ -105,10 +110,8 @@ CREATE TABLE tbl_tagEventTemplateREL (
             ON UPDATE NO ACTION
 );
 
+DROP TABLE IF EXISTS tbl_tag;
 CREATE TABLE tbl_tag (
-    tagID INTEGER,
-    tag_name VARCHAR,
-
-    PRIMARY KEY (tagID)
+    tagID INTEGER PRIMARY KEY,
+    tag_name VARCHAR
 );
-
