@@ -23,6 +23,7 @@ import com.vaadin.flow.component.splitlayout.SplitLayout.Orientation;
 import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouteAlias;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 
@@ -53,24 +54,24 @@ public class MainView extends VerticalLayout {
 		setSizeFull();
 		Icon iconHome = VaadinIcon.HOME_O.create();
 		Button iconHomeButton = new Button(iconHome);
-		
+
 		Icon iconTheme = VaadinIcon.SUN_O.create();
-		
+
 		iconHomeButton.addClickListener(event -> iconHomeButton.getUI().ifPresent(ui -> ui.navigate("")));
-		
+
 		Button iconToggleThemeButton = new Button(iconTheme, click -> {
 			ThemeList themeList = UI.getCurrent().getElement().getThemeList(); //
-
-			if (themeList.contains(Lumo.DARK)) { //
-				themeList.remove(Lumo.DARK);
-			} else {
-				themeList.add(Lumo.DARK);
-			}
 			if (themeList.contains(Lumo.LIGHT)) { //
 				themeList.remove(Lumo.LIGHT);
 			} else {
 				themeList.add(Lumo.LIGHT);
 			}
+			if (themeList.contains(Lumo.DARK)) { //
+				themeList.remove(Lumo.DARK);
+			} else {
+				themeList.add(Lumo.DARK);
+			}
+
 		});
 
 		LoginOverlay loginOverlay = new LoginOverlay();
