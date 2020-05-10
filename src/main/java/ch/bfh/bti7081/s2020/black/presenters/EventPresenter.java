@@ -6,8 +6,10 @@ import java.util.Set;
 
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
+import com.vaadin.flow.router.RouterLayout;
 
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
@@ -16,13 +18,13 @@ import ch.bfh.bti7081.s2020.black.model.Tag;
 import ch.bfh.bti7081.s2020.black.views.EventCreaterView;
 import ch.bfh.bti7081.s2020.black.views.EventCreaterViewImplementaion;
 
-public class EventPresenter implements EventCreaterView.EventCreaterViewListener{
+public class EventPresenter implements RouterLayout, EventCreaterView.EventCreaterViewListener{
 
-	private MainViewPresenter mainViewPresenter;
+	private MainPresenter mainViewPresenter;
 	private HardCoded hardCoded;
 	private EventCreaterViewImplementaion eventCreaterView;
 
-	public EventPresenter(MainViewPresenter mainViewPresenter) {
+	public EventPresenter(MainPresenter mainViewPresenter) {
 		this.mainViewPresenter = mainViewPresenter;
 		this.eventCreaterView = new EventCreaterViewImplementaion();
 	
@@ -49,6 +51,12 @@ public class EventPresenter implements EventCreaterView.EventCreaterViewListener
 	public void buttonClick(String buttonText) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Element getElement() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
