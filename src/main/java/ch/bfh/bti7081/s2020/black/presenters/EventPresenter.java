@@ -20,17 +20,11 @@ import ch.bfh.bti7081.s2020.black.views.EventCreaterViewImplementaion;
 
 public class EventPresenter implements RouterLayout, EventCreaterView.EventCreaterViewListener{
 
-	private MainPresenter mainViewPresenter;
 	private HardCoded hardCoded;
 	private EventCreaterViewImplementaion eventCreaterView;
 
-	public EventPresenter(MainPresenter mainViewPresenter) {
-		this.mainViewPresenter = mainViewPresenter;
-		this.eventCreaterView = new EventCreaterViewImplementaion();
-	
-		
+	public EventPresenter() {
 		hardCoded = new HardCoded();
-		
 	}
 
 	public Collection<Tag> getTags() {

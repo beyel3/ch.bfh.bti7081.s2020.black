@@ -13,6 +13,6 @@ public class MainPresenter {
 
 	public MainPresenter(MainModel model, MainViewImplementation view) {
 		this.view = view;
-		this.eventPresenter = new EventPresenter(this);
+		this.eventPresenter = new EventPresenter();
 	}
 }

@@ -23,42 +23,39 @@ import ch.bfh.bti7081.s2020.black.presenters.EventPresenter;
 
 
 @Route(value = "Event", layout = MainView.class)
-public class EventCreaterViewImplementaion extends HorizontalLayout implements EventCreaterView, HasUrlParameter<String> {
-	
+public class EventCreaterViewImplementaion extends VerticalLayout implements EventCreaterView, HasUrlParameter<String> {
 	
 	@Override
     public void setParameter(BeforeEvent event,
             @OptionalParameter String parameter) {
         if (parameter != null) {
-           createdFromTemplate = true;
+        	
            eventTemplateID = Integer.parseInt(parameter);
+           eventTemplate = eventPresenter.getEventTemplateFromID(eventTemplateID);
+           
+			title.setValue(eventTemplate.getTitle());
+			title.setReadOnly(true);
+			description.setValue(eventTemplate.getDescription());
+			description.setReadOnly(true);
+			tags.setItems(eventTemplate.getTags());
+			tags.setReadOnly(true);
         }
     }
-	private boolean createdFromTemplate;
+	
 	private int eventTemplateID;
-	private EventPresenter eventPresenter;
+	private EventPresenter eventPresenter = new EventPresenter();
 	private EventTemplate eventTemplate;
-	private TextField title;
-	private TextArea description;
-	MultiSelectListBox<Tag> tags;
+	private TextField title = new TextField();
+	private TextArea description = new TextArea();
+	MultiSelectListBox<Tag> tags = new MultiSelectListBox<>();
 	
 	public EventCreaterViewImplementaion() {
-				
 		
-		VerticalLayout VerticalLayout = new VerticalLayout();
-		FormLayout FormLayout = new FormLayout();
 
-		// Create the fields
-		title = new TextField();
-		description = new TextArea();
-		tags = new MultiSelectListBox<>();
-		
-		if(createdFromTemplate) {
-			eventTemplate = eventPresenter.getEventTemplateFromID(eventTemplateID);
-			title.setValue(eventTemplate.getTitle());
-			description.setValue(eventTemplate.getDescription());
-			tags.setItems(eventTemplate.getTags());
-		}
+		tags.setItems(eventPresenter.getTags());
+				
+		VerticalLayout VerticalLayout = new VerticalLayout();
+		FormLayout FormLayout = new FormLayout();		
 		
 		Checkbox publicEvent = new Checkbox("public");
 		TextField maxParticipants = new TextField();
@@ -81,14 +78,7 @@ public class EventCreaterViewImplementaion extends HorizontalLayout implements E
 		save.getStyle().set("marginRight", "10px");
 
 		// Event Handler
-		save.addClickListener(event -> 
-		
-		getUI().ifPresent(ui -> ui.navigate("LandingPage"))
-//		{	
-//		remove(VerticalLayout);
-//		add(new LandingPageImplementation());
-//		}
-			);
+		save.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("LandingPage")));
 
 		reset.addClickListener(event -> {
 
