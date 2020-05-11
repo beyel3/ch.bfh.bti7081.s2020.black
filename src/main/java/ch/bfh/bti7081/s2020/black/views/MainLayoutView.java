@@ -39,19 +39,17 @@ public class MainLayoutView extends Composite<VerticalLayout> implements HasComp
 
 		Icon iconHome = VaadinIcon.HOME_O.create();
 		Button iconHomeButton = new Button(iconHome);
-
+		iconHomeButton.addClickListener(event -> iconHomeButton.getUI().ifPresent(ui -> ui.navigate("home")));
+		
 		Icon iconTheme = VaadinIcon.SUN_O.create();
-
-		iconHomeButton.addClickListener(event -> iconHomeButton.getUI().ifPresent(ui -> ui.navigate("")));
-
 		Button iconToggleThemeButton = new Button(iconTheme, click -> {
-			ThemeList themeList = UI.getCurrent().getElement().getThemeList(); //
-			if (themeList.contains(Lumo.LIGHT)) { //
+			ThemeList themeList = UI.getCurrent().getElement().getThemeList(); 
+			if (themeList.contains(Lumo.LIGHT)) { 
 				themeList.remove(Lumo.LIGHT);
 			} else {
 				themeList.add(Lumo.LIGHT);
 			}
-			if (themeList.contains(Lumo.DARK)) { //
+			if (themeList.contains(Lumo.DARK)) {
 				themeList.remove(Lumo.DARK);
 			} else {
 				themeList.add(Lumo.DARK);
@@ -115,8 +113,6 @@ public class MainLayoutView extends Composite<VerticalLayout> implements HasComp
 		mainContent.setFlexGrow(1, childWrapper);
 		
 		H1 footer = new H1("Footer Test");
-		//footer.setWidth("100%");
-		//footer.getStyle().set("background-color", "#2f6f91");
 		
 		add(header);
 		add(mainContent);
