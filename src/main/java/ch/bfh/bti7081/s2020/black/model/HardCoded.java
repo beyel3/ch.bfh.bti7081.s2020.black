@@ -44,4 +44,8 @@ public class HardCoded {
 	public List<EventTemplate> getEventTemplates(){
 		return eventTemplates;
 	}
+
+	public EventTemplate getEventTemplateFromID(int eventTemplateID) {
+		return eventTemplates.get(eventTemplateID);
+	}
 }
