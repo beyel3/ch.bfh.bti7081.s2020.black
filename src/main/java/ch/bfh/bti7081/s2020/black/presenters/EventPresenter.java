@@ -58,5 +58,9 @@ public class EventPresenter implements RouterLayout, EventCreaterView.EventCreat
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public EventTemplate getEventTemplateFromID(int eventTemplateID) {
+		return hardCoded.getEventTemplateFromID(eventTemplateID-1);
+	}
 	
 }
