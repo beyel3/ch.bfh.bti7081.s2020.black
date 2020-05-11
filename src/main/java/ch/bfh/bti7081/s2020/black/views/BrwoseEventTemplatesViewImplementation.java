@@ -52,7 +52,7 @@ public class BrwoseEventTemplatesViewImplementation extends VerticalLayout {
 			button.addClickListener(event -> 
 			getUI().ifPresent(ui -> ui.navigate("Event/" + t.getTemplateIDforURL())));
 			
-			layout.add(title, description, tags, button, progressBar);
+			layout.add(title, description, tags, progressBar, button);
 			templates.add(layout);
 		}
 		

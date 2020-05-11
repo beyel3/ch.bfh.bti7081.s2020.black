@@ -12,7 +12,6 @@ public class Event {
 	private Status status;
 	private int rating;
 	private int pictureId;
-	private List<Coreuser> participants;
 	
 	public Event(int id, EventTemplate eventTemplate, String info, List<Coreuser> participants) {
 		
