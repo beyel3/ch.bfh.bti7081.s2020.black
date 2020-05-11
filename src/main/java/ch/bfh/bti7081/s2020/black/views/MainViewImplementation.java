@@ -26,18 +26,18 @@ import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 
 
-@Theme(value = Lumo.class, variant = Lumo.DARK)
+public class MainViewImplementation extends VerticalLayout {
 
-public class MainLayoutView extends Composite<VerticalLayout> implements HasComponents, RouterLayout, PageConfigurator {
-
-	private static final long serialVersionUID = 1L;
-	private Div childWrapper = new Div();
 	private final HorizontalLayout loginButtonLayout;
 	private final HorizontalLayout menuBarLayout;
-	private final MenuBar menuBar;
+	private final HorizontalLayout menuBar;
 
-	public MainLayoutView() {
-		getContent().setSizeFull();
+	public MainViewImplementation() {
+		
+		setMargin(false);
+		setSpacing(false);
+		setSizeFull();
+
 		
 		// Icons in header and the theme toggle button / home button
 		Icon iconHome = VaadinIcon.HOME_O.create();
@@ -77,11 +77,33 @@ public class MainLayoutView extends Composite<VerticalLayout> implements HasComp
 //		    }
 //		});
 
-		menuBar = new MenuBar();
-		MenuItem home = menuBar.addItem(new RouterLink("Home", MainView.class));
-		MenuItem createEvent = menuBar.addItem(new RouterLink("Create Event", EventCreaterView.class));
-		MenuItem myEvent = menuBar.addItem(new RouterLink("My Events", AccountView.class));
-		MenuItem searchEvent = menuBar.addItem(new RouterLink("Search Events", EventSearchView.class));
+		menuBar = new HorizontalLayout();
+		
+		Button homeButton = new Button("Home");
+		homeButton.addClickListener(event -> 
+		getUI().ifPresent(ui -> ui.navigate("")));
+		menuBar.add(homeButton);
+		menuBar.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+
+		Button createEvent = new Button("Create Event");
+		createEvent.addClickListener(event -> 
+		getUI().ifPresent(ui -> ui.navigate("Event")));
+		menuBar.add(createEvent);
+		
+		Button myEvent = new Button("My Events");
+		myEvent.addClickListener(event -> 
+		getUI().ifPresent(ui -> ui.navigate("AccountView")));
+		menuBar.add(myEvent);
+		
+		Button eventTemplates = new Button("Event Templates");
+		eventTemplates.addClickListener(event -> 
+		getUI().ifPresent(ui -> ui.navigate("BrowseEventTemplates")));
+		menuBar.add(eventTemplates);
+
+		
+//		MenuItem createEvent = menuBar.addItem(new RouterLink("Create Event", EventCreaterViewImplementaion.class));
+//		MenuItem myEvent = menuBar.addItem(new RouterLink("My Events", AccountView.class));
+//		MenuItem searchEvent = menuBar.addItem(new RouterLink("Search Events", BrwoseEventTemplatesViewImplementation.class));
 
 //		SubMenu searchEventSubMenu = searchEvent.getSubMenu();
 //		MenuItem publicEvents = searchEventSubMenu.addItem("Search open public Events");
@@ -99,7 +121,7 @@ public class MainLayoutView extends Composite<VerticalLayout> implements HasComp
 		Button signupButton = new Button("SignUp");
 		signupButton.addClickListener(event -> signupButton.getUI().ifPresent(ui -> ui.navigate("")));
 
-		HorizontalLayout mainContent = new HorizontalLayout();
+		
 
 		menuBarLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 		menuBarLayout.add(menuBar);
@@ -110,31 +132,9 @@ public class MainLayoutView extends Composite<VerticalLayout> implements HasComp
 
 		menuBarLayout.getStyle().set("background-color", "#2f6f91");
 		header.add(loginButtonLayout, menuBarLayout);
-
-		mainContent.add(childWrapper);
-		mainContent.setFlexGrow(1, childWrapper);
-		
-		H1 footer = new H1("Footer Test");
 		
 		add(header);
-		add(mainContent);
-		add(footer);
 
-		getContent().setFlexGrow(1, mainContent);
-		getContent().setHorizontalComponentAlignment(FlexComponent.Alignment.CENTER, header);
-		getContent().setHorizontalComponentAlignment(FlexComponent.Alignment.CENTER, footer);
-		getContent().setHorizontalComponentAlignment(FlexComponent.Alignment.STRETCH, mainContent);
 	}
 
-	@Override
-	public void showRouterLayoutContent(HasElement content) {
-		childWrapper.getElement().appendChild(content.getElement());
-	}
-	
-	// add the favicon via PageConfigurator interface
-	@Override
-	public void configurePage(InitialPageSettings settings) {
-        settings.addLink("shortcut icon", "./icons/favicon.ico");
-        settings.addFavIcon("icon", "./icons/icon.png", "192x192");
-	}
 }

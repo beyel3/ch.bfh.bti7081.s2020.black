@@ -1,6 +1,9 @@
 package ch.bfh.bti7081.s2020.black.views;
 
-import com.vaadin.flow.component.Component;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -9,25 +12,26 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouteAlias;
 
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Tag;
-import static ch.bfh.bti7081.s2020.black.views.MainView.eventPresenter;
+import ch.bfh.bti7081.s2020.black.presenters.EventTemplatePresenter;
 
-import java.util.List;
+@Route(value = "BrowseEventTemplates", layout = MainView.class)
+public class BrwoseEventTemplatesViewImplementation extends VerticalLayout {
 
-@Route(value="EventSearchView", layout = MainLayoutView.class)
-@PageTitle("SearchEvents")
-public class EventSearchView extends VerticalLayout{
-
+	private EventTemplatePresenter eventTemplatePresenter = new EventTemplatePresenter();
 	
-	public EventSearchView() {
+	
+	public BrwoseEventTemplatesViewImplementation() {
 		
-		List<EventTemplate> eventTemplates = eventPresenter.getEventTemplates();
+		List<EventTemplate> eventTemplates = eventTemplatePresenter.getEventTemplates();
+		HorizontalLayout templates = new HorizontalLayout();
 		
 		for(EventTemplate t : eventTemplates) {
 
-			HorizontalLayout layout = new HorizontalLayout();
+			VerticalLayout layout = new VerticalLayout();
 			
 			TextField title = new TextField();
 			title.setValue(t.getTitle());
@@ -44,8 +48,14 @@ public class EventSearchView extends VerticalLayout{
 			ProgressBar progressBar = new ProgressBar();
 			progressBar.setValue(0.32);
 			
-			layout.add(title, description, tags, progressBar);
-			add(layout);
+			Button button = new Button("USE AS TEMPLATE");
+			button.addClickListener(event -> 
+			getUI().ifPresent(ui -> ui.navigate("Event/" + t.getTemplateIDforURL())));
+			
+			layout.add(title, description, tags, button, progressBar);
+			templates.add(layout);
 		}
+		
+		add(templates);
 	}
 }
