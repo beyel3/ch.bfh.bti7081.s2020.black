@@ -1,45 +1,27 @@
 package ch.bfh.bti7081.s2020.black.views;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.QueryParameters;
-import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.flow.server.PWA;
+import com.vaadin.flow.theme.Theme;
+import com.vaadin.flow.theme.lumo.Lumo;
 
-import ch.bfh.bti7081.s2020.black.model.Event;
-import ch.bfh.bti7081.s2020.black.presenters.AccountPresenter;
-import ch.bfh.bti7081.s2020.black.presenters.EventPresenter;
+import ch.bfh.bti7081.s2020.black.model.MainModel;
+import ch.bfh.bti7081.s2020.black.presenters.MainPresenter;
 
-/**
- * The main view contains a button and a click listener.
- */
-@Route("")
+
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base")
-public class MainView extends VerticalLayout {
+@Theme(value = Lumo.class, variant = Lumo.DARK)
+public class MainView extends VerticalLayout implements RouterLayout{
 	
-	public static final EventPresenter eventPresenter =  new EventPresenter();
-
     public MainView() {
        			     	
-        Button createEventButton = new Button("Create Event");
-        createEventButton.addClickListener(event -> 
-        		getUI().ifPresent(ui ->  ui.navigate("EventCreaterView/")));
+    	MainModel model = new MainModel();
+    	MainViewImplementation view = new MainViewImplementation();
+    	
+    	new MainPresenter(model, view);
+        add(view);
         
-        Button browseEventButton = new Button("Create From Template Eventtemplates");
-        browseEventButton.addClickListener(event -> 
-        		browseEventButton.getUI().ifPresent(ui ->  ui.navigate("EventCreaterView/CreatedFromTemplate")));
-        
-        add(createEventButton, browseEventButton);
- 
     }
-    
-
-
 }

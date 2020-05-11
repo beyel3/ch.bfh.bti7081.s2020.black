@@ -51,4 +51,8 @@ public class EventTemplate {
 		return this.avgRating;
 	}
 
+	public String getTemplateIDforURL() {
+		return Integer.toString(id);
+	}
+
 }
