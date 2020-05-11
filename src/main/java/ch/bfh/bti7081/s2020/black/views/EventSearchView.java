@@ -7,6 +7,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
@@ -15,7 +16,8 @@ import static ch.bfh.bti7081.s2020.black.views.MainView.eventPresenter;
 
 import java.util.List;
 
-@Route("EventSearchView")
+@Route(value="EventSearchView", layout = MainLayoutView.class)
+@PageTitle("SearchEvents")
 public class EventSearchView extends VerticalLayout{
 
 	

@@ -12,6 +12,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.OptionalParameter;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
@@ -20,7 +21,8 @@ import ch.bfh.bti7081.s2020.black.presenters.EventPresenter;
 
 //import static ch.bfh.bti7081.s2020.black.views.MainView.EventPresenter;
 
-@Route("EventCreaterView")
+@Route(value="EventCreaterView", layout = MainLayoutView.class)
+@PageTitle("CreateEvent")
 public class EventCreaterView extends HorizontalLayout {
 	
 //	boolean createdFromTemplate = true;
