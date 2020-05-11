@@ -12,9 +12,8 @@ public class Event {
 	private Status status;
 	private int rating;
 	private int pictureId;
-
 	
-	public Event(int id, EventTemplate eventTemplate, List<Coreuser> participants) {
+	public Event(int id, EventTemplate eventTemplate, String info, List<Coreuser> participants) {
 		
 		this.id = id;
 		this.eventTemplate = eventTemplate;
