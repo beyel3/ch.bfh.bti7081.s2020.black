@@ -8,6 +8,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.contextmenu.MenuItem;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.login.LoginForm;
@@ -114,7 +115,12 @@ public class MainLayoutView extends Composite<VerticalLayout> implements HasComp
 		mainContent.add(childWrapper);
 		mainContent.setFlexGrow(1, childWrapper);
 		
-		H1 footer = new H1("Footer Test");
+		H1 footer = new H1();
+		Icon iconCopyright = VaadinIcon.COPYRIGHT.create();
+		iconCopyright.setSize("14px");
+		Span labelCopyright = new Span(" Team Black 2020");
+		footer.add(iconCopyright, labelCopyright);
+		footer.getStyle().set("font-size", "16px");
 		
 		add(header);
 		add(mainContent);
@@ -135,6 +141,6 @@ public class MainLayoutView extends Composite<VerticalLayout> implements HasComp
 	@Override
 	public void configurePage(InitialPageSettings settings) {
         settings.addLink("shortcut icon", "./icons/favicon.ico");
-        settings.addFavIcon("icon", "./icons/icon.png", "192x192");
+        settings.addFavIcon("icon", "./icons/logo.png", "192x192");
 	}
 }
