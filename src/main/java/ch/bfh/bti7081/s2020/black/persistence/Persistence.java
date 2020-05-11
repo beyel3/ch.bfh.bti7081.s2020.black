@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2020.black.persistence;
 import ch.bfh.bti7081.s2020.black.model.Event;
+import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -45,7 +46,7 @@ public class Persistence {
         try {
             Statement statement = this.connection.createStatement();
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
-            ResultSet rs = statement.executeQuery("select * from tbl_event");
+            ResultSet rs = statement.executeQuery("SELECT * FROM tbl_event");
 
             while (rs.next()) {
                 Event event = new Event(rs.getInt("eventId"), rs.getString("info"), rs.getBoolean("isPrivate"), rs.getInt("rating"), rs.getString("state"), rs.getInt("maxParticipants"), rs.getInt("eventTemplateID"), rs.getString("imagePath"));
@@ -59,4 +60,32 @@ public class Persistence {
             return eventList;
         }
     }
+
+    public Event getEvent(int id){
+        return;
+    }
+
+    public void saveEvent(Event event) throws SQLException {
+        try {
+            Statement statement = this.connection.createStatement();
+            statement.setQueryTimeout(30);  // set timeout to 30 sec.
+            statement.executeQuery("INSERT INTO tbl_event VALUES ()");
+        }
+        catch(SQLException e) {
+            // query failed
+            System.err.println(e);
+        }
+    }
+    public void saveEventTemplate(EventTemplate et){
+
+    }
+    public EventTemplate getEventTemplate(int id){
+        return ;
+    }
+
+    public ArrayList<EventTemplate> getEventTemplateList(){
+        return;
+    }
+    //tags 3 cases,
+
 }
