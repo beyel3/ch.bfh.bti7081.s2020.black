@@ -16,6 +16,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.theme.lumo.Lumo;
 
+
 public class MainViewImplementation extends VerticalLayout {
 
 		private static final long serialVersionUID = 1L;
