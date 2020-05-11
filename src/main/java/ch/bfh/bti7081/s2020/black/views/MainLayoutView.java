@@ -20,13 +20,15 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.server.InitialPageSettings;
+import com.vaadin.flow.server.PageConfigurator;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 
 
 @Theme(value = Lumo.class, variant = Lumo.DARK)
 
-public class MainLayoutView extends Composite<VerticalLayout> implements HasComponents, RouterLayout {
+public class MainLayoutView extends Composite<VerticalLayout> implements HasComponents, RouterLayout, PageConfigurator {
 
 	private static final long serialVersionUID = 1L;
 	private Div childWrapper = new Div();
@@ -36,7 +38,8 @@ public class MainLayoutView extends Composite<VerticalLayout> implements HasComp
 
 	public MainLayoutView() {
 		getContent().setSizeFull();
-
+		
+		// Icons in header and the theme toggle button / home button
 		Icon iconHome = VaadinIcon.HOME_O.create();
 		Button iconHomeButton = new Button(iconHome);
 		iconHomeButton.addClickListener(event -> iconHomeButton.getUI().ifPresent(ui -> ui.navigate("home")));
@@ -54,7 +57,6 @@ public class MainLayoutView extends Composite<VerticalLayout> implements HasComp
 			} else {
 				themeList.add(Lumo.DARK);
 			}
-
 		});
 
 		LoginOverlay loginOverlay = new LoginOverlay();
@@ -127,5 +129,12 @@ public class MainLayoutView extends Composite<VerticalLayout> implements HasComp
 	@Override
 	public void showRouterLayoutContent(HasElement content) {
 		childWrapper.getElement().appendChild(content.getElement());
+	}
+	
+	// add the favicon via PageConfigurator interface
+	@Override
+	public void configurePage(InitialPageSettings settings) {
+        settings.addLink("shortcut icon", "./icons/favicon.ico");
+        settings.addFavIcon("icon", "./icons/icon.png", "192x192");
 	}
 }
