@@ -78,7 +78,7 @@ public class Persistence {
                 //Coreuser cu = new Coreuser();
                 //participants.add(cu);
             }
-            Event event = new Event(rs.getInt("eventId"), getEventTemplateById(rs.getInt("eventTemplateID")), rs.getString("info"), rs.getBoolean("isPublic"), rs.getInt("rating"), Status.valueOf(rs.getString("state")), rs.getInt("imageID"), participants); //rs.getInt("maxParticipants"),
+            Event event = new Event(rs.getInt("eventId"), getEventTemplateById(rs.getInt("eventTemplateID")), rs.getString("info"), rs.getBoolean("isPublic"),rs.getInt("maxParticipants"), rs.getInt("rating"), Status.valueOf(rs.getString("state")), rs.getInt("imageID"), participants);
 
             return event;
         }
@@ -104,7 +104,7 @@ public class Persistence {
                     //Coreuser cu = new Coreuser();
                     //participants.add(cu);
                 }
-                Event event = new Event(rs.getInt("eventId"), getEventTemplateById(rs.getInt("eventTemplateID")), rs.getString("info"), rs.getBoolean("isPublic"), rs.getInt("rating"), Status.valueOf(rs.getString("state")), rs.getInt("imageID"), participants); //rs.getInt("maxParticipants"),
+                Event event = new Event(rs.getInt("eventId"), getEventTemplateById(rs.getInt("eventTemplateID")), rs.getString("info"), rs.getBoolean("isPublic"), rs.getInt("maxParticipants"), rs.getInt("rating"), Status.valueOf(rs.getString("state")), rs.getInt("imageID"), participants);
                 eventList.add(event);
             }
             return eventList;
@@ -129,7 +129,7 @@ public class Persistence {
                     //Coreuser cu = new Coreuser();
                     //participants.add(cu);
                 }
-                Event event = new Event(rs.getInt("eventId"), getEventTemplateById(rs.getInt("eventTemplateID")), rs.getString("info"), rs.getBoolean("isPublic"), rs.getInt("rating"), Status.valueOf(rs.getString("state")), rs.getInt("imageID"), participants); //, rs.getInt("maxParticipants")
+                Event event = new Event(rs.getInt("eventId"), getEventTemplateById(rs.getInt("eventTemplateID")), rs.getString("info"), rs.getBoolean("isPublic"), rs.getInt("maxParticipants"), rs.getInt("rating"), Status.valueOf(rs.getString("state")), rs.getInt("imageID"), participants);
                 eventList.add(event);
             }
             return eventList;
