@@ -5,7 +5,9 @@ import java.util.List;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
@@ -54,7 +56,7 @@ public class EventCreaterViewImplementaion extends VerticalLayout implements Eve
 	
 	public EventCreaterViewImplementaion() {
 		
-
+		setSizeFull();
 		tags.setItems(eventPresenter.getTags());
 				
 		VerticalLayout VerticalLayout = new VerticalLayout();
@@ -62,6 +64,15 @@ public class EventCreaterViewImplementaion extends VerticalLayout implements Eve
 		
 		Checkbox publicEvent = new Checkbox("public");
 		TextField maxParticipants = new TextField();
+		
+		TextField title = new TextField();
+		title.setWidth("50%");
+		title.setClearButtonVisible(true);
+		
+		TextArea description = new TextArea();
+		description.setWidth("50%");
+		description.setMinHeight("100px");
+		description.setClearButtonVisible(true);
 
 		title.setRequiredIndicatorVisible(true);
 		description.setRequiredIndicatorVisible(true);
@@ -71,7 +82,9 @@ public class EventCreaterViewImplementaion extends VerticalLayout implements Eve
 		FormLayout.addFormItem(tags, "Wähle Tags");
 		FormLayout.addFormItem(publicEvent, "Öffentlich");
 		FormLayout.addFormItem(maxParticipants, "Maximale Teilnehmer");
-
+		FormLayout.setResponsiveSteps(
+		        new ResponsiveStep("40em", 1));
+		
 		// Button bar
 		Button save = new Button("Save");
 		Button reset = new Button("Reset");
@@ -79,14 +92,14 @@ public class EventCreaterViewImplementaion extends VerticalLayout implements Eve
 		HorizontalLayout actions = new HorizontalLayout();
 		actions.add(save, reset);
 		save.getStyle().set("marginRight", "10px");
+		actions.getStyle().set("marginLeft", "50px");
 
 		// Event Handler
 		save.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("LandingPage")));
 
-		reset.addClickListener(event -> {
-
-		});
-
+		reset.addClickListener(event -> title.setValue(""));
+		
+		VerticalLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 		VerticalLayout.add(FormLayout, actions);
 		add(VerticalLayout);
 	}
