@@ -26,6 +26,8 @@ public class Persistence {
         } catch (ClassNotFoundException e) {
             throw new Error("Cannot find JDBC Driver", e);
         }
+        
+        openConnection();
     }
 
     public void openConnection() {

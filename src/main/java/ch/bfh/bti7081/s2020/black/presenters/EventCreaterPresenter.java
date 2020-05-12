@@ -63,14 +63,14 @@ public class EventCreaterPresenter implements RouterLayout, EventCreaterView.Eve
 
 	public ArrayList<Tag> getTags() {
 	
-//		try {
-//			return persistence.getTagList();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			return null;
-//		}
-		return hardCoded.getTags();
+		try {
+			return persistence.getTagList();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+//		return hardCoded.getTags();
 	}
 
 	public ArrayList<EventTemplate> getEventTemplates() {
