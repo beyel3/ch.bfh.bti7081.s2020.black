@@ -62,7 +62,7 @@ public class EventTemplate {
 		this.description = description;
 	}
 
-	public List<Tag> getTags() {
+	public ArrayList<Tag> getTags() {
 		return tags;
 	}
 
