@@ -22,6 +22,17 @@ public class EventTemplate {
 		this.avgRating = avgRating;	
 		
 	}
+	
+	public EventTemplate(String title, String description, ArrayList<Tag> tags, ArrayList<Event> events, double avgRating) {
+		
+		this.title = title;
+		this.description = description;
+		this.tags = tags;
+		this.events = events;
+		this.avgRating = avgRating;	
+		
+	}
+
 
 	public void rate(int rating) {
 

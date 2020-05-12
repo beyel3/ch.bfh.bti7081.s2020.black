@@ -11,7 +11,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 
 
-@Route(value = "home", layout = MainView.class)
+@Route(value = "LandingPage", layout = MainView.class)
 @RouteAlias(value = "", layout = MainView.class)
 public class LandingPageImplementation extends VerticalLayout {
 	

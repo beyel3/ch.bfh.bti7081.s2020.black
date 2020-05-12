@@ -8,6 +8,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collection;
+
+import ch.bfh.bti7081.s2020.black.model.Event;
+import ch.bfh.bti7081.s2020.black.model.EventTemplate;
+import ch.bfh.bti7081.s2020.black.model.Tag;
 
 public class Persistence {
 
@@ -275,4 +280,11 @@ public class Persistence {
             return null;
         }
     }
+    //tags 3 cases,
+
+	public Collection<Tag> getTags() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -8,11 +8,11 @@ public class MainPresenter {
 
 	private Persistence persistence;
 	private MainViewImplementation view;
-	private EventPresenter eventPresenter;
+	private EventCreaterPresenter eventPresenter;
 	private AccountPresenter accountPresenter;
 
 	public MainPresenter(MainModel model, MainViewImplementation view) {
 		this.view = view;
-		this.eventPresenter = new EventPresenter();
+		this.eventPresenter = new EventCreaterPresenter();
 	}
 }
