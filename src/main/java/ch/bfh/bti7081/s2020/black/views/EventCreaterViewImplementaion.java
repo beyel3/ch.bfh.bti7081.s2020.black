@@ -2,9 +2,7 @@ package ch.bfh.bti7081.s2020.black.views;
 
 import java.util.List;
 
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.charts.model.Label;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
@@ -25,6 +23,11 @@ import ch.bfh.bti7081.s2020.black.presenters.EventPresenter;
 @Route(value = "Event", layout = MainView.class)
 public class EventCreaterViewImplementaion extends VerticalLayout implements EventCreaterView, HasUrlParameter<String> {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
     public void setParameter(BeforeEvent event,
             @OptionalParameter String parameter) {

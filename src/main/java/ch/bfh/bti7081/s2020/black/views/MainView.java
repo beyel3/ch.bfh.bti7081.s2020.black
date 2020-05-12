@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2020.black.views;
 
-import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.flow.server.PWA;
@@ -15,7 +14,12 @@ import ch.bfh.bti7081.s2020.black.presenters.MainPresenter;
 @Theme(value = Lumo.class, variant = Lumo.DARK)
 public class MainView extends VerticalLayout implements RouterLayout{
 	
-    public MainView() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public MainView() {
        			     	
     	MainModel model = new MainModel();
     	MainViewImplementation view = new MainViewImplementation();
