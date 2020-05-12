@@ -46,7 +46,7 @@ public class BrwoseEventTemplatesViewImplementation extends VerticalLayout {
 			tags.setReadOnly(true);
 			
 			ProgressBar progressBar = new ProgressBar();
-			progressBar.setValue(0.32);
+			progressBar.setValue(t.getAvgRating()/10);
 			
 			Button button = new Button("USE AS TEMPLATE");
 			button.addClickListener(event -> 

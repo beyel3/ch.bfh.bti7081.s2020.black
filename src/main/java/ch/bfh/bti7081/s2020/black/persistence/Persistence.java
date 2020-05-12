@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2020.black.persistence;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
+import ch.bfh.bti7081.s2020.black.model.Status;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -49,8 +50,8 @@ public class Persistence {
             ResultSet rs = statement.executeQuery("SELECT * FROM tbl_event");
 
             while (rs.next()) {
-                Event event = new Event(rs.getInt("eventId"), rs.getString("info"), rs.getBoolean("isPrivate"), rs.getInt("rating"), rs.getString("state"), rs.getInt("maxParticipants"), rs.getInt("eventTemplateID"), rs.getString("imagePath"));
-                eventList.add(event);
+//                Event event = new Event(rs.getInt("eventId"), rs.getString("info"), rs.getBoolean("isPrivate"), rs.getDouble("rating"), (Status) rs.getString("state"), rs.getInt("maxParticipants"), rs.getInt("eventTemplateID"), rs.getString("imagePath"));
+//                eventList.add(event);
             }
             return eventList;
         }
@@ -62,7 +63,7 @@ public class Persistence {
     }
 
     public Event getEvent(int id){
-        return;
+        return null;
     }
 
     public void saveEvent(Event event) throws SQLException {
@@ -80,11 +81,11 @@ public class Persistence {
 
     }
     public EventTemplate getEventTemplate(int id){
-        return ;
+        return null;
     }
 
     public ArrayList<EventTemplate> getEventTemplateList(){
-        return;
+        return null;
     }
     //tags 3 cases,
 
