@@ -33,7 +33,7 @@ public class MainViewImplementation extends VerticalLayout {
 		// Icons in header and the theme toggle button / home button
 		Icon iconHome = VaadinIcon.HOME_O.create();
 		Button iconHomeButton = new Button(iconHome);
-		iconHomeButton.addClickListener(event -> iconHomeButton.getUI().ifPresent(ui -> ui.navigate("home")));
+		iconHomeButton.addClickListener(event -> iconHomeButton.getUI().ifPresent(ui -> ui.navigate("LandingPage")));
 
 		Icon iconTheme = VaadinIcon.SUN_O.create();
 		Button iconToggleThemeButton = new Button(iconTheme, click -> {

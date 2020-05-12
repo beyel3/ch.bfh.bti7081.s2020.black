@@ -6,7 +6,9 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
@@ -60,11 +62,23 @@ public class EventCreaterViewImplementaion extends VerticalLayout implements Has
 		maxParticipants.setStep(1);
 		maxParticipants.setMin(2);
 
+		setSizeFull();
+
 		tags.setItems(eventPresenter.getTags());
 				
 		VerticalLayout VerticalLayout = new VerticalLayout();
 		FormLayout FormLayout = new FormLayout();		
 		
+		
+		TextField title = new TextField();
+		title.setWidth("50%");
+		title.setClearButtonVisible(true);
+		
+		TextArea description = new TextArea();
+		description.setWidth("50%");
+		description.setMinHeight("100px");
+		description.setClearButtonVisible(true);
+
 		title.setRequiredIndicatorVisible(true);
 		description.setRequiredIndicatorVisible(true);
 
@@ -73,7 +87,9 @@ public class EventCreaterViewImplementaion extends VerticalLayout implements Has
 		FormLayout.addFormItem(tags, "Wähle Tags");
 		FormLayout.addFormItem(publicEvent, "Öffentlich");
 		FormLayout.addFormItem(maxParticipants, "Maximale Teilnehmer");
-
+		FormLayout.setResponsiveSteps(
+		        new ResponsiveStep("40em", 1));
+		
 		// Button bar
 		Button save = new Button("Event erstellen");
 		Button invite = new Button("Gäste einladen");
@@ -81,6 +97,7 @@ public class EventCreaterViewImplementaion extends VerticalLayout implements Has
 		HorizontalLayout actions = new HorizontalLayout();
 		actions.add(save, invite);
 		save.getStyle().set("marginRight", "10px");
+		actions.getStyle().set("marginLeft", "50px");
 
 		// Event Handler
 		save.addClickListener(event -> {
@@ -116,7 +133,8 @@ public class EventCreaterViewImplementaion extends VerticalLayout implements Has
 		invite.addClickListener(event -> {
 
 		});
-
+		
+		VerticalLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 		VerticalLayout.add(FormLayout, actions);
 		add(VerticalLayout);
 	}
