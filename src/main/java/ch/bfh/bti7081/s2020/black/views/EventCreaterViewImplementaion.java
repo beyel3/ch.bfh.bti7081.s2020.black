@@ -126,7 +126,7 @@ public class EventCreaterViewImplementaion extends VerticalLayout implements Has
 				
 			}
 			
-			UI.getCurrent().navigate("home");
+			UI.getCurrent().navigate("LandingPage");
 			
 		});
 
