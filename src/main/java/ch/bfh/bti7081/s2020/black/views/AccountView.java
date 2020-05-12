@@ -11,6 +11,11 @@ import com.vaadin.flow.router.RouteAlias;
 
 public class AccountView extends VerticalLayout {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public AccountView() {
 		
 	}

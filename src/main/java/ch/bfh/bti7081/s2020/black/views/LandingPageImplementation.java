@@ -3,39 +3,37 @@ package ch.bfh.bti7081.s2020.black.views;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.Composite;
-import com.vaadin.flow.component.HasElement;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
-import com.vaadin.flow.router.RouterLayout;
-import com.vaadin.flow.server.InitialPageSettings;
-import com.vaadin.flow.server.PageConfigurator;
 
 
 @Route(value = "home", layout = MainView.class)
 @RouteAlias(value = "", layout = MainView.class)
 public class LandingPageImplementation extends VerticalLayout {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final HorizontalLayout contentLayoutFirstRow;
 	private final HorizontalLayout contentLayoutSecondRow;
 
 
 	public LandingPageImplementation(){
-		
+		setSizeFull();
+				
 		contentLayoutFirstRow = new HorizontalLayout();
 		contentLayoutFirstRow.setWidth("100%");
-		contentLayoutFirstRow.setHeight("50%");
+		contentLayoutFirstRow.setHeight("200px");
 
 		contentLayoutSecondRow = new HorizontalLayout();
 		contentLayoutSecondRow.setWidth("100%");
-		contentLayoutSecondRow.setHeight("50%");
+		contentLayoutSecondRow.setHeight("200px");
+		setFlexGrow(1, contentLayoutFirstRow,contentLayoutSecondRow);
 		
 		List<Button> buttons = new ArrayList<Button>();
 		
@@ -65,7 +63,7 @@ public class LandingPageImplementation extends VerticalLayout {
 		buttons.add(createEventButton);
 		
 		for(Button b : buttons) {
-			b.getStyle().set("height", "90%");
+			b.getStyle().set("height", "200px");
 			b.getStyle().set("width", "40%");
 			b.getStyle().set("font-size", "20px");
 			b.getStyle().set("font-size", "2vw");	
@@ -75,8 +73,6 @@ public class LandingPageImplementation extends VerticalLayout {
 		contentLayoutFirstRow.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 		contentLayoutSecondRow.add(searchOpenPublicEventButton, myEventsButton);
 		contentLayoutSecondRow.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-		//contentLayoutSecondRow.getContent().setHorizontalComponentAlignment(FlexComponent.Alignment.STRETCH);		
-
 		
 		add(contentLayoutFirstRow,contentLayoutSecondRow);
 
