@@ -7,6 +7,7 @@ public class Event {
 	
 	private int id;
 	private EventTemplate eventTemplate;
+	private String info;
 	private ArrayList<Post> posts;
  	private boolean isPublic;
  	private int maxParticipants;
@@ -16,11 +17,12 @@ public class Event {
 	private int pictureId;
 	
 	//Persistence Constructor
-	public Event(int id, EventTemplate eventTemplate, ArrayList<Post> posts, boolean isPublic, int maxParticipants, int rating, Status status, int pictureID, List<Coreuser> participants) {
+	public Event(int id, EventTemplate eventTemplate, String info, boolean isPublic, int maxParticipants, int rating, Status status, int pictureID, List<Coreuser> participants) {
 		
 		this.id = id;
 		this.eventTemplate = eventTemplate;
-		this.posts = posts;
+		this.info = info;
+		//this.posts = posts;
 		this.isPublic = isPublic;
 		this.maxParticipants = maxParticipants;
 		this.rating = rating;

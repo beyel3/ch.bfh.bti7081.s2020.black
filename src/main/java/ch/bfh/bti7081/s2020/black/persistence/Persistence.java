@@ -261,7 +261,7 @@ public class Persistence {
         }
     }
 
-    public ArrayList<Tag> getTagList(int id) throws SQLException{
+    public ArrayList<Tag> getTagList() throws SQLException{
         ArrayList<Tag> tags = new ArrayList<Tag>();
         try {
             Statement statement = this.connection.createStatement();
