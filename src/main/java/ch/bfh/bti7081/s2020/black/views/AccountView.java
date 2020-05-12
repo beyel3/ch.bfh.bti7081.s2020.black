@@ -5,8 +5,8 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 
-@Route(value = "MyEvents", layout = MainLayoutView.class)
-@RouteAlias(value = "AccountView", layout = MainLayoutView.class)
+@Route(value = "MyEvents", layout = MainView.class)
+@RouteAlias(value = "AccountView", layout = MainView.class)
 @PageTitle("MyEvents")
 
 public class AccountView extends VerticalLayout {

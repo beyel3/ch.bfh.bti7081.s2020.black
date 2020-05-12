@@ -6,19 +6,22 @@ import java.util.Set;
 
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
+import com.vaadin.flow.router.RouterLayout;
 
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.HardCoded;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 import ch.bfh.bti7081.s2020.black.views.EventCreaterView;
+import ch.bfh.bti7081.s2020.black.views.EventCreaterViewImplementaion;
 
-public class EventPresenter {
+public class EventPresenter implements RouterLayout, EventCreaterView.EventCreaterViewListener{
 
 	private HardCoded hardCoded;
-	private EventCreaterView eventCreaterView;
+	private EventCreaterViewImplementaion eventCreaterView;
 
 	public EventPresenter() {
 		hardCoded = new HardCoded();
@@ -30,6 +33,28 @@ public class EventPresenter {
 
 	public List<EventTemplate> getEventTemplates() {
 		return hardCoded.getEventTemplates();
+	}
+
+	@Override
+	public void buttonClick(char operation) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void buttonClick(String buttonText) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Element getElement() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public EventTemplate getEventTemplateFromID(int eventTemplateID) {
+		return hardCoded.getEventTemplateFromID(eventTemplateID-1);
 	}
 	
 }

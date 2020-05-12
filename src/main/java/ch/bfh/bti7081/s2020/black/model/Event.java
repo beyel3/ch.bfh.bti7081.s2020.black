@@ -12,17 +12,18 @@ public class Event {
 	private Status status;
 	private int rating;
 	private int pictureId;
-
 	
-	public Event(int id, EventTemplate eventTemplate, List<Coreuser> participants) {
+	public Event(int id, EventTemplate eventTemplate, String info, boolean isPublic, int rating, Status status, int pictureID, List<Coreuser> participants) {
 		
 		this.id = id;
 		this.eventTemplate = eventTemplate;
 		this.info = "";
-		this.rating = 0;
-		this.status = Status.open;
-		this.pictureId = 0;		
+		this.isPublic = isPublic;
+		this.rating = rating;
+		this.status = status;
+		this.pictureId = pictureID;		
 		this.participants = participants;
+		
 	}
 
 	public void addPicture(int pictureId){
@@ -35,5 +36,61 @@ public class Event {
 
 	public int getRating() {
 		return this.rating;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public EventTemplate getEventTemplate() {
+		return eventTemplate;
+	}
+
+	public void setEventTemplate(EventTemplate eventTemplate) {
+		this.eventTemplate = eventTemplate;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
+	public boolean isPublic() {
+		return isPublic;
+	}
+
+	public void setPublic(boolean isPublic) {
+		this.isPublic = isPublic;
+	}
+
+	public List<Coreuser> getParticipants() {
+		return participants;
+	}
+
+	public void setParticipants(List<Coreuser> participants) {
+		this.participants = participants;
+	}
+
+	public int getPictureID() {
+		return pictureId;
+	}
+
+	public void setPictureID(int pictureID) {
+		this.pictureId = pictureID;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 }

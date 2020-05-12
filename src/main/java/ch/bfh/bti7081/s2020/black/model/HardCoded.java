@@ -5,9 +5,9 @@ import java.util.List;
 
 public class HardCoded {
 	
-	private List<Tag> tags;
-	private List<EventTemplate> eventTemplates;
-	private List<Event> events;
+	private ArrayList<Tag> tags;
+	private ArrayList<EventTemplate> eventTemplates;
+	private ArrayList<Event> events;
 	
 	public HardCoded() {
 		
@@ -21,27 +21,46 @@ public class HardCoded {
 		tags.add(new Tag(4, "#chill"));
 		
 		
-		eventTemplates.add(new EventTemplate(
+		EventTemplate hardOne = new EventTemplate(
 				1, 
 				"hike", 
 				"hiking in the swiss alps",
-				tags.subList(0, 2), 
-				null));
+				null, 
+				null, 8.2);
 		
-		eventTemplates.add(new EventTemplate(
+		ArrayList<Tag> sublistOne = new ArrayList<Tag>();
+		sublistOne.add(tags.get(0));
+		sublistOne.add(tags.get(1));
+		
+		hardOne.setTags(sublistOne);
+		eventTemplates.add(hardOne);
+		
+		
+		EventTemplate hardTwo = new EventTemplate(
 				2,
 				"cook dinner",
 				"Invite your friends to this activity and let them participate in cooking",
-				tags.subList(2, 4), 
-				null));
+				null, 
+				null, 6.7);
+				
+		ArrayList<Tag> sublistTwo = new ArrayList<Tag>();
+		sublistTwo.add(tags.get(2));
+		sublistTwo.add(tags.get(3));
+				
+		hardTwo.setTags(sublistTwo);
+		eventTemplates.add(hardTwo);
 		
 	}
 
-	public List<Tag> getTags() {
+	public ArrayList<Tag> getTags() {
 		return tags;
 	}
 	
-	public List<EventTemplate> getEventTemplates(){
+	public ArrayList<EventTemplate> getEventTemplates(){
 		return eventTemplates;
+	}
+
+	public EventTemplate getEventTemplateFromID(int eventTemplateID) {
+		return eventTemplates.get(eventTemplateID);
 	}
 }
