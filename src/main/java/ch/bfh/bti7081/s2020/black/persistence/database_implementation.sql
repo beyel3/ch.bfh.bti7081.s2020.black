@@ -115,3 +115,7 @@ CREATE TABLE tbl_tag (
     tagID INTEGER PRIMARY KEY,
     tag_name VARCHAR
 );
+
+INSERT INTO tbl_tag VALUES (NULL,'Outdoor');
+INSERT INTO tbl_tag VALUES (NULL,'Indoor');
+INSERT INTO tbl_tag VALUES (NULL,'Sport');
