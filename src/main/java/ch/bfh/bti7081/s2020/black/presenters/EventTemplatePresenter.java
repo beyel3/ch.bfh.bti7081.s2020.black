@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
@@ -25,8 +26,14 @@ public class EventTemplatePresenter {
 	public List<EventTemplate> getEventTemplates() {
 		
 		
-//		return persistence.getEventTemplateList();
-		return hardCoded.getEventTemplates();
+		try {
+			return persistence.getEventTemplateList();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+//		return hardCoded.getEventTemplates();
 	}
 	
 	

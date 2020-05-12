@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -41,8 +42,14 @@ public class EventCreaterPresenter implements RouterLayout, EventCreaterView.Eve
 		events.add(event);
 		event.getEventTemplate().setEvents(events);
 		
-		hardCoded.addEventTemplate(eventTemplate);
+//		hardCoded.addEventTemplate(eventTemplate);
 		
+		try {
+			persistence.saveEventTemplate(eventTemplate);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -54,15 +61,27 @@ public class EventCreaterPresenter implements RouterLayout, EventCreaterView.Eve
 		
 	}
 
-	public Collection<Tag> getTags() {
+	public ArrayList<Tag> getTags() {
 	
-//		return persistence.getTags();
+//		try {
+//			return persistence.getTagList();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			return null;
+//		}
 		return hardCoded.getTags();
 	}
 
-	public List<EventTemplate> getEventTemplates() {
-//		return persistence.getEventTemplateList();
-		return hardCoded.getEventTemplates();
+	public ArrayList<EventTemplate> getEventTemplates() {
+		try {
+			return persistence.getEventTemplateList();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+//		return hardCoded.getEventTemplates();
 	}
 
 	@Override
@@ -72,8 +91,14 @@ public class EventCreaterPresenter implements RouterLayout, EventCreaterView.Eve
 	}
 
 	public EventTemplate getEventTemplateFromID(int eventTemplateID) {
-//		return persistence.getEventTemplate(eventTemplateID);
-		return hardCoded.getEventTemplateFromID(eventTemplateID-1);
+		try {
+			return persistence.getEventTemplateById(eventTemplateID);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+//		return hardCoded.getEventTemplateFromID(eventTemplateID-1);
 	}
 	
 }

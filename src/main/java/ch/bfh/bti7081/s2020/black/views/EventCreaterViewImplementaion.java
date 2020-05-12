@@ -69,12 +69,9 @@ public class EventCreaterViewImplementaion extends VerticalLayout implements Has
 		VerticalLayout VerticalLayout = new VerticalLayout();
 		FormLayout FormLayout = new FormLayout();		
 		
-		
-		TextField title = new TextField();
 		title.setWidth("50%");
 		title.setClearButtonVisible(true);
 		
-		TextArea description = new TextArea();
 		description.setWidth("50%");
 		description.setMinHeight("100px");
 		description.setClearButtonVisible(true);
