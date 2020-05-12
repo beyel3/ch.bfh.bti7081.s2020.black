@@ -19,9 +19,9 @@ CREATE TABLE tbl_accountType (
     accountType VARCHAR
 );
 
-INSERT INTO tbl_accountType VALUES (NULL,"relative");
-INSERT INTO tbl_accountType VALUES (NULL,"patient");
-INSERT INTO tbl_accountType VALUES (NULL,"admin");
+INSERT INTO tbl_accountType VALUES (NULL,'relative');
+INSERT INTO tbl_accountType VALUES (NULL,'patient');
+INSERT INTO tbl_accountType VALUES (NULL,'admin');
 
 DROP TABLE IF EXISTS tbl_friendship;
 CREATE TABLE tbl_friendship (
@@ -74,12 +74,12 @@ DROP TABLE IF EXISTS tbl_event;
 CREATE TABLE tbl_event (
     eventID INTEGER PRIMARY KEY,
     info VARCHAR,
-    isPrivate BOOLEAN,
+    isPublic BOOLEAN,
     rating INTEGER,
     state VARCHAR,
     maxParticipants INTEGER,
     eventTemplateID INTEGER,
-    imagePath VARCHAR,
+    imageID INTEGER,
 
     FOREIGN KEY (eventTemplateID)
         REFERENCES tbl_eventTemplate (eventTemplateID)
