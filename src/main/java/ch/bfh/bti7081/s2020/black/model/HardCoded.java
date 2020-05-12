@@ -63,4 +63,9 @@ public class HardCoded {
 	public EventTemplate getEventTemplateFromID(int eventTemplateID) {
 		return eventTemplates.get(eventTemplateID);
 	}
+
+	public void addEventTemplate(EventTemplate eventTemplate) {
+		eventTemplates.add(eventTemplate);
+		eventTemplates.get(eventTemplates.size()-1).setId(eventTemplates.size());;
+	}
 }

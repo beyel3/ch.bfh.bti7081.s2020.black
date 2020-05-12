@@ -1,14 +1,15 @@
 package ch.bfh.bti7081.s2020.black.persistence;
-import ch.bfh.bti7081.s2020.black.model.Event;
-import ch.bfh.bti7081.s2020.black.model.EventTemplate;
-import ch.bfh.bti7081.s2020.black.model.Status;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collection;
+
+import ch.bfh.bti7081.s2020.black.model.Event;
+import ch.bfh.bti7081.s2020.black.model.EventTemplate;
+import ch.bfh.bti7081.s2020.black.model.Tag;
 
 public class Persistence {
 
@@ -50,7 +51,7 @@ public class Persistence {
             ResultSet rs = statement.executeQuery("SELECT * FROM tbl_event");
 
             while (rs.next()) {
-//                Event event = new Event(rs.getInt("eventId"), rs.getString("info"), rs.getBoolean("isPrivate"), rs.getDouble("rating"), (Status) rs.getString("state"), rs.getInt("maxParticipants"), rs.getInt("eventTemplateID"), rs.getString("imagePath"));
+///                Event event = new Event(rs.getInt("eventId"), rs.getString("info"), rs.getBoolean("isPrivate"), rs.getDouble("rating"), (Status) rs.getString("state"), rs.getInt("maxParticipants"), rs.getInt("eventTemplateID"), rs.getString("imagePath"));
 //                eventList.add(event);
             }
             return eventList;
@@ -88,5 +89,10 @@ public class Persistence {
         return null;
     }
     //tags 3 cases,
+
+	public Collection<Tag> getTags() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
