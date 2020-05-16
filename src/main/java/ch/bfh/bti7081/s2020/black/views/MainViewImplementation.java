@@ -16,9 +16,6 @@ import com.vaadin.flow.theme.lumo.Lumo;
 
 public class MainViewImplementation extends VerticalLayout {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private final HorizontalLayout loginButtonLayout;
 	private final HorizontalLayout menuBarLayout;
@@ -58,16 +55,6 @@ public class MainViewImplementation extends VerticalLayout {
 		i18n.setAdditionalInformation("To close the login form submit non-empty username and password");
 		loginOverlay.setI18n(i18n);
 
-		LoginForm loginForm = new LoginForm();
-//		component.addLoginListener(e -> {
-//		    boolean isAuthenticated = authenticate(e);
-//		    if (isAuthenticated) {
-//		        navigateToMainPage();
-//		    } else {
-//		        component.setError(true);
-//		    }
-//		});
-
 		menuBar = new HorizontalLayout();
 
 		Button homeButton = new Button("Home");
@@ -76,7 +63,7 @@ public class MainViewImplementation extends VerticalLayout {
 		menuBar.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 
 		Button createEvent = new Button("Create Event");
-		createEvent.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("Event")));
+		createEvent.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("EventTemplateView")));
 		menuBar.add(createEvent);
 
 		Button myEvent = new Button("My Events");
@@ -110,5 +97,4 @@ public class MainViewImplementation extends VerticalLayout {
 		add(header);
 
 	}
-
 }

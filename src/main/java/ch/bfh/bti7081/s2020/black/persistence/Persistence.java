@@ -289,4 +289,9 @@ public class Persistence {
 		return null;
 	}
 
+	public void addEventToTempalte(Event event) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

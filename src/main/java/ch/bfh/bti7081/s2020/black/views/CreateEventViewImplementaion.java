@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2020.black.views;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -19,52 +20,34 @@ import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.OptionalParameter;
 import com.vaadin.flow.router.Route;
 
-import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Tag;
-import ch.bfh.bti7081.s2020.black.presenters.EventCreaterPresenter;
+import ch.bfh.bti7081.s2020.black.presenters.CreateEventPresenter;
 
 
-@Route(value = "Event", layout = MainView.class)
-public class EventCreaterViewImplementaion extends VerticalLayout implements HasUrlParameter<String> {
+@Route(value = "CreateEvent", layout = MainView.class)
+public class CreateEventViewImplementaion extends VerticalLayout implements HasUrlParameter<String> {
 
 
 	@Override
-    public void setParameter(BeforeEvent event,
-            @OptionalParameter String parameter) {
-        if (parameter != null) {
-        	
-           eventTemplateID = Integer.parseInt(parameter);
-           eventTemplate = eventPresenter.getEventTemplateFromID(eventTemplateID);
-           
-			title.setValue(eventTemplate.getTitle());
-			title.setReadOnly(true);
-			description.setValue(eventTemplate.getDescription());
-			description.setReadOnly(true);
-			tags.setItems(eventTemplate.getTags());
-			tags.setReadOnly(true);
-			createdFromTemplate = true;
-        }
+    public void setParameter(BeforeEvent event, String parameter) {
+		presenter.setEventTemplateByURLParameter(parameter);
     }
 	
-	private boolean createdFromTemplate;
-	private int eventTemplateID;
-	private EventCreaterPresenter eventPresenter = new EventCreaterPresenter();
-	private EventTemplate eventTemplate;
+	private CreateEventPresenter presenter = new CreateEventPresenter(this);
+	
 	private TextField title = new TextField();
 	private TextArea description = new TextArea();
 	private MultiSelectListBox<Tag> tags = new MultiSelectListBox<>();
 	private Checkbox publicEvent = new Checkbox();
 	private NumberField maxParticipants = new NumberField();
 	
-	public EventCreaterViewImplementaion() {
+	public CreateEventViewImplementaion() {
 		
 		maxParticipants.setHasControls(true);
 		maxParticipants.setStep(1);
 		maxParticipants.setMin(2);
 
 		setSizeFull();
-
-		tags.setItems(eventPresenter.getTags());
 				
 		VerticalLayout VerticalLayout = new VerticalLayout();
 		FormLayout FormLayout = new FormLayout();		
@@ -98,31 +81,7 @@ public class EventCreaterViewImplementaion extends VerticalLayout implements Has
 
 		// Event Handler
 		save.addClickListener(event -> {
-			
-			if(createdFromTemplate) {
-			eventPresenter.saveEventWithTemplate(
-					eventTemplate,
-					publicEvent.getValue(),
-					(int) Math.round(maxParticipants.getValue()),
-					null);
-			}
-			else {
-				
-				ArrayList<Tag> selectedTags = new ArrayList<Tag>();
-				for(Tag t :	tags.getSelectedItems()) {
-					selectedTags.add(t);
-				}
-				
-				eventPresenter.saveEventCreateNewEventTemplate(
-						title.getValue(),
-						description.getValue(),
-						selectedTags,
-						publicEvent.getValue(),
-						(int) Math.round(maxParticipants.getValue()),
-						null);
-				
-			}
-			
+			presenter.saveEvent(publicEvent.getValue(), (int) Math.round(maxParticipants.getValue()));
 			UI.getCurrent().navigate("LandingPage");
 			
 		});
@@ -134,5 +93,17 @@ public class EventCreaterViewImplementaion extends VerticalLayout implements Has
 		VerticalLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 		VerticalLayout.add(FormLayout, actions);
 		add(VerticalLayout);
+	}
+	
+	public void setTemplateInfo(String title, String description, List<Tag> tags) {
+		
+		this.title.setValue(title);
+		this.description.setValue(description);
+		this.tags.setItems(tags);
+		
+		this.title.setReadOnly(true);
+		this.description.setReadOnly(true);
+		this.tags.setReadOnly(true);
+		
 	}
 }
