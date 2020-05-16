@@ -25,15 +25,4 @@ public abstract class EventStateModel {
 			e.printStackTrace();
 		}
 	}
-
-	public ArrayList<Tag> getTags() {
-		
-		try {
-			return persistence.getTagList();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
 }

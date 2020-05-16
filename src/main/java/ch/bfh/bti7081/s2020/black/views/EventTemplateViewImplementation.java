@@ -2,18 +2,29 @@ package ch.bfh.bti7081.s2020.black.views;
 
 import java.util.ArrayList;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.progressbar.ProgressBar;
+import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.BeforeEvent;
+import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.bti7081.s2020.black.model.Coreuser;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
+import ch.bfh.bti7081.s2020.black.model.HardCoded;
 import ch.bfh.bti7081.s2020.black.model.Tag;
+import ch.bfh.bti7081.s2020.black.presenters.CreateEventPresenter;
+import ch.bfh.bti7081.s2020.black.presenters.CreateTemplatePresenter;
 import ch.bfh.bti7081.s2020.black.presenters.EventTemplatePresenter;
 
 @Route(value = "EventTemplateView", layout = MainView.class)
@@ -66,6 +77,10 @@ public class EventTemplateViewImplementation extends VerticalLayout {
 			templates.add(layout);
 		}
 		
-		add(templates);
+		VerticalLayout verticalLayout = new VerticalLayout();
+		verticalLayout.add(templates, new CreateTemplateViewImplementation());
+		
+		add(verticalLayout);
 	}
 }
+
