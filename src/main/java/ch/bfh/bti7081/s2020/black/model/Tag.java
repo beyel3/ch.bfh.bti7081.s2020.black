@@ -9,7 +9,19 @@ public class Tag {
 		this.id = id;
 		this.tag = tag;
 	}
-	
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getTagName() {
+		return this.tag;
+	}
+
 	public String toString() {
 		return tag;
 	}
