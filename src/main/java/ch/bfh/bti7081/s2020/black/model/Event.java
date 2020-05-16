@@ -37,7 +37,7 @@ public class Event {
 		
 		this.id = 0;
 		this.eventTemplate = eventTemplate;
-		this.posts = null;
+		this.posts = new ArrayList<Post>();
 		this.isPublic = isPublic;
 		this.maxParticipants = maxParticipants;
 		this.rating = 0;
