@@ -11,21 +11,17 @@ import ch.bfh.bti7081.s2020.black.model.Tag;
 
 public class ChooseTemplate extends EventStateModel {
 
+	private Random random = new Random();
 	
 	public ArrayList<EventTemplate> getEventTemplates() {
 		
-		
-		Random random = new Random();
-		
-		
+	
 		
 		try {
 			
 			ArrayList<EventTemplate> eventTemplates = new ArrayList<EventTemplate>();
 			ResultSet rs = persistence.executeQuery("SELECT * FROM tbl_eventTemplate");
 
-
-			
 			while(rs.next()) {
 				
 				int id = rs.getInt("eventTemplateID");
@@ -68,10 +64,14 @@ public class ChooseTemplate extends EventStateModel {
 		}
 	}
 
-	public void saveNewEventTemplate(String title, String description, Set<Tag> tags) {
-		
-		
-		persistence.executeQuery("insert into tbl_eventTemplate values()");
+//	public void saveNewEventTemplate(String title, String description, Set<Tag> tags) {
+//		
+//		persistence.executeQuery("insert into tbl_eventTemplate values('" + title + "'), ('" + description + "'), (" + random.nextInt(100)/10 + ");") ;
+//		
+//	}
+
+	public void saveEventTemplate(EventTemplate eventTemplate) {
+		// TODO Auto-generated method stub
 		
 	}
 

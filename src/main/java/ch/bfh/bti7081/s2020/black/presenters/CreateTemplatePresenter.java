@@ -26,7 +26,7 @@ public class CreateTemplatePresenter extends Presenter {
 
 	public void saveEventTemplate(String title, String description, Set<Tag> tags) {
 		
-		model.saveNewEventTemplate(title, description, tags);
+//		model.saveNewEventTemplate(title, description, tags);
 
 	}
 
