@@ -20,6 +20,8 @@ import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.OptionalParameter;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.bti7081.s2020.black.model.Coreuser;
+import ch.bfh.bti7081.s2020.black.model.HardCoded;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 import ch.bfh.bti7081.s2020.black.presenters.CreateEventPresenter;
 
@@ -35,46 +37,59 @@ public class CreateEventViewImplementaion extends VerticalLayout implements HasU
 	
 	private CreateEventPresenter presenter = new CreateEventPresenter(this);
 	
-	private TextField title = new TextField();
-	private TextArea description = new TextArea();
-	private MultiSelectListBox<Tag> tags = new MultiSelectListBox<>();
-	private Checkbox publicEvent = new Checkbox();
-	private NumberField maxParticipants = new NumberField();
+	private TextField title;
+	private TextArea description;
+	private MultiSelectListBox<Tag> tags;
+	private Checkbox publicEvent;
+	private NumberField maxParticipants;
+	private ArrayList<Coreuser> participants = new HardCoded().getCoreUser();
 	
 	public CreateEventViewImplementaion() {
+		
+		
+		//Init
+		title = new TextField();
+		description = new TextArea();
+		tags = new MultiSelectListBox<>();
+		publicEvent = new Checkbox();
+		maxParticipants = new NumberField();
+		setSizeFull();
+				
+		
+		//Event
+		FormLayout FormLayoutLeft = new FormLayout();		
+		title.setWidth("50%");
+		title.setClearButtonVisible(true);
+		title.setRequiredIndicatorVisible(true);
+		
+		description.setWidth("50%");
+		description.setMinHeight("100px");
+		description.setClearButtonVisible(true);
+		description.setRequiredIndicatorVisible(true);
 		
 		maxParticipants.setHasControls(true);
 		maxParticipants.setStep(1);
 		maxParticipants.setMin(2);
 
-		setSizeFull();
-				
-		VerticalLayout VerticalLayout = new VerticalLayout();
-		FormLayout FormLayout = new FormLayout();		
+		FormLayoutLeft.addFormItem(title, "Titel");
+		FormLayoutLeft.addFormItem(description, "Beschreibung");
+		FormLayoutLeft.addFormItem(tags, "Wähle Tags");
+		FormLayoutLeft.addFormItem(publicEvent, "Öffentlich");
+		FormLayoutLeft.addFormItem(maxParticipants, "Maximale Teilnehmer");
+		FormLayoutLeft.setResponsiveSteps(new ResponsiveStep("40em", 1));
 		
-		title.setWidth("50%");
-		title.setClearButtonVisible(true);
+		//Add Patient
+		FormLayout FormLayoutRight = new FormLayout();		
+		MultiSelectListBox<Coreuser> participants = new MultiSelectListBox<Coreuser>();
+		participants.setItems(this.participants);
+		FormLayoutRight.addFormItem(participants, "Patienten hinzufügen:");
 		
-		description.setWidth("50%");
-		description.setMinHeight("100px");
-		description.setClearButtonVisible(true);
-
-		title.setRequiredIndicatorVisible(true);
-		description.setRequiredIndicatorVisible(true);
-
-		FormLayout.addFormItem(title, "Titel");
-		FormLayout.addFormItem(description, "Beschreibung");
-		FormLayout.addFormItem(tags, "Wähle Tags");
-		FormLayout.addFormItem(publicEvent, "Öffentlich");
-		FormLayout.addFormItem(maxParticipants, "Maximale Teilnehmer");
-		FormLayout.setResponsiveSteps(
-		        new ResponsiveStep("40em", 1));
 		
 		// Button bar
+		HorizontalLayout actions = new HorizontalLayout();
+		
 		Button save = new Button("Event erstellen");
 		Button invite = new Button("Gäste einladen");
-
-		HorizontalLayout actions = new HorizontalLayout();
 		actions.add(save, invite);
 		save.getStyle().set("marginRight", "10px");
 		actions.getStyle().set("marginLeft", "50px");
@@ -90,8 +105,14 @@ public class CreateEventViewImplementaion extends VerticalLayout implements HasU
 
 		});
 		
+		
+		HorizontalLayout FormLayouts = new HorizontalLayout();
+		FormLayouts.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+		FormLayouts.add(FormLayoutLeft, FormLayoutRight);
+		
+		VerticalLayout VerticalLayout = new VerticalLayout();
 		VerticalLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-		VerticalLayout.add(FormLayout, actions);
+		VerticalLayout.add(FormLayouts, actions);
 		add(VerticalLayout);
 	}
 	

@@ -49,6 +49,21 @@ public class Persistence {
             System.err.println(e);
         }
     }
+    
+    public ResultSet executeQuery(String query) {
+    	
+    	 try {
+    		 
+             Statement statement = this.connection.createStatement();
+             statement.setQueryTimeout(30);
+             return statement.executeQuery(query);
+         }
+         catch(SQLException e) {
+             // query failed
+             System.err.println(e);
+             return null;
+         }
+    }
 
     public void saveEvent(Event event) throws SQLException {
         List<Coreuser> participants = event.getParticipants();
