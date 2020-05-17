@@ -5,15 +5,22 @@ import java.util.List;
 
 public class HardCoded {
 	
-	private List<Tag> tags;
-	private List<EventTemplate> eventTemplates;
-	private List<Event> events;
+	private ArrayList<Tag> tags;
+	private ArrayList<EventTemplate> eventTemplates;
+	private ArrayList<Event> events;
+	private ArrayList<Coreuser> participants;
 	
 	public HardCoded() {
 		
 		this.tags = new ArrayList<Tag>();
 		this.eventTemplates = new ArrayList<EventTemplate>();
 		this.events = new ArrayList<Event>();
+		this.participants = new ArrayList<Coreuser>();
+		
+		participants.add(new Patient("Mario", "Schläppi", "schl@bfh.ch"));
+		participants.add(new Patient("Luca", "Beyeler", "bey@bfh.ch"));
+		participants.add(new Patient("Ramon", "Luginbühl", "lug@bfh.ch"));
+		participants.add(new Patient("Robin", "Füglister", "fuegi@bfh.ch")); 
 		
 		tags.add(new Tag(1, "#outdoor"));
 		tags.add(new Tag(2, "#sporty"));
@@ -21,31 +28,126 @@ public class HardCoded {
 		tags.add(new Tag(4, "#chill"));
 		
 		
-		eventTemplates.add(new EventTemplate(
+		EventTemplate hardOne = new EventTemplate(
 				1, 
 				"hike", 
 				"hiking in the swiss alps",
-				tags.subList(0, 2), 
-				null));
+				null, 
+				null, 8.2);
 		
-		eventTemplates.add(new EventTemplate(
+		ArrayList<Tag> sublistOne = new ArrayList<Tag>();
+		sublistOne.add(tags.get(0));
+		sublistOne.add(tags.get(1));
+		
+		hardOne.setTags(sublistOne);
+		eventTemplates.add(hardOne);
+		
+		
+		EventTemplate hardTwo = new EventTemplate(
 				2,
 				"cook dinner",
 				"Invite your friends to this activity and let them participate in cooking",
-				tags.subList(2, 4), 
-				null));
+				null, 
+				null, 6.7);
+				
+		ArrayList<Tag> sublistTwo = new ArrayList<Tag>();
+		sublistTwo.add(tags.get(2));
+		sublistTwo.add(tags.get(3));
+				
+		hardTwo.setTags(sublistTwo);
+		eventTemplates.add(hardTwo);
+		
+		EventTemplate hardThree = new EventTemplate(
+				3, 
+				"hike", 
+				"hiking in the swiss alps",
+				null, 
+				null, 8.2);
+		
+		ArrayList<Tag> sublistThree = new ArrayList<Tag>();
+		sublistThree.add(tags.get(0));
+		sublistThree.add(tags.get(1));
+		
+		hardThree.setTags(sublistThree);
+		eventTemplates.add(hardThree);
+		
+		EventTemplate hardFour = new EventTemplate(
+				4, 
+				"hike", 
+				"hiking in the swiss alps",
+				null, 
+				null, 8.2);
+		
+		ArrayList<Tag> sublistFour = new ArrayList<Tag>();
+		sublistFour.add(tags.get(0));
+		sublistFour.add(tags.get(1));
+		
+		hardFour.setTags(sublistFour);
+		eventTemplates.add(hardFour);
+		
+		EventTemplate hardFive = new EventTemplate(
+				5, 
+				"hike", 
+				"hiking in the swiss alps",
+				null, 
+				null, 8.2);
+		
+		ArrayList<Tag> sublistFive = new ArrayList<Tag>();
+		sublistFive.add(tags.get(0));
+		sublistFive.add(tags.get(1));
+		
+		hardFive.setTags(sublistFive);
+		eventTemplates.add(hardFive);
+		
+//		EventTemplate hardSix = new EventTemplate(
+//				6, 
+//				"hike", 
+//				"hiking in the swiss alps",
+//				null, 
+//				null, 8.2);
+//		
+//		ArrayList<Tag> sublistSix = new ArrayList<Tag>();
+//		sublistSix.add(tags.get(0));
+//		sublistSix.add(tags.get(1));
+//		sublistSix.add(tags.get(2));
+//		
+//		hardSix.setTags(sublistSix);
+//		eventTemplates.add(hardSix);
+		
+//		EventTemplate hardSeven = new EventTemplate(
+//				7, 
+//				"hike", 
+//				"hiking in the swiss alps",
+//				null, 
+//				null, 8.2);
+//		
+//		ArrayList<Tag> sublistSeven = new ArrayList<Tag>();
+//		sublistSeven.add(tags.get(0));
+//		sublistSeven.add(tags.get(1));
+//		
+//		hardSeven.setTags(sublistSeven);
+//		eventTemplates.add(hardSeven);
 		
 	}
 
-	public List<Tag> getTags() {
+	public ArrayList<Tag> getTags() {
 		return tags;
 	}
 	
-	public List<EventTemplate> getEventTemplates(){
+	public ArrayList<EventTemplate> getEventTemplates(){
 		return eventTemplates;
 	}
 
 	public EventTemplate getEventTemplateFromID(int eventTemplateID) {
 		return eventTemplates.get(eventTemplateID);
+	}
+
+	public void addEventTemplate(EventTemplate eventTemplate) {
+		eventTemplates.add(eventTemplate);
+		eventTemplates.get(eventTemplates.size()-1).setId(eventTemplates.size());;
+	}
+
+	public ArrayList<Coreuser> getCoreUser() {
+		return participants;
 	}
 }
