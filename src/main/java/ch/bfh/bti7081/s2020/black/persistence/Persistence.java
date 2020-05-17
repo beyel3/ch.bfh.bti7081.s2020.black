@@ -15,7 +15,7 @@ import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 
 public class Persistence {
-
+/*
     Connection connection = null;
 
     public Persistence() throws ClassNotFoundException
