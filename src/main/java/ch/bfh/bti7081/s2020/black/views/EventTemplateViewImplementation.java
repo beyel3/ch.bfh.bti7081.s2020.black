@@ -106,11 +106,11 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 			templates.add(layout);
 		}
 		
-		Label labelOpenEventCreator = new Label("Wenn kein Template passt, kannst du hier ein neues Template erstellen um dein Event zu kreieren: ");
-		Button buttonOpenEventCreator = new Button("Neues Template erstellen", event -> {
+		Label labelOpenEventCreator = new Label("If no template fits, you can create a new template here to create your event: ");
+		Button buttonOpenEventCreator = new Button("Create New Template", event -> {
 			eventTemplateCreator.show();
 		});
-		Label labelFilter = new Label("Wähle Tags um die Templates zu filtern: ");
+		Label labelFilter = new Label("Select tags to filter the templates: ");
 
 		
 		eventTemplateCreator = new QuickPopup(contentLayoutFirstRow.getElement(), new CreateTemplateViewImplementation());
