@@ -8,12 +8,19 @@ public class HardCoded {
 	private ArrayList<Tag> tags;
 	private ArrayList<EventTemplate> eventTemplates;
 	private ArrayList<Event> events;
+	private ArrayList<Coreuser> participants;
 	
 	public HardCoded() {
 		
 		this.tags = new ArrayList<Tag>();
 		this.eventTemplates = new ArrayList<EventTemplate>();
 		this.events = new ArrayList<Event>();
+		this.participants = new ArrayList<Coreuser>();
+		
+		participants.add(new Patient("Mario", "Schläppi", "schl@bfh.ch"));
+		participants.add(new Patient("Luca", "Beyeler", "bey@bfh.ch"));
+		participants.add(new Patient("Ramon", "Luginbühl", "lug@bfh.ch"));
+		participants.add(new Patient("Robin", "Füglister", "fuegi@bfh.ch")); 
 		
 		tags.add(new Tag(1, "#outdoor"));
 		tags.add(new Tag(2, "#sporty"));
@@ -133,5 +140,14 @@ public class HardCoded {
 
 	public EventTemplate getEventTemplateFromID(int eventTemplateID) {
 		return eventTemplates.get(eventTemplateID);
+	}
+
+	public void addEventTemplate(EventTemplate eventTemplate) {
+		eventTemplates.add(eventTemplate);
+		eventTemplates.get(eventTemplates.size()-1).setId(eventTemplates.size());;
+	}
+
+	public ArrayList<Coreuser> getCoreUser() {
+		return participants;
 	}
 }

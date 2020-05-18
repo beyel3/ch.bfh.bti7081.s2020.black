@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2020.black.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Event {
@@ -7,21 +8,41 @@ public class Event {
 	private int id;
 	private EventTemplate eventTemplate;
 	private String info;
-	private boolean isPublic;
+	private ArrayList<Post> posts;
+ 	private boolean isPublic;
+ 	private int maxParticipants;
 	private List<Coreuser> participants;
 	private Status status;
 	private int rating;
 	private int pictureId;
 	
-	public Event(int id, EventTemplate eventTemplate, String info, boolean isPublic, int rating, Status status, int pictureID, List<Coreuser> participants) {
+	//Persistence Constructor
+	public Event(int id, EventTemplate eventTemplate, String info, boolean isPublic, int maxParticipants, int rating, Status status, int pictureID, List<Coreuser> participants) {
 		
 		this.id = id;
 		this.eventTemplate = eventTemplate;
-		this.info = "";
+		this.info = info;
+		//this.posts = posts;
 		this.isPublic = isPublic;
+		this.maxParticipants = maxParticipants;
 		this.rating = rating;
 		this.status = status;
 		this.pictureId = pictureID;		
+		this.participants = participants;
+		
+	}
+	
+	//User Constructor
+	public Event(EventTemplate eventTemplate, boolean isPublic, int maxParticipants, List<Coreuser> participants) {
+		
+		this.id = 0;
+		this.eventTemplate = eventTemplate;
+		this.posts = new ArrayList<Post>();
+		this.isPublic = isPublic;
+		this.maxParticipants = maxParticipants;
+		this.rating = 0;
+		this.status = Status.open;
+		this.pictureId = 0;		
 		this.participants = participants;
 		
 	}
@@ -54,14 +75,6 @@ public class Event {
 		this.eventTemplate = eventTemplate;
 	}
 
-	public String getInfo() {
-		return info;
-	}
-
-	public void setInfo(String info) {
-		this.info = info;
-	}
-
 	public boolean isPublic() {
 		return isPublic;
 	}
@@ -92,5 +105,21 @@ public class Event {
 
 	public void setRating(int rating) {
 		this.rating = rating;
+	}
+
+	public ArrayList<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(ArrayList<Post> posts) {
+		this.posts = posts;
+	}
+
+	public int getMaxParticipants() {
+		return maxParticipants;
+	}
+
+	public void setMaxParticipants(int maxParticipants) {
+		this.maxParticipants = maxParticipants;
 	}
 }

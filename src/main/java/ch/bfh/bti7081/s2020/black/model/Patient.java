@@ -22,9 +22,6 @@ public class Patient extends Account implements Coreuser{
 
     @Override
     public String toString() {
-        //super toString
-        return "Patient{" +
-                "patientInfo='" + patientInfo + '\'' +
-                '}';
+        return getFirstName() + " " + getLastName();
     }
 }
