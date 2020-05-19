@@ -81,7 +81,8 @@ public class MainViewImplementation extends VerticalLayout {
 
 		final Div header = new Div();
 		Button loginButton = new Button("Login");
-		loginButton.addClickListener(e -> loginOverlay.setOpened(true));
+		//loginButton.addClickListener(e -> loginOverlay.setOpened(true));
+		loginButton.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("LoginView")));
 		Button signupButton = new Button("SignUp");
 		signupButton.addClickListener(event -> signupButton.getUI().ifPresent(ui -> ui.navigate("")));
 
