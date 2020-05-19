@@ -49,22 +49,20 @@ public class Persistence {
             System.err.println(e);
         }
     }
-
-    public void saveEvent(Event event) throws SQLException {
-        List<Coreuser> participants = event.getParticipants();
-        try {
-            Statement statement = this.connection.createStatement();
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-            //need to be looked at statement.executeQuery("INSERT INTO tbl_event VALUES (NULL,'"+event.getInfo()+"',"+event.isPublic()+","+event.getRating()+","+event.getStatus().toString()+","+event.getMaxParticipants()+","+event.getTemplateID()+","+event.getPictureID()+")");
-
-            for (Coreuser c:participants){
-                //REL from Event to Account
-            }
-        }
-        catch(SQLException e) {
-            // query failed
-            System.err.println(e);
-        }
+    
+    public ResultSet executeQuery(String query) {
+    	
+    	 try {
+    		 
+             Statement statement = this.connection.createStatement();
+             statement.setQueryTimeout(30);
+             return statement.executeQuery(query);
+         }
+         catch(SQLException e) {
+             // query failed
+             System.err.println(e);
+             return null;
+         }
     }
 
     public Event getEventById(int id){
@@ -151,7 +149,7 @@ public class Persistence {
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
             statement.executeQuery("INSERT INTO tbl_eventTemplate VALUES (NULL, '"+et.getTitle()+"', '"+et.getDescription()+"', '"+et.getAvgRating()+"')");
             ResultSet id = statement.executeQuery("SELECT LAST_INSERT_ROWID()");
-            et.setId(id.getInt("eventTemplateID"));
+            et.setId(id.getInt(1));
 
             for (Tag t:tags) {
                 statement.executeQuery("INSERT INTO tbl_tagEventTemplateREL(tagID,eventTemplateID) SELECT "+t.getId()+", '"+et.getId()+"' WHERE NOT EXISTS(SELECT 1 FROM tbl_tagEventTemplateREL WHERE tagID = "+t.getId()+" AND eventTemplateID = "+et.getId()+");");
@@ -216,7 +214,7 @@ public class Persistence {
 
             statement.executeQuery("INSERT INTO tbl_tag VALUES (NULL, '"+t.getTagName()+"')");
             ResultSet id = statement.executeQuery("SELECT LAST_INSERT_ROWID()");
-            t.setId(id.getInt("tagID"));
+            t.setId(id.getInt(1));
 
             return t;
         }
@@ -287,6 +285,11 @@ public class Persistence {
 	public Collection<Tag> getTags() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public void addEventToTempalte(Event event) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

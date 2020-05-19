@@ -37,7 +37,7 @@ public class Event {
 		
 		this.id = 0;
 		this.eventTemplate = eventTemplate;
-		this.posts = null;
+		this.posts = new ArrayList<Post>();
 		this.isPublic = isPublic;
 		this.maxParticipants = maxParticipants;
 		this.rating = 0;
@@ -66,6 +66,8 @@ public class Event {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public String getInfo(){return info;}
 
 	public EventTemplate getEventTemplate() {
 		return eventTemplate;
