@@ -30,10 +30,11 @@ public class ChooseTemplate extends EventStateModel {
 				String description= rs.getString("description");
 				ArrayList<Tag> tags = new ArrayList<Tag>();
 				
-				ResultSet getTags = persistence.executeQuery("SELECT * FROM tbl_tag, tbl_tagEventTemplateREL");
-				
+				//ResultSet getTags = persistence.executeQuery("SELECT * FROM tbl_tag, tbl_tagEventTemplateREL");
+				ResultSet getTags = persistence.executeQuery("SELECT t.tagID, t.tag_name FROM tbl_tagEventTemplateREL as tr INNER JOIN tbl_tag as t on tr.tagID = t.tagID WHERE tr.eventTemplateID =" + id);
+
 				while(getTags.next()) {
-					tags.add(new Tag(getTags.getInt("tagID"), getTags.getString("tag_name")));
+					tags.add(new Tag(getTags.getInt(1), getTags.getString(2)));
 				}
 				
 				eventTemplates.add(new EventTemplate(id,title,description,tags, null,random.nextInt(100)/10));

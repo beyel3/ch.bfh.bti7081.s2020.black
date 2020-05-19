@@ -67,6 +67,8 @@ public class Event {
 		this.id = id;
 	}
 
+	public String getInfo(){return info;}
+
 	public EventTemplate getEventTemplate() {
 		return eventTemplate;
 	}
