@@ -134,7 +134,6 @@
 
     </dependencies>
 
-	</dependencies>
 
 	<build>
 		<defaultGoal>jetty:run</defaultGoal>
