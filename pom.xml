@@ -126,8 +126,14 @@
 			<artifactId>sqlite-jdbc</artifactId>
 			<version>3.31.1</version>
 		</dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.11</version>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
+
 
 	<build>
 		<defaultGoal>jetty:run</defaultGoal>
