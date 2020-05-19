@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2020.black.views;
 
 import java.util.ArrayList;
 
+import org.apache.commons.lang3.StringUtils;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -9,6 +10,8 @@ import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
+import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.HeaderRow;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -18,6 +21,8 @@ import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.provider.ListDataProvider;
+import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
@@ -42,96 +47,78 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 	private Dialog dialogCreateEvent;
 	private final VerticalLayout contentLayoutFirstRow;
 	private final VerticalLayout contentLayoutSecondRow;
-	private final VerticalLayout contentLayoutThirdRow;
-	private final VerticalLayout templates;
+	ArrayList<EventTemplate> eventTemplates;
+//	private final VerticalLayout contentLayoutThirdRow;
+//	private final VerticalLayout templates;
 
 	public EventTemplateViewImplementation() {
 
 		setSizeFull();
 
 		contentLayoutFirstRow = new VerticalLayout();
-		contentLayoutFirstRow.setWidth("33%");
+		contentLayoutFirstRow.setWidth("80%");
 		contentLayoutFirstRow.setHeight("100%");
 		contentLayoutFirstRow.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 
 		contentLayoutSecondRow = new VerticalLayout();
-		contentLayoutSecondRow.setWidth("33%");
+		contentLayoutSecondRow.setWidth("20%");
 		contentLayoutSecondRow.setHeight("100%");
 		contentLayoutSecondRow.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 
-		contentLayoutThirdRow = new VerticalLayout();
-		contentLayoutThirdRow.setWidth("33%");
-		contentLayoutThirdRow.setHeight("100%");
-		contentLayoutThirdRow.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+		setFlexGrow(1, contentLayoutFirstRow, contentLayoutSecondRow);
 
-		setFlexGrow(1, contentLayoutFirstRow, contentLayoutSecondRow, contentLayoutThirdRow);
+		eventTemplates = eventTemplatePresenter.getEventTemplates();
 
-		ArrayList<EventTemplate> eventTemplates = eventTemplatePresenter.getEventTemplates();
+		Grid<EventTemplate> grid = new Grid<>();
+		ListDataProvider<EventTemplate> dataProvider = new ListDataProvider<>(eventTemplates);
+		grid.setDataProvider(dataProvider);
 
-		templates = new VerticalLayout();
-		templates.setWidth("100%");
-		templates.setMaxHeight("650px");
-		templates.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-//		templates.getStyle().set("border", "1px solid black");
-		templates.getStyle().set("overflowY", "auto");
-		templates.getStyle().set("display", "block");
+		Grid.Column<EventTemplate> titleColumn = grid.addColumn(EventTemplate::getTitle).setHeader("Title");
+		Grid.Column<EventTemplate> descriptionColumn = grid.addColumn(EventTemplate::getDescription)
+				.setHeader("Description");
+		Grid.Column<EventTemplate> tagColumn = grid.addColumn(EventTemplate::getTags).setHeader("Tags");
+		Grid.Column<EventTemplate> ratingColumn = grid.addColumn(EventTemplate::getAvgRating).setHeader("Rating");
+		grid.addComponentColumn(item -> createUseAsTemplateButton(grid, item))
+        .setHeader("Use as template");
 
-		VerticalLayout filter = new VerticalLayout();
-		filter.setWidth("100%");
-		filter.setMaxHeight("650px");
-		filter.getStyle().set("overflowY", "auto");
-		filter.getStyle().set("display", "block");
+		HeaderRow filterRow = grid.appendHeaderRow();
+		// First filter for rating
+		TextField titleField = new TextField();
+		titleField.addValueChangeListener(event -> dataProvider.addFilter(
+				eventTemplate -> StringUtils.containsIgnoreCase(eventTemplate.getTitle(), titleField.getValue())));
 
-		ArrayList<String> tagNames = new ArrayList<String>();
+		titleField.setValueChangeMode(ValueChangeMode.EAGER);
 
-		for (EventTemplate t : eventTemplates) {
+		filterRow.getCell(titleColumn).setComponent(titleField);
+		titleField.setSizeFull();
+		titleField.setPlaceholder("Filter");
 
-			VerticalLayout layout = new VerticalLayout();
-			layout.getStyle().set("border", "1px solid #2f6f91");
-			layout.getStyle().set("margin", "2px");
+		// Second Filter for description
+		TextField descriptionField = new TextField();
+		descriptionField.addValueChangeListener(event -> dataProvider.addFilter(eventTemplate -> StringUtils
+				.containsIgnoreCase(eventTemplate.getDescription(), descriptionField.getValue())));
 
-			TextField title = new TextField();
-			title.setSizeFull();
-			title.setValue(t.getTitle());
-			title.setReadOnly(true);
+		descriptionField.setValueChangeMode(ValueChangeMode.EAGER);
 
-			TextArea description = new TextArea();
-			description.setSizeFull();
-			description.setValue(t.getDescription());
-			description.setReadOnly(true);
+		filterRow.getCell(descriptionColumn).setComponent(descriptionField);
+		descriptionField.setSizeFull();
+		descriptionField.setPlaceholder("Filter");
 
-			MultiSelectListBox<Tag> tags = new MultiSelectListBox<Tag>();
-			tags.setItems(t.getTags());
-			tags.setReadOnly(true);
+		// Thrid Filter for tags
+		TextField tagField = new TextField();
+//		tagField.addValueChangeListener(event -> dataProvider.addFilter(eventTemplate -> StringUtils.containsIgnoreCase(eventTemplate.getTags(), tagField.getValue())));
 
-			ProgressBar progressBar = new ProgressBar();
-			progressBar.setValue(t.getAvgRating() / 10);
+		tagField.setValueChangeMode(ValueChangeMode.EAGER);
 
-			Button button = new Button("USE AS TEMPLATE");
-			button.addClickListener(
-					event -> getUI().ifPresent(ui -> ui.navigate("CreateEvent/" + t.getTemplateIDforURL())));
+		filterRow.getCell(tagColumn).setComponent(tagField);
+		tagField.setSizeFull();
+		tagField.setPlaceholder("Filter");
 
-			layout.add(title, description, tags, progressBar, button);
-			templates.add(layout);
+		grid.setWidth("100%");
+		grid.setMaxHeight("650px");
+		grid.getStyle().set("overflowY", "auto");
 
-			ArrayList<Tag> filterTags = new ArrayList<Tag>(t.getTags());
-			for (Tag tagString : filterTags) {
-				String titleTagButton = tagString.getTagName();
 
-				boolean containsTagName = tagNames.contains(titleTagButton);
-				if (!containsTagName) {
-					Button tagButton = new Button(titleTagButton, event -> {
-						filterTemplate();
-					});
-					tagButton.getStyle().set("margin", "2px");
-					filter.add(tagButton);
-					tagNames.add(titleTagButton);
-				}
-
-			}
-
-		}
-		
 		dialogCreateEvent = new Dialog();
 		dialogCreateEvent.add(new CreateTemplateViewImplementation());
 		Label labelOpenEventCreator = new Label(
@@ -139,20 +126,18 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 		Button buttonOpenEventCreator = new Button("Create New Template", event -> {
 			dialogCreateEvent.open();
 		});
-		Label labelFilter = new Label("Select tags to filter the templates: ");
 
-		contentLayoutFirstRow.add(labelFilter, filter);
-		contentLayoutSecondRow.add(templates, labelOpenEventCreator, buttonOpenEventCreator);
-		contentLayoutThirdRow.add(labelOpenEventCreator, buttonOpenEventCreator);
-		add(contentLayoutFirstRow, contentLayoutSecondRow, contentLayoutThirdRow);
-
+		contentLayoutSecondRow.add(labelOpenEventCreator, buttonOpenEventCreator);
+		contentLayoutFirstRow.add(grid);
+		add(contentLayoutFirstRow, contentLayoutSecondRow);
 	}
-	
-	private void filterTemplate() {
-		if(templates.isVisible()) {
-			templates.setVisible(false);
-		} else {
-			templates.setVisible(true);
+
+	private Button createUseAsTemplateButton(Grid<EventTemplate> grid, EventTemplate item) {
+		Button buttonUseAsTemplate = new Button("USE AS TEMPLATE");
+		for (EventTemplate t : eventTemplates) {			
+			buttonUseAsTemplate.addClickListener(
+					event -> getUI().ifPresent(ui -> ui.navigate("CreateEvent/" + t.getTemplateIDforURL())));
 		}
+		return buttonUseAsTemplate;
 	}
 }
