@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
 import com.vaadin.flow.component.html.Label;
@@ -38,15 +39,16 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 	private static final long serialVersionUID = 1L;
 
 	private EventTemplatePresenter eventTemplatePresenter = new EventTemplatePresenter(this);
-	private QuickPopup eventTemplateCreator;
+	private Dialog dialogCreateEvent;
 	private final VerticalLayout contentLayoutFirstRow;
 	private final VerticalLayout contentLayoutSecondRow;
 	private final VerticalLayout contentLayoutThirdRow;
+	private final VerticalLayout templates;
 
 	public EventTemplateViewImplementation() {
-		
+
 		setSizeFull();
-		
+
 		contentLayoutFirstRow = new VerticalLayout();
 		contentLayoutFirstRow.setWidth("33%");
 		contentLayoutFirstRow.setHeight("100%");
@@ -56,24 +58,31 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 		contentLayoutSecondRow.setWidth("33%");
 		contentLayoutSecondRow.setHeight("100%");
 		contentLayoutSecondRow.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-		
+
 		contentLayoutThirdRow = new VerticalLayout();
 		contentLayoutThirdRow.setWidth("33%");
 		contentLayoutThirdRow.setHeight("100%");
 		contentLayoutThirdRow.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-		
+
 		setFlexGrow(1, contentLayoutFirstRow, contentLayoutSecondRow, contentLayoutThirdRow);
 
-//		createEventLayout.getStyle().set("border", "1px solid black");
 		ArrayList<EventTemplate> eventTemplates = eventTemplatePresenter.getEventTemplates();
-		VerticalLayout templates = new VerticalLayout();
 
+		templates = new VerticalLayout();
 		templates.setWidth("100%");
 		templates.setMaxHeight("650px");
 		templates.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 //		templates.getStyle().set("border", "1px solid black");
 		templates.getStyle().set("overflowY", "auto");
 		templates.getStyle().set("display", "block");
+
+		VerticalLayout filter = new VerticalLayout();
+		filter.setWidth("100%");
+		filter.setMaxHeight("650px");
+		filter.getStyle().set("overflowY", "auto");
+		filter.getStyle().set("display", "block");
+
+		ArrayList<String> tagNames = new ArrayList<String>();
 
 		for (EventTemplate t : eventTemplates) {
 
@@ -104,23 +113,46 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 
 			layout.add(title, description, tags, progressBar, button);
 			templates.add(layout);
+
+			ArrayList<Tag> filterTags = new ArrayList<Tag>(t.getTags());
+			for (Tag tagString : filterTags) {
+				String titleTagButton = tagString.getTagName();
+
+				boolean containsTagName = tagNames.contains(titleTagButton);
+				if (!containsTagName) {
+					Button tagButton = new Button(titleTagButton, event -> {
+						filterTemplate();
+					});
+					tagButton.getStyle().set("margin", "2px");
+					filter.add(tagButton);
+					tagNames.add(titleTagButton);
+				}
+
+			}
+
 		}
 		
-		Label labelOpenEventCreator = new Label("If no template fits, you can create a new template here to create your event: ");
+		dialogCreateEvent = new Dialog();
+		dialogCreateEvent.add(new CreateTemplateViewImplementation());
+		Label labelOpenEventCreator = new Label(
+				"If no template fits, you can create a new template here to create your event: ");
 		Button buttonOpenEventCreator = new Button("Create New Template", event -> {
-			eventTemplateCreator.show();
+			dialogCreateEvent.open();
 		});
 		Label labelFilter = new Label("Select tags to filter the templates: ");
 
-		
-		eventTemplateCreator = new QuickPopup(contentLayoutFirstRow.getElement(), new CreateTemplateViewImplementation());
-		eventTemplateCreator.setAlign(Align.TOP_LEFT);
-		
-		contentLayoutFirstRow.add(labelFilter);
+		contentLayoutFirstRow.add(labelFilter, filter);
 		contentLayoutSecondRow.add(templates, labelOpenEventCreator, buttonOpenEventCreator);
 		contentLayoutThirdRow.add(labelOpenEventCreator, buttonOpenEventCreator);
-		add(contentLayoutFirstRow, contentLayoutSecondRow,contentLayoutThirdRow);
+		add(contentLayoutFirstRow, contentLayoutSecondRow, contentLayoutThirdRow);
 
-
+	}
+	
+	private void filterTemplate() {
+		if(templates.isVisible()) {
+			templates.setVisible(false);
+		} else {
+			templates.setVisible(true);
+		}
 	}
 }

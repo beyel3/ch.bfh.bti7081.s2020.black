@@ -59,16 +59,6 @@ public class CreateTemplateViewImplementation extends HorizontalLayout {
 		});
 
 		formLayout.setResponsiveSteps(new ResponsiveStep("40em", 1));
-		ThemeList themeList = UI.getCurrent().getElement().getThemeList();
-		if (themeList.contains(Lumo.LIGHT)) {
-			formLayout.getStyle().set("background-color", "lightgrey");
-			getStyle().set("background-color", "lightgrey");
-		} else {
-			formLayout.getStyle().set("background-color", "#233348");
-			getStyle().set("background-color", "#233348");
-			getStyle().set("border", "1px solid #2f6f91");
-		}
-
 		add(formLayout, createTemplate);
 	}
 }
