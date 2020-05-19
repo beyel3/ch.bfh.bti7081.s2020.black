@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2020.black.views;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.login.LoginForm;
@@ -29,9 +30,11 @@ public class MainViewImplementation extends VerticalLayout {
 		setSizeFull();
 
 		// Icons in header and the theme toggle button / home button
-		Icon iconHome = VaadinIcon.HOME_O.create();
-		Button iconHomeButton = new Button(iconHome);
-		iconHomeButton.addClickListener(event -> iconHomeButton.getUI().ifPresent(ui -> ui.navigate("LandingPage")));
+		Image logo = new Image("./icons/ProjectLogoBlueSmall.png", "");
+		logo.addClickListener(event -> logo.getUI().ifPresent(ui -> ui.navigate("")));
+//		Icon iconHome = VaadinIcon.HOME_O.create();
+//		Button iconHomeButton = new Button(iconHome);
+//		iconHomeButton.addClickListener(event -> iconHomeButton.getUI().ifPresent(ui -> ui.navigate("")));
 
 		Icon iconTheme = VaadinIcon.SUN_O.create();
 		Button iconToggleThemeButton = new Button(iconTheme, click -> {
@@ -71,10 +74,6 @@ public class MainViewImplementation extends VerticalLayout {
 		myEvent.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("AccountView")));
 		menuBar.add(myEvent);
 
-		Button eventTemplates = new Button("Event Templates");
-		eventTemplates.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("BrowseEventTemplates")));
-		menuBar.add(eventTemplates);
-
 		loginButtonLayout = new HorizontalLayout();
 		loginButtonLayout.setWidth("100%");
 		menuBarLayout = new HorizontalLayout();
@@ -90,7 +89,7 @@ public class MainViewImplementation extends VerticalLayout {
 		menuBarLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 		menuBarLayout.add(menuBar);
 		loginButtonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
-		loginButtonLayout.add(iconHomeButton, iconToggleThemeButton, loginButton, signupButton);
+		loginButtonLayout.add(logo, iconToggleThemeButton, loginButton, signupButton);
 		header.setWidth("100%");
 		header.setHeight("100px");
 		menuBarLayout.getStyle().set("background-color", "#2f6f91");
