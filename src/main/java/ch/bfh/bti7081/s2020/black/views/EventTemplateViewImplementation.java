@@ -1,6 +1,8 @@
 package ch.bfh.bti7081.s2020.black.views;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -73,15 +75,20 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 		grid.setDataProvider(dataProvider);
 
 		Grid.Column<EventTemplate> titleColumn = grid.addColumn(EventTemplate::getTitle).setHeader("Title");
-		Grid.Column<EventTemplate> descriptionColumn = grid.addColumn(EventTemplate::getDescription)
-				.setHeader("Description");
+		Grid.Column<EventTemplate> descriptionColumn = grid.addColumn(EventTemplate::getDescription).setHeader("Description");
 		Grid.Column<EventTemplate> tagColumn = grid.addColumn(EventTemplate::getTags).setHeader("Tags");
+//		Grid.Column<EventTemplate> tagColumn;
+//		for (Tag t : eventTemplates.getTags()) {
+//		grid.addColumn(EventTemplate::getTags).setHeader("Tags");
+//		}
+		
 		Grid.Column<EventTemplate> ratingColumn = grid.addColumn(EventTemplate::getAvgRating).setHeader("Rating");
 		grid.addComponentColumn(item -> createUseAsTemplateButton(grid, item)).setHeader("Use as template");
 		descriptionColumn.setFlexGrow(3);
 
 		grid.addSelectionListener(event -> {
-			createDialogBoxForTemplate(eventTemplatePresenter.getEventTemplates());
+			Set<EventTemplate> temp = event.getAllSelectedItems();
+			createDialogBoxForTemplate(temp.iterator().next());
 		});
 
 		HeaderRow filterRow = grid.appendHeaderRow();
@@ -109,7 +116,9 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 
 		// Thrid Filter for tags
 		TextField tagField = new TextField();
-//		tagField.addValueChangeListener(event -> dataProvider.addFilter(eventTemplate -> StringUtils.containsIgnoreCase(eventTemplate.getTags(), tagField.getValue())));
+		ArrayList<String> tagList = new ArrayList<>();
+//		tagList = 
+		tagField.addValueChangeListener(event -> dataProvider.addFilter(eventTemplate -> StringUtils.containsIgnoreCase(eventTemplate.getTags().toString(), tagField.getValue())));
 
 		tagField.setValueChangeMode(ValueChangeMode.EAGER);
 
@@ -143,46 +152,45 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 		return buttonUseAsTemplate;
 	}
 
-	private void createDialogBoxForTemplate(ArrayList<EventTemplate> arrayList) {
+	private void createDialogBoxForTemplate(EventTemplate singleTemplate) {
 		dialogShowTemplate = new Dialog();
 		dialogShowTemplate.setSizeFull();
+
 		VerticalLayout templates = new VerticalLayout();
 		templates.setWidth("100%");
 		templates.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 //		templates.getStyle().set("border", "1px solid black");
 		templates.getStyle().set("overflowY", "auto");
 		templates.getStyle().set("display", "block");
-		for (EventTemplate t : eventTemplates) {
 
-			VerticalLayout layout = new VerticalLayout();
-			layout.getStyle().set("border", "1px solid #2f6f91");
-			layout.getStyle().set("margin", "2px");
+		VerticalLayout layout = new VerticalLayout();
+		layout.getStyle().set("border", "1px solid #2f6f91");
+		layout.getStyle().set("margin", "2px");
 
-			TextField title = new TextField();
-			title.setSizeFull();
-			title.setValue(t.getTitle());
-			title.setReadOnly(true);
+		TextField title = new TextField();
+		title.setSizeFull();
+		title.setValue(singleTemplate.getTitle());
+		title.setReadOnly(true);
 
-			TextArea description = new TextArea();
-			description.setSizeFull();
-			description.setValue(t.getDescription());
-			description.setReadOnly(true);
+		TextArea description = new TextArea();
+		description.setSizeFull();
+		description.setValue(singleTemplate.getDescription());
+		description.setReadOnly(true);
 
-			MultiSelectListBox<Tag> tags = new MultiSelectListBox<Tag>();
-			tags.setItems(t.getTags());
-			tags.setReadOnly(true);
+		MultiSelectListBox<Tag> tags = new MultiSelectListBox<Tag>();
+		tags.setItems(singleTemplate.getTags());
+		tags.setReadOnly(true);
 
-			ProgressBar progressBar = new ProgressBar();
-			progressBar.setValue(t.getAvgRating() / 10);
+		ProgressBar progressBar = new ProgressBar();
+		progressBar.setValue(singleTemplate.getAvgRating() / 10);
 
-			Button button = new Button("USE AS TEMPLATE");
-			button.addClickListener(
-					event -> getUI().ifPresent(ui -> ui.navigate("CreateEvent/" + t.getTemplateIDforURL())));
+		Button button = new Button("USE AS TEMPLATE");
+		button.addClickListener(
+				event -> getUI().ifPresent(ui -> ui.navigate("CreateEvent/" + singleTemplate.getTemplateIDforURL())));
 
-			layout.add(title, description, tags, progressBar, button);
-			templates.add(layout);
+		layout.add(title, description, tags, progressBar, button);
+		templates.add(layout);
 
-		}
 		// currently all templates are displayed when selecting one row of the grid
 		dialogShowTemplate.add(templates);
 		dialogShowTemplate.open();

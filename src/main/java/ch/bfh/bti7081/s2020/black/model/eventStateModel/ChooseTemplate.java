@@ -40,8 +40,8 @@ public class ChooseTemplate extends EventStateModel {
 				eventTemplates.add(new EventTemplate(id,title,description,tags, null,random.nextInt(100)/10));
 			}
 			
-			//return eventTemplates;
-			return new HardCoded().getEventTemplates();
+			return eventTemplates;
+			//return new HardCoded().getEventTemplates();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
