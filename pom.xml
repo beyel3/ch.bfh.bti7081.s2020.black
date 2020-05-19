@@ -103,12 +103,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.vaadin.addons</groupId>
-			<artifactId>quickpopup-component-for-vaadin-flow</artifactId>
-			<version>1.0.2.1</version>
-		</dependency>
-
-		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
@@ -126,6 +120,7 @@
 			<artifactId>sqlite-jdbc</artifactId>
 			<version>3.31.1</version>
 		</dependency>
+
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>

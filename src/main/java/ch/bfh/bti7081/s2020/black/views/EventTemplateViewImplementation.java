@@ -37,8 +37,7 @@ import ch.bfh.bti7081.s2020.black.model.Tag;
 import ch.bfh.bti7081.s2020.black.presenters.CreateEventPresenter;
 import ch.bfh.bti7081.s2020.black.presenters.CreateTemplatePresenter;
 import ch.bfh.bti7081.s2020.black.presenters.EventTemplatePresenter;
-import com.awesomecontrols.quickpopup.QuickPopup;
-import com.awesomecontrols.quickpopup.QuickPopup.Align;
+
 
 @Route(value = "EventTemplateView", layout = MainView.class)
 public class EventTemplateViewImplementation extends HorizontalLayout {
