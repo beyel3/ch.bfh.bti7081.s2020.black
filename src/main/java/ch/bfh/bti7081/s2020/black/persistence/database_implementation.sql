@@ -1,3 +1,13 @@
+DROP TABLE IF EXISTS tbl_accounts;
+CREATE TABLE tbl_accounts (
+    accountID int NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR NOT NULL,
+    last_name VARCHAR NOT NULL,
+    email VARCHAR NOT NULL,
+    password VARCHAR NOT NULL,
+    accountTypeID int,
+);
+
 DROP TABLE IF EXISTS tbl_account;
 CREATE TABLE tbl_account (
     accountID INTEGER PRIMARY KEY,

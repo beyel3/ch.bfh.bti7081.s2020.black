@@ -1,8 +1,6 @@
 package ch.bfh.bti7081.s2020.black.persistence;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class QueryHelpers {
     private static Connection connection = null;
@@ -23,7 +21,7 @@ public class QueryHelpers {
             System.err.println(e.getMessage());
         }
     }
-    public static void closeConnection(){
+    private static void closeConnection(){
         try {
             if(connection != null)
                 connection.close();
@@ -31,6 +29,24 @@ public class QueryHelpers {
         catch(SQLException e) {
             // connection close failed
             System.err.println(e);
+        }
+    }
+    public static ResultSet executeQuery(String query) {
+        openConnection();
+        ResultSet resultSet;
+        try {
+
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            resultSet = statement.executeQuery(query);
+            closeConnection();
+            return resultSet;
+        }
+        catch(SQLException e) {
+            // query failed
+            System.err.println(e);
+            closeConnection();
+            return null;
         }
     }
 }

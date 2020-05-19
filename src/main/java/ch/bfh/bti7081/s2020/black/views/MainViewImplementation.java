@@ -12,6 +12,7 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.dom.ThemeList;
+import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.Lumo;
 
 public class MainViewImplementation extends VerticalLayout {
@@ -84,7 +85,7 @@ public class MainViewImplementation extends VerticalLayout {
 		//loginButton.addClickListener(e -> loginOverlay.setOpened(true));
 		loginButton.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("LoginView")));
 		Button signupButton = new Button("SignUp");
-		signupButton.addClickListener(event -> signupButton.getUI().ifPresent(ui -> ui.navigate("")));
+		signupButton.addClickListener(event -> signupButton.getUI().ifPresent(ui -> ui.navigate("SignUpView")));
 
 		menuBarLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 		menuBarLayout.add(menuBar);
@@ -96,6 +97,5 @@ public class MainViewImplementation extends VerticalLayout {
 		header.add(loginButtonLayout, menuBarLayout);
 
 		add(header);
-
 	}
 }
