@@ -47,9 +47,8 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 	private Dialog dialogCreateEvent;
 	private final VerticalLayout contentLayoutFirstRow;
 	private final VerticalLayout contentLayoutSecondRow;
-	ArrayList<EventTemplate> eventTemplates;
-//	private final VerticalLayout contentLayoutThirdRow;
-//	private final VerticalLayout templates;
+	private ArrayList<EventTemplate> eventTemplates;
+	private Dialog dialogShowTemplate;
 
 	public EventTemplateViewImplementation() {
 
@@ -78,8 +77,12 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 				.setHeader("Description");
 		Grid.Column<EventTemplate> tagColumn = grid.addColumn(EventTemplate::getTags).setHeader("Tags");
 		Grid.Column<EventTemplate> ratingColumn = grid.addColumn(EventTemplate::getAvgRating).setHeader("Rating");
-		grid.addComponentColumn(item -> createUseAsTemplateButton(grid, item))
-        .setHeader("Use as template");
+		grid.addComponentColumn(item -> createUseAsTemplateButton(grid, item)).setHeader("Use as template");
+		descriptionColumn.setFlexGrow(3);
+
+		grid.addSelectionListener(event -> {
+			createDialogBoxForTemplate(eventTemplatePresenter.getEventTemplates());
+		});
 
 		HeaderRow filterRow = grid.appendHeaderRow();
 		// First filter for rating
@@ -118,7 +121,6 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 		grid.setMaxHeight("650px");
 		grid.getStyle().set("overflowY", "auto");
 
-
 		dialogCreateEvent = new Dialog();
 		dialogCreateEvent.add(new CreateTemplateViewImplementation());
 		Label labelOpenEventCreator = new Label(
@@ -134,10 +136,55 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 
 	private Button createUseAsTemplateButton(Grid<EventTemplate> grid, EventTemplate item) {
 		Button buttonUseAsTemplate = new Button("USE AS TEMPLATE");
-		for (EventTemplate t : eventTemplates) {			
+		for (EventTemplate t : eventTemplates) {
 			buttonUseAsTemplate.addClickListener(
 					event -> getUI().ifPresent(ui -> ui.navigate("CreateEvent/" + t.getTemplateIDforURL())));
 		}
 		return buttonUseAsTemplate;
+	}
+
+	private void createDialogBoxForTemplate(ArrayList<EventTemplate> arrayList) {
+		dialogShowTemplate = new Dialog();
+		dialogShowTemplate.setSizeFull();
+		VerticalLayout templates = new VerticalLayout();
+		templates.setWidth("100%");
+		templates.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+//		templates.getStyle().set("border", "1px solid black");
+		templates.getStyle().set("overflowY", "auto");
+		templates.getStyle().set("display", "block");
+		for (EventTemplate t : eventTemplates) {
+
+			VerticalLayout layout = new VerticalLayout();
+			layout.getStyle().set("border", "1px solid #2f6f91");
+			layout.getStyle().set("margin", "2px");
+
+			TextField title = new TextField();
+			title.setSizeFull();
+			title.setValue(t.getTitle());
+			title.setReadOnly(true);
+
+			TextArea description = new TextArea();
+			description.setSizeFull();
+			description.setValue(t.getDescription());
+			description.setReadOnly(true);
+
+			MultiSelectListBox<Tag> tags = new MultiSelectListBox<Tag>();
+			tags.setItems(t.getTags());
+			tags.setReadOnly(true);
+
+			ProgressBar progressBar = new ProgressBar();
+			progressBar.setValue(t.getAvgRating() / 10);
+
+			Button button = new Button("USE AS TEMPLATE");
+			button.addClickListener(
+					event -> getUI().ifPresent(ui -> ui.navigate("CreateEvent/" + t.getTemplateIDforURL())));
+
+			layout.add(title, description, tags, progressBar, button);
+			templates.add(layout);
+
+		}
+		// currently all templates are displayed when selecting one row of the grid
+		dialogShowTemplate.add(templates);
+		dialogShowTemplate.open();
 	}
 }
