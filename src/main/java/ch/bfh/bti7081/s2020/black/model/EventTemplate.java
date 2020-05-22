@@ -12,6 +12,7 @@ public class EventTemplate {
 	private ArrayList<Event> events;
 	private double avgRating;
 	
+	//generate from persistence
 	public EventTemplate(int id, String title, String description, ArrayList<Tag> tags, ArrayList<Event> events, double avgRating) {
 		
 		this.id = id;
@@ -23,13 +24,12 @@ public class EventTemplate {
 		
 	}
 	
-	public EventTemplate(String title, String description, ArrayList<Tag> tags, ArrayList<Event> events, double avgRating) {
+	//generate new by presenter
+	public EventTemplate(String title, String description, ArrayList<Tag> tags) {
 		
 		this.title = title;
 		this.description = description;
 		this.tags = tags;
-		this.events = events;
-		this.avgRating = avgRating;	
 		
 	}
 
@@ -46,6 +46,19 @@ public class EventTemplate {
 		}
 		this.avgRating = sum/count;
 		
+	}
+	
+	public String toString() {
+		
+		String res = "{";
+		
+		for(Tag t : tags) {
+			res += t.getTagName() + ", ";
+		}
+		
+		res += "}";
+		
+		return title + " " + res;
 	}
 
 	

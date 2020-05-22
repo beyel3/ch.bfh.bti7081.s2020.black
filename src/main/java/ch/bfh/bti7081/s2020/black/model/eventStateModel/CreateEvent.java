@@ -14,12 +14,6 @@ public class CreateEvent extends EventStateModel {
 	public CreateEvent() {
 
 	}
-
-	
-	public void addEventToTemplate(Event event) {
-	
-		
-	}
 	
 	
 	public EventTemplate getEventTemplateByID(int eventTemplateID) {
@@ -32,5 +26,13 @@ public class CreateEvent extends EventStateModel {
 			return null;
 		}
 	}
+<<<<<<< Updated upstream
+=======
+
+	public void saveEvent(Event event) {
+
+		
+	}
+>>>>>>> Stashed changes
 }
 

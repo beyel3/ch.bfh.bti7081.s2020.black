@@ -168,6 +168,7 @@ public class Persistence {
         ArrayList<Tag> tags = et.getTags();
 
         try {
+        	
             Statement statement = this.connection.createStatement();
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
             statement.executeUpdate("INSERT INTO tbl_eventTemplate VALUES (NULL, '"+et.getTitle()+"', '"+et.getDescription()+"', '"+et.getAvgRating()+"')");
@@ -290,7 +291,7 @@ public class Persistence {
             Statement statement = this.connection.createStatement();
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
-            ResultSet tagResult = statement.executeQuery("SELECT * FROM tbl_tag ");
+            ResultSet tagResult = statement.executeQuery("SELECT * FROM tbl_tag");
             while (tagResult.next()) {
                 Tag t = new Tag(tagResult.getInt(1), tagResult.getString(2));
                 tags.add(t);
@@ -305,7 +306,25 @@ public class Persistence {
     }
     //tags 3 cases,
 
-	public Collection<Tag> getTags() {
+	public ArrayList<Patient> getPatientList() {
+		
+		ArrayList<Patient> list = new ArrayList<>();
+        try {
+            Statement statement = this.connection.createStatement();
+            statement.setQueryTimeout(30);  // set timeout to 30 sec.
+
+            ResultSet rs = statement.executeQuery("SELECT * FROM tbl_accounts");
+            while (rs.next()) {
+                Patient us = new Patient(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4));
+                list.add(us);
+            }
+            return list;
+        }
+        catch(SQLException e){
+            // query failed
+            System.err.println(e);
+     
+        }
 		// TODO Auto-generated method stub
 		return null;
 	}

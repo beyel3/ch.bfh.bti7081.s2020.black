@@ -30,7 +30,7 @@ public class CreateEventPresenter {
 		
 		Event event = new Event(eventTemplate, isPublic, maxParicipants, participants);
 		
-			model.addEventToTemplate(event);
+//			model.addEventToTemplate(event);
 			//model.saveEvent(eventTemplate);
 
 	}

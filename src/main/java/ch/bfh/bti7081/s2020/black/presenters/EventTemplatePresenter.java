@@ -19,11 +19,6 @@ public class EventTemplatePresenter extends Presenter {
 		this.view = eventTemplateViewImplementation;
 	}
 
-
-	public void saveNewEventTemplate(String title, String description, ArrayList<Tag> tags) {
-	EventTemplate eventTemplate = new EventTemplate(title, description, tags, null, Double.valueOf(0));
-	model.saveEventTemplate(eventTemplate);
-	}
 	
 	public ArrayList<EventTemplate> getEventTemplates() {
 		return model.getEventTemplates();

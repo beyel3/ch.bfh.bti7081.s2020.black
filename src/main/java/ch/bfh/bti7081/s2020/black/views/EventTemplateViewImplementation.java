@@ -76,10 +76,6 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 		Grid.Column<EventTemplate> titleColumn = grid.addColumn(EventTemplate::getTitle).setHeader("Title");
 		Grid.Column<EventTemplate> descriptionColumn = grid.addColumn(EventTemplate::getDescription).setHeader("Description");
 		Grid.Column<EventTemplate> tagColumn = grid.addColumn(EventTemplate::getTags).setHeader("Tags");
-//		Grid.Column<EventTemplate> tagColumn;
-//		for (Tag t : eventTemplates.getTags()) {
-//		grid.addColumn(EventTemplate::getTags).setHeader("Tags");
-//		}
 		
 		Grid.Column<EventTemplate> ratingColumn = grid.addColumn(EventTemplate::getAvgRating).setHeader("Rating");
 		grid.addComponentColumn(item -> createUseAsTemplateButton(grid, item)).setHeader("Use as template");

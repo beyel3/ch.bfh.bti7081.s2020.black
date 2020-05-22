@@ -1,7 +1,10 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
+<<<<<<< Updated upstream
 import java.lang.reflect.Array;
 import java.sql.SQLException;
+=======
+>>>>>>> Stashed changes
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
@@ -20,18 +23,26 @@ public class CreateTemplatePresenter extends Presenter {
 		this.model = new ChooseTemplate();
 	}
 
-	public Collection<Tag> getTags() {
+	public ArrayList<Tag> getTags() {
 		return model.getTagsList();
 	}
 
 	public EventTemplate getSavedTemplate() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+<<<<<<< Updated upstream
 	public EventTemplate saveEventTemplate(String title, String description, Set<Tag> tags){
+=======
+	public EventTemplate saveEventTemplate(String title, String description, Set<Tag> tagSet) {
+>>>>>>> Stashed changes
 		
-//		model.saveNewEventTemplate(title, description, tags);
+		ArrayList<Tag> tagList = new ArrayList<>();
+		for(Tag t : tagSet) {
+			tagList.add(t);
+		}
+		
+		return model.saveNewEventTemplate(title, description, tagList);
 
 		ArrayList<Tag> taglist = new ArrayList<Tag>(tags);
 		EventTemplate et = new EventTemplate(title, description, taglist, null,0);
@@ -45,5 +56,4 @@ public class CreateTemplatePresenter extends Presenter {
 			return null;
 		}
 	}
-
 }
