@@ -1,16 +1,12 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
-import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
 
-import com.vaadin.flow.dom.Element;
-import com.vaadin.flow.router.RouterLayout;
+import ch.bfh.bti7081.s2020.black.model.Account;
 
-import ch.bfh.bti7081.s2020.black.model.Coreuser;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.eventStateModel.CreateEvent;
-import ch.bfh.bti7081.s2020.black.model.eventStateModel.EventStateModel;
 import ch.bfh.bti7081.s2020.black.views.CreateEventViewImplementaion;
 
 public class CreateEventPresenter {
@@ -26,17 +22,17 @@ public class CreateEventPresenter {
 		
 	}
 	
-	public void saveEvent(boolean isPublic, int maxParicipants, List<Coreuser> participants) {
+	public void saveEvent(boolean isPublic, int maxParicipants, ArrayList<Account> participants) {
 		
 		Event event = new Event(eventTemplate, isPublic, maxParicipants, participants);
 		
 			model.addEventToTemplate(event);
-			//model.saveEvent(eventTemplate);
+			model.saveEvent(event);
 
 	}
 
-	public void saveEventWithTemplate(EventTemplate eventTemplate, boolean isPublic, int maxParicipants,
-			List<Coreuser> participatns) {
+	public void saveEventWithTemplate(EventTemplate eventTemplate, boolean isPublic, int maxParticipants,
+			ArrayList<Account> participants) {
 		
 	}
 
