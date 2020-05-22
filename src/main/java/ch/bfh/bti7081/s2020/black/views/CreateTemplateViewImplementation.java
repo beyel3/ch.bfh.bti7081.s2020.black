@@ -54,12 +54,16 @@ public class CreateTemplateViewImplementation extends HorizontalLayout {
 <<<<<<< Updated upstream
 
 			EventTemplate t = createTemplatePresenter.saveEventTemplate(title.getValue(), description.getValue(), tags.getValue());
+<<<<<<< HEAD
 			UI.getCurrent().navigate("CreateEventView" + t.getId());
 =======
 			
 		EventTemplate eventTemplate = createTemplatePresenter.saveEventTemplate(title.getValue(), description.getValue(), tags.getValue());
 		UI.getCurrent().navigate("CreateEventView" + eventTemplate.getId());
 >>>>>>> Stashed changes
+=======
+			UI.getCurrent().navigate("CreateEventView/" + t.getId());
+>>>>>>> Dev
 
 		});
 

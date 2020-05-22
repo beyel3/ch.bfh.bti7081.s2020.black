@@ -65,6 +65,20 @@ public class Persistence {
          }
     }
 
+    public void executeUpdate(String query) {
+
+        try {
+
+            Statement statement = this.connection.createStatement();
+            statement.setQueryTimeout(30);
+            statement.executeUpdate(query);
+        }
+        catch(SQLException e) {
+            // query failed
+            System.err.println(e);
+        }
+    }
+
     public Event saveEvent(Event event) {
         List<Coreuser> participants = event.getParticipants();
         try {
@@ -164,6 +178,7 @@ public class Persistence {
         }
     }
 
+<<<<<<< HEAD
     public EventTemplate saveEventTemplate(EventTemplate et) throws SQLException{
         ArrayList<Tag> tags = et.getTags();
 
@@ -188,6 +203,31 @@ public class Persistence {
             return null;
         }
     }
+=======
+//    public EventTemplate saveEventTemplate(EventTemplate et) throws SQLException{
+//        ArrayList<Tag> tags = et.getTags();
+//
+//        try {
+//            Statement statement = this.connection.createStatement();
+//            statement.setQueryTimeout(30);  // set timeout to 30 sec.
+//            statement.executeUpdate("INSERT INTO tbl_eventTemplate VALUES (NULL, '"+et.getTitle()+"', '"+et.getDescription()+"', '"+et.getAvgRating()+"')");
+//            ResultSet id = statement.executeQuery("SELECT LAST_INSERT_ROWID()");
+//            et.setId(id.getInt(1));
+//
+//            for (Tag t:tags) {
+//                statement.executeUpdate("INSERT INTO tbl_tagEventTemplateREL(tagID,eventTemplateID) SELECT "+t.getId()+", '"+et.getId()+"' WHERE NOT EXISTS(SELECT 1 FROM tbl_tagEventTemplateREL WHERE tagID = "+t.getId()+" AND eventTemplateID = "+et.getId()+");");
+//            }
+//
+//            //return eventTemplate with updated id
+//            return et;
+//        }
+//        catch(SQLException e) {
+//            // query failed
+//            System.err.println(e);
+//            return null;
+//        }
+//    }
+>>>>>>> Dev
 
     public EventTemplate getEventTemplateById(int id) throws SQLException {
         ArrayList<Event> events = getEventsByTemplateId(id);
@@ -304,7 +344,6 @@ public class Persistence {
             return null;
         }
     }
-    //tags 3 cases,
 
 	public ArrayList<Patient> getPatientList() {
 		
