@@ -65,6 +65,43 @@ public class Persistence {
          }
     }
 
+    public void executeUpdate(String query) {
+
+        try {
+
+            Statement statement = this.connection.createStatement();
+            statement.setQueryTimeout(30);
+            statement.executeUpdate(query);
+        }
+        catch(SQLException e) {
+            // query failed
+            System.err.println(e);
+        }
+    }
+
+    public Event saveEvent(Event event) {
+        List<Coreuser> participants = event.getParticipants();
+        try {
+            Statement statement = this.connection.createStatement();
+            statement.setQueryTimeout(30);  // set timeout to 30 sec.
+            statement.executeUpdate("INSERT INTO tbl_event VALUES (NULL,'" + event.getInfo() + "'," + event.isPublic() + "," + event.getRating() + "," + event.getStatus().toString() + "," + event.getMaxParticipants() + "," + event.getEventTemplate().getId() + "," + event.getPictureID() + ")");
+            ResultSet rs = statement.executeQuery("SELECT LAST_INSERT_ROWID()");
+            event.setId(rs.getInt(1));
+
+            // Wo und wann schreiben wir die Participants in die DB?
+            //		for (Coreuser c:participants){
+            //
+            //		}
+
+            return event;
+        }
+        catch(SQLException e) {
+            // query failed
+            System.err.println(e);
+            return null;
+        }
+    }
+
     public Event getEventById(int id){
         try {
             Statement statement = this.connection.createStatement();
@@ -141,29 +178,29 @@ public class Persistence {
         }
     }
 
-    public EventTemplate saveEventTemplate(EventTemplate et) throws SQLException{
-        ArrayList<Tag> tags = et.getTags();
-
-        try {
-            Statement statement = this.connection.createStatement();
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-            statement.executeQuery("INSERT INTO tbl_eventTemplate VALUES (NULL, '"+et.getTitle()+"', '"+et.getDescription()+"', '"+et.getAvgRating()+"')");
-            ResultSet id = statement.executeQuery("SELECT LAST_INSERT_ROWID()");
-            et.setId(id.getInt(1));
-
-            for (Tag t:tags) {
-                statement.executeQuery("INSERT INTO tbl_tagEventTemplateREL(tagID,eventTemplateID) SELECT "+t.getId()+", '"+et.getId()+"' WHERE NOT EXISTS(SELECT 1 FROM tbl_tagEventTemplateREL WHERE tagID = "+t.getId()+" AND eventTemplateID = "+et.getId()+");");
-            }
-
-            //return eventTemplate with updated id
-            return et;
-        }
-        catch(SQLException e) {
-            // query failed
-            System.err.println(e);
-            return null;
-        }
-    }
+//    public EventTemplate saveEventTemplate(EventTemplate et) throws SQLException{
+//        ArrayList<Tag> tags = et.getTags();
+//
+//        try {
+//            Statement statement = this.connection.createStatement();
+//            statement.setQueryTimeout(30);  // set timeout to 30 sec.
+//            statement.executeUpdate("INSERT INTO tbl_eventTemplate VALUES (NULL, '"+et.getTitle()+"', '"+et.getDescription()+"', '"+et.getAvgRating()+"')");
+//            ResultSet id = statement.executeQuery("SELECT LAST_INSERT_ROWID()");
+//            et.setId(id.getInt(1));
+//
+//            for (Tag t:tags) {
+//                statement.executeUpdate("INSERT INTO tbl_tagEventTemplateREL(tagID,eventTemplateID) SELECT "+t.getId()+", '"+et.getId()+"' WHERE NOT EXISTS(SELECT 1 FROM tbl_tagEventTemplateREL WHERE tagID = "+t.getId()+" AND eventTemplateID = "+et.getId()+");");
+//            }
+//
+//            //return eventTemplate with updated id
+//            return et;
+//        }
+//        catch(SQLException e) {
+//            // query failed
+//            System.err.println(e);
+//            return null;
+//        }
+//    }
 
     public EventTemplate getEventTemplateById(int id) throws SQLException {
         ArrayList<Event> events = getEventsByTemplateId(id);
@@ -212,7 +249,7 @@ public class Persistence {
             Statement statement = this.connection.createStatement();
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
-            statement.executeQuery("INSERT INTO tbl_tag VALUES (NULL, '"+t.getTagName()+"')");
+            statement.executeUpdate("INSERT INTO tbl_tag VALUES (NULL, '"+t.getTagName()+"')");
             ResultSet id = statement.executeQuery("SELECT LAST_INSERT_ROWID()");
             t.setId(id.getInt(1));
 
@@ -280,7 +317,6 @@ public class Persistence {
             return null;
         }
     }
-    //tags 3 cases,
 
 	public Collection<Tag> getTags() {
 		// TODO Auto-generated method stub

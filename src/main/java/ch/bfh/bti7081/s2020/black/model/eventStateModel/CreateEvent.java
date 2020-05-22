@@ -32,19 +32,5 @@ public class CreateEvent extends EventStateModel {
 			return null;
 		}
 	}
-
-	public void saveEvent(Event event) {
-		List<Coreuser> participants = event.getParticipants();
-
-		persistence.executeQuery("INSERT INTO tbl_event VALUES (NULL,'" + event.getInfo() + "'," + event.isPublic() + "," + event.getRating() + "," + event.getStatus().toString() + "," + event.getMaxParticipants() + "," + event.getEventTemplate().getId() + "," + event.getPictureID() + ")");
-		//ResultSet rs = persistence.executeQuery("SELECT LAST_INSERT_ROWID()");
-		//event.setId(rs.getInt(1));
-
-		// Wo und wann schreiben wir die Participants in die DB?
-		//		for (Coreuser c:participants){
-		//
-		//		}
-
-	}
 }
 
