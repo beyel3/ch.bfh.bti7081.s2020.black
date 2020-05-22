@@ -53,7 +53,7 @@ public class CreateTemplateViewImplementation extends HorizontalLayout {
 		createTemplate.addClickListener(event -> {
 
 			EventTemplate t = createTemplatePresenter.saveEventTemplate(title.getValue(), description.getValue(), tags.getValue());
-			UI.getCurrent().navigate("CreateEventView" + t.getId());
+			UI.getCurrent().navigate("CreateEventView/" + t.getId());
 
 		});
 
