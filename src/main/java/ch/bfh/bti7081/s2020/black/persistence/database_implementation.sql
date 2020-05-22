@@ -15,6 +15,8 @@ CREATE TABLE tbl_account (
     last_name VARCHAR NOT NULL,
     email VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
+    patientInfo VARCHAR NULL,
+    level INTEGER NULL,
     accountType VARCHAR
 );
 
