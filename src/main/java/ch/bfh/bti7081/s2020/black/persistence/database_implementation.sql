@@ -1,3 +1,13 @@
+DROP TABLE IF EXISTS tbl_accounts;
+CREATE TABLE tbl_accounts (
+    accountID int NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR NOT NULL,
+    last_name VARCHAR NOT NULL,
+    email VARCHAR NOT NULL,
+    password VARCHAR NOT NULL,
+    accountTypeID int,
+);
+
 DROP TABLE IF EXISTS tbl_account;
 CREATE TABLE tbl_account (
     accountID INTEGER PRIMARY KEY,
@@ -5,23 +15,8 @@ CREATE TABLE tbl_account (
     last_name VARCHAR NOT NULL,
     email VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
-    accountTypeID INTEGER,
-
-    FOREIGN KEY (accountTypeID)
-        REFERENCES tbl_accountType (accountTypeID)
-            ON DELETE CASCADE
-            ON UPDATE NO ACTION
-);
-
-DROP TABLE IF EXISTS tbl_accountType;
-CREATE TABLE tbl_accountType (
-    accountTypeID INTEGER PRIMARY KEY,
     accountType VARCHAR
 );
-
-INSERT INTO tbl_accountType VALUES (NULL,'relative');
-INSERT INTO tbl_accountType VALUES (NULL,'patient');
-INSERT INTO tbl_accountType VALUES (NULL,'admin');
 
 DROP TABLE IF EXISTS tbl_friendship;
 CREATE TABLE tbl_friendship (
@@ -84,7 +79,17 @@ CREATE TABLE tbl_event (
     FOREIGN KEY (eventTemplateID)
         REFERENCES tbl_eventTemplate (eventTemplateID)
             ON DELETE CASCADE
+            ON UPDATE NO ACTION,
+    FOREIGN KEY (imageID)
+        REFERENCES tbl_image (imageID)
+            ON DELETE CASCADE
             ON UPDATE NO ACTION
+);
+
+DROP TABLE IF EXISTS tbl_image;
+CREATE TABLE tbl_image (
+    imageID INTEGER PRIMARY KEY,
+    image BLOB
 );
 
 DROP TABLE IF EXISTS tbl_eventTemplate;
@@ -115,3 +120,7 @@ CREATE TABLE tbl_tag (
     tagID INTEGER PRIMARY KEY,
     tag_name VARCHAR
 );
+
+INSERT INTO tbl_tag VALUES (NULL,'Outdoor');
+INSERT INTO tbl_tag VALUES (NULL,'Indoor');
+INSERT INTO tbl_tag VALUES (NULL,'Sport');

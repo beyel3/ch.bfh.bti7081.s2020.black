@@ -11,71 +11,64 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 
 
-@Route(value = "LandingPage", layout = MainView.class)
+@Route(value = "HomeView", layout = MainView.class)
 @RouteAlias(value = "", layout = MainView.class)
-public class LandingPageImplementation extends VerticalLayout {
+public class HomeViewImplementation extends VerticalLayout {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private final HorizontalLayout contentLayoutFirstRow;
 	private final HorizontalLayout contentLayoutSecondRow;
+	private final HorizontalLayout contentLayoutThirdRow;
 
 
-	public LandingPageImplementation(){
+	public HomeViewImplementation(){
 		setSizeFull();
 				
 		contentLayoutFirstRow = new HorizontalLayout();
 		contentLayoutFirstRow.setWidth("100%");
-		contentLayoutFirstRow.setHeight("200px");
+		contentLayoutFirstRow.setHeight("33%");
 
 		contentLayoutSecondRow = new HorizontalLayout();
 		contentLayoutSecondRow.setWidth("100%");
-		contentLayoutSecondRow.setHeight("200px");
-		setFlexGrow(1, contentLayoutFirstRow,contentLayoutSecondRow);
+		contentLayoutSecondRow.setHeight("33%");
+		
+		contentLayoutThirdRow = new HorizontalLayout();
+		contentLayoutThirdRow.setWidth("100%");
+		contentLayoutThirdRow.setHeight("33%");
+		
+		setFlexGrow(1, contentLayoutFirstRow, contentLayoutSecondRow, contentLayoutThirdRow);
+		
 		
 		List<Button> buttons = new ArrayList<Button>();
 		
 		Button createEventButton = new Button("CREATE EVENT");
-		
-		createEventButton.addClickListener(event -> 
-			 getUI().ifPresent(ui -> ui.navigate("Event")));
-			 
-		
-		Button browseEventButton = new Button("CREATE EVENT FROM TEMPLATE");
-		
-		browseEventButton.addClickListener(event -> 
-			getUI().ifPresent(ui -> ui.navigate("BrowseEventTemplates")));
-		
-		Button searchOpenPublicEventButton = new Button("SEARCH OPEN PUBLIC EVENTS");
-		
+		createEventButton.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("EventTemplateView")));
+			 		
+		Button searchOpenPublicEventButton = new Button("JOIN PUBLIC EVENT");
 		searchOpenPublicEventButton.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("")));
 
 		Button myEventsButton = new Button("MY EVENTS");
-		
-		myEventsButton.addClickListener(event -> browseEventButton.getUI().ifPresent(ui -> ui.navigate("AccountView")));
-		
+		myEventsButton.addClickListener(event -> myEventsButton.getUI().ifPresent(ui -> ui.navigate("")));
 		
 		buttons.add(myEventsButton);
 		buttons.add(searchOpenPublicEventButton);
-		buttons.add(browseEventButton);
 		buttons.add(createEventButton);
 		
 		for(Button b : buttons) {
-			b.getStyle().set("height", "200px");
+			b.getStyle().set("height", "150px");
 			b.getStyle().set("width", "40%");
 			b.getStyle().set("font-size", "20px");
 			b.getStyle().set("font-size", "2vw");	
 		}
 
-		contentLayoutFirstRow.add(createEventButton, browseEventButton);
+		contentLayoutFirstRow.add(createEventButton);
 		contentLayoutFirstRow.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-		contentLayoutSecondRow.add(searchOpenPublicEventButton, myEventsButton);
+		contentLayoutSecondRow.add(searchOpenPublicEventButton);
 		contentLayoutSecondRow.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+		contentLayoutThirdRow.add(myEventsButton);
+		contentLayoutThirdRow.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 		
-		add(contentLayoutFirstRow,contentLayoutSecondRow);
-
+		add(contentLayoutFirstRow,contentLayoutSecondRow, contentLayoutThirdRow);
 
 	}
 	
