@@ -8,14 +8,14 @@ public class HardCoded {
 	private ArrayList<Tag> tags;
 	private ArrayList<EventTemplate> eventTemplates;
 	private ArrayList<Event> events;
-	private ArrayList<Coreuser> participants;
+	private ArrayList<Account> participants;
 	
 	public HardCoded() {
 		
 		this.tags = new ArrayList<Tag>();
 		this.eventTemplates = new ArrayList<EventTemplate>();
 		this.events = new ArrayList<Event>();
-		this.participants = new ArrayList<Coreuser>();
+		this.participants = new ArrayList<Account>();
 		
 		participants.add(new Patient("Mario", "Schläppi", "schl@bfh.ch"));
 		participants.add(new Patient("Luca", "Beyeler", "bey@bfh.ch"));
@@ -147,7 +147,7 @@ public class HardCoded {
 		eventTemplates.get(eventTemplates.size()-1).setId(eventTemplates.size());;
 	}
 
-	public ArrayList<Coreuser> getCoreUser() {
+	public ArrayList<Account> getCoreUser() {
 		return participants;
 	}
 }

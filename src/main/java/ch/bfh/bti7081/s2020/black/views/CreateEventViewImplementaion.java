@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2020.black.views;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.bfh.bti7081.s2020.black.model.Account;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
@@ -17,10 +18,8 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
-import com.vaadin.flow.router.OptionalParameter;
 import com.vaadin.flow.router.Route;
 
-import ch.bfh.bti7081.s2020.black.model.Coreuser;
 import ch.bfh.bti7081.s2020.black.model.HardCoded;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 import ch.bfh.bti7081.s2020.black.presenters.CreateEventPresenter;
@@ -42,7 +41,7 @@ public class CreateEventViewImplementaion extends VerticalLayout implements HasU
 	private MultiSelectListBox<Tag> tags;
 	private Checkbox publicEvent;
 	private NumberField maxParticipants;
-	private ArrayList<Coreuser> participants = new HardCoded().getCoreUser();
+	private ArrayList<Account> participants = new HardCoded().getCoreUser();
 	
 	public CreateEventViewImplementaion() {
 		
@@ -80,7 +79,7 @@ public class CreateEventViewImplementaion extends VerticalLayout implements HasU
 		
 		//Add Patient
 		FormLayout FormLayoutRight = new FormLayout();		
-		MultiSelectListBox<Coreuser> participants = new MultiSelectListBox<Coreuser>();
+		MultiSelectListBox<Account> participants = new MultiSelectListBox<Account>();
 		participants.setItems(this.participants);
 		FormLayoutRight.addFormItem(participants, "Patienten hinzufügen:");
 		
