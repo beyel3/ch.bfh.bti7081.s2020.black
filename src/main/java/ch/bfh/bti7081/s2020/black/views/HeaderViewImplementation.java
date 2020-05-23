@@ -1,29 +1,32 @@
 package ch.bfh.bti7081.s2020.black.views;
 
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.ButtonInterface;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.login.LoginI18n;
 import com.vaadin.flow.component.login.LoginOverlay;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.dom.ThemeList;
-import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.Lumo;
 
-public class MainViewImplementation extends VerticalLayout {
+public class HeaderViewImplementation<T extends ButtonInterface> extends VerticalLayout {
 
 	private static final long serialVersionUID = 1L;
 	private final HorizontalLayout loginButtonLayout;
 	private final HorizontalLayout menuBarLayout;
 	private final HorizontalLayout menuBar;
 
-	public MainViewImplementation() {
+	private T presenter;
+
+	public HeaderViewImplementation(T presenter) {
+
+		this.presenter = presenter;
 
 		setMargin(false);
 		setSpacing(false);
@@ -51,13 +54,13 @@ public class MainViewImplementation extends VerticalLayout {
 			}
 		});
 
-		LoginOverlay loginOverlay = new LoginOverlay();
-		loginOverlay.addLoginListener(e -> loginOverlay.close());
-		LoginI18n i18n = LoginI18n.createDefault();
-		loginOverlay.setDescription("Login with e-mail and password");
-		loginOverlay.setTitle("BurnOUTEvents");
-		i18n.setAdditionalInformation("To close the login form submit non-empty username and password");
-		loginOverlay.setI18n(i18n);
+//		LoginOverlay loginOverlay = new LoginOverlay();
+//		loginOverlay.addLoginListener(e -> loginOverlay.close());
+//		LoginI18n i18n = LoginI18n.createDefault();
+//		loginOverlay.setDescription("Login with e-mail and password");
+//		loginOverlay.setTitle("BurnOUTEvents");
+//		i18n.setAdditionalInformation("To close the login form submit non-empty username and password");
+//		loginOverlay.setI18n(i18n);
 
 		menuBar = new HorizontalLayout();
 
@@ -82,7 +85,7 @@ public class MainViewImplementation extends VerticalLayout {
 		final Div header = new Div();
 		Button loginButton = new Button("Login");
 		//loginButton.addClickListener(e -> loginOverlay.setOpened(true));
-		loginButton.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("LoginView")));
+		loginButton.addClickListener(event -> presenter.buttonClick("login"));
 		Button signupButton = new Button("SignUp");
 		signupButton.addClickListener(event -> signupButton.getUI().ifPresent(ui -> ui.navigate("SignUpView")));
 
@@ -97,4 +100,5 @@ public class MainViewImplementation extends VerticalLayout {
 
 		add(header);
 	}
+
 }

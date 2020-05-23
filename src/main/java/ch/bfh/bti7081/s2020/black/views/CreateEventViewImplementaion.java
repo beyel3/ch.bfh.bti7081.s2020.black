@@ -1,9 +1,7 @@
 package ch.bfh.bti7081.s2020.black.views;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import ch.bfh.bti7081.s2020.black.model.Account;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
@@ -16,25 +14,19 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.router.BeforeEvent;
-import com.vaadin.flow.router.HasUrlParameter;
-import com.vaadin.flow.router.Route;
 
+import ch.bfh.bti7081.s2020.black.model.Account;
+import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.HardCoded;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 import ch.bfh.bti7081.s2020.black.presenters.CreateEventPresenter;
 
 
-@Route(value = "CreateEvent", layout = MainView.class)
-public class CreateEventViewImplementaion extends VerticalLayout implements HasUrlParameter<String> {
+//@Route(value = "CreateEvent", layout = MainView.class)
+public class CreateEventViewImplementaion extends VerticalLayout {
 
-
-	@Override
-    public void setParameter(BeforeEvent event, String parameter) {
-		presenter.setEventTemplateByURLParameter(parameter);
-    }
 	
-	private CreateEventPresenter presenter = new CreateEventPresenter(this);
+	private CreateEventPresenter createEventPresenter;
 	
 	private TextField title;
 	private TextArea description;
@@ -42,9 +34,11 @@ public class CreateEventViewImplementaion extends VerticalLayout implements HasU
 	private Checkbox publicEvent;
 	private NumberField maxParticipants;
 	private ArrayList<Account> participants = new HardCoded().getCoreUser();
+
 	
-	public CreateEventViewImplementaion() {
+	public CreateEventViewImplementaion(CreateEventPresenter createEventPresenter) {
 		
+		this.createEventPresenter = createEventPresenter;
 		
 		//Init
 		title = new TextField();
@@ -95,7 +89,8 @@ public class CreateEventViewImplementaion extends VerticalLayout implements HasU
 
 		// Event Handler
 		save.addClickListener(event -> {
-			presenter.saveEvent(publicEvent.getValue(), (int) Math.round(maxParticipants.getValue()));
+			
+			createEventPresenter.saveEvent(publicEvent.getValue(), (int) Math.round(maxParticipants.getValue()), participants.getSelectedItems());
 			UI.getCurrent().navigate("LandingPage");
 			
 		});
@@ -115,11 +110,13 @@ public class CreateEventViewImplementaion extends VerticalLayout implements HasU
 		add(VerticalLayout);
 	}
 	
-	public void setTemplateInfo(String title, String description, List<Tag> tags) {
+
+
+	public void setTemplateInfo(EventTemplate eventTemplate) {
 		
-		this.title.setValue(title);
-		this.description.setValue(description);
-		this.tags.setItems(tags);
+		this.title.setValue(eventTemplate.getTitle());
+		this.description.setValue(eventTemplate.getDescription());
+		this.tags.setItems(eventTemplate.getTags());
 		
 		this.title.setReadOnly(true);
 		this.description.setReadOnly(true);
