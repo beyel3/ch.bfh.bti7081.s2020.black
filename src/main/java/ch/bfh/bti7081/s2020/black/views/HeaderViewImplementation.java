@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2020.black.views;
 
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.ButtonInterface;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
@@ -14,14 +15,18 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.theme.lumo.Lumo;
 
-public class HeaderViewImplementation extends VerticalLayout {
+public class HeaderViewImplementation<T extends ButtonInterface> extends VerticalLayout {
 
 	private static final long serialVersionUID = 1L;
 	private final HorizontalLayout loginButtonLayout;
 	private final HorizontalLayout menuBarLayout;
 	private final HorizontalLayout menuBar;
 
-	public HeaderViewImplementation() {
+	private T presenter;
+
+	public HeaderViewImplementation(T presenter) {
+
+		this.presenter = presenter;
 
 		setMargin(false);
 		setSpacing(false);
@@ -80,7 +85,7 @@ public class HeaderViewImplementation extends VerticalLayout {
 		final Div header = new Div();
 		Button loginButton = new Button("Login");
 		//loginButton.addClickListener(e -> loginOverlay.setOpened(true));
-		loginButton.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("LoginView")));
+		loginButton.addClickListener(event -> presenter.buttonClick("login"));
 		Button signupButton = new Button("SignUp");
 		signupButton.addClickListener(event -> signupButton.getUI().ifPresent(ui -> ui.navigate("SignUpView")));
 

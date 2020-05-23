@@ -15,11 +15,11 @@ public class SuperPresenter {
 	private Account account;
 	
 	public SuperPresenter(MainView mainView) {
-		this.header = new HeaderViewImplementation();
+		//this.header = new HeaderViewImplementation();
 		this.stateModel = null;
 		this.mainView = mainView;
-		mainView.add(header);
-		
+		//mainView.add(header);
+		new HeaderPresenter(this);
 		new HomeViewPresenter(this);
 	}
 	

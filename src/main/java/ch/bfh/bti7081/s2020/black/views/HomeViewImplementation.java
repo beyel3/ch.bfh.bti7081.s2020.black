@@ -3,27 +3,26 @@ package ch.bfh.bti7081.s2020.black.views;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.ButtonInterface;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
-import ch.bfh.bti7081.s2020.black.presenters.HomeViewPresenter;
-
 
 //@Route(value = "HomeView", layout = MainView.class)
 //@RouteAlias(value = "", layout = MainView.class)
-public class HomeViewImplementation extends VerticalLayout {
+public class HomeViewImplementation<T extends ButtonInterface> extends VerticalLayout {
 	
 	private static final long serialVersionUID = 1L;
 	private final HorizontalLayout contentLayoutFirstRow;
 	private final HorizontalLayout contentLayoutSecondRow;
 	private final HorizontalLayout contentLayoutThirdRow;
 	
-	private HomeViewPresenter homeViewPresenter;
+	private T presenter;
 
-	public HomeViewImplementation(HomeViewPresenter homeViewPresenter){
-		this.homeViewPresenter = homeViewPresenter;
+	public HomeViewImplementation(T presenter){
+		this.presenter = presenter;
 		
 		setSizeFull();
 				
@@ -46,7 +45,7 @@ public class HomeViewImplementation extends VerticalLayout {
 		
 		Button createEventButton = new Button("CREATE EVENT");
 		
-		createEventButton.addClickListener(event -> homeViewPresenter.goToCreateEventState());
+		createEventButton.addClickListener(event -> presenter.buttonClick("CreateEvent"));
 			 		
 		Button searchOpenPublicEventButton = new Button("JOIN PUBLIC EVENT");
 		searchOpenPublicEventButton.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("")));

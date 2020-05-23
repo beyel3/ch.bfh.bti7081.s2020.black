@@ -1,11 +1,9 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
-import ch.bfh.bti7081.s2020.black.model.stateModel.ChooseTemplate;
-import ch.bfh.bti7081.s2020.black.model.stateModel.StateModel;
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.ButtonInterface;
 import ch.bfh.bti7081.s2020.black.views.HomeViewImplementation;
-import ch.bfh.bti7081.s2020.black.views.MainView;
 
-public class HomeViewPresenter extends Presenter {
+public class HomeViewPresenter extends Presenter implements ButtonInterface {
 
 	public HomeViewPresenter(SuperPresenter superPresenter) {
 	
@@ -13,11 +11,10 @@ public class HomeViewPresenter extends Presenter {
 		currentView = new HomeViewImplementation(this);
 		superPresenter.addView(currentView);
 	}
-	
-	public void goToCreateEventState() {
-		
+
+	@Override
+	public void buttonClick(String information) {
 		superPresenter.removeView(currentView);
 		new EventTemplatePresenter(superPresenter);
-		
 	}
 }
