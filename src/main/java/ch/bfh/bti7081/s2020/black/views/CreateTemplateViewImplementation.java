@@ -58,6 +58,7 @@ public class CreateTemplateViewImplementation extends HorizontalLayout {
 		});
 
 		formLayout.setResponsiveSteps(new ResponsiveStep("40em", 1));
+		formLayout.setSizeFull();
 		add(formLayout, createTemplate);
 	}
 }

@@ -9,14 +9,14 @@ import com.vaadin.flow.router.RouteAlias;
 @RouteAlias(value = "AccountView", layout = MainView.class)
 @PageTitle("MyEvents")
 
-public class AccountView extends VerticalLayout {
+public class AccountViewImplementation extends VerticalLayout {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public AccountView() {
+	public AccountViewImplementation() {
 		
 	}
 

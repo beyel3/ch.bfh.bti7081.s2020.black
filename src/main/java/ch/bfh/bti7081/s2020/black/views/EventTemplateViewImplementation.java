@@ -116,7 +116,6 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 		// Thrid Filter for tags
 		TextField tagField = new TextField();
 		ArrayList<String> tagList = new ArrayList<>();
-//		tagList = 
 		tagField.addValueChangeListener(event -> dataProvider.addFilter(eventTemplate -> StringUtils.containsIgnoreCase(eventTemplate.getTags().toString(), tagField.getValue())));
 
 		tagField.setValueChangeMode(ValueChangeMode.EAGER);
@@ -126,7 +125,7 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 		tagField.setPlaceholder("Filter");
 
 		grid.setWidth("100%");
-		grid.setMaxHeight("650px");
+		grid.setHeight("68vh");
 		grid.getStyle().set("overflowY", "auto");
 
 		dialogCreateEvent = new Dialog();
@@ -190,7 +189,6 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 		layout.add(title, description, tags, progressBar, button);
 		templates.add(layout);
 
-		// currently all templates are displayed when selecting one row of the grid
 		dialogShowTemplate.add(templates);
 		dialogShowTemplate.open();
 	}
