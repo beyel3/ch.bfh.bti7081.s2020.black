@@ -31,7 +31,7 @@ public class HardCoded {
 		EventTemplate hardOne = new EventTemplate(
 				1, 
 				"hike", 
-				"hiking in the swiss alps",
+				"hiking in the swiss alps - event one",
 				null, 
 				null, 8.2);
 		
@@ -99,8 +99,30 @@ public class HardCoded {
 		hardFive.setTags(sublistFive);
 		eventTemplates.add(hardFive);
 		
+		Event eventOne = new Event(
+				hardOne,
+				false,
+				4,
+				participants);
 
+		events.add(eventOne);
 		
+		Event eventTwo = new Event(
+				hardTwo,
+				false,
+				4,
+				participants);
+
+		events.add(eventTwo);
+		events.add(eventOne);
+		events.add(eventTwo);
+		events.add(eventOne);
+		events.add(eventTwo);
+		events.add(eventTwo);
+		events.add(eventOne);
+		events.add(eventTwo);
+		events.add(eventOne);
+		events.add(eventTwo);
 	}
 
 	public ArrayList<Tag> getTags() {
@@ -126,5 +148,13 @@ public class HardCoded {
 	
 	public ArrayList<Event> getEvent() {
 		return events;
+	}
+	public Event getEventFromID(int eventID) {
+		return events.get(eventID);
+	}
+
+	public void addEvent(Event event) {
+		events.add(event);
+		events.get(events.size()-1).setId(events.size());;
 	}
 }
