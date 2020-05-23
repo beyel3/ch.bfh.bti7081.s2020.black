@@ -1,50 +1,42 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import ch.bfh.bti7081.s2020.black.model.Account;
-
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.stateModel.CreateEvent;
 import ch.bfh.bti7081.s2020.black.views.CreateEventViewImplementaion;
 
-public class CreateEventPresenter {
+public class CreateEventPresenter extends Presenter {
 
-	private CreateEventViewImplementaion view;
-	private CreateEvent model;
+	private CreateEvent createEventState;
 	private EventTemplate eventTemplate;
 	
-	public CreateEventPresenter(CreateEventViewImplementaion eventCreaterViewImplementaion) {
-
-		this.view = eventCreaterViewImplementaion;
-		this.model = new CreateEvent();
+	public CreateEventPresenter(SuperPresenter superPresenter, EventTemplate eventTemplate) {
+		super(superPresenter);
 		
-	}
-	
-	public void saveEvent(boolean isPublic, int maxParicipants, ArrayList<Account> participants) {
+		this.createEventState = new CreateEvent();
+		superPresenter.setState(createEventState);
 		
-		Event event = new Event(eventTemplate, isPublic, maxParicipants, participants);
-
-
-	}
-
-	public void saveEventWithTemplate(EventTemplate eventTemplate, boolean isPublic, int maxParticipants,
-			ArrayList<Account> participants) {
+		this.eventTemplate = eventTemplate;
+		this.currentView = new CreateEventViewImplementaion(this);
 		
 	}
 
 
-	public void setEventTemplateByURLParameter(String parameter) {
-		
-		int eventTemplateID = Integer.parseInt(parameter);
-//		this.eventTemplate = model.getEventTemplateByID(eventTemplateID);
-		view.setTemplateInfo(eventTemplate.getTitle(), eventTemplate.getDescription(), eventTemplate.getTags());
-		
-	}
 
-	public void saveEvent(Boolean value, int round) {
-		// TODO Auto-generated method stub
+	public void saveEvent(Boolean isPublic, int maxParticipants, Set<Account> set) {
+		
+		ArrayList<Account> accounts = new ArrayList<>();
+		
+		for(Account a : set) {
+			accounts.add(a);
+		}
+		
+		Event event = new Event(eventTemplate, isPublic, maxParticipants, accounts);
+		createEventState.saveEvent(event);
 		
 	}
 

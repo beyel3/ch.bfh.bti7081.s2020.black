@@ -2,7 +2,6 @@ package ch.bfh.bti7081.s2020.black.model.stateModel;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import ch.bfh.bti7081.s2020.black.model.Account;
@@ -12,14 +11,13 @@ import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Patient;
 import ch.bfh.bti7081.s2020.black.model.Relative;
 import ch.bfh.bti7081.s2020.black.model.Status;
-import ch.bfh.bti7081.s2020.black.model.Tag;
 import ch.bfh.bti7081.s2020.black.persistence.Persistence;
-import ch.bfh.bti7081.s2020.black.presenters.Presenter;
+import ch.bfh.bti7081.s2020.black.presenters.SuperPresenter;
 
 public abstract class StateModel {
 	
 	protected Persistence persistence;
-	protected Presenter presenter;
+	protected SuperPresenter presenter;
 	
 	
 	public StateModel() {

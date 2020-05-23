@@ -19,7 +19,7 @@ public class MainView extends VerticalLayout implements RouterLayout{
 	
 	public MainView() {
 
-		new SuperPresenter(this);
+		 new SuperPresenter(this);
 
     }
 }

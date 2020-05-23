@@ -2,15 +2,17 @@ package ch.bfh.bti7081.s2020.black.presenters;
 
 import com.vaadin.flow.component.Component;
 
+import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.stateModel.StateModel;
 import ch.bfh.bti7081.s2020.black.views.HeaderViewImplementation;
 import ch.bfh.bti7081.s2020.black.views.MainView;
 
 public class SuperPresenter {
 	
-	protected MainView mainView;
-	protected HeaderViewImplementation header;
-	protected StateModel stateModel;
+	private MainView mainView;
+	private HeaderViewImplementation header;
+	private StateModel stateModel;
+	private Account account;
 	
 	public SuperPresenter(MainView mainView) {
 		this.header = new HeaderViewImplementation();
