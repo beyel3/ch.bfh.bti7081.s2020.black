@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2020.black.views;
 
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
@@ -8,12 +7,8 @@ import com.vaadin.flow.component.listbox.MultiSelectListBox;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.dom.ThemeList;
-import com.vaadin.flow.theme.lumo.Lumo;
 
-import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Tag;
-import ch.bfh.bti7081.s2020.black.presenters.CreateTemplatePresenter;
 
 public class CreateTemplateViewImplementation extends HorizontalLayout {
 
@@ -21,7 +16,7 @@ public class CreateTemplateViewImplementation extends HorizontalLayout {
 	private TextArea description;
 	private MultiSelectListBox<Tag> tags;
 	private Button createTemplate;
-	private CreateTemplatePresenter createTemplatePresenter = new CreateTemplatePresenter();
+//	private CreateTemplatePresenter createTemplatePresenter = new CreateTemplatePresenter();
 
 	public CreateTemplateViewImplementation() {
 		setSizeFull();
@@ -41,7 +36,7 @@ public class CreateTemplateViewImplementation extends HorizontalLayout {
 		description.setClearButtonVisible(true);
 		description.setRequiredIndicatorVisible(true);
 
-		tags.setItems(createTemplatePresenter.getTags());
+//		tags.setItems(createTemplatePresenter.getTags());
 
 		FormLayout formLayout = new FormLayout();
 		formLayout.addFormItem(title, "Titel");
@@ -52,8 +47,11 @@ public class CreateTemplateViewImplementation extends HorizontalLayout {
 		createTemplate.getStyle().set("marginRight", "10px");
 		createTemplate.addClickListener(event -> {
 
-			EventTemplate t = createTemplatePresenter.saveEventTemplate(title.getValue(), description.getValue(), tags.getValue());
-			UI.getCurrent().navigate("CreateEventView/" + t.getId());
+
+//			EventTemplate t = createTemplatePresenter.saveEventTemplate(title.getValue(), description.getValue(), tags.getValue());
+
+//			UI.getCurrent().navigate("CreateEventView" + t.getId());
+
 
 		});
 

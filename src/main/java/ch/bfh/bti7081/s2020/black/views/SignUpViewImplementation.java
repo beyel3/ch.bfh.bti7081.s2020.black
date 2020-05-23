@@ -1,7 +1,7 @@
 package ch.bfh.bti7081.s2020.black.views;
 
-import ch.bfh.bti7081.s2020.black.persistence.Persistence;
-import ch.bfh.bti7081.s2020.black.persistence.QueryHelpers;
+import org.apache.commons.codec.digest.DigestUtils;
+
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -17,12 +17,10 @@ import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
-import org.apache.commons.codec.digest.DigestUtils;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import ch.bfh.bti7081.s2020.black.persistence.Persistence;
 
-@Route(value = "SignUpView", layout = MainView.class)
+//@Route(value = "SignUpView", layout = MainView.class)
 public class SignUpViewImplementation extends VerticalLayout{
 
     private static final long serialVersionUID = 1L;
@@ -64,7 +62,7 @@ public class SignUpViewImplementation extends VerticalLayout{
         try {
             Persistence persistence = new Persistence();
             String sha256hex = DigestUtils.sha256Hex(txtPassword.getValue());
-            persistence.executeQuery("INSERT INTO tbl_accounts (first_name, last_name, email, password, accountTypeID) VALUES ('"+txtFirstName.getValue()+"','"+txtLastName.getValue()+"','"+emailField.getValue()+"','"+sha256hex+"',1);");
+            persistence.executeUpdate("INSERT INTO tbl_accounts (first_name, last_name, email, password, accountTypeID) VALUES ('"+txtFirstName.getValue()+"','"+txtLastName.getValue()+"','"+emailField.getValue()+"','"+sha256hex+"',1);");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

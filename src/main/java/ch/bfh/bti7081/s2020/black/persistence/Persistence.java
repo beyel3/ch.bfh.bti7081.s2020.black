@@ -1,22 +1,19 @@
 package ch.bfh.bti7081.s2020.black.persistence;
-import ch.bfh.bti7081.s2020.black.model.*;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Collection;
 
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
+import ch.bfh.bti7081.s2020.black.model.Patient;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 
 public class Persistence {
 
-    Connection connection = null;
+    private Connection connection = null;
 
     public Persistence() throws ClassNotFoundException
     {
@@ -26,7 +23,6 @@ public class Persistence {
         } catch (ClassNotFoundException e) {
             throw new Error("Cannot find JDBC Driver", e);
         }
-        
         openConnection();
     }
 
@@ -49,6 +45,8 @@ public class Persistence {
             System.err.println(e);
         }
     }
+    
+    
     
     public ResultSet executeQuery(String query) {
     	
@@ -79,21 +77,23 @@ public class Persistence {
         }
     }
 
-    public Event saveEvent(Event event) {
-        List<Coreuser> participants = event.getParticipants();
+    public EventTemplate saveEventTemplate(EventTemplate et) throws SQLException{
+        ArrayList<Tag> tags = et.getTags();
+
         try {
+        	
             Statement statement = this.connection.createStatement();
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
-            statement.executeUpdate("INSERT INTO tbl_event VALUES (NULL,'" + event.getInfo() + "'," + event.isPublic() + "," + event.getRating() + "," + event.getStatus().toString() + "," + event.getMaxParticipants() + "," + event.getEventTemplate().getId() + "," + event.getPictureID() + ")");
-            ResultSet rs = statement.executeQuery("SELECT LAST_INSERT_ROWID()");
-            event.setId(rs.getInt(1));
+            statement.executeUpdate("INSERT INTO tbl_eventTemplate VALUES (NULL, '"+et.getTitle()+"', '"+et.getDescription()+"', '"+et.getAvgRating()+"')");
+            ResultSet id = statement.executeQuery("SELECT LAST_INSERT_ROWID()");
+            et.setId(id.getInt(1));
 
-            // Wo und wann schreiben wir die Participants in die DB?
-            //		for (Coreuser c:participants){
-            //
-            //		}
+            for (Tag t:tags) {
+                statement.executeUpdate("INSERT INTO tbl_tagEventTemplateREL(tagID,eventTemplateID) SELECT "+t.getId()+", '"+et.getId()+"' WHERE NOT EXISTS(SELECT 1 FROM tbl_tagEventTemplateREL WHERE tagID = "+t.getId()+" AND eventTemplateID = "+et.getId()+");");
+            }
 
-            return event;
+            //return eventTemplate with updated id
+            return et;
         }
         catch(SQLException e) {
             // query failed
@@ -101,147 +101,50 @@ public class Persistence {
             return null;
         }
     }
+    
+    
 
-    public Event getEventById(int id){
-        try {
-            Statement statement = this.connection.createStatement();
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-            ResultSet rs = statement.executeQuery("SELECT * FROM tbl_event WHERE eventID = "+id);
 
-            List<Coreuser> participants = new ArrayList<Coreuser>(); //needs to be done
-            ResultSet p = statement.executeQuery("SELECT * FROM tbl_participants WHERE eventID ="+rs.getInt("eventID"));
-            while (p.next()){
-                //REL from Event to Account
-                //Coreuser cu = new Coreuser();
-                //participants.add(cu);
-            }
-            Event event = new Event(rs.getInt("eventId"), getEventTemplateById(rs.getInt("eventTemplateID")), rs.getString("info"), rs.getBoolean("isPublic"),rs.getInt("maxParticipants"), rs.getInt("rating"), Status.valueOf(rs.getString("state")), rs.getInt("imageID"), participants);
-
-            return event;
-        }
-        catch(SQLException e) {
-            // query failed
-            System.err.println(e);
-            return null;
-        }
-    }
-
-    public ArrayList<Event> getEventsByTemplateId(int id) throws SQLException {
-        ArrayList<Event> eventList = new ArrayList<Event>();
-        try {
-            Statement statement = this.connection.createStatement();
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-            ResultSet rs = statement.executeQuery("SELECT * FROM tbl_event WHERE eventTemplateID = "+id);
-
-            while (rs.next()) {
-                List<Coreuser> participants = new ArrayList<Coreuser>(); //needs to be done
-                ResultSet p = statement.executeQuery("SELECT * FROM tbl_participants WHERE eventID ="+rs.getInt("eventID"));
-                while (p.next()){
-                    //REL from Event to Account
-                    //Coreuser cu = new Coreuser();
-                    //participants.add(cu);
-                }
-                Event event = new Event(rs.getInt("eventId"), getEventTemplateById(rs.getInt("eventTemplateID")), rs.getString("info"), rs.getBoolean("isPublic"), rs.getInt("maxParticipants"), rs.getInt("rating"), Status.valueOf(rs.getString("state")), rs.getInt("imageID"), participants);
-                eventList.add(event);
-            }
-            return eventList;
-        }
-        catch(SQLException e) {
-            // query failed
-            System.err.println(e);
-            return null;
-        }
-    }
-    public ArrayList<Event> getEventList() throws SQLException {
-        ArrayList<Event> eventList = new ArrayList<Event>();
-        try {
-            Statement statement = this.connection.createStatement();
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-            ResultSet rs = statement.executeQuery("SELECT * FROM tbl_event");
-
-            while (rs.next()) {
-                List<Coreuser> participants = new ArrayList<Coreuser>(); //needs to be done
-                ResultSet p = statement.executeQuery("SELECT * FROM tbl_participants WHERE eventID ="+rs.getInt("eventID"));
-                while (p.next()){
-                    //Coreuser cu = new Coreuser();
-                    //participants.add(cu);
-                }
-                Event event = new Event(rs.getInt("eventId"), getEventTemplateById(rs.getInt("eventTemplateID")), rs.getString("info"), rs.getBoolean("isPublic"), rs.getInt("maxParticipants"), rs.getInt("rating"), Status.valueOf(rs.getString("state")), rs.getInt("imageID"), participants);
-                eventList.add(event);
-            }
-            return eventList;
-        }
-        catch(SQLException e) {
-            // query failed
-            System.err.println(e);
-            return eventList;
-        }
-    }
-
-//    public EventTemplate saveEventTemplate(EventTemplate et) throws SQLException{
-//        ArrayList<Tag> tags = et.getTags();
-//
+//    public EventTemplate getEventTemplateById(int id) throws SQLException {
+//        ArrayList<Event> events = getEventsByTemplateId(id);
+//        ArrayList<Tag> tags = getTagsByTemplateID(id);
 //        try {
 //            Statement statement = this.connection.createStatement();
 //            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-//            statement.executeUpdate("INSERT INTO tbl_eventTemplate VALUES (NULL, '"+et.getTitle()+"', '"+et.getDescription()+"', '"+et.getAvgRating()+"')");
-//            ResultSet id = statement.executeQuery("SELECT LAST_INSERT_ROWID()");
-//            et.setId(id.getInt(1));
 //
-//            for (Tag t:tags) {
-//                statement.executeUpdate("INSERT INTO tbl_tagEventTemplateREL(tagID,eventTemplateID) SELECT "+t.getId()+", '"+et.getId()+"' WHERE NOT EXISTS(SELECT 1 FROM tbl_tagEventTemplateREL WHERE tagID = "+t.getId()+" AND eventTemplateID = "+et.getId()+");");
-//            }
+//            ResultSet templateResult = statement.executeQuery("SELECT * FROM tbl_eventTemplate WHERE eventTemplateID = "+id);
+//            EventTemplate eT = new EventTemplate(templateResult.getInt("eventTemplateId"), templateResult.getString("title"), templateResult.getString("description"), tags, events, templateResult.getDouble("rating"));
 //
-//            //return eventTemplate with updated id
-//            return et;
+//            return eT;
 //        }
-//        catch(SQLException e) {
+//
+//        catch(SQLException e){
 //            // query failed
 //            System.err.println(e);
 //            return null;
 //        }
 //    }
-
-    public EventTemplate getEventTemplateById(int id) throws SQLException {
-        ArrayList<Event> events = getEventsByTemplateId(id);
-        ArrayList<Tag> tags = getTagsByTemplateID(id);
-        try {
-            Statement statement = this.connection.createStatement();
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-
-            ResultSet templateResult = statement.executeQuery("SELECT * FROM tbl_eventTemplate WHERE eventTemplateID = "+id);
-            EventTemplate eT = new EventTemplate(templateResult.getInt("eventTemplateId"), templateResult.getString("title"), templateResult.getString("description"), tags, events, templateResult.getDouble("rating"));
-
-            return eT;
-        }
-
-        catch(SQLException e){
-            // query failed
-            System.err.println(e);
-            return null;
-        }
-    }
-
-    public ArrayList<EventTemplate> getEventTemplateList() throws SQLException {
-        ArrayList<EventTemplate> eventTemplateList = new ArrayList<EventTemplate>();
-        try {
-            Statement statement = this.connection.createStatement();
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-            ResultSet rs = statement.executeQuery("SELECT * FROM tbl_eventTemplate");
-
-            while (rs.next()) {
-                ArrayList<Event> events = getEventsByTemplateId(rs.getInt("eventTemplateId"));
-                ArrayList<Tag> tags = getTagsByTemplateID(rs.getInt("eventTemplateId"));
-                EventTemplate eT = new EventTemplate(rs.getInt("eventTemplateId"), rs.getString("title"), rs.getString("description"), tags, events, rs.getDouble("rating"));
-                eventTemplateList.add(eT);
-            }
-            return eventTemplateList;
-        } catch (SQLException e) {
-            // query failed
-            System.err.println(e);
-            return null;
-        }
-    }
+//
+//    public ArrayList<EventTemplate> getEventTemplateList() throws SQLException {
+//        ArrayList<EventTemplate> eventTemplateList = new ArrayList<EventTemplate>();
+//        try {
+//            Statement statement = this.connection.createStatement();
+//            statement.setQueryTimeout(30);  // set timeout to 30 sec.
+//            ResultSet rs = statement.executeQuery("SELECT * FROM tbl_eventTemplate");
+//
+//            while (rs.next()) {
+//                ArrayList<Event> events = getEventsByTemplateId(rs.getInt("eventTemplateId"));
+//                ArrayList<Tag> tags = getTagsByTemplateID(rs.getInt("eventTemplateId"));
+//                EventTemplate eT = new EventTemplate(rs.getInt("eventTemplateId"), rs.getString("title"), rs.getString("description"), tags, events, rs.getDouble("rating"));
+//                eventTemplateList.add(eT);
+//            }
+//            return eventTemplateList;
+//        } catch (SQLException e) {
+//            // query failed
+//            System.err.println(e);
+//            return null;
+//        }
+//    }
 
     public Tag saveTag(Tag t) throws SQLException{
 
@@ -304,7 +207,7 @@ public class Persistence {
             Statement statement = this.connection.createStatement();
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
-            ResultSet tagResult = statement.executeQuery("SELECT * FROM tbl_tag ");
+            ResultSet tagResult = statement.executeQuery("SELECT * FROM tbl_tag");
             while (tagResult.next()) {
                 Tag t = new Tag(tagResult.getInt(1), tagResult.getString(2));
                 tags.add(t);
@@ -318,7 +221,25 @@ public class Persistence {
         }
     }
 
-	public Collection<Tag> getTags() {
+	public ArrayList<Patient> getPatientList() {
+		
+		ArrayList<Patient> list = new ArrayList<>();
+        try {
+            Statement statement = this.connection.createStatement();
+            statement.setQueryTimeout(30);  // set timeout to 30 sec.
+
+            ResultSet rs = statement.executeQuery("SELECT * FROM tbl_accounts");
+            while (rs.next()) {
+                Patient us = new Patient(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4));
+                list.add(us);
+            }
+            return list;
+        }
+        catch(SQLException e){
+            // query failed
+            System.err.println(e);
+     
+        }
 		// TODO Auto-generated method stub
 		return null;
 	}

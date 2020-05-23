@@ -1,32 +1,26 @@
 package ch.bfh.bti7081.s2020.black.views;
 
-import ch.bfh.bti7081.s2020.black.persistence.Persistence;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import org.apache.commons.codec.digest.DigestUtils;
+
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
-import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.login.LoginForm;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextArea;
-import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.router.BeforeEnterEvent;
-import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinSession;
-import org.apache.commons.codec.digest.DigestUtils;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Collections;
-import java.util.List;
+import ch.bfh.bti7081.s2020.black.persistence.Persistence;
 
 @Route(value = "LoginView", layout = MainView.class)
 public class LoginViewImplementation extends VerticalLayout{
@@ -45,7 +39,7 @@ public class LoginViewImplementation extends VerticalLayout{
         form.addFormItem(emailField, new Icon(VaadinIcon.USER));
         form.addFormItem(txtPassword, new Icon(VaadinIcon.LOCK));
         form.addFormItem(btnLogin, "");
-        form.setResponsiveSteps(new ResponsiveStep("30em", 1));
+        form.setResponsiveSteps(new FormLayout.ResponsiveStep("30em", 1));
         form.setWidth("40%");
 //        form.getStyle().set("border","1px solid #2f6f91");
         
