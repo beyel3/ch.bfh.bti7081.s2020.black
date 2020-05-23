@@ -51,7 +51,7 @@ public class HomeViewImplementation<T extends ButtonInterface> extends VerticalL
 		searchOpenPublicEventButton.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("")));
 
 		Button myEventsButton = new Button("MY EVENTS");
-		myEventsButton.addClickListener(event -> myEventsButton.getUI().ifPresent(ui -> ui.navigate("")));
+		myEventsButton.addClickListener(event -> myEventsButton.getUI().ifPresent(ui -> ui.navigate("MyEvents")));
 		
 		buttons.add(myEventsButton);
 		buttons.add(searchOpenPublicEventButton);

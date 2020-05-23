@@ -28,21 +28,26 @@ public class LoginViewImplementation extends VerticalLayout{
 
     private EmailField emailField = new EmailField("Email","example@eamil.com");
     private PasswordField txtPassword = new PasswordField("Password");
-
     private Label user = new Label("not logged in");
 
     public LoginViewImplementation(){
+    	setSizeFull();
         Button btnLogin = new Button("Login");
         FormLayout form = new FormLayout();
 
         form.addFormItem(emailField, new Icon(VaadinIcon.USER));
         form.addFormItem(txtPassword, new Icon(VaadinIcon.LOCK));
         form.addFormItem(btnLogin, "");
+        form.setResponsiveSteps(new ResponsiveStep("30em", 1));
+        form.setWidth("40%");
+//        form.getStyle().set("border","1px solid #2f6f91");
+        
         TextArea loginHint = new TextArea("Test credentials",
                 "patient\nusername: patient\npassword: 123456\n\n" +
                         "relative\nusername: relative\npassword: 123456\n\n" +
                         "admin\nusername: admin\npassword: 123456", "");
         loginHint.setReadOnly(true);
+        form.add(loginHint, user);
 
         btnLogin.addClickListener(e -> {
             if (verifyInput()){
@@ -56,14 +61,13 @@ public class LoginViewImplementation extends VerticalLayout{
         });
         //form.getElement().addEventListener("keypress", event -> verifyLogin()).setFilter("event.key == 'Enter'");
 
-        HorizontalLayout main = new HorizontalLayout(form, loginHint, user);
+        HorizontalLayout main = new HorizontalLayout(form);
 
-        main.setHeight("100vh");
+        main.setSizeFull();
+        main.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
         main.setAlignItems(Alignment.CENTER);
         add(main);
 
-        setAlignItems(Alignment.CENTER);
-        setHeight("100vh");
     }
     private void loadAccount(){
         try {

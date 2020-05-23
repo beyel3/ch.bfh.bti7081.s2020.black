@@ -54,13 +54,13 @@ public class HeaderViewImplementation<T extends ButtonInterface> extends Vertica
 			}
 		});
 
-		LoginOverlay loginOverlay = new LoginOverlay();
-		loginOverlay.addLoginListener(e -> loginOverlay.close());
-		LoginI18n i18n = LoginI18n.createDefault();
-		loginOverlay.setDescription("Login with e-mail and password");
-		loginOverlay.setTitle("BurnOUTEvents");
-		i18n.setAdditionalInformation("To close the login form submit non-empty username and password");
-		loginOverlay.setI18n(i18n);
+//		LoginOverlay loginOverlay = new LoginOverlay();
+//		loginOverlay.addLoginListener(e -> loginOverlay.close());
+//		LoginI18n i18n = LoginI18n.createDefault();
+//		loginOverlay.setDescription("Login with e-mail and password");
+//		loginOverlay.setTitle("BurnOUTEvents");
+//		i18n.setAdditionalInformation("To close the login form submit non-empty username and password");
+//		loginOverlay.setI18n(i18n);
 
 		menuBar = new HorizontalLayout();
 

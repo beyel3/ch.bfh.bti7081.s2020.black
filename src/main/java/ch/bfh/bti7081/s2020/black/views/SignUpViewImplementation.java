@@ -5,10 +5,14 @@ import org.apache.commons.codec.digest.DigestUtils;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
@@ -28,6 +32,7 @@ public class SignUpViewImplementation extends VerticalLayout{
     private PasswordField txtRepeatPassword = new PasswordField("Repeat password");
 
     public SignUpViewImplementation(){
+    	setSizeFull();
         Button btnSubmit = new Button("Submit");
         FormLayout form = new FormLayout();
 
@@ -37,10 +42,9 @@ public class SignUpViewImplementation extends VerticalLayout{
         form.addFormItem(txtPassword,new Icon(VaadinIcon.LOCK));
         form.addFormItem(txtRepeatPassword,new Icon(VaadinIcon.LOCK));
         form.addFormItem(btnSubmit,"");
-
-        VerticalLayout submitLayout = new VerticalLayout(form);
-
-        Label test = new Label("test");
+//        form.getStyle().set("border","1px solid black");
+        form.setResponsiveSteps(new ResponsiveStep("30em", 1));
+        form.setWidth("40%");
 
         btnSubmit.addClickListener(e ->{
                 if (verifyInput()){
@@ -48,7 +52,10 @@ public class SignUpViewImplementation extends VerticalLayout{
                 }
             }
         );
-
+        
+        HorizontalLayout submitLayout = new HorizontalLayout(form);
+        submitLayout.setSizeFull();
+        submitLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
         add(submitLayout);
     }
     private void saveAccount(){
