@@ -57,7 +57,7 @@ public class SignUpViewImplementation extends VerticalLayout{
         try {
             Persistence persistence = new Persistence();
             String sha256hex = DigestUtils.sha256Hex(txtPassword.getValue());
-            persistence.executeQuery("INSERT INTO tbl_accounts (first_name, last_name, email, password, accountTypeID) VALUES ('"+txtFirstName.getValue()+"','"+txtLastName.getValue()+"','"+emailField.getValue()+"','"+sha256hex+"',1);");
+            persistence.executeUpdate("INSERT INTO tbl_accounts (first_name, last_name, email, password, accountTypeID) VALUES ('"+txtFirstName.getValue()+"','"+txtLastName.getValue()+"','"+emailField.getValue()+"','"+sha256hex+"',1);");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

@@ -21,7 +21,7 @@ public class CreateTemplateViewImplementation extends HorizontalLayout {
 	private TextArea description;
 	private MultiSelectListBox<Tag> tags;
 	private Button createTemplate;
-	private CreateTemplatePresenter createTemplatePresenter = new CreateTemplatePresenter();
+//	private CreateTemplatePresenter createTemplatePresenter = new CreateTemplatePresenter();
 
 	public CreateTemplateViewImplementation() {
 		setSizeFull();
@@ -41,7 +41,7 @@ public class CreateTemplateViewImplementation extends HorizontalLayout {
 		description.setClearButtonVisible(true);
 		description.setRequiredIndicatorVisible(true);
 
-		tags.setItems(createTemplatePresenter.getTags());
+//		tags.setItems(createTemplatePresenter.getTags());
 
 		FormLayout formLayout = new FormLayout();
 		formLayout.addFormItem(title, "Titel");
@@ -51,19 +51,12 @@ public class CreateTemplateViewImplementation extends HorizontalLayout {
 		createTemplate = new Button("Template erstellen");
 		createTemplate.getStyle().set("marginRight", "10px");
 		createTemplate.addClickListener(event -> {
-<<<<<<< Updated upstream
 
-			EventTemplate t = createTemplatePresenter.saveEventTemplate(title.getValue(), description.getValue(), tags.getValue());
-<<<<<<< HEAD
-			UI.getCurrent().navigate("CreateEventView" + t.getId());
-=======
-			
-		EventTemplate eventTemplate = createTemplatePresenter.saveEventTemplate(title.getValue(), description.getValue(), tags.getValue());
-		UI.getCurrent().navigate("CreateEventView" + eventTemplate.getId());
->>>>>>> Stashed changes
-=======
-			UI.getCurrent().navigate("CreateEventView/" + t.getId());
->>>>>>> Dev
+
+//			EventTemplate t = createTemplatePresenter.saveEventTemplate(title.getValue(), description.getValue(), tags.getValue());
+
+//			UI.getCurrent().navigate("CreateEventView" + t.getId());
+
 
 		});
 

@@ -10,18 +10,23 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 
+import ch.bfh.bti7081.s2020.black.presenters.HomeViewPresenter;
 
-@Route(value = "HomeView", layout = MainView.class)
-@RouteAlias(value = "", layout = MainView.class)
+
+//@Route(value = "HomeView", layout = MainView.class)
+//@RouteAlias(value = "", layout = MainView.class)
 public class HomeViewImplementation extends VerticalLayout {
 	
 	private static final long serialVersionUID = 1L;
 	private final HorizontalLayout contentLayoutFirstRow;
 	private final HorizontalLayout contentLayoutSecondRow;
 	private final HorizontalLayout contentLayoutThirdRow;
+	
+	private HomeViewPresenter homeViewPresenter;
 
-
-	public HomeViewImplementation(){
+	public HomeViewImplementation(HomeViewPresenter homeViewPresenter){
+		this.homeViewPresenter = homeViewPresenter;
+		
 		setSizeFull();
 				
 		contentLayoutFirstRow = new HorizontalLayout();
@@ -42,7 +47,8 @@ public class HomeViewImplementation extends VerticalLayout {
 		List<Button> buttons = new ArrayList<Button>();
 		
 		Button createEventButton = new Button("CREATE EVENT");
-		createEventButton.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("EventTemplateView")));
+		
+		createEventButton.addClickListener(event -> homeViewPresenter.goToCreateEventState());
 			 		
 		Button searchOpenPublicEventButton = new Button("JOIN PUBLIC EVENT");
 		searchOpenPublicEventButton.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("")));

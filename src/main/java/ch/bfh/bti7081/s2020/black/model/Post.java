@@ -7,20 +7,20 @@ public class Post {
 	
 	private String message;
 	private Date date;
-	private Coreuser coreuser;
+	private Account account;
 	
 	//get from DB
-	public Post(String message, Date date, Coreuser coreuser) {
+	public Post(String message, Date date, Account account) {
 		this.message = message;
 		this.date = date;
-		this.coreuser = coreuser;
+		this.account = account;
 	}
 	
 	//gererated by user
-	public Post(String message, Coreuser coreuser) {
+	public Post(String message, Account coreuser) {
 		this.message = message;
 		this.date = Calendar.getInstance().getTime();
-		this.coreuser = coreuser;
+		this.account = coreuser;
 	}
 	
 	public String getMessage() {

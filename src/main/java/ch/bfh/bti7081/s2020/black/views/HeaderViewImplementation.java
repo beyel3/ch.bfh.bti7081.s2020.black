@@ -16,14 +16,16 @@ import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.Lumo;
 
-public class MainViewImplementation extends VerticalLayout {
+import ch.bfh.bti7081.s2020.black.presenters.HomeViewPresenter;
+
+public class HeaderViewImplementation extends VerticalLayout {
 
 	private static final long serialVersionUID = 1L;
 	private final HorizontalLayout loginButtonLayout;
 	private final HorizontalLayout menuBarLayout;
 	private final HorizontalLayout menuBar;
 
-	public MainViewImplementation() {
+	public HeaderViewImplementation() {
 
 		setMargin(false);
 		setSpacing(false);
@@ -97,4 +99,5 @@ public class MainViewImplementation extends VerticalLayout {
 
 		add(header);
 	}
+
 }

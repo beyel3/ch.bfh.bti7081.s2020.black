@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Tag;
-import ch.bfh.bti7081.s2020.black.model.eventStateModel.ChooseTemplate;
+import ch.bfh.bti7081.s2020.black.model.stateModel.ChooseTemplate;
 import ch.bfh.bti7081.s2020.black.persistence.Persistence;
 
 public class TestSaveEventTemplate {
