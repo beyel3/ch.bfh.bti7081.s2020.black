@@ -34,10 +34,8 @@ public class CreateEventPresenter extends Presenter {
 		for(Account a : set) {
 			accounts.add(a);
 		}
-		
 		Event event = new Event(eventTemplate, isPublic, maxParticipants, accounts);
-		createEventState.saveEvent(event);
-		
+		createEventState.saveEvent(event);	
 	}
 
 

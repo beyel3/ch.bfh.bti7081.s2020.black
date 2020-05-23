@@ -2,9 +2,9 @@ package ch.bfh.bti7081.s2020.black.model.stateModel;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-import ch.bfh.bti7081.s2020.black.model.*;
+import ch.bfh.bti7081.s2020.black.model.Account;
+import ch.bfh.bti7081.s2020.black.model.Event;
 
 public class CreateEvent extends StateModel {
 
@@ -38,8 +38,5 @@ public class CreateEvent extends StateModel {
 		
 	}
 	
-	
-
-
 }
 

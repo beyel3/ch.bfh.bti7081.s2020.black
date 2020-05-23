@@ -1,17 +1,14 @@
 package ch.bfh.bti7081.s2020.black.persistence;
-import ch.bfh.bti7081.s2020.black.model.*;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Collection;
 
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
+import ch.bfh.bti7081.s2020.black.model.Patient;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 
 public class Persistence {

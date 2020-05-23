@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2020.black.model.stateModel;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import ch.bfh.bti7081.s2020.black.model.Account;
@@ -11,6 +12,7 @@ import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Patient;
 import ch.bfh.bti7081.s2020.black.model.Relative;
 import ch.bfh.bti7081.s2020.black.model.Status;
+import ch.bfh.bti7081.s2020.black.model.Tag;
 import ch.bfh.bti7081.s2020.black.persistence.Persistence;
 import ch.bfh.bti7081.s2020.black.presenters.SuperPresenter;
 
@@ -106,4 +108,23 @@ public abstract class StateModel {
 		}
 		return events;
 	}
+	
+    public ArrayList<Tag> getTagList() {
+        ArrayList<Tag> tags = new ArrayList<Tag>();
+ 
+   
+            ResultSet tagResult = persistence.executeQuery("SELECT * FROM tbl_tag");
+            
+            try {
+				while (tagResult.next()) {
+				    Tag t = new Tag(tagResult.getInt(1), tagResult.getString(2));
+				    tags.add(t);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            return tags;
+
+    }
 }
