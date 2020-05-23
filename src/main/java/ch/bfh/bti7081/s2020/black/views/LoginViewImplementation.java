@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2020.black.views;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import com.vaadin.flow.component.button.Button;
@@ -38,7 +39,7 @@ public class LoginViewImplementation extends VerticalLayout{
         form.addFormItem(emailField, new Icon(VaadinIcon.USER));
         form.addFormItem(txtPassword, new Icon(VaadinIcon.LOCK));
         form.addFormItem(btnLogin, "");
-        form.setResponsiveSteps(new ResponsiveStep("30em", 1));
+        form.setResponsiveSteps(new FormLayout.ResponsiveStep("30em", 1));
         form.setWidth("40%");
 //        form.getStyle().set("border","1px solid #2f6f91");
         
