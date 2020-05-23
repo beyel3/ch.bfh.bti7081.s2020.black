@@ -39,7 +39,7 @@ import ch.bfh.bti7081.s2020.black.presenters.CreateTemplatePresenter;
 import ch.bfh.bti7081.s2020.black.presenters.EventTemplatePresenter;
 
 
-@Route(value = "EventTemplateView", layout = MainView.class)
+//@Route(value = "EventTemplateView", layout = MainView.class)
 public class EventTemplateViewImplementation extends HorizontalLayout {
 
 	private static final long serialVersionUID = 1L;

@@ -18,7 +18,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Route(value = "SignUpView", layout = MainView.class)
+//@Route(value = "SignUpView", layout = MainView.class)
 public class SignUpViewImplementation extends VerticalLayout{
 
     private static final long serialVersionUID = 1L;

@@ -9,7 +9,7 @@ import ch.bfh.bti7081.s2020.black.model.Tag;
 import ch.bfh.bti7081.s2020.black.persistence.Persistence;
 import ch.bfh.bti7081.s2020.black.presenters.Presenter;
 
-public abstract class EventStateModel {
+public abstract class StateModel {
 	
 	protected Persistence persistence;
 	protected EventTemplate eventTemplate;
@@ -17,7 +17,7 @@ public abstract class EventStateModel {
 	protected Presenter presenter;
 	
 	
-	public EventStateModel() {
+	public StateModel() {
 		
 		try {
 			persistence = new Persistence();

@@ -26,7 +26,7 @@ import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 
-@Route(value = "LoginView", layout = MainView.class)
+//@Route(value = "LoginViewImplementation", layout = MainView.class)
 public class LoginViewImplementation extends VerticalLayout{
 
     private static final long serialVersionUID = 1L;

@@ -1,28 +1,23 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
-import java.sql.SQLException;
 import java.util.List;
-
-import com.vaadin.flow.dom.Element;
-import com.vaadin.flow.router.RouterLayout;
 
 import ch.bfh.bti7081.s2020.black.model.Coreuser;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
-import ch.bfh.bti7081.s2020.black.model.eventStateModel.CreateEvent;
-import ch.bfh.bti7081.s2020.black.model.eventStateModel.EventStateModel;
+import ch.bfh.bti7081.s2020.black.model.eventStateModel.Create;
 import ch.bfh.bti7081.s2020.black.views.CreateEventViewImplementaion;
 
 public class CreateEventPresenter {
 
 	private CreateEventViewImplementaion view;
-	private CreateEvent model;
+	private Create model;
 	private EventTemplate eventTemplate;
 	
 	public CreateEventPresenter(CreateEventViewImplementaion eventCreaterViewImplementaion) {
 
 		this.view = eventCreaterViewImplementaion;
-		this.model = new CreateEvent();
+		this.model = new Create();
 		
 	}
 	

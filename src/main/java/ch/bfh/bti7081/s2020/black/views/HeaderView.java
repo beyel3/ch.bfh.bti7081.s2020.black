@@ -20,14 +20,14 @@ import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.Lumo;
 
 
-public class MainViewImplementation extends VerticalLayout{
+public class HeaderView extends VerticalLayout{
 
 	private static final long serialVersionUID = 1L;
 	private final HorizontalLayout loginButtonLayout;
 	private final HorizontalLayout menuBarLayout;
 	private final HorizontalLayout menuBar;
 
-	public MainViewImplementation() {
+	public HeaderView() {
 
 		setMargin(false);
 		setSpacing(false);

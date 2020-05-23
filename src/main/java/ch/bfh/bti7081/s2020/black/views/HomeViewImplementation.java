@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2020.black.views;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.HomeInterface;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -11,8 +12,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 
 
-@Route(value = "HomeView", layout = MainView.class)
-@RouteAlias(value = "", layout = MainView.class)
+
 public class HomeViewImplementation extends VerticalLayout {
 	
 	private static final long serialVersionUID = 1L;
@@ -20,10 +20,15 @@ public class HomeViewImplementation extends VerticalLayout {
 	private final HorizontalLayout contentLayoutSecondRow;
 	private final HorizontalLayout contentLayoutThirdRow;
 
+	private HomeInterface.HomePresenterInterface presenter;
 
-	public HomeViewImplementation(){
+	public HomeViewImplementation(HomeInterface.HomePresenterInterface presenter){
+
+		this.presenter = presenter;
+
 		setSizeFull();
-				
+
+
 		contentLayoutFirstRow = new HorizontalLayout();
 		contentLayoutFirstRow.setWidth("100%");
 		contentLayoutFirstRow.setHeight("33%");
@@ -42,7 +47,7 @@ public class HomeViewImplementation extends VerticalLayout {
 		List<Button> buttons = new ArrayList<Button>();
 		
 		Button createEventButton = new Button("CREATE EVENT");
-		createEventButton.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("EventTemplateView")));
+		createEventButton.addClickListener(event -> presenter.route("TEST"));
 			 		
 		Button searchOpenPublicEventButton = new Button("JOIN PUBLIC EVENT");
 		searchOpenPublicEventButton.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("")));

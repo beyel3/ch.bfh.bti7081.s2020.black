@@ -26,7 +26,7 @@ import ch.bfh.bti7081.s2020.black.model.Tag;
 import ch.bfh.bti7081.s2020.black.presenters.CreateEventPresenter;
 
 
-@Route(value = "CreateEvent", layout = MainView.class)
+//@Route(value = "CreateEvent", layout = MainView.class)
 public class CreateEventViewImplementaion extends VerticalLayout implements HasUrlParameter<String> {
 
 
