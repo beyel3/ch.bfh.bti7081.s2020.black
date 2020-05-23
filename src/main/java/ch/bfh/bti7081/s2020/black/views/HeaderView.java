@@ -13,10 +13,14 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.dom.ThemeList;
+import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouteAlias;
+import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.Lumo;
 
-public class MainViewImplementation extends VerticalLayout {
+
+public class MainViewImplementation extends VerticalLayout{
 
 	private static final long serialVersionUID = 1L;
 	private final HorizontalLayout loginButtonLayout;
