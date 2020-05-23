@@ -16,7 +16,7 @@ import com.vaadin.flow.router.Route;
 
 import ch.bfh.bti7081.s2020.black.persistence.Persistence;
 
-@Route(value = "SignUpView", layout = MainView.class)
+//@Route(value = "SignUpView", layout = MainView.class)
 public class SignUpViewImplementation extends VerticalLayout{
 
     private static final long serialVersionUID = 1L;

@@ -13,16 +13,11 @@ public class CreateTemplatePresenter extends Presenter {
 	
 	public CreateTemplatePresenter(SuperPresenter superPresenter) {
 		super(superPresenter);
-		
+		this.createTemplateState = new CreateTemplate();
+		superPresenter.setState(createTemplateState);
 	}
 	
 	public ArrayList<Tag> getTags() {
 		return createTemplateState.getTagList();
 	}
-
-	public EventTemplate getSavedTemplate() {
-		return null;
-	}
-
-	
 }
