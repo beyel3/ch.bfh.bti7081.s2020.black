@@ -103,8 +103,8 @@ public abstract class StateModel {
 						break;
 				}
 			}
-			Event event = new Event(eventResult.getInt("eventId"), eventTemplate, eventResult.getString("info"), eventResult.getBoolean("isPublic"), eventResult.getInt("maxParticipants"), eventResult.getInt("rating"), Status.valueOf(eventResult.getString("state")), eventResult.getInt("imageID"), participants);
-			events.add(event);
+			//Event event = new Event(eventResult.getInt("eventId"), eventTemplate, eventResult.getString("info"), eventResult.getBoolean("isPublic"), eventResult.getInt("maxParticipants"), eventResult.getInt("rating"), Status.valueOf(eventResult.getString("state")), eventResult.getInt("imageID"), participants);
+			//events.add(event);
 		}
 		return events;
 	}
