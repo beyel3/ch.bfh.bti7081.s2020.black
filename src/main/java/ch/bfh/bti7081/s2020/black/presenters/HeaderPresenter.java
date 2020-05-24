@@ -11,13 +11,14 @@ public class HeaderPresenter extends Presenter implements ButtonInterface{
 
         super(superPresenter);
         currentView = new HeaderViewImplementation(this);
-        superPresenter.addView(currentView);
+        superPresenter.addHeader(currentView);
     }
 
     @Override
     public void buttonClick(String information) {
         if (information == "login"){
-            Notification.show("blabla");
+            superPresenter.clearView();
+            new LoginPresenter(superPresenter);
         }
     }
 }
