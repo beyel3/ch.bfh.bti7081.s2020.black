@@ -3,25 +3,27 @@ package ch.bfh.bti7081.s2020.black.views;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.ButtonInterface;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
 
 
-@Route(value = "HomeView", layout = MainView.class)
-@RouteAlias(value = "", layout = MainView.class)
-public class HomeViewImplementation extends VerticalLayout {
+//@Route(value = "HomeView", layout = MainView.class)
+//@RouteAlias(value = "", layout = MainView.class)
+public class HomeViewImplementation<T extends ButtonInterface> extends VerticalLayout {
 	
 	private static final long serialVersionUID = 1L;
 	private final HorizontalLayout contentLayoutFirstRow;
 	private final HorizontalLayout contentLayoutSecondRow;
 	private final HorizontalLayout contentLayoutThirdRow;
+	
+	private T presenter;
 
-
-	public HomeViewImplementation(){
+	public HomeViewImplementation(T presenter){
+		this.presenter = presenter;
+		
 		setSizeFull();
 				
 		contentLayoutFirstRow = new HorizontalLayout();
@@ -42,13 +44,14 @@ public class HomeViewImplementation extends VerticalLayout {
 		List<Button> buttons = new ArrayList<Button>();
 		
 		Button createEventButton = new Button("CREATE EVENT");
-		createEventButton.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("EventTemplateView")));
+		
+		createEventButton.addClickListener(event -> presenter.buttonClick("CreateEvent"));
 			 		
 		Button searchOpenPublicEventButton = new Button("JOIN PUBLIC EVENT");
 		searchOpenPublicEventButton.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("")));
 
 		Button myEventsButton = new Button("MY EVENTS");
-		myEventsButton.addClickListener(event -> myEventsButton.getUI().ifPresent(ui -> ui.navigate("")));
+		myEventsButton.addClickListener(event -> myEventsButton.getUI().ifPresent(ui -> ui.navigate("MyEvents")));
 		
 		buttons.add(myEventsButton);
 		buttons.add(searchOpenPublicEventButton);

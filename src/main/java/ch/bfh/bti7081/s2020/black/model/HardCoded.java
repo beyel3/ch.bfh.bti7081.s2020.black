@@ -31,7 +31,7 @@ public class HardCoded {
 		EventTemplate hardOne = new EventTemplate(
 				1, 
 				"hike", 
-				"hiking in the swiss alps",
+				"hiking in the swiss alps - event one",
 				null, 
 				null, 8.2);
 		
@@ -99,35 +99,30 @@ public class HardCoded {
 		hardFive.setTags(sublistFive);
 		eventTemplates.add(hardFive);
 		
-//		EventTemplate hardSix = new EventTemplate(
-//				6, 
-//				"hike", 
-//				"hiking in the swiss alps",
-//				null, 
-//				null, 8.2);
-//		
-//		ArrayList<Tag> sublistSix = new ArrayList<Tag>();
-//		sublistSix.add(tags.get(0));
-//		sublistSix.add(tags.get(1));
-//		sublistSix.add(tags.get(2));
-//		
-//		hardSix.setTags(sublistSix);
-//		eventTemplates.add(hardSix);
+		Event eventOne = new Event(
+				hardOne,
+				false,
+				4,
+				participants);
+
+		events.add(eventOne);
 		
-//		EventTemplate hardSeven = new EventTemplate(
-//				7, 
-//				"hike", 
-//				"hiking in the swiss alps",
-//				null, 
-//				null, 8.2);
-//		
-//		ArrayList<Tag> sublistSeven = new ArrayList<Tag>();
-//		sublistSeven.add(tags.get(0));
-//		sublistSeven.add(tags.get(1));
-//		
-//		hardSeven.setTags(sublistSeven);
-//		eventTemplates.add(hardSeven);
-		
+		Event eventTwo = new Event(
+				hardTwo,
+				false,
+				4,
+				participants);
+
+		events.add(eventTwo);
+		events.add(eventOne);
+		events.add(eventTwo);
+		events.add(eventOne);
+		events.add(eventTwo);
+		events.add(eventTwo);
+		events.add(eventOne);
+		events.add(eventTwo);
+		events.add(eventOne);
+		events.add(eventTwo);
 	}
 
 	public ArrayList<Tag> getTags() {
@@ -149,5 +144,17 @@ public class HardCoded {
 
 	public ArrayList<Account> getCoreUser() {
 		return participants;
+	}
+	
+	public ArrayList<Event> getEvent() {
+		return events;
+	}
+	public Event getEventFromID(int eventID) {
+		return events.get(eventID);
+	}
+
+	public void addEvent(Event event) {
+		events.add(event);
+		events.get(events.size()-1).setId(events.size());;
 	}
 }
