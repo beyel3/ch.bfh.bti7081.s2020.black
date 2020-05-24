@@ -1,33 +1,23 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
-import java.util.Collection;
-import java.util.Set;
+
+import java.util.ArrayList;
 
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Tag;
-import ch.bfh.bti7081.s2020.black.model.eventStateModel.ChooseTemplate;
+import ch.bfh.bti7081.s2020.black.model.stateModel.CreateTemplate;
 
 public class CreateTemplatePresenter extends Presenter {
 	
-	private ChooseTemplate model;
+	private CreateTemplate createTemplateState;
 	
-	public CreateTemplatePresenter() {
-		this.model = new ChooseTemplate();
+	public CreateTemplatePresenter(SuperPresenter superPresenter) {
+		super(superPresenter);
+		this.createTemplateState = new CreateTemplate();
+		superPresenter.setState(createTemplateState);
 	}
-
-	public Collection<Tag> getTags() {
-		return model.getTagsList();
+	
+	public ArrayList<Tag> getTags() {
+		return createTemplateState.getTagList();
 	}
-
-	public EventTemplate getSavedTemplate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void saveEventTemplate(String title, String description, Set<Tag> tags) {
-		
-//		model.saveNewEventTemplate(title, description, tags);
-
-	}
-
 }

@@ -1,62 +1,42 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
-import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Set;
 
-import com.vaadin.flow.dom.Element;
-import com.vaadin.flow.router.RouterLayout;
-
-import ch.bfh.bti7081.s2020.black.model.Coreuser;
+import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
-import ch.bfh.bti7081.s2020.black.model.eventStateModel.CreateEvent;
-import ch.bfh.bti7081.s2020.black.model.eventStateModel.EventStateModel;
+import ch.bfh.bti7081.s2020.black.model.stateModel.CreateEvent;
 import ch.bfh.bti7081.s2020.black.views.CreateEventViewImplementaion;
 
-public class CreateEventPresenter {
+public class CreateEventPresenter extends Presenter {
 
-	private CreateEventViewImplementaion view;
-	private CreateEvent model;
+	private CreateEvent createEventState;
 	private EventTemplate eventTemplate;
 	
-	public CreateEventPresenter(CreateEventViewImplementaion eventCreaterViewImplementaion) {
-
-		this.view = eventCreaterViewImplementaion;
-		this.model = new CreateEvent();
+	public CreateEventPresenter(SuperPresenter superPresenter, EventTemplate eventTemplate) {
+		super(superPresenter);
 		
-	}
-	
-	public void saveEvent(boolean isPublic, int maxParicipants, List<Coreuser> participants) {
+		this.createEventState = new CreateEvent();
+		superPresenter.setState(createEventState);
 		
-		Event event = new Event(eventTemplate, isPublic, maxParicipants, participants);
-		
-			model.addEventToTemplate(event);
-			//model.saveEvent(eventTemplate);
-
-	}
-
-	public void saveEventWithTemplate(EventTemplate eventTemplate, boolean isPublic, int maxParicipants,
-			List<Coreuser> participatns) {
+		this.eventTemplate = eventTemplate;
+		this.currentView = new CreateEventViewImplementaion(this);
 		
 	}
 
-//
-//	public EventTemplate getEventTemplateFromID(int eventTemplateID) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
-	public void setEventTemplateByURLParameter(String parameter) {
+
+	public void saveEvent(Boolean isPublic, int maxParticipants, Set<Account> set) {
 		
-		int eventTemplateID = Integer.parseInt(parameter);
-		this.eventTemplate = model.getEventTemplateByID(eventTemplateID);
-		view.setTemplateInfo(eventTemplate.getTitle(), eventTemplate.getDescription(), eventTemplate.getTags());
+		ArrayList<Account> accounts = new ArrayList<>();
 		
+		for(Account a : set) {
+			accounts.add(a);
+		}
+		Event event = new Event(eventTemplate, isPublic, maxParticipants, accounts);
+		createEventState.saveEvent(event);	
 	}
 
-	public void saveEvent(Boolean value, int round) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

@@ -1,7 +1,6 @@
 package ch.bfh.bti7081.s2020.black.model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Event {
 	
@@ -11,18 +10,18 @@ public class Event {
 	private ArrayList<Post> posts;
  	private boolean isPublic;
  	private int maxParticipants;
-	private List<Coreuser> participants;
+	private ArrayList<Account> participants;
 	private Status status;
 	private int rating;
 	private int pictureId;
 	
 	//Persistence Constructor
-	public Event(int id, EventTemplate eventTemplate, String info, boolean isPublic, int maxParticipants, int rating, Status status, int pictureID, List<Coreuser> participants) {
+	public Event(int id, EventTemplate eventTemplate, String info, ArrayList<Post> posts, boolean isPublic, int maxParticipants, int rating, Status status, int pictureID, ArrayList<Account> participants) {
 		
 		this.id = id;
 		this.eventTemplate = eventTemplate;
 		this.info = info;
-		//this.posts = posts;
+		this.posts = posts;
 		this.isPublic = isPublic;
 		this.maxParticipants = maxParticipants;
 		this.rating = rating;
@@ -33,7 +32,7 @@ public class Event {
 	}
 	
 	//User Constructor
-	public Event(EventTemplate eventTemplate, boolean isPublic, int maxParticipants, List<Coreuser> participants) {
+	public Event(EventTemplate eventTemplate, boolean isPublic, int maxParticipants, ArrayList<Account> participants) {
 		
 		this.id = 0;
 		this.eventTemplate = eventTemplate;
@@ -85,11 +84,11 @@ public class Event {
 		this.isPublic = isPublic;
 	}
 
-	public List<Coreuser> getParticipants() {
+	public ArrayList<Account> getParticipants() {
 		return participants;
 	}
 
-	public void setParticipants(List<Coreuser> participants) {
+	public void setParticipants(ArrayList<Account> participants) {
 		this.participants = participants;
 	}
 

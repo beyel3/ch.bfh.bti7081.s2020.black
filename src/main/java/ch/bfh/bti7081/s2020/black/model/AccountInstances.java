@@ -19,15 +19,15 @@ public class AccountInstances {
     }
 
     @SuppressWarnings("Duplicates")
-    public static ArrayList<Coreuser> getCoreuserAccounts(){
-        ArrayList<Coreuser> coreuserArrayList = new ArrayList<>();
+    public static ArrayList<Account> getCoreuserAccounts(){
+        ArrayList<Account> accountArrayList = new ArrayList<>();
 
-        coreuserArrayList.add(new Patient("Max","Mustermann","max.mustermann@test.com"));
-        coreuserArrayList.add(new Patient("Anna","Müller","anna.mueller@test.com"));
-        coreuserArrayList.add(new Relative("Luca","Dietrich","luca.dietrich@test.com"));
-        coreuserArrayList.add(new Relative("Sabrina","Mönch","sabrina.moench@test.com"));
+        accountArrayList.add(new Patient("Max","Mustermann","max.mustermann@test.com"));
+        accountArrayList.add(new Patient("Anna","Müller","anna.mueller@test.com"));
+        accountArrayList.add(new Relative("Luca","Dietrich","luca.dietrich@test.com"));
+        accountArrayList.add(new Relative("Sabrina","Mönch","sabrina.moench@test.com"));
 
-        return coreuserArrayList;
+        return accountArrayList;
     }
 
     @SuppressWarnings("Duplicates")

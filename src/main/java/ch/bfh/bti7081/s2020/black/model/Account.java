@@ -14,6 +14,14 @@ public class Account {
     private String email;
     private AccountType accountType;
 
+    public Account(int id, String firstName, String lastName, String email, AccountType accountType){
+    	this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.accountType = accountType;
+    }
+    
     public Account(String firstName, String lastName, String email, AccountType accountType){
         this.firstName = firstName;
         this.lastName = lastName;

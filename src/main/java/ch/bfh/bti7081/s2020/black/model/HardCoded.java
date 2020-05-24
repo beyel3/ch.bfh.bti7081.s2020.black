@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2020.black.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class HardCoded {
@@ -8,14 +9,16 @@ public class HardCoded {
 	private ArrayList<Tag> tags;
 	private ArrayList<EventTemplate> eventTemplates;
 	private ArrayList<Event> events;
-	private ArrayList<Coreuser> participants;
+	private ArrayList<Account> participants;
+	private ArrayList<Post> posts;
 	
 	public HardCoded() {
 		
 		this.tags = new ArrayList<Tag>();
 		this.eventTemplates = new ArrayList<EventTemplate>();
 		this.events = new ArrayList<Event>();
-		this.participants = new ArrayList<Coreuser>();
+		this.participants = new ArrayList<Account>();
+		this.posts = new ArrayList<Post>();
 		
 		participants.add(new Patient("Mario", "Schläppi", "schl@bfh.ch"));
 		participants.add(new Patient("Luca", "Beyeler", "bey@bfh.ch"));
@@ -27,11 +30,16 @@ public class HardCoded {
 		tags.add(new Tag(3, "#indoor"));
 		tags.add(new Tag(4, "#chill"));
 		
+		posts.add(new Post("Post 1", null, new Date(), participants.get(0)));
+		posts.add(new Post("Post 2", null, new Date(), participants.get(0)));
+		posts.add(new Post("Post 3", null, new Date(), participants.get(1)));
+		posts.add(new Post("Post 4", null, new Date(), participants.get(2)));
+		
 		
 		EventTemplate hardOne = new EventTemplate(
 				1, 
 				"hike", 
-				"hiking in the swiss alps",
+				"hiking in the swiss alps - event one",
 				null, 
 				null, 8.2);
 		
@@ -99,35 +107,30 @@ public class HardCoded {
 		hardFive.setTags(sublistFive);
 		eventTemplates.add(hardFive);
 		
-//		EventTemplate hardSix = new EventTemplate(
-//				6, 
-//				"hike", 
-//				"hiking in the swiss alps",
-//				null, 
-//				null, 8.2);
-//		
-//		ArrayList<Tag> sublistSix = new ArrayList<Tag>();
-//		sublistSix.add(tags.get(0));
-//		sublistSix.add(tags.get(1));
-//		sublistSix.add(tags.get(2));
-//		
-//		hardSix.setTags(sublistSix);
-//		eventTemplates.add(hardSix);
+		Event eventOne = new Event(
+				hardOne,
+				false,
+				4,
+				participants);
+
+		events.add(eventOne);
 		
-//		EventTemplate hardSeven = new EventTemplate(
-//				7, 
-//				"hike", 
-//				"hiking in the swiss alps",
-//				null, 
-//				null, 8.2);
-//		
-//		ArrayList<Tag> sublistSeven = new ArrayList<Tag>();
-//		sublistSeven.add(tags.get(0));
-//		sublistSeven.add(tags.get(1));
-//		
-//		hardSeven.setTags(sublistSeven);
-//		eventTemplates.add(hardSeven);
-		
+		Event eventTwo = new Event(
+				hardTwo,
+				false,
+				4,
+				participants);
+
+		events.add(eventTwo);
+		events.add(eventOne);
+		events.add(eventTwo);
+		events.add(eventOne);
+		events.add(eventTwo);
+		events.add(eventTwo);
+		events.add(eventOne);
+		events.add(eventTwo);
+		events.add(eventOne);
+		events.add(eventTwo);
 	}
 
 	public ArrayList<Tag> getTags() {
@@ -147,7 +150,22 @@ public class HardCoded {
 		eventTemplates.get(eventTemplates.size()-1).setId(eventTemplates.size());;
 	}
 
-	public ArrayList<Coreuser> getCoreUser() {
+	public ArrayList<Account> getCoreUser() {
 		return participants;
+	}
+	
+	public ArrayList<Event> getEvent() {
+		return events;
+	}
+	public Event getEventFromID(int eventID) {
+		return events.get(eventID);
+	}
+
+	public void addEvent(Event event) {
+		events.add(event);
+		events.get(events.size()-1).setId(events.size());;
+	}
+	public ArrayList<Post> getPosts() {
+		return posts;
 	}
 }

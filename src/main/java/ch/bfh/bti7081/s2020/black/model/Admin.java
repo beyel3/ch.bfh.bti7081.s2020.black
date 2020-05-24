@@ -5,7 +5,11 @@ public class Admin extends Account {
     Notes:  - methods?
      */
 
-    public Admin(String firstName, String lastName, String email){
-        super(firstName, lastName, email, AccountType.ADMIN);
+    public Admin(int id, String firstName, String lastName, String email){
+        super(id, firstName, lastName, email, AccountType.ADMIN);
     }
+
+	public Admin(String firstName, String lastName, String email) {
+		 super(firstName, lastName, email, AccountType.ADMIN);
+	}
 }

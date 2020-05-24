@@ -1,17 +1,12 @@
 package ch.bfh.bti7081.s2020.black.views;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.dialog.Dialog;
-import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.HeaderRow;
 import com.vaadin.flow.component.html.Label;
@@ -20,39 +15,33 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.progressbar.ProgressBar;
-import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.data.value.ValueChangeMode;
-import com.vaadin.flow.router.BeforeEvent;
-import com.vaadin.flow.router.HasUrlParameter;
-import com.vaadin.flow.router.Route;
-import com.vaadin.flow.theme.lumo.Lumo;
 
-import ch.bfh.bti7081.s2020.black.model.Coreuser;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
-import ch.bfh.bti7081.s2020.black.model.HardCoded;
 import ch.bfh.bti7081.s2020.black.model.Tag;
-import ch.bfh.bti7081.s2020.black.presenters.CreateEventPresenter;
-import ch.bfh.bti7081.s2020.black.presenters.CreateTemplatePresenter;
 import ch.bfh.bti7081.s2020.black.presenters.EventTemplatePresenter;
 
 
-@Route(value = "EventTemplateView", layout = MainView.class)
+//@Route(value = "EventTemplateView", layout = MainView.class)
 public class EventTemplateViewImplementation extends HorizontalLayout {
 
 	private static final long serialVersionUID = 1L;
 
-	private EventTemplatePresenter eventTemplatePresenter = new EventTemplatePresenter(this);
+	private EventTemplatePresenter eventTemplatePresenter;
 	private Dialog dialogCreateEvent;
 	private final VerticalLayout contentLayoutFirstRow;
 	private final VerticalLayout contentLayoutSecondRow;
 	private ArrayList<EventTemplate> eventTemplates;
 	private Dialog dialogShowTemplate;
 
-	public EventTemplateViewImplementation() {
+	public EventTemplateViewImplementation(EventTemplatePresenter eventTemplatePresenter, ArrayList<EventTemplate> eventTemplates) {
 
+		this.eventTemplatePresenter = eventTemplatePresenter;
+		this.eventTemplates = eventTemplates;
+		
 		setSizeFull();
 
 		contentLayoutFirstRow = new VerticalLayout();
@@ -67,7 +56,7 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 
 		setFlexGrow(1, contentLayoutFirstRow, contentLayoutSecondRow);
 
-		eventTemplates = eventTemplatePresenter.getEventTemplates();
+		
 
 		Grid<EventTemplate> grid = new Grid<>();
 		ListDataProvider<EventTemplate> dataProvider = new ListDataProvider<>(eventTemplates);
@@ -76,10 +65,6 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 		Grid.Column<EventTemplate> titleColumn = grid.addColumn(EventTemplate::getTitle).setHeader("Title");
 		Grid.Column<EventTemplate> descriptionColumn = grid.addColumn(EventTemplate::getDescription).setHeader("Description");
 		Grid.Column<EventTemplate> tagColumn = grid.addColumn(EventTemplate::getTags).setHeader("Tags");
-//		Grid.Column<EventTemplate> tagColumn;
-//		for (Tag t : eventTemplates.getTags()) {
-//		grid.addColumn(EventTemplate::getTags).setHeader("Tags");
-//		}
 		
 		Grid.Column<EventTemplate> ratingColumn = grid.addColumn(EventTemplate::getAvgRating).setHeader("Rating");
 		grid.addComponentColumn(item -> createUseAsTemplateButton(grid, item)).setHeader("Use as template");
@@ -116,7 +101,6 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 		// Thrid Filter for tags
 		TextField tagField = new TextField();
 		ArrayList<String> tagList = new ArrayList<>();
-//		tagList = 
 		tagField.addValueChangeListener(event -> dataProvider.addFilter(eventTemplate -> StringUtils.containsIgnoreCase(eventTemplate.getTags().toString(), tagField.getValue())));
 
 		tagField.setValueChangeMode(ValueChangeMode.EAGER);
@@ -126,7 +110,7 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 		tagField.setPlaceholder("Filter");
 
 		grid.setWidth("100%");
-		grid.setMaxHeight("650px");
+		grid.setHeight("68vh");
 		grid.getStyle().set("overflowY", "auto");
 
 		dialogCreateEvent = new Dialog();
@@ -141,6 +125,7 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 		contentLayoutFirstRow.add(grid);
 		add(contentLayoutFirstRow, contentLayoutSecondRow);
 	}
+
 
 	private Button createUseAsTemplateButton(Grid<EventTemplate> grid, EventTemplate item) {
 		Button buttonUseAsTemplate = new Button("USE AS TEMPLATE");
@@ -190,7 +175,6 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 		layout.add(title, description, tags, progressBar, button);
 		templates.add(layout);
 
-		// currently all templates are displayed when selecting one row of the grid
 		dialogShowTemplate.add(templates);
 		dialogShowTemplate.open();
 	}
