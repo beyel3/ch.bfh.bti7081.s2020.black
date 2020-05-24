@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2020.black.views;
 import java.util.ArrayList;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -36,31 +37,21 @@ public class AccountViewImplementation extends VerticalLayout {
 	private ArrayList<Event> events = new ArrayList<>(eventsHardCoded.getEvent());
 	private HorizontalLayout eventLayout = new HorizontalLayout();
 
-
 	public AccountViewImplementation() {
-		Label labelMyEvents = new Label(
-				"My Events: ");
+		Label labelMyEvents = new Label("My Events: ");
 		labelMyEvents.getStyle().set("font-size", "24px");
 		labelMyEvents.getStyle().set("font-weight", "bold");
 		eventLayout.setWidth("100%");
-//		eventLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-//		eventLayout.getStyle().set("border", "1px solid black");
+		eventLayout.setMaxHeight("650px");
 		eventLayout.getStyle().set("overflowX", "auto");
-//		eventLayout.getElement(layout).getStyle().set("width", "100px");
-//		eventLayout.getStyle().set("display", "block");
-		createEventBar();
-		add(labelMyEvents, eventLayout);
+		eventLayout.setMargin(false);
 
-	}
-
-	private HorizontalLayout createEventBar() {
 		for (Event e : events) {
 			String participantsHelper = new String(e.getParticipants().toString());
 			participantsHelper = participantsHelper.substring(1, participantsHelper.length() - 1);
 			participantsHelper = participantsHelper.replaceAll(", ", "\n");
 			VerticalLayout layout = new VerticalLayout();
-			layout.getStyle().set("border", "1px solid #2f6f91");
-			layout.getStyle().set("margin", "2px");
+			layout.getStyle().set("border", "2px solid #2f6f91");
 
 			TextField title = new TextField();
 			title.setSizeFull();
@@ -78,25 +69,26 @@ public class AccountViewImplementation extends VerticalLayout {
 
 			ProgressBar progressBar = new ProgressBar();
 			progressBar.setValue(e.getEventTemplate().getAvgRating() / 10);
-			
+
 			HorizontalLayout buttonLayout = new HorizontalLayout();
 			Button buttonChat = new Button("CHAT");
-			buttonChat.addClickListener(event -> getUI()
-					.ifPresent(ui -> ui.navigate("MyEvents")));
+			buttonChat.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("MyEvents")));
 			Button buttonDetails = new Button("DETAILS");
-			buttonDetails.addClickListener(event -> getUI()
-					.ifPresent(ui -> ui.navigate("MyEvents")));
+			buttonDetails.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("MyEvents")));
 			buttonLayout.add(buttonChat, buttonDetails);
-			
+
 			TextArea participants = new TextArea();
 			participants.setSizeFull();
 			participants.setValue(participantsHelper);
 			participants.setReadOnly(true);
-
 			layout.add(title, description, tags, progressBar, participants, buttonLayout);
-			layout.setWidth("100%");
+			layout.getStyle().set("padding", "5px");
+			layout.getStyle().set("margin-left", "2px");
+			layout.getStyle().set("margin-right", "2px");
+			layout.setMinWidth("350px");
+
 			eventLayout.add(layout);
 		}
-		return eventLayout;
+		add(labelMyEvents, eventLayout);
 	}
 }
