@@ -6,21 +6,24 @@ import java.util.Date;
 public class Post {
 	
 	private String message;
+	private Event event;
 	private Date date;
 	private Account account;
 	
 	//get from DB
-	public Post(String message, Date date, Account account) {
+	public Post(String message, Event event, Date date, Account account) {
 		this.message = message;
 		this.date = date;
 		this.account = account;
+		this.event = event;
 	}
 	
 	//gererated by user
-	public Post(String message, Account coreuser) {
+	public Post(String message, Event event, Account coreuser) {
 		this.message = message;
 		this.date = Calendar.getInstance().getTime();
 		this.account = coreuser;
+		this.event = event;
 	}
 	
 	public String getMessage() {
@@ -30,5 +33,7 @@ public class Post {
 	public String getTimeString() {
 		return date.toString();
 	}
+
+	public Date getDate(){ return this.date;}
 
 }
