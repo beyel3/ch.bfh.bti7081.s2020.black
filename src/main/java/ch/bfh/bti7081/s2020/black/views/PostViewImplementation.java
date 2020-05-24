@@ -2,7 +2,6 @@ package ch.bfh.bti7081.s2020.black.views;
 
 import java.util.ArrayList;
 
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;

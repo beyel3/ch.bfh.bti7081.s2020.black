@@ -30,10 +30,10 @@ public class HardCoded {
 		tags.add(new Tag(3, "#indoor"));
 		tags.add(new Tag(4, "#chill"));
 		
-		posts.add(new Post("Post 1", new Date(), participants.get(0)));
-		posts.add(new Post("Post 2", new Date(), participants.get(0)));
-		posts.add(new Post("Post 3", new Date(), participants.get(1)));
-		posts.add(new Post("Post 4", new Date(), participants.get(2)));
+		posts.add(new Post("Post 1", null, new Date(), participants.get(0)));
+		posts.add(new Post("Post 2", null, new Date(), participants.get(0)));
+		posts.add(new Post("Post 3", null, new Date(), participants.get(1)));
+		posts.add(new Post("Post 4", null, new Date(), participants.get(2)));
 		
 		
 		EventTemplate hardOne = new EventTemplate(
