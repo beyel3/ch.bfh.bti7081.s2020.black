@@ -87,7 +87,7 @@ public class HeaderViewImplementation<T extends ButtonInterface> extends Vertica
 		//loginButton.addClickListener(e -> loginOverlay.setOpened(true));
 		loginButton.addClickListener(event -> presenter.buttonClick("login"));
 		Button signupButton = new Button("SignUp");
-		signupButton.addClickListener(event -> signupButton.getUI().ifPresent(ui -> ui.navigate("SignUpView")));
+		signupButton.addClickListener(event -> presenter.buttonClick("signup"));
 
 		menuBarLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 		menuBarLayout.add(menuBar);
