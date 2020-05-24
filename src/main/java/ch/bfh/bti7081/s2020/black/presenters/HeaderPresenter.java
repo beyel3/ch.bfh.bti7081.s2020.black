@@ -19,6 +19,9 @@ public class HeaderPresenter extends Presenter implements ButtonInterface{
         if (information == "login"){
             superPresenter.clearView();
             new LoginPresenter(superPresenter);
+        } else if (information == "signup"){
+            superPresenter.clearView();
+            new SignUpPresenter(superPresenter);
         }
     }
 }
