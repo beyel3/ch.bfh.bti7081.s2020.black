@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>ch.bfh.bti7081.s2020.black</OriginalElement>
+  <nodes>
+    <node x="1221.2206716106928" y="1174.0">ch.bfh.bti7081.s2020.black.model.Post</node>
+    <node x="1553.2489898989897" y="2238.0">ch.bfh.bti7081.s2020.black.presenters</node>
+    <node x="284.53125" y="855.0">ch.bfh.bti7081.s2020.black.model.Patient</node>
+    <node x="338.37451427339556" y="0.0">ch.bfh.bti7081.s2020.black.model.AccountType</node>
+    <node x="645.53125" y="1196.0">ch.bfh.bti7081.s2020.black.persistence.Persistence</node>
+    <node x="1210.111111111111" y="756.0">ch.bfh.bti7081.s2020.black.model.Event</node>
+    <node x="725.6177835420849" y="2023.0">ch.bfh.bti7081.s2020.black.model.stateModel.ChooseTemplate</node>
+    <node x="725.5230167368641" y="1542.0">ch.bfh.bti7081.s2020.black.model.stateModel.StateModel</node>
+    <node x="42.53125" y="897.0">ch.bfh.bti7081.s2020.black.model.Admin</node>
+    <node x="1891.7286261561474" y="2022.0">ch.bfh.bti7081.s2020.black.model.stateModel.CreateTemplate</node>
+    <node x="1885.022798587121" y="1.0">ch.bfh.bti7081.s2020.black.model.Tag</node>
+    <node x="1058.432792822814" y="2000.0">ch.bfh.bti7081.s2020.black.model.stateModel.CreateEvent</node>
+    <node x="1253.242783542085" y="308.0">ch.bfh.bti7081.s2020.black.model.Status</node>
+    <node x="1733.111111111111" y="1705.0">ch.bfh.bti7081.s2020.black.views</node>
+    <node x="0.0" y="2375.0">ch.bfh.bti7081.s2020.black.MVPInterfaces</node>
+    <node x="612.3236658950261" y="265.0">ch.bfh.bti7081.s2020.black.model.Account</node>
+    <node x="576.6177835420849" y="2023.0">ch.bfh.bti7081.s2020.black.model.stateModel.CloseEvent</node>
+    <node x="1506.7802835420848" y="232.0">ch.bfh.bti7081.s2020.black.model.EventTemplate</node>
+    <node x="526.53125" y="855.0">ch.bfh.bti7081.s2020.black.model.Relative</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.StateModel" target="ch.bfh.bti7081.s2020.black.model.Patient">
+      <point x="-146.17647058823525" y="-189.0" />
+      <point x="756.8465461486288" y="1512.0" />
+      <point x="390.03125" y="1512.0" />
+      <point x="390.03125" y="1154.0" />
+      <point x="340.03125" y="1154.0" />
+      <point x="-55.5" y="80.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.Event" target="ch.bfh.bti7081.s2020.black.model.Post">
+      <point x="-52.27272727272725" y="179.0" />
+      <point x="1445.3383838383838" y="1154.0" />
+      <point x="1432.054004944026" y="1154.0" />
+      <point x="95.83333333333326" y="-124.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.presenters" target="ch.bfh.bti7081.s2020.black.model.Account">
+      <point x="-76.0" y="-26.0" />
+      <point x="1565.2489898989897" y="2208.0" />
+      <point x="60.7372593714349" y="2208.0" />
+      <point x="60.7372593714349" y="1154.0" />
+      <point x="274.03125" y="1154.0" />
+      <point x="274.03125" y="696.0" />
+      <point x="679.2611658950261" y="696.0" />
+      <point x="-86.0625" y="124.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.views" target="ch.bfh.bti7081.s2020.black.model.Tag">
+      <point x="47.59999999999991" y="-26.0" />
+      <point x="1848.711111111111" y="1512.0" />
+      <point x="1970.2802835420848" y="1512.0" />
+      <point x="1970.2802835420848" y="212.0" />
+      <point x="1959.835298587121" y="212.0" />
+      <point x="8.3125" y="80.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.presenters" target="ch.bfh.bti7081.s2020.black.model.EventTemplate">
+      <point x="68.0" y="-26.0" />
+      <point x="1709.2489898989897" y="2198.0" />
+      <point x="2266.2286261561476" y="2198.0" />
+      <point x="2266.2286261561476" y="576.0" />
+      <point x="1903.1552835420848" y="576.0" />
+      <point x="169.87500000000006" y="157.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.CreateEvent" target="ch.bfh.bti7081.s2020.black.model.stateModel.StateModel">
+      <point x="-30.0" y="-49.0" />
+      <point x="1148.432792822814" y="1970.0" />
+      <point x="981.911905625753" y="1970.0" />
+      <point x="78.88888888888891" y="189.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.StateModel" target="ch.bfh.bti7081.s2020.black.model.Post">
+      <point x="146.17647058823536" y="-189.0" />
+      <point x="1049.1994873250994" y="1512.0" />
+      <point x="1307.4706716106928" y="1512.0" />
+      <point x="-28.75" y="124.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.StateModel" target="ch.bfh.bti7081.s2020.black.persistence.Persistence">
+      <point x="-41.76470588235293" y="-189.0" />
+      <point x="861.2583108545111" y="1462.0" />
+      <point x="804.53125" y="1462.0" />
+      <point x="53.0" y="102.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.StateModel" target="ch.bfh.bti7081.s2020.black.model.Status">
+      <point x="41.76470588235293" y="-189.0" />
+      <point x="944.787722619217" y="1462.0" />
+      <point x="1047.0" y="1462.0" />
+      <point x="1047.0" y="696.0" />
+      <point x="1280.742783542085" y="696.0" />
+      <point x="-55.0" y="81.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.StateModel" target="ch.bfh.bti7081.s2020.black.model.Relative">
+      <point x="-83.52941176470586" y="-189.0" />
+      <point x="819.4936049721582" y="1482.0" />
+      <point x="635.03125" y="1482.0" />
+      <point x="635.03125" y="1154.0" />
+      <point x="681.03125" y="1154.0" />
+      <point x="51.5" y="80.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.presenters" target="ch.bfh.bti7081.s2020.black.presenters">
+      <point x="0.0" y="26.0" />
+      <point x="1641.2489898989897" y="2320.0" />
+      <point x="1523.2489898989897" y="2320.0" />
+      <point x="1523.2489898989897" y="2264.0" />
+      <point x="-88.0" y="-0.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.views" target="ch.bfh.bti7081.s2020.black.model.Event">
+      <point x="-34.0" y="-26.0" />
+      <point x="1767.111111111111" y="1492.0" />
+      <point x="1665.522798587121" y="1492.0" />
+      <point x="1665.522798587121" y="1144.0" />
+      <point x="1706.70202020202" y="1144.0" />
+      <point x="209.090909090909" y="179.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.presenters" target="ch.bfh.bti7081.s2020.black.model.Event">
+      <point x="-12.0" y="-26.0" />
+      <point x="1629.2489898989897" y="2128.0" />
+      <point x="1603.599781850257" y="2128.0" />
+      <point x="1603.599781850257" y="1154.0" />
+      <point x="1602.1565656565656" y="1154.0" />
+      <point x="104.5454545454545" y="179.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.views" target="ch.bfh.bti7081.s2020.black.model.EventTemplate">
+      <point x="34.0" y="-26.0" />
+      <point x="1835.111111111111" y="1502.0" />
+      <point x="1868.7661261561473" y="1502.0" />
+      <point x="1868.7661261561473" y="606.0" />
+      <point x="1789.9052835420848" y="606.0" />
+      <point x="56.625" y="157.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.presenters" target="ch.bfh.bti7081.s2020.black.model.Tag">
+      <point x="84.0" y="-26.0" />
+      <point x="1725.2489898989897" y="2218.0" />
+      <point x="2282.2286261561476" y="2218.0" />
+      <point x="2282.2286261561476" y="202.0" />
+      <point x="2009.710298587121" y="202.0" />
+      <point x="58.1875" y="80.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.StateModel" target="ch.bfh.bti7081.s2020.black.presenters">
+      <point x="-118.33333333333337" y="189.0" />
+      <point x="784.6896834035307" y="1980.0" />
+      <point x="715.1177835420849" y="1980.0" />
+      <point x="715.1177835420849" y="2198.0" />
+      <point x="1573.2489898989897" y="2198.0" />
+      <point x="-68.0" y="-26.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.CreateEvent" target="ch.bfh.bti7081.s2020.black.model.Account">
+      <point x="30.0" y="-49.0" />
+      <point x="1208.432792822814" y="1980.0" />
+      <point x="1170.4164485169235" y="1980.0" />
+      <point x="1170.4164485169235" y="686.0" />
+      <point x="794.0111658950261" y="686.0" />
+      <point x="28.6875" y="124.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.StateModel" target="ch.bfh.bti7081.s2020.black.model.AccountType">
+      <point x="-167.0588235294117" y="-189.0" />
+      <point x="735.9641932074524" y="1522.0" />
+      <point x="223.70784760672905" y="1522.0" />
+      <point x="223.70784760672905" y="1144.0" />
+      <point x="0.0" y="1144.0" />
+      <point x="0.0" y="192.0" />
+      <point x="355.2911809400622" y="192.0" />
+      <point x="-84.58333333333337" y="81.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.Admin" target="ch.bfh.bti7081.s2020.black.model.Account">
+      <point x="73.66666666666669" y="-38.0" />
+      <point x="226.69791666666674" y="686.0" />
+      <point x="660.1361658950261" y="686.0" />
+      <point x="-105.1875" y="124.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.Post" target="ch.bfh.bti7081.s2020.black.model.Account">
+      <point x="-95.83333333333326" y="-124.0" />
+      <point x="1240.3873382773595" y="1144.0" />
+      <point x="1188.611111111111" y="1144.0" />
+      <point x="1188.611111111111" y="676.0" />
+      <point x="813.1361658950261" y="676.0" />
+      <point x="47.8125" y="124.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.CreateTemplate" target="ch.bfh.bti7081.s2020.black.model.Tag">
+      <point x="145.5999999999999" y="-27.0" />
+      <point x="2219.328626156147" y="1980.0" />
+      <point x="2158.662281850257" y="1980.0" />
+      <point x="2158.662281850257" y="212.0" />
+      <point x="1993.085298587121" y="212.0" />
+      <point x="41.5625" y="80.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.ChooseTemplate" target="ch.bfh.bti7081.s2020.black.model.stateModel.StateModel">
+      <point x="0.0" y="-26.0" />
+      <point x="805.6177835420849" y="1980.0" />
+      <point x="824.1341278479752" y="1980.0" />
+      <point x="-78.88888888888891" y="189.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.StateModel" target="ch.bfh.bti7081.s2020.black.model.Tag">
+      <point x="20.882352941176464" y="-189.0" />
+      <point x="923.9053696780405" y="1452.0" />
+      <point x="1022.5" y="1452.0" />
+      <point x="1022.5" y="192.0" />
+      <point x="1909.960298587121" y="192.0" />
+      <point x="-41.5625" y="80.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.CreateTemplate" target="ch.bfh.bti7081.s2020.black.model.stateModel.StateModel">
+      <point x="-72.80000000000018" y="-27.0" />
+      <point x="2000.9286261561472" y="1940.0" />
+      <point x="1060.800794514642" y="1940.0" />
+      <point x="157.77777777777783" y="189.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.Event" target="ch.bfh.bti7081.s2020.black.model.Account">
+      <point x="-179.6875" y="-179.0" />
+      <point x="1317.923611111111" y="646.0" />
+      <point x="870.5111658950261" y="646.0" />
+      <point x="105.1875" y="124.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.Event" target="ch.bfh.bti7081.s2020.black.model.Status">
+      <point x="-107.8125" y="-179.0" />
+      <point x="1389.798611111111" y="696.0" />
+      <point x="1335.742783542085" y="696.0" />
+      <point x="0.0" y="81.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.Patient" target="ch.bfh.bti7081.s2020.black.model.AccountType">
+      <point x="-74.0" y="-80.0" />
+      <point x="321.53125" y="656.0" />
+      <point x="320.20784760672905" y="656.0" />
+      <point x="320.20784760672905" y="212.0" />
+      <point x="422.9578476067288" y="212.0" />
+      <point x="-16.916666666666742" y="81.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.presenters" target="ch.bfh.bti7081.s2020.black.model.stateModel.StateModel">
+      <point x="-36.0" y="-26.0" />
+      <point x="1605.2489898989897" y="2158.0" />
+      <point x="904.1177835420849" y="2158.0" />
+      <point x="904.1177835420849" y="1980.0" />
+      <point x="903.0230167368641" y="1980.0" />
+      <point x="0.0" y="189.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.Event" target="ch.bfh.bti7081.s2020.black.model.EventTemplate">
+      <point x="107.8125" y="-179.0" />
+      <point x="1605.423611111111" y="736.0" />
+      <point x="1638.9052835420848" y="736.0" />
+      <point x="-94.375" y="157.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.CreateEvent" target="ch.bfh.bti7081.s2020.black.model.Event">
+      <point x="90.0" y="-49.0" />
+      <point x="1268.432792822814" y="1980.0" />
+      <point x="1589.022798587121" y="1980.0" />
+      <point x="1589.022798587121" y="1154.0" />
+      <point x="1549.8838383838383" y="1154.0" />
+      <point x="52.27272727272725" y="179.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.presenters" target="ch.bfh.bti7081.s2020.black.model.stateModel.CreateEvent">
+      <point x="-28.0" y="-26.0" />
+      <point x="1613.2489898989897" y="2148.0" />
+      <point x="1118.432792822814" y="2148.0" />
+      <point x="-60.0" y="49.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.StateModel" target="ch.bfh.bti7081.s2020.black.model.Event">
+      <point x="104.41176470588243" y="-189.0" />
+      <point x="1007.4347814427465" y="1492.0" />
+      <point x="1159.4164485169235" y="1492.0" />
+      <point x="1159.4164485169235" y="1154.0" />
+      <point x="1236.2474747474746" y="1154.0" />
+      <point x="-261.3636363636365" y="179.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.presenters" target="ch.bfh.bti7081.s2020.black.views">
+      <point x="36.0" y="-26.0" />
+      <point x="1677.2489898989897" y="2158.0" />
+      <point x="1830.111111111111" y="2158.0" />
+      <point x="1830.111111111111" y="1970.0" />
+      <point x="1843.611111111111" y="1970.0" />
+      <point x="42.5" y="26.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.Post" target="ch.bfh.bti7081.s2020.black.model.Event">
+      <point x="19.166666666666742" y="-124.0" />
+      <point x="1355.3873382773595" y="1154.0" />
+      <point x="1340.7929292929293" y="1154.0" />
+      <point x="-156.81818181818176" y="179.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.Relative" target="ch.bfh.bti7081.s2020.black.model.AccountType">
+      <point x="-68.66666666666674" y="-80.0" />
+      <point x="560.8645833333333" y="656.0" />
+      <point x="511.77158256169264" y="656.0" />
+      <point x="511.77158256169264" y="212.0" />
+      <point x="456.7911809400622" y="212.0" />
+      <point x="16.91666666666663" y="81.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.StateModel" target="ch.bfh.bti7081.s2020.black.model.EventTemplate">
+      <point x="83.52941176470586" y="-189.0" />
+      <point x="986.5524285015699" y="1482.0" />
+      <point x="1148.4164485169235" y="1482.0" />
+      <point x="1148.4164485169235" y="716.0" />
+      <point x="1563.4052835420848" y="716.0" />
+      <point x="-169.875" y="157.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.views" target="ch.bfh.bti7081.s2020.black.model.Post">
+      <point x="-47.59999999999991" y="-26.0" />
+      <point x="1753.5111111111112" y="1502.0" />
+      <point x="1422.4706716106928" y="1502.0" />
+      <point x="86.25" y="124.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.CloseEvent" target="ch.bfh.bti7081.s2020.black.model.stateModel.StateModel">
+      <point x="0.0" y="-26.0" />
+      <point x="640.6177835420849" y="1970.0" />
+      <point x="745.2452389590862" y="1970.0" />
+      <point x="-157.77777777777783" y="189.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.views" target="ch.bfh.bti7081.s2020.black.model.Account">
+      <point x="-6.800000000000182" y="-26.0" />
+      <point x="1794.311111111111" y="1522.0" />
+      <point x="1795.611111111111" y="1522.0" />
+      <point x="1795.611111111111" y="636.0" />
+      <point x="889.6361658950261" y="636.0" />
+      <point x="124.3125" y="124.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.presenters" target="ch.bfh.bti7081.s2020.black.model.stateModel.CreateTemplate">
+      <point x="60.0" y="-26.0" />
+      <point x="1701.2489898989897" y="2188.0" />
+      <point x="2164.7286261561476" y="2188.0" />
+      <point x="91.0" y="27.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.Relative" target="ch.bfh.bti7081.s2020.black.model.Account">
+      <point x="68.66666666666669" y="-80.0" />
+      <point x="698.1979166666667" y="736.0" />
+      <point x="755.7611658950261" y="736.0" />
+      <point x="-9.5625" y="124.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.views" target="ch.bfh.bti7081.s2020.black.views">
+      <point x="-59.5" y="26.0" />
+      <point x="1741.611111111111" y="1777.0" />
+      <point x="1713.111111111111" y="1777.0" />
+      <point x="1713.111111111111" y="1744.0" />
+      <point x="-68.0" y="13.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.StateModel" target="ch.bfh.bti7081.s2020.black.model.Account">
+      <point x="-20.882352941176464" y="-189.0" />
+      <point x="882.1406637956876" y="1522.0" />
+      <point x="868.03125" y="1522.0" />
+      <point x="868.03125" y="736.0" />
+      <point x="774.8861658950261" y="736.0" />
+      <point x="9.5625" y="124.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.Admin" target="ch.bfh.bti7081.s2020.black.model.AccountType">
+      <point x="-73.66666666666674" y="-38.0" />
+      <point x="79.36458333333326" y="656.0" />
+      <point x="172.48834837836944" y="656.0" />
+      <point x="172.48834837836944" y="202.0" />
+      <point x="389.12451427339556" y="202.0" />
+      <point x="-50.75" y="81.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.Patient" target="ch.bfh.bti7081.s2020.black.model.Account">
+      <point x="0.0" y="-80.0" />
+      <point x="395.53125" y="706.0" />
+      <point x="698.3861658950261" y="706.0" />
+      <point x="-66.9375" y="124.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.EventTemplate" target="ch.bfh.bti7081.s2020.black.model.Tag">
+      <point x="-113.25" y="-157.0" />
+      <point x="1620.0302835420848" y="202.0" />
+      <point x="1926.585298587121" y="202.0" />
+      <point x="-24.9375" y="80.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.views" target="ch.bfh.bti7081.s2020.black.presenters">
+      <point x="8.5" y="26.0" />
+      <point x="1809.611111111111" y="1960.0" />
+      <point x="1814.111111111111" y="1960.0" />
+      <point x="1814.111111111111" y="2138.0" />
+      <point x="1661.2489898989897" y="2138.0" />
+      <point x="20.0" y="-26.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.presenters" target="ch.bfh.bti7081.s2020.black.model.stateModel.ChooseTemplate">
+      <point x="-60.0" y="-26.0" />
+      <point x="1581.2489898989897" y="2188.0" />
+      <point x="765.6177835420849" y="2188.0" />
+      <point x="-40.0" y="26.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.Account" target="ch.bfh.bti7081.s2020.black.model.AccountType">
+      <point x="76.5" y="-124.0" />
+      <point x="841.8236658950261" y="192.0" />
+      <point x="524.4578476067289" y="192.0" />
+      <point x="84.58333333333337" y="81.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.EventTemplate" target="ch.bfh.bti7081.s2020.black.model.Event">
+      <point x="-18.875" y="157.0" />
+      <point x="1714.4052835420848" y="736.0" />
+      <point x="1749.173611111111" y="736.0" />
+      <point x="251.5625" y="-179.0" />
+    </edge>
+    <edge source="ch.bfh.bti7081.s2020.black.model.stateModel.CreateTemplate" target="ch.bfh.bti7081.s2020.black.model.EventTemplate">
+      <point x="0.0" y="-27.0" />
+      <point x="2073.7286261561476" y="596.0" />
+      <point x="1827.6552835420848" y="596.0" />
+      <point x="94.375" y="157.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.6" x="807.2708333333331" y="1330.8333333333337" />
+  <SelectedNodes>
+    <node>ch.bfh.bti7081.s2020.black.persistence.Persistence</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
