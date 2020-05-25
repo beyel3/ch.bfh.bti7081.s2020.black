@@ -20,10 +20,10 @@ public class HardCoded {
 		this.participants = new ArrayList<Account>();
 		this.posts = new ArrayList<Post>();
 		
-		participants.add(new Patient("Mario", "Schläppi", "schl@bfh.ch"));
-		participants.add(new Patient("Luca", "Beyeler", "bey@bfh.ch"));
-		participants.add(new Patient("Ramon", "Luginbühl", "lug@bfh.ch"));
-		participants.add(new Patient("Robin", "Füglister", "fuegi@bfh.ch")); 
+		participants.add(new Patient("Mario", "Schläppi", "schl@bfh.ch","234"));
+		participants.add(new Patient("Luca", "Beyeler", "bey@bfh.ch","234"));
+		participants.add(new Patient("Ramon", "Luginbühl", "lug@bfh.ch","234"));
+		participants.add(new Patient("Robin", "Füglister", "fuegi@bfh.ch", "234"));
 		
 		tags.add(new Tag(1, "#outdoor"));
 		tags.add(new Tag(2, "#sporty"));

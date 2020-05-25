@@ -4,8 +4,8 @@ public class Relative extends Account {
 
     private int level;
 
-    public Relative(String firstName, String lastName, String email){
-        super(firstName, lastName, email, AccountType.RELATIVE);
+    public Relative(String firstName, String lastName, String email, String password){
+        super(firstName, lastName, email, password, AccountType.RELATIVE);
     }
 
     public int getLvl() {
