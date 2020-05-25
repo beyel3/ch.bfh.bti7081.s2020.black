@@ -1,9 +1,9 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.ButtonInterface;
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.LoginInterface;
-import ch.bfh.bti7081.s2020.black.views.HomeViewImplementation;
+import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.views.LoginViewImplementation;
+import com.vaadin.flow.component.notification.Notification;
 
 
 public class LoginPresenter extends Presenter implements LoginInterface {
@@ -24,7 +24,8 @@ public class LoginPresenter extends Presenter implements LoginInterface {
             //Input is empty message is sent to the view
         } else {
             //Input is not empty -> try to log in user
-
+            Account account = new Account(email, password);
+            Notification.show(account.toString());
         }
     }
 
