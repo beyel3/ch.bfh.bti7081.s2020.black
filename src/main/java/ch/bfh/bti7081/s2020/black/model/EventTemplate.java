@@ -34,8 +34,9 @@ public class EventTemplate {
 	}
 
 
-	public void rate(int rating) {
+	public void rate() {
 
+		//Berechne durchschnitt über alle Events
 		double count = 0;
 		double sum = 0;
 		for (Event e : events) {
@@ -44,6 +45,7 @@ public class EventTemplate {
 				count++;
 			}
 		}
+		
 		this.avgRating = sum/count;
 		
 	}
