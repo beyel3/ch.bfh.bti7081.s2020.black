@@ -57,12 +57,12 @@ public abstract class StateModel {
 				while (participantsResult.next()) {
 					switch (AccountType.valueOf(participantsResult.getString(4))) {
 						case PATIENT:
-							Patient pat = new Patient(participantsResult.getString(1), participantsResult.getString(2), participantsResult.getString(3));
+							Patient pat = new Patient(participantsResult.getString(1), participantsResult.getString(2), participantsResult.getString(3),participantsResult.getString(4));
 							pat.setPatientInfo(participantsResult.getString(6));
 							participants.add(pat);
 							break;
 						case RELATIVE:
-							Relative rel = new Relative(participantsResult.getString(1), participantsResult.getString(2), participantsResult.getString(3));
+							Relative rel = new Relative(participantsResult.getString(1), participantsResult.getString(2), participantsResult.getString(3),participantsResult.getString(4));
 							rel.setLvl(participantsResult.getInt(5));
 							participants.add(rel);
 							break;
@@ -147,7 +147,7 @@ public abstract class StateModel {
 	}
 
 	public ArrayList<Patient> getPatientList() {
-
+		/*
 		ArrayList<Patient> list = new ArrayList<>();
 		try {
 
@@ -163,6 +163,9 @@ public abstract class StateModel {
 			e.printStackTrace();
 			return null;
 		}
+
+		 */
+		return null;
 	}
 
 	public void savePost(Post post, Account acc, Event event){
@@ -177,13 +180,13 @@ public abstract class StateModel {
 			while (postResult.next()) {
 				switch (AccountType.valueOf(postResult.getString(4))) {
 					case PATIENT:
-						Patient pat = new Patient(postResult.getString(1), postResult.getString(2), postResult.getString(3));
+						Patient pat = new Patient(postResult.getString(1), postResult.getString(2), postResult.getString(3),null);
 						pat.setPatientInfo(postResult.getString(6));
 						Post pp = new Post(postResult.getString(7), event, postResult.getDate(8), pat);
 						posts.add(pp);
 						break;
 					case RELATIVE:
-						Relative rel = new Relative(postResult.getString(1), postResult.getString(2), postResult.getString(3));
+						Relative rel = new Relative(postResult.getString(1), postResult.getString(2), postResult.getString(3),null);
 						rel.setLvl(postResult.getInt(5));
 						Post pr = new Post(postResult.getString(7), event, postResult.getDate(8), rel);
 						posts.add(pr);
@@ -208,12 +211,12 @@ public abstract class StateModel {
 			while (accResult.next()) {
 				switch (AccountType.valueOf(accResult.getString(4))) {
 					case PATIENT:
-						Patient pat = new Patient(accResult.getString(1), accResult.getString(2), accResult.getString(3));
+						Patient pat = new Patient(accResult.getString(1), accResult.getString(2), accResult.getString(3), accResult.getString(4));
 						pat.setPatientInfo(accResult.getString(6));
 						friends.add(pat);
 						break;
 					case RELATIVE:
-						Relative rel = new Relative(accResult.getString(1), accResult.getString(2), accResult.getString(3));
+						Relative rel = new Relative(accResult.getString(1), accResult.getString(2), accResult.getString(3), accResult.getString(4));
 						rel.setLvl(accResult.getInt(5));
 						friends.add(rel);
 						break;

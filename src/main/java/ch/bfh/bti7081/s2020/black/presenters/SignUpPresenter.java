@@ -2,8 +2,10 @@ package ch.bfh.bti7081.s2020.black.presenters;
 
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.SignUpInterface;
+import ch.bfh.bti7081.s2020.black.model.Account;
+import ch.bfh.bti7081.s2020.black.model.AccountType;
 import ch.bfh.bti7081.s2020.black.views.SignUpViewImplementation;
-import com.vaadin.flow.component.notification.Notification;
+
 
 
 public class SignUpPresenter extends Presenter implements SignUpInterface {
@@ -25,6 +27,13 @@ public class SignUpPresenter extends Presenter implements SignUpInterface {
 
         } else {
             //all fields are filled
+            if (accountType == "Relative"){
+                Account account = new Account(firstName,lastName,email,password, AccountType.RELATIVE);
+                account.createAccount();
+            } else if (accountType == "Patient"){
+                Account account = new Account(firstName,lastName,email,password, AccountType.PATIENT);
+                account.createAccount();
+            }
         }
     }
 
