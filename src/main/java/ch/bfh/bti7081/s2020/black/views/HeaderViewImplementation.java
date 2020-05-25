@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2020.black.views;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.ButtonInterface;
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.HeaderInterface;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -8,8 +7,6 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.login.LoginI18n;
-import com.vaadin.flow.component.login.LoginOverlay;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
