@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2020.black.views;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.ButtonInterface;
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.HeaderInterface;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
@@ -15,7 +16,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.theme.lumo.Lumo;
 
-public class HeaderViewImplementation<T extends ButtonInterface> extends VerticalLayout {
+public class HeaderViewImplementation<T extends HeaderInterface> extends VerticalLayout {
 
 	private static final long serialVersionUID = 1L;
 	private final HorizontalLayout loginButtonLayout;
@@ -34,7 +35,7 @@ public class HeaderViewImplementation<T extends ButtonInterface> extends Vertica
 
 		// Icons in header and the theme toggle button / home button
 		Image logo = new Image("./icons/ProjectLogoBlueSmall.png", "");
-		logo.addClickListener(event -> logo.getUI().ifPresent(ui -> ui.navigate("")));
+		logo.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.HOME));
 //		Icon iconHome = VaadinIcon.HOME_O.create();
 //		Button iconHomeButton = new Button(iconHome);
 //		iconHomeButton.addClickListener(event -> iconHomeButton.getUI().ifPresent(ui -> ui.navigate("")));
@@ -65,16 +66,16 @@ public class HeaderViewImplementation<T extends ButtonInterface> extends Vertica
 		menuBar = new HorizontalLayout();
 
 		Button homeButton = new Button("Home");
-		homeButton.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("")));
+		homeButton.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.HOME));
 		menuBar.add(homeButton);
 		menuBar.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 
 		Button createEvent = new Button("Create Event");
-		createEvent.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("EventTemplateView")));
+		createEvent.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.CREATEEVENT));
 		menuBar.add(createEvent);
 
 		Button myEvent = new Button("My Events");
-		myEvent.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("AccountView")));
+		myEvent.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.MYEVENTS));
 		menuBar.add(myEvent);
 
 		loginButtonLayout = new HorizontalLayout();
@@ -85,9 +86,9 @@ public class HeaderViewImplementation<T extends ButtonInterface> extends Vertica
 		final Div header = new Div();
 		Button loginButton = new Button("Login");
 		//loginButton.addClickListener(e -> loginOverlay.setOpened(true));
-		loginButton.addClickListener(event -> presenter.buttonClick("login"));
+		loginButton.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.LOGIN));
 		Button signupButton = new Button("SignUp");
-		signupButton.addClickListener(event -> presenter.buttonClick("signup"));
+		signupButton.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.SIGNUP));
 
 		menuBarLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 		menuBarLayout.add(menuBar);
