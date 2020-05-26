@@ -32,7 +32,7 @@ public class Login extends StateModel{
                                 rs.getString("last_name"),
                                 rs.getString("email"),
                                 rs.getString("password"),
-                                AccountType.valueOf(rs.getString("accountTypeID")));
+                                AccountType.valueOf(rs.getString("accountType")));
                         return LoginStatus.OK;
                     }
                 }

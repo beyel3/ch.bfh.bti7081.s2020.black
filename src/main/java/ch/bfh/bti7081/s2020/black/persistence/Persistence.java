@@ -13,7 +13,7 @@ import ch.bfh.bti7081.s2020.black.model.Tag;
 
 public class Persistence {
 
-    private Connection connection = null;
+    private static Connection connection = null;
 
     public Persistence() throws ClassNotFoundException
     {
@@ -26,9 +26,16 @@ public class Persistence {
         openConnection();
     }
 
-    public void openConnection() {
+    public static void openConnection() {
+
         try {
-            this.connection = DriverManager.getConnection("jdbc:sqlite:src/main/java/ch/bfh/bti7081/s2020/black/persistence/burnOUTevents_db.db");
+            if (connection == null) {
+                connection = DriverManager.getConnection("jdbc:sqlite:src/main/java/ch/bfh/bti7081/s2020/black/persistence/burnOUTevents_db.db");
+            }
+            else {
+                connection.close();
+                connection = DriverManager.getConnection("jdbc:sqlite:src/main/java/ch/bfh/bti7081/s2020/black/persistence/burnOUTevents_db.db");
+            }
         } catch (SQLException e) {
             // open database failed
             System.err.println(e.getMessage());
@@ -49,18 +56,20 @@ public class Persistence {
     
     
     public ResultSet executeQuery(String query) {
-    	
     	 try {
     		 
              Statement statement = this.connection.createStatement();
              statement.setQueryTimeout(30);
-             return statement.executeQuery(query);
+             ResultSet result = statement.executeQuery(query);
+             return result;
          }
          catch(SQLException e) {
              // query failed
              System.err.println(e);
+             closeConnection();
              return null;
          }
+
     }
 
     public void executeUpdate(String query) {
@@ -70,10 +79,12 @@ public class Persistence {
             Statement statement = this.connection.createStatement();
             statement.setQueryTimeout(30);
             statement.executeUpdate(query);
+
         }
         catch(SQLException e) {
             // query failed
             System.err.println(e);
+
         }
     }
 }

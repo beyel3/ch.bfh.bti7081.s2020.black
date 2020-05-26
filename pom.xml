@@ -213,6 +213,7 @@
 						<artifactId>jetty-maven-plugin</artifactId>
 						<version>9.4.15.v20190215</version>
 						<configuration>
+							<reload>manual</reload>
 							<scanIntervalSeconds>0</scanIntervalSeconds>
 							<httpConnector>
 								<host>localhost</host>

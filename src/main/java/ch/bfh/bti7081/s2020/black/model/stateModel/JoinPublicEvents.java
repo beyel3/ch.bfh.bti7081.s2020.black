@@ -17,7 +17,7 @@ public class JoinPublicEvents extends StateModel {
 		ArrayList<Event> events = new ArrayList<Event>();
 
 		try {
-			ResultSet eventResult = persistence.executeQuery("SELECT e.eventID, e.info, e.isPublic, e.maxParticipants, e.rating, e.state, e.imageID FROM tbl_event AS e WHERE e.state = "+Status.open.toString());
+			ResultSet eventResult = persistence.executeQuery("SELECT e.eventID, e.info, e.isPublic, e.maxParticipants, e.rating, e.state, e.imageID FROM tbl_event AS e WHERE e.state = '"+Status.open.toString()+"'");
 
 			while (eventResult.next()) {
 				ArrayList<Account> participants = getParticipantsByEventID(eventResult.getInt(1));
