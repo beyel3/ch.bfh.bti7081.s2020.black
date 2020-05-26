@@ -42,6 +42,7 @@ public class OpenPublicEventsViewImplementation<T extends EventTemplateInterface
 		Grid.Column<Event> tagColumn = grid.addColumn(event -> event.getEventTemplate().getTags().toString().replaceAll("[[]]","")).setHeader("Tags");
 		Grid.Column<Event> paricipantsColumn = grid.addColumn(event -> event.getParticipants().toString().replaceAll("[[]]",""))
 				.setHeader("Participants");
+		Grid.Column<Event> maxParticipantsColumn = grid.addColumn(Event::getMaxParticipants).setHeader("Max Participants");
 		grid.addComponentColumn(item -> createJoinPublicEventButton(item)).setHeader("Join pulibc Event");
 		descriptionColumn.setFlexGrow(3);
 
@@ -53,22 +54,20 @@ public class OpenPublicEventsViewImplementation<T extends EventTemplateInterface
 		
 		// First filter for rating
 		TextField titleField = new TextField();
-		titleField.addValueChangeListener(event -> dataProvider.addFilter(event -> StringUtils
-				.containsIgnoreCase(event.getEventTemplate.getTitle(), titleField.getValue())));
+		titleField.addValueChangeListener(event -> dataProvider.addFilter(publicEvent -> StringUtils
+				.containsIgnoreCase(publicEvent.getEventTemplate().getTitle(), titleField.getValue())));
 
 		titleField.setValueChangeMode(ValueChangeMode.EAGER);
-
 		filterRow.getCell(titleColumn).setComponent(titleField);
 		titleField.setSizeFull();
 		titleField.setPlaceholder("Filter");
 
 		// Second Filter for description
 		TextField descriptionField = new TextField();
-		descriptionField.addValueChangeListener(event -> dataProvider.addFilter(eventTemplate -> StringUtils
-				.containsIgnoreCase(eventTemplate.getDescription(), descriptionField.getValue())));
+		descriptionField.addValueChangeListener(event -> dataProvider.addFilter(publicEvent -> StringUtils
+				.containsIgnoreCase(publicEvent.getEventTemplate().getDescription(), descriptionField.getValue())));
 
 		descriptionField.setValueChangeMode(ValueChangeMode.EAGER);
-
 		filterRow.getCell(descriptionColumn).setComponent(descriptionField);
 		descriptionField.setSizeFull();
 		descriptionField.setPlaceholder("Filter");
@@ -76,8 +75,8 @@ public class OpenPublicEventsViewImplementation<T extends EventTemplateInterface
 		// Thrid Filter for tags
 		TextField tagField = new TextField();
 		ArrayList<String> tagList = new ArrayList<>();
-		tagField.addValueChangeListener(event -> dataProvider.addFilter(eventTemplate -> StringUtils
-				.containsIgnoreCase(eventTemplate.getTags().toString(), tagField.getValue())));
+		tagField.addValueChangeListener(event -> dataProvider.addFilter(publicEvent -> StringUtils
+				.containsIgnoreCase(publicEvent.getEventTemplate().getTags().toString(), tagField.getValue())));
 
 		tagField.setValueChangeMode(ValueChangeMode.EAGER);
 
@@ -88,8 +87,8 @@ public class OpenPublicEventsViewImplementation<T extends EventTemplateInterface
 		// Fourth Filter for participants
 		TextField participantsField = new TextField();
 		ArrayList<String> participantsList = new ArrayList<>();
-		tagField.addValueChangeListener(event -> dataProvider.addFilter(eventTemplate -> StringUtils
-				.containsIgnoreCase(eventTemplate.getTags().toString(), tagField.getValue())));
+		tagField.addValueChangeListener(event -> dataProvider.addFilter(publicEvent -> StringUtils
+				.containsIgnoreCase(publicEvent.getParticipants().toString(), tagField.getValue())));
 
 		tagField.setValueChangeMode(ValueChangeMode.EAGER);
 
