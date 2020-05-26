@@ -34,13 +34,12 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 	private T presenter;
 	private final VerticalLayout contentLayoutFirstRow;
 	private final VerticalLayout contentLayoutSecondRow;
-	private ArrayList<EventTemplate> eventTemplates;
 	private Dialog dialogShowTemplate;
 
-	public EventTemplateViewImplementation(T presenter, ArrayList<EventTemplate> eventTemplates) {
+	public EventTemplateViewImplementation(T presenter) {
 
 		this.presenter = presenter;
-		this.eventTemplates = eventTemplates;
+	
 		
 		setSizeFull();
 
@@ -59,7 +58,7 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 		
 
 		Grid<EventTemplate> grid = new Grid<>();
-		ListDataProvider<EventTemplate> dataProvider = new ListDataProvider<>(eventTemplates);
+		ListDataProvider<EventTemplate> dataProvider = new ListDataProvider<>(presenter.getEventTemplates());
 		grid.setDataProvider(dataProvider);
 
 		Grid.Column<EventTemplate> titleColumn = grid.addColumn(EventTemplate::getTitle).setHeader("Title");
