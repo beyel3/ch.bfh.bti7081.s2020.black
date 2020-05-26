@@ -25,10 +25,14 @@ public class SuperPresenter {
 		header = new VerticalLayout();
 		page = new VerticalLayout();
 
-		new HeaderPresenter(this);
-		new HomeViewPresenter(this);
-
 		mainView.add(header,page);
+
+		if (account == null){
+			new LoginPresenter(this);
+		} else{
+			new HeaderPresenter(this);
+			new HomeViewPresenter(this);
+		}
 	}
 	
 	public void addHeader(Component component) {
@@ -43,13 +47,29 @@ public class SuperPresenter {
 	public void removePage(Component currentView) {
 		page.remove(currentView);
 	}
-	public void clearView() {
-		page.removeAll();
-	}
+	public void clearView() { page.removeAll(); }
 	public void setState(StateModel stateModel) {
 		this.stateModel = stateModel;
+<<<<<<< HEAD
 	}	
+=======
+	}
+
+	public void home(){
+		clearView();
+		new HeaderPresenter(this);
+		new HomeViewPresenter(this);
+	}
+	public void setLoggedInAccount(Account account){this.account = account;}
+>>>>>>> Dev
 	public Account getLoggedInAccount() {
 		return this.account;
+	}
+	public String getLoggedInUserName(){
+		if (account != null){
+			return account.getFirstName();
+		} else {
+			return "";
+		}
 	}
 }

@@ -103,7 +103,11 @@ public class JoinPublicEventViewImplementation<T extends JoinPublicEventInterfac
 
 	private Button createJoinPublicEventButton(Event item) {
 		Button buttonJoinOpenEvent = new Button("JOIN");
+<<<<<<< HEAD:src/main/java/ch/bfh/bti7081/s2020/black/views/JoinPublicEventViewImplementation.java
 		buttonJoinOpenEvent.addClickListener(event -> presenter.selectEvent(item));
+=======
+		//buttonJoinOpenEvent.addClickListener(event -> presenter.joinPublicEvent(item));
+>>>>>>> Dev:src/main/java/ch/bfh/bti7081/s2020/black/views/OpenPublicEventsViewImplementation.java
 		return buttonJoinOpenEvent;
 	}
 }
