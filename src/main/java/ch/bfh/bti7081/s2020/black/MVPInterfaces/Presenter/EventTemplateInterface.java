@@ -11,8 +11,8 @@ public interface EventTemplateInterface {
 	public ArrayList<EventTemplate> getEventTemplates();
 	public ArrayList<Tag> getTags();
 	public void buttonClick(EventTemplate eventTemplate);
-	public void createTempalte();
-	public void submit(String title, String description, Set<Tag> tags);
+	public void openCreateTemplateDialog();
+	public void submitNewEventTemplate(String title, String description, Set<Tag> tags);
 		
 	
 }

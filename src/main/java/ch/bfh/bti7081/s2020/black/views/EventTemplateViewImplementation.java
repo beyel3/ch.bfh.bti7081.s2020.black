@@ -116,7 +116,7 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 		Label labelOpenEventCreator = new Label(
 				"If no template fits, you can create a new template here to create your event: ");
 		Button buttonOpenEventCreator = new Button("Create New Template", event -> {
-			presenter.createTempalte();
+			presenter.openCreateTemplateDialog();
 		});
 
 		contentLayoutSecondRow.add(labelOpenEventCreator, buttonOpenEventCreator);
