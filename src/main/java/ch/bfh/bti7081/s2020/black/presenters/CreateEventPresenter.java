@@ -17,12 +17,14 @@ public class CreateEventPresenter extends Presenter implements CreateEventInterf
 	
 	public CreateEventPresenter(SuperPresenter superPresenter, EventTemplate eventTemplate) {
 		super(superPresenter);
+		this.eventTemplate = eventTemplate;
 		
 		this.createEventState = new CreateEvent();
 		superPresenter.setState(createEventState);
 		
 		this.eventTemplate = eventTemplate;
-		this.currentView = new CreateEventViewImplementaion(this);
+		this.currentView = new CreateEventViewImplementaion(this, eventTemplate);
+		superPresenter.addPage(currentView);
 		
 	}
 
@@ -33,16 +35,14 @@ public class CreateEventPresenter extends Presenter implements CreateEventInterf
 		superPresenter.removePage(currentView);
 		
 		ArrayList<Account> accounts = new ArrayList<>();
-		
 		for(Account a : set) {
 			accounts.add(a);
 		}
 		Event event = new Event(eventTemplate, isPublic, maxParticipants, accounts);
-		createEventState.saveEvent(event);
+		createEventState.saveEvent(event).getMaxParticipants();
 		
 		new MyEventPresenter(superPresenter);
 		
 	}
-
 
 }

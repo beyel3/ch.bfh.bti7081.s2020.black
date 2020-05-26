@@ -32,11 +32,13 @@ public class CreateEventViewImplementaion<T extends CreateEventInterface> extend
 	private Checkbox publicEvent;
 	private NumberField maxParticipants;
 	private ArrayList<Account> participants = new HardCoded().getCoreUser();
+	private EventTemplate eventTemplate;
 
 	
-	public CreateEventViewImplementaion(T createEventPresenter) {
-		
+	public CreateEventViewImplementaion(T createEventPresenter, EventTemplate eventTemplate) {
+		this.eventTemplate = eventTemplate;
 		this.presenter = createEventPresenter;
+
 		
 		//Init
 		title = new TextField();
@@ -44,46 +46,32 @@ public class CreateEventViewImplementaion<T extends CreateEventInterface> extend
 		tags = new MultiSelectListBox<>();
 		publicEvent = new Checkbox();
 		maxParticipants = new NumberField();
+		MultiSelectListBox<Account> participants = new MultiSelectListBox<Account>();
+		participants.setItems(this.participants);
 		setSizeFull();
 				
 		
 		//Event
 		FormLayout FormLayoutLeft = new FormLayout();		
 		title.setWidth("50%");
-		title.setClearButtonVisible(true);
-		title.setRequiredIndicatorVisible(true);
+		title.setReadOnly(true);
+		title.setValue(eventTemplate.getTitle());
 		
 		description.setWidth("50%");
 		description.setMinHeight("100px");
-		description.setClearButtonVisible(true);
-		description.setRequiredIndicatorVisible(true);
+		description.setReadOnly(true);
+		description.setValue(eventTemplate.getDescription());
+		
+		tags.setItems(eventTemplate.getTags());		
+		tags.setReadOnly(true);
 		
 		maxParticipants.setHasControls(true);
 		maxParticipants.setStep(1);
 		maxParticipants.setMin(2);
-
-		FormLayoutLeft.addFormItem(title, "Titel");
-		FormLayoutLeft.addFormItem(description, "Beschreibung");
-		FormLayoutLeft.addFormItem(tags, "Wähle Tags");
-		FormLayoutLeft.addFormItem(publicEvent, "Öffentlich");
-		FormLayoutLeft.addFormItem(maxParticipants, "Maximale Teilnehmer");
-		FormLayoutLeft.setResponsiveSteps(new ResponsiveStep("40em", 1));
 		
-		//Add Patient
-		FormLayout FormLayoutRight = new FormLayout();		
-		MultiSelectListBox<Account> participants = new MultiSelectListBox<Account>();
-		participants.setItems(this.participants);
-		FormLayoutRight.addFormItem(participants, "Patienten hinzufügen:");
-		
-		
-		// Button bar
-		HorizontalLayout actions = new HorizontalLayout();
 		
 		Button save = new Button("Event erstellen");
-		Button invite = new Button("Gäste einladen");
-		actions.add(save, invite);
 		save.getStyle().set("marginRight", "10px");
-		actions.getStyle().set("marginLeft", "50px");
 
 		// Event Handler
 		save.addClickListener(event -> {
@@ -93,10 +81,17 @@ public class CreateEventViewImplementaion<T extends CreateEventInterface> extend
 					participants.getSelectedItems());
 		});
 
-		invite.addClickListener(event -> {
-
-		});
+		FormLayoutLeft.addFormItem(title, "Titel");
+		FormLayoutLeft.addFormItem(description, "Beschreibung");
+		FormLayoutLeft.addFormItem(tags, "Tags");
+		FormLayoutLeft.addFormItem(publicEvent, "Öffentlich");
+		FormLayoutLeft.addFormItem(maxParticipants, "Maximale Teilnehmer");
+		FormLayoutLeft.addFormItem(save, "");
+		FormLayoutLeft.setResponsiveSteps(new ResponsiveStep("40em", 1));
 		
+		//Add Patient
+		FormLayout FormLayoutRight = new FormLayout();		
+		FormLayoutRight.addFormItem(participants, "Patienten hinzufügen:");
 		
 		HorizontalLayout FormLayouts = new HorizontalLayout();
 		FormLayouts.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
@@ -104,7 +99,7 @@ public class CreateEventViewImplementaion<T extends CreateEventInterface> extend
 		
 		VerticalLayout VerticalLayout = new VerticalLayout();
 		VerticalLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-		VerticalLayout.add(FormLayouts, actions);
+		VerticalLayout.add(FormLayouts);
 		add(VerticalLayout);
 	}
 	
