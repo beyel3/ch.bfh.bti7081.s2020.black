@@ -33,6 +33,10 @@ public class Post {
 	public String getTimeString() {
 		return date.toString();
 	}
+	
+	public String getUser() {
+		return account.toString();
+	}
 
 	public Date getDate(){ return this.date;}
 

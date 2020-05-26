@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2020.black.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class HardCoded {
@@ -9,6 +10,7 @@ public class HardCoded {
 	private ArrayList<EventTemplate> eventTemplates;
 	private ArrayList<Event> events;
 	private ArrayList<Account> participants;
+	private ArrayList<Post> posts;
 	
 	public HardCoded() {
 		
@@ -16,16 +18,22 @@ public class HardCoded {
 		this.eventTemplates = new ArrayList<EventTemplate>();
 		this.events = new ArrayList<Event>();
 		this.participants = new ArrayList<Account>();
+		this.posts = new ArrayList<Post>();
 		
-		participants.add(new Patient("Mario", "Schläppi", "schl@bfh.ch"));
-		participants.add(new Patient("Luca", "Beyeler", "bey@bfh.ch"));
-		participants.add(new Patient("Ramon", "Luginbühl", "lug@bfh.ch"));
-		participants.add(new Patient("Robin", "Füglister", "fuegi@bfh.ch")); 
+		participants.add(new Patient("Mario", "Schläppi", "schl@bfh.ch","234"));
+		participants.add(new Patient("Luca", "Beyeler", "bey@bfh.ch","234"));
+		participants.add(new Patient("Ramon", "Luginbühl", "lug@bfh.ch","234"));
+		participants.add(new Patient("Robin", "Füglister", "fuegi@bfh.ch", "234"));
 		
 		tags.add(new Tag(1, "#outdoor"));
 		tags.add(new Tag(2, "#sporty"));
 		tags.add(new Tag(3, "#indoor"));
 		tags.add(new Tag(4, "#chill"));
+		
+		posts.add(new Post("Post 1", null, new Date(), participants.get(0)));
+		posts.add(new Post("Post 2", null, new Date(), participants.get(0)));
+		posts.add(new Post("Post 3", null, new Date(), participants.get(1)));
+		posts.add(new Post("Post 4", null, new Date(), participants.get(2)));
 		
 		
 		EventTemplate hardOne = new EventTemplate(
@@ -156,5 +164,8 @@ public class HardCoded {
 	public void addEvent(Event event) {
 		events.add(event);
 		events.get(events.size()-1).setId(events.size());;
+	}
+	public ArrayList<Post> getPosts() {
+		return posts;
 	}
 }
