@@ -50,7 +50,7 @@ public class CreateTemplateViewImplementation<T extends EventTemplateInterface> 
 		createTemplate.getStyle().set("marginRight", "10px");
 		
 		createTemplate.addClickListener(event -> {
-			presenter.submit(title.getValue(), description.getValue(), tags.getValue());
+			presenter.submitNewEventTemplate(title.getValue(), description.getValue(), tags.getValue());
 		});
 
 		formLayout.setResponsiveSteps(new ResponsiveStep("40em", 1));

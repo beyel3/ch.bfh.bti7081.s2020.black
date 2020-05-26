@@ -37,26 +37,30 @@ public class EventTemplatePresenter extends Presenter implements EventTemplateIn
 
 		@Override
 		public void buttonClick(EventTemplate eventTemplate) {
-			superPresenter.removePage(currentView);
 			
+			superPresenter.removePage(currentView);
 			new CreateEventPresenter(superPresenter, eventTemplate);
 			
 			
 		}
 
 		@Override
-		public void createTempalte() {
+		public void openCreateTemplateDialog() {
 			dialogCreateEvent.open();
 		}
 
 		@Override
-		public void submit(String title, String description, Set<Tag> tagSet) {
+		public void submitNewEventTemplate(String title, String description, Set<Tag> tagSet) {
 			
 			ArrayList<Tag> tagList = new ArrayList<>();
 			for (Tag t : tagSet) {
 				tagList.add(t);
 			}
-			chooseTemplateState.saveEventTemplate(title, description, tagList);
+			EventTemplate newEventTemplate = chooseTemplateState.saveEventTemplate(title, description, tagList);
+			superPresenter.removePage(currentView);
+			superPresenter.removePage(dialogCreateEvent);
+			
+			new CreateEventPresenter(superPresenter, newEventTemplate);
 		}
 
 		@Override
@@ -68,5 +72,6 @@ public class EventTemplatePresenter extends Presenter implements EventTemplateIn
 		public ArrayList<EventTemplate> getEventTemplates() {
 			return chooseTemplateState.getEventTemplateList();
 		}
+
 		
 }
