@@ -13,16 +13,16 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 	}
 
 	@Override
-	public void buttonClick(String action) {
+	public void buttonClick(EventAction action) {
 
 		superPresenter.removePage(currentView);
 
 		switch (action) {
 		
-		case "CHAT":
+		case CHAT:
 			new PostViewPresenter(superPresenter);
 			break;
-		case "DETAILS":
+		case DETAILS:
 			new PostViewPresenter(superPresenter);
 			break;
 
