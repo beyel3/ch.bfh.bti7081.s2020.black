@@ -2,27 +2,30 @@ package ch.bfh.bti7081.s2020.black.views;
 
 import java.util.ArrayList;
 
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.router.Route;
 
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface.EventAction;
 import ch.bfh.bti7081.s2020.black.model.HardCoded;
 import ch.bfh.bti7081.s2020.black.model.Post;
 
-@Route(value = "Post", layout = MainView.class)
-public class PostViewImplementation extends VerticalLayout {
+public class PostViewImplementation<T extends EventViewInterface> extends VerticalLayout {
 
 	private HardCoded postsHardCoded = new HardCoded();
 	private static final long serialVersionUID = 1L;
 
 	private ArrayList<Post> posts = new ArrayList<>(postsHardCoded.getPosts());
-	public PostViewImplementation() {
+	
+	public PostViewImplementation(T presenter) {
+		
 		setSizeFull();
 		VerticalLayout chatLayout = new VerticalLayout();
 		
-		for (Post p : posts) {
+		for (Post p : posts.subList(0, 2)) {
 			VerticalLayout postLayout = new VerticalLayout();
 			HorizontalLayout nameTimeLayout = new HorizontalLayout();
 			
@@ -52,7 +55,19 @@ public class PostViewImplementation extends VerticalLayout {
 			chatLayout.add(postLayout);
 			
 		}
-		add(chatLayout);
+		
+		HorizontalLayout poster = new HorizontalLayout();
+		TextArea newPost = new TextArea();
+		Button post = new Button("POST MESSAGE");
+		post.addClickListener(event ->
+		presenter.submitPost(newPost.getValue()));
+		poster.add(newPost, post);
+		
+		Button close = new Button("CLOSE");
+		close.addClickListener(event ->
+		presenter.buttonClick(EventAction.CLOSECHAT, null));
+		
+		add(chatLayout, poster, close);
 		
 	}
 }

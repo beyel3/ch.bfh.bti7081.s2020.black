@@ -39,4 +39,12 @@ public class MyEvent extends StateModel {
 		}
 	//return  new HardCoded().getEvent();
 	}
+	
+	public void savePost(String message, Account acc, Event event){
+
+		Post post = new Post(message, event, acc);
+
+		persistence.executeUpdate("INSERT INTO tbl_post VALUES ("+acc.getId()+", "+event.getId()+", "+post.getMessage()+", "+post.getDate()+")");
+	}
+
 }

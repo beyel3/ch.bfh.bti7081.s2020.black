@@ -28,7 +28,6 @@ public class JoinPublicEventViewImplementation<T extends JoinPublicEventInterfac
 	public JoinPublicEventViewImplementation(T presenter) {
 		
 		this.presenter = presenter;
-
 		setSizeFull();
 
 		Grid<Event> grid = new Grid<>();

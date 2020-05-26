@@ -21,18 +21,17 @@ public class JoinPublicEventPresenter extends Presenter implements JoinPublicEve
 
 	public JoinPublicEventPresenter(SuperPresenter superPresenter) {
 		super(superPresenter);
-		
+
 		joinPublicEventsState = new JoinPublicEvents();
 		superPresenter.setState(joinPublicEventsState);
-		
+
 		currentView = new JoinPublicEventViewImplementation(this);
 		superPresenter.addPage(currentView);
-		
+
 		dialogCreateEvent = new Dialog();
 		dialogCreateEvent.add(new AddPatientView(this));
 		superPresenter.addPage(dialogCreateEvent);
-		
-		
+
 	}
 
 	@Override
@@ -42,8 +41,9 @@ public class JoinPublicEventPresenter extends Presenter implements JoinPublicEve
 
 	@Override
 	public void selectEvent(Event event) {
+		superPresenter.removePage(currentView);
 		dialogCreateEvent.open();
-		eventToJoin =  event;
+		eventToJoin = event;
 	}
 
 	@Override
@@ -54,10 +54,13 @@ public class JoinPublicEventPresenter extends Presenter implements JoinPublicEve
 	@Override
 	public void joinPublicEvent(Set<Account> participants) {
 		ArrayList<Account> list = new ArrayList<>();
-		for(Account a : participants) {
-		list.add(a);
+		for (Account a : participants) {
+			list.add(a);
 		}
-		joinPublicEventsState.joinPublicEvent(list, eventToJoin);		
+		joinPublicEventsState.joinPublicEvent(list, eventToJoin);
+		
+		superPresenter.removePage(dialogCreateEvent);
+		new MyEventPresenter(superPresenter);
 	}
 
 }

@@ -8,6 +8,7 @@ import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.Post;
 import ch.bfh.bti7081.s2020.black.model.Status;
+//import ch.bfh.bti7081.s2020.black.model.HardCoded;
 
 public class JoinPublicEvents extends StateModel {
 
