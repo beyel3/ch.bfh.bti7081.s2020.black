@@ -105,7 +105,7 @@ public class OpenPublicEventsViewImplementation<T extends EventTemplateInterface
 
 	private Button createJoinPublicEventButton(Event item) {
 		Button buttonJoinOpenEvent = new Button("JOIN");
-		buttonJoinOpenEvent.addClickListener(event -> presenter.joinPublicEvent(item));
+		//buttonJoinOpenEvent.addClickListener(event -> presenter.joinPublicEvent(item));
 		return buttonJoinOpenEvent;
 	}
 }

@@ -29,10 +29,10 @@ public class SignUpPresenter extends Presenter implements SignUpInterface {
             //all fields are filled
             if (accountType == "Relative"){
                 Account account = new Account(firstName,lastName,email,password, AccountType.RELATIVE);
-                account.createAccount();
+                //account.createAccount();
             } else if (accountType == "Patient"){
                 Account account = new Account(firstName,lastName,email,password, AccountType.PATIENT);
-                account.createAccount();
+                //account.createAccount();
             }
         }
     }

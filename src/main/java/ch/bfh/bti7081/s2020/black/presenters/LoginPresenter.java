@@ -2,6 +2,8 @@ package ch.bfh.bti7081.s2020.black.presenters;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.LoginInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
+import ch.bfh.bti7081.s2020.black.model.stateModel.Login;
+import ch.bfh.bti7081.s2020.black.model.stateModel.StateModel;
 import ch.bfh.bti7081.s2020.black.views.LoginViewImplementation;
 import com.vaadin.flow.component.notification.Notification;
 
@@ -9,23 +11,38 @@ import com.vaadin.flow.component.notification.Notification;
 public class LoginPresenter extends Presenter implements LoginInterface {
 
     private LoginViewImplementation loginViewImplementation;
+    private Login loginState;
 
     public LoginPresenter(SuperPresenter superPresenter) {
 
         super(superPresenter);
         loginViewImplementation = new LoginViewImplementation(this);
         currentView = loginViewImplementation;
+        loginState = new Login();
+        superPresenter.setState(loginState);
         superPresenter.addPage(currentView);
     }
 
     @Override
     public void submit(String email, String password) {
-        if (inputIsEmpty(email, password)){
-            //Input is empty message is sent to the view
-        } else {
+        if (!inputIsEmpty(email, password)){
             //Input is not empty -> try to log in user
-            Account account = new Account(email, password);
-            Notification.show(account.toString());
+            switch (loginState.login(email, password)){
+                case OK:
+                    superPresenter.setLoggedInAccount(loginState.getAccout());
+                    superPresenter.removePage(currentView);
+                    superPresenter.home();
+                    break;
+                case SQLERROR:
+                    loginViewImplementation.dialogMessage("OOPS, something went wrong please try again    ");
+                    break;
+                case WRONGPASSWORD:
+                    loginViewImplementation.dialogMessage("Password did not match user, please trs again    ");
+                     break;
+                case NOEMAIL:
+                    loginViewImplementation.dialogMessage("There is no user with the given email address, please check your inserts    ");
+                    break;
+            }
         }
     }
 
