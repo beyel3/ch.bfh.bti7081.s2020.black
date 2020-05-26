@@ -1,43 +1,25 @@
 package ch.bfh.bti7081.s2020.black.views;
 
-import java.util.ArrayList;
-
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
 
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
 import ch.bfh.bti7081.s2020.black.model.Event;
-import ch.bfh.bti7081.s2020.black.model.EventTemplate;
-import ch.bfh.bti7081.s2020.black.model.HardCoded;
 import ch.bfh.bti7081.s2020.black.model.Tag;
-import ch.bfh.bti7081.s2020.black.presenters.AccountPresenter;
+public class MyEventViewImplementation<T extends EventViewInterface> extends VerticalLayout {
 
-@Route(value = "MyEvents", layout = MainView.class)
-@RouteAlias(value = "AccountView", layout = MainView.class)
-@PageTitle("MyEvents")
-
-public class AccountViewImplementation extends VerticalLayout {
-
-	private HardCoded eventsHardCoded = new HardCoded();
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	private ArrayList<Event> events = new ArrayList<>(eventsHardCoded.getEvent());
 	private HorizontalLayout eventLayout = new HorizontalLayout();
 
-	public AccountViewImplementation() {
+	public MyEventViewImplementation(T presenter) {
+		
 		Label labelMyEvents = new Label("My Events: ");
 		labelMyEvents.getStyle().set("font-size", "24px");
 		labelMyEvents.getStyle().set("font-weight", "bold");
@@ -46,7 +28,8 @@ public class AccountViewImplementation extends VerticalLayout {
 		eventLayout.getStyle().set("overflowX", "auto");
 		eventLayout.setMargin(false);
 
-		for (Event e : events) {
+		for (Event e: presenter.getMyEvents()) {
+			
 			String participantsHelper = new String(e.getParticipants().toString());
 			participantsHelper = participantsHelper.substring(1, participantsHelper.length() - 1);
 			participantsHelper = participantsHelper.replaceAll(", ", "\n");
@@ -71,10 +54,15 @@ public class AccountViewImplementation extends VerticalLayout {
 			progressBar.setValue(e.getEventTemplate().getAvgRating() / 10);
 
 			HorizontalLayout buttonLayout = new HorizontalLayout();
+			
 			Button buttonChat = new Button("CHAT");
-			buttonChat.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("MyEvents")));
+			buttonChat.addClickListener(event ->
+			presenter.buttonClick(EventViewInterface.EventAction.OPENCHAT, e));
+			
 			Button buttonDetails = new Button("DETAILS");
-			buttonDetails.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("MyEvents")));
+			buttonDetails.addClickListener(event -> 
+			presenter.buttonClick(EventViewInterface.EventAction.DETAILS, e));
+			
 			buttonLayout.add(buttonChat, buttonDetails);
 
 			TextArea participants = new TextArea();
@@ -89,6 +77,7 @@ public class AccountViewImplementation extends VerticalLayout {
 
 			eventLayout.add(layout);
 		}
+		
 		add(labelMyEvents, eventLayout);
 	}
 }

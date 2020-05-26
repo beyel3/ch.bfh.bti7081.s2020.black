@@ -27,11 +27,7 @@ public class CreateEvent extends StateModel {
 			return null;
 		}
 	}
-
-
-	public void addParticipant(Account user, Event event){
-		persistence.executeUpdate("INSERT INTO tbl_participants VALUES ("+user.getId()+", "+event.getId()+")");
-	}
+	
 	
 	public void addEventToTemplate(Event event) {
 	
