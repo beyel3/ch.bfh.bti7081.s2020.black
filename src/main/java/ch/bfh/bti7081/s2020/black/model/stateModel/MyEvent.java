@@ -21,8 +21,10 @@ public class MyEvent extends StateModel {
 //			ArrayList<Event> events = new ArrayList<Event>();
 //			
 //			try {
-//				ResultSet eventResult = persistence.executeQuery("SELECT * FROM tbl_event natural join tbl_participants natural join tbl_accounts WHERE accountID = " + loggedInAccount.getId());
+////				ResultSet eventResult = persistence.executeQuery("SELECT * FROM tbl_event n join tbl_participants natural join tbl_accounts WHERE accountID = " + loggedInAccount.getId());
 //
+//				ResultSet eventResult = persistence.executeQuery("SELECT * FROM tbl_event");
+//				
 //				while (eventResult.next()) {
 //					ArrayList<Account> participants = new ArrayList<Account>();
 //					ResultSet participantsResult = persistence.executeQuery("SELECT a.first_name, a.last_name, a.email, a.accountType, a.level, a.patientInfo FROM tbl_participants AS p INNER JOIN tbl_account AS a ON p.accountID = a.accountID WHERE p.eventID = " + eventResult.getInt("eventID"));

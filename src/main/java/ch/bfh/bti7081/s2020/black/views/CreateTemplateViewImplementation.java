@@ -1,5 +1,7 @@
 package ch.bfh.bti7081.s2020.black.views;
 
+import java.util.ArrayList;
+
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
@@ -18,14 +20,15 @@ public class CreateTemplateViewImplementation extends HorizontalLayout {
 	private Button createTemplate;
 //	private CreateTemplatePresenter createTemplatePresenter = new CreateTemplatePresenter();
 
-	public CreateTemplateViewImplementation() {
+	public CreateTemplateViewImplementation(ArrayList<Tag> tags) {
+		
 		setSizeFull();
 		setPadding(true);
 
 		// Init
 		title = new TextField();
 		description = new TextArea();
-		tags = new MultiSelectListBox<>();
+		this.tags = new MultiSelectListBox<>();
 
 		title.setWidth("70%");
 		title.setClearButtonVisible(true);
@@ -36,22 +39,20 @@ public class CreateTemplateViewImplementation extends HorizontalLayout {
 		description.setClearButtonVisible(true);
 		description.setRequiredIndicatorVisible(true);
 
-//		tags.setItems(createTemplatePresenter.getTags());
+		this.tags.setItems(tags);
 
 		FormLayout formLayout = new FormLayout();
 		formLayout.addFormItem(title, "Titel");
 		formLayout.addFormItem(description, "Beschreibung");
-		formLayout.addFormItem(tags, "Wähle Tags");
+		formLayout.addFormItem(this.tags, "Wähle Tags");
 
 		createTemplate = new Button("Template erstellen");
 		createTemplate.getStyle().set("marginRight", "10px");
 		createTemplate.addClickListener(event -> {
+			
+			createTemplatePresenter.saveEventTemplate(title.getValue(), description.getValue(), tags.getValue());
 
-
-//			EventTemplate t = createTemplatePresenter.saveEventTemplate(title.getValue(), description.getValue(), tags.getValue());
-
-//			UI.getCurrent().navigate("CreateEventView" + t.getId());
-
+			UI.getCurrent().navigate("CreateEventView" + t.getId());
 
 		});
 
