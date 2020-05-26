@@ -115,7 +115,7 @@ public class Account {
         String query = "INSERT INTO tbl_account (first_name, last_name, email, password, accountTypeID) VALUES ('"+this.firstName+"','"+this.lastName+"','"+this.email+"','"+this.hashedPassword+"','"+this.accountType.name()+"');";
         try {
             Persistence persistence = new Persistence();
-            persistence.executeQuery(query);
+            persistence.executeUpdate(query);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             return;
