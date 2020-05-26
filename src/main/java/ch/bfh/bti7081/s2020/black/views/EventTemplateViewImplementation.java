@@ -32,7 +32,6 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 	private static final long serialVersionUID = 1L;
 
 	private T presenter;
-	private Dialog dialogCreateEvent;
 	private final VerticalLayout contentLayoutFirstRow;
 	private final VerticalLayout contentLayoutSecondRow;
 	private ArrayList<EventTemplate> eventTemplates;
@@ -114,12 +113,11 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 		grid.setHeight("68vh");
 		grid.getStyle().set("overflowY", "auto");
 
-		dialogCreateEvent = new Dialog();
-		dialogCreateEvent.add(new CreateTemplateViewImplementation());
+		
 		Label labelOpenEventCreator = new Label(
 				"If no template fits, you can create a new template here to create your event: ");
 		Button buttonOpenEventCreator = new Button("Create New Template", event -> {
-			dialogCreateEvent.open();
+			presenter.createTempalte();
 		});
 
 		contentLayoutSecondRow.add(labelOpenEventCreator, buttonOpenEventCreator);
