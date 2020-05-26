@@ -17,7 +17,7 @@ public class SignUpPresenter extends Presenter implements SignUpInterface {
         super(superPresenter);
         signUpViewImplementation = new SignUpViewImplementation(this);
         currentView = signUpViewImplementation;
-        superPresenter.addView(currentView);
+        superPresenter.addPage(currentView);
     }
 
     @Override
