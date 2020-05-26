@@ -1,18 +1,11 @@
 package ch.bfh.bti7081.s2020.black.model.stateModel;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import ch.bfh.bti7081.s2020.black.model.Account;
-import ch.bfh.bti7081.s2020.black.model.AccountType;
 import ch.bfh.bti7081.s2020.black.model.Event;
-import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.HardCoded;
-import ch.bfh.bti7081.s2020.black.model.Patient;
 import ch.bfh.bti7081.s2020.black.model.Post;
-import ch.bfh.bti7081.s2020.black.model.Relative;
-import ch.bfh.bti7081.s2020.black.model.Status;
 
 public class MyEvent extends StateModel {
 
@@ -60,6 +53,11 @@ public class MyEvent extends StateModel {
 		return  new HardCoded().getEvent();
 	}
 	
-	
+	public void savePost(String message, Account acc, Event event){
+		
+		Post post = new Post(message, event, acc);
+		
+		persistence.executeUpdate("INSERT INTO tbl_post VALUES ("+acc.getId()+", "+event.getId()+", "+post.getMessage()+", "+post.getDate()+")");
+	}
 
 }

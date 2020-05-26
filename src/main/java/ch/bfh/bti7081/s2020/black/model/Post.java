@@ -21,7 +21,7 @@ public class Post {
 	//gererated by user
 	public Post(String message, Event event, Account coreuser) {
 		this.message = message;
-		this.date = Calendar.getInstance().getTime();
+		this.date = new Date();
 		this.account = coreuser;
 		this.event = event;
 	}

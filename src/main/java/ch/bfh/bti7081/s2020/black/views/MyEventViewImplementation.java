@@ -1,7 +1,5 @@
 package ch.bfh.bti7081.s2020.black.views;
 
-import java.util.ArrayList;
-
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
@@ -14,18 +12,13 @@ import com.vaadin.flow.component.textfield.TextField;
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.Tag;
-
 public class MyEventViewImplementation<T extends EventViewInterface> extends VerticalLayout {
 
 	private static final long serialVersionUID = 1L;
 
-	private ArrayList<Event> events;
 	private HorizontalLayout eventLayout = new HorizontalLayout();
-	private T presenter;
-	
 
-	public MyEventViewImplementation(T presenter, ArrayList<Event> events) {
-		this.events = events;
+	public MyEventViewImplementation(T presenter) {
 		
 		Label labelMyEvents = new Label("My Events: ");
 		labelMyEvents.getStyle().set("font-size", "24px");
@@ -35,7 +28,8 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		eventLayout.getStyle().set("overflowX", "auto");
 		eventLayout.setMargin(false);
 
-		for (Event e : events) {
+		for (Event e: presenter.getMyEvents()) {
+			
 			String participantsHelper = new String(e.getParticipants().toString());
 			participantsHelper = participantsHelper.substring(1, participantsHelper.length() - 1);
 			participantsHelper = participantsHelper.replaceAll(", ", "\n");
@@ -60,12 +54,15 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 			progressBar.setValue(e.getEventTemplate().getAvgRating() / 10);
 
 			HorizontalLayout buttonLayout = new HorizontalLayout();
+			
 			Button buttonChat = new Button("CHAT");
 			buttonChat.addClickListener(event ->
-					presenter.);
+			presenter.buttonClick(EventViewInterface.EventAction.OPENCHAT, e));
 			
 			Button buttonDetails = new Button("DETAILS");
-			buttonDetails.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("MyEvents")));
+			buttonDetails.addClickListener(event -> 
+			presenter.buttonClick(EventViewInterface.EventAction.DETAILS, e));
+			
 			buttonLayout.add(buttonChat, buttonDetails);
 
 			TextArea participants = new TextArea();
@@ -80,6 +77,7 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 
 			eventLayout.add(layout);
 		}
+		
 		add(labelMyEvents, eventLayout);
 	}
 }

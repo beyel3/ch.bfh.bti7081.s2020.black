@@ -2,19 +2,21 @@ package ch.bfh.bti7081.s2020.black.presenters;
 
 import java.util.ArrayList;
 
-import com.vaadin.flow.component.crud.Crud.NewEvent;
 import com.vaadin.flow.component.dialog.Dialog;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.PostInterface;
+import ch.bfh.bti7081.s2020.black.model.Event;
+import ch.bfh.bti7081.s2020.black.model.HardCoded;
 import ch.bfh.bti7081.s2020.black.model.Post;
 import ch.bfh.bti7081.s2020.black.model.stateModel.MyEvent;
 import ch.bfh.bti7081.s2020.black.views.MyEventViewImplementation;
+import ch.bfh.bti7081.s2020.black.views.PostViewImplementation;
 
-public class MyEventPresenter extends Presenter implements EventViewInterface, PostInterface {
+public class MyEventPresenter extends Presenter implements EventViewInterface {
 
-	private Dialog dialogCreateEvent;
+	private Dialog dialogPostView;
 	private MyEvent myEventState;
+	private Event selected;
 	
 	public MyEventPresenter(SuperPresenter superPresenter) {
 		super(superPresenter);
@@ -22,34 +24,37 @@ public class MyEventPresenter extends Presenter implements EventViewInterface, P
 		myEventState = new MyEvent();
 		superPresenter.setState(myEventState);
 		
-		currentView = new MyEventViewImplementation<MyEventPresenter>(this, myEventState.getEventListByAccount(superPresenter.getLoggedInAccount()));
+		currentView = new MyEventViewImplementation<MyEventPresenter>(this);
 		superPresenter.addPage(currentView);
+		
+		dialogPostView = new Dialog();
+		dialogPostView.add(new PostViewImplementation<MyEventPresenter>(this));
+		superPresenter.addPage(dialogPostView);
 
 	}
 
 	@Override
-	public void buttonClick(EventAction action) {
+	public void buttonClick(EventAction action, Event selected) {
 
+		this.selected = selected;
+		
 //		superPresenter.removePage(currentView);
 
 		switch (action) {
 		
-		case CHAT:
-			new PostViewPresenter(superPresenter);
+		case OPENCHAT:
+			dialogPostView.open();	
+			break;
+		case CLOSECHAT:
+			dialogPostView.close();	
 			break;
 		case DETAILS:
 			break;
 		case MARKDONE:
-			new PostViewPresenter(superPresenter);
 			break;
 		}
 	}
 
-	@Override
-	public void openChat() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public ArrayList<Post> getPosts() {
@@ -59,7 +64,20 @@ public class MyEventPresenter extends Presenter implements EventViewInterface, P
 
 	@Override
 	public void submitPost(String post) {
-		// TODO Auto-generated method stub
+		myEventState.savePost(post, superPresenter.getLoggedInAccount(), selected);
 		
+		superPresenter.removePage(dialogPostView);
+		
+		dialogPostView = new Dialog();
+		dialogPostView.add(new PostViewImplementation<MyEventPresenter>(this));
+		superPresenter.addPage(dialogPostView);
+		dialogPostView.open();
+	}
+
+	@Override
+	public ArrayList<Event> getMyEvents() {
+		
+		return new HardCoded().getEvent();
+//		return myEventState.getEventListByAccount(superPresenter.getLoggedInAccount());
 	}
 }
