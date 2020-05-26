@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.HeaderInterface;
+import ch.bfh.bti7081.s2020.black.model.stateModel.JoinPublicEvents;
 import ch.bfh.bti7081.s2020.black.views.HeaderViewImplementation;
 
 public class HeaderPresenter extends Presenter implements HeaderInterface {
@@ -30,27 +31,28 @@ public class HeaderPresenter extends Presenter implements HeaderInterface {
 
     @Override
     public void buttonClick(HeaderAction action) {
-        switch (action){
+    	
+    	 superPresenter.clearView();
+    	
+        switch (action){    
+        
             case HOME:
-                superPresenter.clearView();
                 new HomeViewPresenter(superPresenter);
                 break;
             case LOGIN:
-                superPresenter.clearView();
                 new LoginPresenter(superPresenter);
                 break;
             case SIGNUP:
-                superPresenter.clearView();
                 new SignUpPresenter(superPresenter);
                 break;
             case MYEVENTS:
-                headerViewImplementation.setUsername("HANS");
+            	new MyEventPresenter(superPresenter);
                 break;
             case CREATEEVENT:
-
+            	 new EventTemplatePresenter(superPresenter);
                 break;
             case JOINPUBLICEVENT:
-
+            	new JoinPublicEventPresenter(superPresenter);
                 break;
         }
     }
