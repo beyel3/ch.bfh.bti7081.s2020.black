@@ -25,7 +25,8 @@ public class SuperPresenter {
 		header = new VerticalLayout();
 		page = new VerticalLayout();
 
-		new LoginPresenter(this);
+		new HeaderPresenter(this);
+		new HomeViewPresenter(this);
 
 		mainView.add(header,page);
 	}

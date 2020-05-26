@@ -8,17 +8,20 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.PostInterface;
 import ch.bfh.bti7081.s2020.black.model.HardCoded;
 import ch.bfh.bti7081.s2020.black.model.Post;
 
 @Route(value = "Post", layout = MainView.class)
-public class PostViewImplementation extends VerticalLayout {
+public class PostViewImplementation<T extends PostInterface> extends VerticalLayout {
 
 	private HardCoded postsHardCoded = new HardCoded();
 	private static final long serialVersionUID = 1L;
 
 	private ArrayList<Post> posts = new ArrayList<>(postsHardCoded.getPosts());
-	public PostViewImplementation() {
+	
+	public PostViewImplementation(T presenter) {
+		
 		setSizeFull();
 		VerticalLayout chatLayout = new VerticalLayout();
 		
