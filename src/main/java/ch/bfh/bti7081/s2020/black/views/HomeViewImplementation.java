@@ -18,7 +18,6 @@ public class HomeViewImplementation<T extends HomeViewInterface> extends Vertica
 	private final HorizontalLayout contentLayoutFirstRow;
 	private final HorizontalLayout contentLayoutSecondRow;
 	private final HorizontalLayout contentLayoutThirdRow;
-	
 	private T presenter;
 
 	public HomeViewImplementation(T presenter){
@@ -44,14 +43,16 @@ public class HomeViewImplementation<T extends HomeViewInterface> extends Vertica
 		List<Button> buttons = new ArrayList<Button>();
 		
 		Button createEventButton = new Button("CREATE EVENT");
-		
-		createEventButton.addClickListener(event -> presenter.buttonClick(HomeViewInterface.HomeAction.CREATEEVENT));
+		createEventButton.addClickListener(event -> 
+		presenter.buttonClick(HomeViewInterface.HomeAction.CREATEEVENT));
 			 		
 		Button searchOpenPublicEventButton = new Button("JOIN PUBLIC EVENT");
-		searchOpenPublicEventButton.addClickListener(event -> presenter.buttonClick(HomeViewInterface.HomeAction.JOINPUBLICEVENT));
+		searchOpenPublicEventButton.addClickListener(event -> 
+		presenter.buttonClick(HomeViewInterface.HomeAction.JOINPUBLICEVENT));
 
 		Button myEventsButton = new Button("MY EVENTS");
-		myEventsButton.addClickListener(event -> presenter.buttonClick(HomeViewInterface.HomeAction.MYEVENTS));
+		myEventsButton.addClickListener(event -> 
+		presenter.buttonClick(HomeViewInterface.HomeAction.MYEVENTS));
 		
 		buttons.add(myEventsButton);
 		buttons.add(searchOpenPublicEventButton);
