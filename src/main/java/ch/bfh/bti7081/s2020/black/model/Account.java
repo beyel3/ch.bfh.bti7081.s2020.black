@@ -10,18 +10,11 @@ import java.sql.SQLException;
 
 public class Account {
 
-    /*
-    Notes:  - friendlist ?
-            - account type ? enum or int ?
-            - restricted access of the account constructor ??!!!!!
-     */
-
     private int id;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
-    private String hashedPassword;
     private AccountType accountType;
     
     public Account(String firstName, String lastName, String email,String password, AccountType accountType){
@@ -30,9 +23,17 @@ public class Account {
         this.email = email;
         this.password = password;
         this.accountType = accountType;
-        hashedPassword = DigestUtils.sha256Hex(password);
+    }
+    public Account(int id, String firstName, String lastName, String email,String password, AccountType accountType){
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.accountType = accountType;
     }
 
+    /*
     public Account(String email, String password){
         hashedPassword = DigestUtils.sha256Hex(password);
         ResultSet rs = readAccount(email);
@@ -50,7 +51,6 @@ public class Account {
                         this.accountType = AccountType.valueOf(rs.getString("accountTypeID"));
                         return;
                     } else {
-                        Notification.show("Passwords did not match");
                     }
                 }
             }
@@ -59,6 +59,8 @@ public class Account {
         }
 
     }
+
+     */
 
     public int getId() {
         return id;
@@ -110,12 +112,13 @@ public class Account {
                 ", accountType=" + accountType +
                 '}';
     }
+    /*
     //CRUD OPERATIONS -> DB
     public void createAccount(){
         String query = "INSERT INTO tbl_account (first_name, last_name, email, password, accountTypeID) VALUES ('"+this.firstName+"','"+this.lastName+"','"+this.email+"','"+this.hashedPassword+"','"+this.accountType.name()+"');";
         try {
             Persistence persistence = new Persistence();
-            persistence.executeQuery(query);
+            persistence.executeUpdate(query);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             return;
@@ -127,7 +130,6 @@ public class Account {
         String query = "SELECT * FROM tbl_account WHERE email='"+email+"'";
         try {
             Persistence persistence = new Persistence();
-            Notification.show("query");
             return persistence.executeQuery(query);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -142,4 +144,6 @@ public class Account {
     public void deleteAccount(){
 
     }
+
+     */
 }

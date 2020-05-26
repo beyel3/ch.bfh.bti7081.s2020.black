@@ -146,28 +146,6 @@ public abstract class StateModel {
 		}
 	}
 
-	public ArrayList<Patient> getPatientList() {
-		/*
-		ArrayList<Patient> list = new ArrayList<>();
-		try {
-
-			ResultSet rs = persistence.executeQuery("SELECT * FROM tbl_accounts WHERE accountType like 'patient'");
-			while (rs.next()) {
-				Patient us = new Patient(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4));
-				list.add(us);
-			}
-			return list;
-		}
-		catch(SQLException e){
-			// query failed
-			e.printStackTrace();
-			return null;
-		}
-
-		 */
-		return null;
-	}
-
 	public void savePost(Post post, Account acc, Event event){
 		persistence.executeUpdate("INSERT INTO tbl_post VALUES ("+acc.getId()+", "+event.getId()+", "+post.getMessage()+", "+post.getDate()+")");
 	}
@@ -204,10 +182,39 @@ public abstract class StateModel {
 		}
 	}
 
+	public ArrayList<Account> getParticipantsByEventID(int id){
+		ArrayList<Account> participants = new ArrayList<Account>();
+		try {
+			ResultSet participantsResult = persistence.executeQuery("SELECT a.first_name, a.last_name, a.email, a.accountType, a.level, a.patientInfo FROM tbl_participants AS p INNER JOIN tbl_account AS a ON p.accountID = a.accountID WHERE p.eventID = " + id);
+			while (participantsResult.next()) {
+				switch (AccountType.valueOf(participantsResult.getString(4))) {
+					case PATIENT:
+						Patient pat = new Patient(participantsResult.getString(1), participantsResult.getString(2), participantsResult.getString(3), participantsResult.getString(4));
+						pat.setPatientInfo(participantsResult.getString(6));
+						participants.add(pat);
+						break;
+					case RELATIVE:
+						Relative rel = new Relative(participantsResult.getString(1), participantsResult.getString(2), participantsResult.getString(3), participantsResult.getString(4));
+						rel.setLvl(participantsResult.getInt(5));
+						participants.add(rel);
+						break;
+					default:
+						break;
+				}
+			}
+			return participants;
+		}
+		catch(SQLException e){
+			// query failed
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	public ArrayList<Account> getFirends(Account acc){
 		ArrayList<Account> friends = new ArrayList<Account>();
 		try {
-			ResultSet accResult = persistence.executeQuery("a.first_name, a.last_name, a.email, a.accountType, a.level, a.patientInfo FROM tbl_friendship AS f INNER JOIN tbl_account AS a ON f.accountID2 = a.accountID WHERE f.accountID1 = " + acc.getId());
+			ResultSet accResult = persistence.executeQuery("SELECT a.first_name, a.last_name, a.email, a.accountType, a.level, a.patientInfo FROM tbl_friendship AS f INNER JOIN tbl_account AS a ON f.accountID2 = a.accountID WHERE f.accountID1 = " + acc.getId());
 			while (accResult.next()) {
 				switch (AccountType.valueOf(accResult.getString(4))) {
 					case PATIENT:
@@ -232,8 +239,49 @@ public abstract class StateModel {
 			return null;
 		}
 	}
+	public EventTemplate getEventTemplateByID(int eventTemplateID) {
 
-	//	public Post(String message, Event event, Date date, Account account) {
+		try {
+			ArrayList<Tag> tags = new ArrayList<Tag>();
+
+			ResultSet tagResult = persistence.executeQuery("SELECT t.tagID, t.tag_name FROM tbl_tagEventTemplateREL AS tr INNER JOIN tbl_tag AS t on tr.tagID = t.tagID WHERE tr.eventTemplateID =" + eventTemplateID);
+			while (tagResult.next()) {
+				Tag t = new Tag(tagResult.getInt(1), tagResult.getString(2));
+				tags.add(t);
+			}
+
+			ResultSet templateResult = persistence.executeQuery("SELECT * FROM tbl_eventTemplate WHERE eventTemplateID = " + eventTemplateID);
+			EventTemplate et = new EventTemplate(templateResult.getInt("eventTemplateId"), templateResult.getString("title"), templateResult.getString("description"), tags, null, templateResult.getDouble("rating"));
+
+			return et;
+		}
+		catch(SQLException e) {
+			// query failed
+			System.err.println(e);
+			return null;
+		}
+	}
+
+//	public ArrayList<Patient> getPatientList() {
+//
+//		ArrayList<Patient> list = new ArrayList<>();
+//		try {
+//
+//			ResultSet rs = persistence.executeQuery("SELECT * FROM tbl_accounts WHERE accountType like 'patient'");
+//			while (rs.next()) {
+//				Patient us = new Patient(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4));
+//				list.add(us);
+//			}
+//			return list;
+//		}
+//		catch(SQLException e){
+//			// query failed
+//			e.printStackTrace();
+//			return null;
+//		}
+//
+//		return null;
+//	}
 //	public EventTemplate saveEventTemplate(EventTemplate et) throws SQLException{
 //		ArrayList<Tag> tags = et.getTags();
 //

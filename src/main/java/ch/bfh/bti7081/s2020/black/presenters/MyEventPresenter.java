@@ -77,7 +77,7 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 	@Override
 	public ArrayList<Event> getMyEvents() {
 		
-		return new HardCoded().getEvent();
-//		return myEventState.getEventListByAccount(superPresenter.getLoggedInAccount());
+//		return new HardCoded().getEvent();
+		return myEventState.getEventListByAccount(superPresenter.getLoggedInAccount());
 	}
 }
