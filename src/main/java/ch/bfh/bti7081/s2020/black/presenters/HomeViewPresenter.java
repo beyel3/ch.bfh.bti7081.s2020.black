@@ -20,11 +20,12 @@ public class HomeViewPresenter extends Presenter implements HomeViewInterface {
 		switch (action) {
 
 		case CREATEEVENT:
-			break;
-		case JOINPUBLICEVENT:
 			new EventTemplatePresenter(superPresenter);
 			break;
+		case JOINPUBLICEVENT:
+			break;
 		case MYEVENTS:
+			new MyEventPresenter(superPresenter);
 			break;
 		}
 	}

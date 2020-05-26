@@ -3,13 +3,14 @@ package ch.bfh.bti7081.s2020.black.presenters;
 import java.util.ArrayList;
 import java.util.Set;
 
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.CreateEventInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.stateModel.CreateEvent;
 import ch.bfh.bti7081.s2020.black.views.CreateEventViewImplementaion;
 
-public class CreateEventPresenter extends Presenter {
+public class CreateEventPresenter extends Presenter implements CreateEventInterface {
 
 	private CreateEvent createEventState;
 	private EventTemplate eventTemplate;
@@ -26,8 +27,10 @@ public class CreateEventPresenter extends Presenter {
 	}
 
 
-
-	public void saveEvent(Boolean isPublic, int maxParticipants, Set<Account> set) {
+	@Override
+	public void submit(Boolean isPublic, int maxParticipants, Set<Account> set) {
+		
+		superPresenter.removePage(currentView);
 		
 		ArrayList<Account> accounts = new ArrayList<>();
 		
@@ -35,7 +38,10 @@ public class CreateEventPresenter extends Presenter {
 			accounts.add(a);
 		}
 		Event event = new Event(eventTemplate, isPublic, maxParticipants, accounts);
-		createEventState.saveEvent(event);	
+		createEventState.saveEvent(event);
+		
+		new MyEventPresenter(superPresenter);
+		
 	}
 
 

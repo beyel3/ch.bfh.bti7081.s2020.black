@@ -16,28 +16,32 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.HardCoded;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 import ch.bfh.bti7081.s2020.black.presenters.AccountPresenter;
 
-@Route(value = "MyEvents", layout = MainView.class)
-@RouteAlias(value = "AccountView", layout = MainView.class)
-@PageTitle("MyEvents")
+//@Route(value = "MyEvents", layout = MainView.class)
+//@RouteAlias(value = "AccountView", layout = MainView.class)
+//@PageTitle("MyEvents")
 
-public class AccountViewImplementation extends VerticalLayout {
+public class MyEventViewImplementation<T extends EventViewInterface> extends VerticalLayout {
 
-	private HardCoded eventsHardCoded = new HardCoded();
-	/**
-	 * 
-	 */
+	
+
 	private static final long serialVersionUID = 1L;
 
-	private ArrayList<Event> events = new ArrayList<>(eventsHardCoded.getEvent());
+	
+	private ArrayList<Event> events;
 	private HorizontalLayout eventLayout = new HorizontalLayout();
+	private T presenter;
+	
 
-	public AccountViewImplementation() {
+	public MyEventViewImplementation(T presenter, ArrayList<Event> events) {
+		this.events = events;
+		
 		Label labelMyEvents = new Label("My Events: ");
 		labelMyEvents.getStyle().set("font-size", "24px");
 		labelMyEvents.getStyle().set("font-weight", "bold");

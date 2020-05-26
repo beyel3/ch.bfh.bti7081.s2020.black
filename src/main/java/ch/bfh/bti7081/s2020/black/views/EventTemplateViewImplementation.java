@@ -20,26 +20,27 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.data.value.ValueChangeMode;
 
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventTemplateInterface;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 import ch.bfh.bti7081.s2020.black.presenters.EventTemplatePresenter;
 
 
 //@Route(value = "EventTemplateView", layout = MainView.class)
-public class EventTemplateViewImplementation extends HorizontalLayout {
+public class EventTemplateViewImplementation<T extends EventTemplateInterface> extends HorizontalLayout {
 
 	private static final long serialVersionUID = 1L;
 
-	private EventTemplatePresenter eventTemplatePresenter;
+	private T presenter;
 	private Dialog dialogCreateEvent;
 	private final VerticalLayout contentLayoutFirstRow;
 	private final VerticalLayout contentLayoutSecondRow;
 	private ArrayList<EventTemplate> eventTemplates;
 	private Dialog dialogShowTemplate;
 
-	public EventTemplateViewImplementation(EventTemplatePresenter eventTemplatePresenter, ArrayList<EventTemplate> eventTemplates) {
+	public EventTemplateViewImplementation(T presenter, ArrayList<EventTemplate> eventTemplates) {
 
-		this.eventTemplatePresenter = eventTemplatePresenter;
+		this.presenter = presenter;
 		this.eventTemplates = eventTemplates;
 		
 		setSizeFull();
@@ -131,7 +132,7 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 		Button buttonUseAsTemplate = new Button("USE AS TEMPLATE");
 		for (EventTemplate t : eventTemplates) {
 			buttonUseAsTemplate.addClickListener(
-					event -> getUI().ifPresent(ui -> ui.navigate("CreateEvent/" + t.getTemplateIDforURL())));
+					event -> presenter.buttonClick(t));
 		}
 		return buttonUseAsTemplate;
 	}

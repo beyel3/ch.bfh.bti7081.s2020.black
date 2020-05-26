@@ -2,7 +2,6 @@ package ch.bfh.bti7081.s2020.black.views;
 
 import java.util.ArrayList;
 
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -15,18 +14,17 @@ import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.CreateEventInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.HardCoded;
 import ch.bfh.bti7081.s2020.black.model.Tag;
-import ch.bfh.bti7081.s2020.black.presenters.CreateEventPresenter;
 
 
-//@Route(value = "CreateEvent", layout = MainView.class)
-public class CreateEventViewImplementaion extends VerticalLayout {
+public class CreateEventViewImplementaion<T extends CreateEventInterface> extends VerticalLayout {
 
 	
-	private CreateEventPresenter createEventPresenter;
+	private T presenter;
 	
 	private TextField title;
 	private TextArea description;
@@ -36,9 +34,9 @@ public class CreateEventViewImplementaion extends VerticalLayout {
 	private ArrayList<Account> participants = new HardCoded().getCoreUser();
 
 	
-	public CreateEventViewImplementaion(CreateEventPresenter createEventPresenter) {
+	public CreateEventViewImplementaion(T createEventPresenter) {
 		
-		this.createEventPresenter = createEventPresenter;
+		this.presenter = createEventPresenter;
 		
 		//Init
 		title = new TextField();
@@ -89,10 +87,10 @@ public class CreateEventViewImplementaion extends VerticalLayout {
 
 		// Event Handler
 		save.addClickListener(event -> {
-			
-			createEventPresenter.saveEvent(publicEvent.getValue(), (int) Math.round(maxParticipants.getValue()), participants.getSelectedItems());
-			UI.getCurrent().navigate("LandingPage");
-			
+			presenter.submit(
+					publicEvent.getValue(),
+					(int) Math.round(maxParticipants.getValue()),
+					participants.getSelectedItems());
 		});
 
 		invite.addClickListener(event -> {
