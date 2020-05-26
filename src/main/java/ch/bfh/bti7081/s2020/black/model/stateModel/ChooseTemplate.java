@@ -10,14 +10,9 @@ import ch.bfh.bti7081.s2020.black.model.Tag;
 
 public class ChooseTemplate extends StateModel {
 
-	public EventTemplate saveEventTemplate(String title, String description, Set<Tag> tagSet) {
+	public EventTemplate saveEventTemplate(String title, String description, ArrayList<Tag> tags) {
 
-		ArrayList<Tag> tagList = new ArrayList<>();
-		for (Tag t : tagSet) {
-			tagList.add(t);
-		}
-
-		EventTemplate et = new EventTemplate(title, description, tagList);
+		EventTemplate et = new EventTemplate(title, description, tags);
 
 		try {
 
@@ -26,7 +21,7 @@ public class ChooseTemplate extends StateModel {
 			ResultSet id = persistence.executeQuery("SELECT LAST_INSERT_ROWID()");
 			et.setId(id.getInt(1));
 
-			for (Tag t : tagList) {
+			for (Tag t : tags) {
 				persistence.executeUpdate(
 						"INSERT INTO tbl_tagEventTemplateREL(tagID,eventTemplateID) SELECT " + t.getId() + ", '"
 								+ et.getId() + "' WHERE NOT EXISTS(SELECT 1 FROM tbl_tagEventTemplateREL WHERE tagID = "

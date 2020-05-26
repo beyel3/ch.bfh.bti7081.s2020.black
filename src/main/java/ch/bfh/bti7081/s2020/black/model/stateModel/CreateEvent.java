@@ -27,6 +27,8 @@ public class CreateEvent extends StateModel {
 			return null;
 		}
 	}
+	
+	
 
 
 	public void addParticipant(Account user, Event event){
