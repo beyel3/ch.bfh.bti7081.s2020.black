@@ -5,10 +5,13 @@ import ch.bfh.bti7081.s2020.black.views.HeaderViewImplementation;
 
 public class HeaderPresenter extends Presenter implements HeaderInterface {
 
+    private HeaderViewImplementation headerViewImplementation;
+
     public HeaderPresenter(SuperPresenter superPresenter){
 
         super(superPresenter);
-        currentView = new HeaderViewImplementation(this);
+        this.headerViewImplementation = new HeaderViewImplementation(this);
+        currentView = this.headerViewImplementation;
         superPresenter.addHeader(currentView);
     }
 
@@ -29,7 +32,8 @@ public class HeaderPresenter extends Presenter implements HeaderInterface {
     public void buttonClick(HeaderAction action) {
         switch (action){
             case HOME:
-
+                superPresenter.clearView();
+                new HomeViewPresenter(superPresenter);
                 break;
             case LOGIN:
                 superPresenter.clearView();
@@ -40,7 +44,7 @@ public class HeaderPresenter extends Presenter implements HeaderInterface {
                 new SignUpPresenter(superPresenter);
                 break;
             case MYEVENTS:
-
+                headerViewImplementation.setUsername("HANS");
                 break;
             case CREATEEVENT:
 

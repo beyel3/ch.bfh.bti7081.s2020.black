@@ -32,24 +32,19 @@ public class SuperPresenter {
 	}
 	
 	public void addHeader(Component component){header.add(component);}
-
-	public void addView(Component component) {
-		page.add(component);
-	}
-
-
-	public void removeView(Component currentView) {
-		page.remove(currentView);
-	}
-
-	public void clearView() {
-		page.removeAll();
-	}
-
 	public void removeHeader(Component currentView) {
 		header.remove(currentView);
 	}
 
+	public void addView(Component component) {
+		page.add(component);
+	}
+	public void removeView(Component currentView) {
+		page.remove(currentView);
+	}
+	public void clearView() {
+		page.removeAll();
+	}
 
 	public void setState(StateModel stateModel) {
 		this.stateModel = stateModel;
