@@ -68,7 +68,7 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 		Grid.Column<EventTemplate> tagColumn = grid.addColumn(EventTemplate::getTags).setHeader("Tags");
 		
 		Grid.Column<EventTemplate> ratingColumn = grid.addColumn(EventTemplate::getAvgRating).setHeader("Rating");
-		grid.addComponentColumn(item -> createUseAsTemplateButton(grid, item)).setHeader("Use as template");
+		grid.addComponentColumn(item -> createUseAsTemplateButton(item)).setHeader("Use as template");
 		descriptionColumn.setFlexGrow(3);
 
 		grid.addSelectionListener(event -> {
@@ -128,12 +128,10 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 	}
 
 
-	private Button createUseAsTemplateButton(Grid<EventTemplate> grid, EventTemplate item) {
+	private Button createUseAsTemplateButton(EventTemplate item) {
 		Button buttonUseAsTemplate = new Button("USE AS TEMPLATE");
-		for (EventTemplate t : eventTemplates) {
 			buttonUseAsTemplate.addClickListener(
-					event -> presenter.buttonClick(t));
-		}
+					event -> presenter.buttonClick(item));
 		return buttonUseAsTemplate;
 	}
 
