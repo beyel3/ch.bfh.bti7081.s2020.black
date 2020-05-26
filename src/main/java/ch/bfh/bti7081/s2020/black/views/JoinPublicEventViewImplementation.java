@@ -15,25 +15,23 @@ import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.data.value.ValueChangeMode;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventTemplateInterface;
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.JoinPublicEventInterface;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 
-public class OpenPublicEventsViewImplementation<T extends EventTemplateInterface> extends VerticalLayout {
+public class JoinPublicEventViewImplementation<T extends JoinPublicEventInterface> extends VerticalLayout {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	private T presenter;
-	private ArrayList<Event> openPublicEvents;
 
-	public OpenPublicEventsViewImplementation(T presenter, ArrayList<Event> openPublicEvents) {
-
+	public JoinPublicEventViewImplementation(T presenter) {
+		
 		this.presenter = presenter;
-		this.openPublicEvents = openPublicEvents;
-
 		setSizeFull();
 
 		Grid<Event> grid = new Grid<>();
-		ListDataProvider<Event> dataProvider = new ListDataProvider<>(openPublicEvents);
+		ListDataProvider<Event> dataProvider = new ListDataProvider<>(presenter.getOpenPublicEvents());
 		grid.setDataProvider(dataProvider);
 
 		Grid.Column<Event> titleColumn = grid.addColumn(event -> event.getEventTemplate().getTitle()).setHeader("Title");
@@ -105,7 +103,7 @@ public class OpenPublicEventsViewImplementation<T extends EventTemplateInterface
 
 	private Button createJoinPublicEventButton(Event item) {
 		Button buttonJoinOpenEvent = new Button("JOIN");
-		buttonJoinOpenEvent.addClickListener(event -> presenter.joinPublicEvent(item));
+		buttonJoinOpenEvent.addClickListener(event -> presenter.selectEvent(item));
 		return buttonJoinOpenEvent;
 	}
 }

@@ -23,6 +23,7 @@ public class HomeViewPresenter extends Presenter implements HomeViewInterface {
 			new EventTemplatePresenter(superPresenter);
 			break;
 		case JOINPUBLICEVENT:
+			new JoinPublicEventPresenter(superPresenter);
 			break;
 		case MYEVENTS:
 			new MyEventPresenter(superPresenter);
