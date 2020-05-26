@@ -2,7 +2,6 @@ package ch.bfh.bti7081.s2020.black.views;
 
 import java.util.ArrayList;
 
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -15,18 +14,17 @@ import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.CreateEventInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.HardCoded;
 import ch.bfh.bti7081.s2020.black.model.Tag;
-import ch.bfh.bti7081.s2020.black.presenters.CreateEventPresenter;
 
 
-//@Route(value = "CreateEvent", layout = MainView.class)
-public class CreateEventViewImplementaion extends VerticalLayout {
+public class CreateEventViewImplementaion<T extends CreateEventInterface> extends VerticalLayout {
 
 	
-	private CreateEventPresenter createEventPresenter;
+	private T presenter;
 	
 	private TextField title;
 	private TextArea description;
@@ -34,11 +32,13 @@ public class CreateEventViewImplementaion extends VerticalLayout {
 	private Checkbox publicEvent;
 	private NumberField maxParticipants;
 	private ArrayList<Account> participants = new HardCoded().getCoreUser();
+	private EventTemplate eventTemplate;
 
 	
-	public CreateEventViewImplementaion(CreateEventPresenter createEventPresenter) {
-		
-		this.createEventPresenter = createEventPresenter;
+	public CreateEventViewImplementaion(T createEventPresenter, EventTemplate eventTemplate) {
+		this.eventTemplate = eventTemplate;
+		this.presenter = createEventPresenter;
+
 		
 		//Init
 		title = new TextField();
@@ -46,59 +46,52 @@ public class CreateEventViewImplementaion extends VerticalLayout {
 		tags = new MultiSelectListBox<>();
 		publicEvent = new Checkbox();
 		maxParticipants = new NumberField();
+		MultiSelectListBox<Account> participants = new MultiSelectListBox<Account>();
+		participants.setItems(this.participants);
 		setSizeFull();
 				
 		
 		//Event
 		FormLayout FormLayoutLeft = new FormLayout();		
 		title.setWidth("50%");
-		title.setClearButtonVisible(true);
-		title.setRequiredIndicatorVisible(true);
+		title.setReadOnly(true);
+		title.setValue(eventTemplate.getTitle());
 		
 		description.setWidth("50%");
 		description.setMinHeight("100px");
-		description.setClearButtonVisible(true);
-		description.setRequiredIndicatorVisible(true);
+		description.setReadOnly(true);
+		description.setValue(eventTemplate.getDescription());
+		
+		tags.setItems(eventTemplate.getTags());		
+		tags.setReadOnly(true);
 		
 		maxParticipants.setHasControls(true);
 		maxParticipants.setStep(1);
 		maxParticipants.setMin(2);
+		
+		
+		Button save = new Button("Event erstellen");
+		save.getStyle().set("marginRight", "10px");
+
+		// Event Handler
+		save.addClickListener(event -> {
+			presenter.submit(
+					publicEvent.getValue(),
+					(int) Math.round(maxParticipants.getValue()),
+					participants.getSelectedItems());
+		});
 
 		FormLayoutLeft.addFormItem(title, "Titel");
 		FormLayoutLeft.addFormItem(description, "Beschreibung");
-		FormLayoutLeft.addFormItem(tags, "Wähle Tags");
+		FormLayoutLeft.addFormItem(tags, "Tags");
 		FormLayoutLeft.addFormItem(publicEvent, "Öffentlich");
 		FormLayoutLeft.addFormItem(maxParticipants, "Maximale Teilnehmer");
+		FormLayoutLeft.addFormItem(save, "");
 		FormLayoutLeft.setResponsiveSteps(new ResponsiveStep("40em", 1));
 		
 		//Add Patient
 		FormLayout FormLayoutRight = new FormLayout();		
-		MultiSelectListBox<Account> participants = new MultiSelectListBox<Account>();
-		participants.setItems(this.participants);
 		FormLayoutRight.addFormItem(participants, "Patienten hinzufügen:");
-		
-		
-		// Button bar
-		HorizontalLayout actions = new HorizontalLayout();
-		
-		Button save = new Button("Event erstellen");
-		Button invite = new Button("Gäste einladen");
-		actions.add(save, invite);
-		save.getStyle().set("marginRight", "10px");
-		actions.getStyle().set("marginLeft", "50px");
-
-		// Event Handler
-		save.addClickListener(event -> {
-			
-			createEventPresenter.saveEvent(publicEvent.getValue(), (int) Math.round(maxParticipants.getValue()), participants.getSelectedItems());
-			UI.getCurrent().navigate("LandingPage");
-			
-		});
-
-		invite.addClickListener(event -> {
-
-		});
-		
 		
 		HorizontalLayout FormLayouts = new HorizontalLayout();
 		FormLayouts.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
@@ -106,7 +99,7 @@ public class CreateEventViewImplementaion extends VerticalLayout {
 		
 		VerticalLayout VerticalLayout = new VerticalLayout();
 		VerticalLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-		VerticalLayout.add(FormLayouts, actions);
+		VerticalLayout.add(FormLayouts);
 		add(VerticalLayout);
 	}
 	

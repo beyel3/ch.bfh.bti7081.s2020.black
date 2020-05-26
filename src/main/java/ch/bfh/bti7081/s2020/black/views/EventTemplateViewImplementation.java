@@ -20,27 +20,26 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.data.value.ValueChangeMode;
 
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventTemplateInterface;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 import ch.bfh.bti7081.s2020.black.presenters.EventTemplatePresenter;
 
 
 //@Route(value = "EventTemplateView", layout = MainView.class)
-public class EventTemplateViewImplementation extends HorizontalLayout {
+public class EventTemplateViewImplementation<T extends EventTemplateInterface> extends HorizontalLayout {
 
 	private static final long serialVersionUID = 1L;
 
-	private EventTemplatePresenter eventTemplatePresenter;
-	private Dialog dialogCreateEvent;
+	private T presenter;
 	private final VerticalLayout contentLayoutFirstRow;
 	private final VerticalLayout contentLayoutSecondRow;
-	private ArrayList<EventTemplate> eventTemplates;
 	private Dialog dialogShowTemplate;
 
-	public EventTemplateViewImplementation(EventTemplatePresenter eventTemplatePresenter, ArrayList<EventTemplate> eventTemplates) {
+	public EventTemplateViewImplementation(T presenter) {
 
-		this.eventTemplatePresenter = eventTemplatePresenter;
-		this.eventTemplates = eventTemplates;
+		this.presenter = presenter;
+	
 		
 		setSizeFull();
 
@@ -59,7 +58,7 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 		
 
 		Grid<EventTemplate> grid = new Grid<>();
-		ListDataProvider<EventTemplate> dataProvider = new ListDataProvider<>(eventTemplates);
+		ListDataProvider<EventTemplate> dataProvider = new ListDataProvider<>(presenter.getEventTemplates());
 		grid.setDataProvider(dataProvider);
 
 		Grid.Column<EventTemplate> titleColumn = grid.addColumn(EventTemplate::getTitle).setHeader("Title");
@@ -67,7 +66,7 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 		Grid.Column<EventTemplate> tagColumn = grid.addColumn(EventTemplate::getTags).setHeader("Tags");
 		
 		Grid.Column<EventTemplate> ratingColumn = grid.addColumn(EventTemplate::getAvgRating).setHeader("Rating");
-		grid.addComponentColumn(item -> createUseAsTemplateButton(grid, item)).setHeader("Use as template");
+		grid.addComponentColumn(item -> createUseAsTemplateButton(item)).setHeader("Use as template");
 		descriptionColumn.setFlexGrow(3);
 
 		grid.addSelectionListener(event -> {
@@ -113,12 +112,11 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 		grid.setHeight("68vh");
 		grid.getStyle().set("overflowY", "auto");
 
-		dialogCreateEvent = new Dialog();
-		dialogCreateEvent.add(new CreateTemplateViewImplementation());
+		
 		Label labelOpenEventCreator = new Label(
 				"If no template fits, you can create a new template here to create your event: ");
 		Button buttonOpenEventCreator = new Button("Create New Template", event -> {
-			dialogCreateEvent.open();
+			presenter.createTempalte();
 		});
 
 		contentLayoutSecondRow.add(labelOpenEventCreator, buttonOpenEventCreator);
@@ -127,12 +125,10 @@ public class EventTemplateViewImplementation extends HorizontalLayout {
 	}
 
 
-	private Button createUseAsTemplateButton(Grid<EventTemplate> grid, EventTemplate item) {
+	private Button createUseAsTemplateButton(EventTemplate item) {
 		Button buttonUseAsTemplate = new Button("USE AS TEMPLATE");
-		for (EventTemplate t : eventTemplates) {
 			buttonUseAsTemplate.addClickListener(
-					event -> getUI().ifPresent(ui -> ui.navigate("CreateEvent/" + t.getTemplateIDforURL())));
-		}
+					event -> presenter.buttonClick(item));
 		return buttonUseAsTemplate;
 	}
 
