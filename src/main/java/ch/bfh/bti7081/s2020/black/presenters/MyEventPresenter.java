@@ -1,13 +1,20 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
+import com.vaadin.flow.component.crud.Crud.NewEvent;
+
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
+import ch.bfh.bti7081.s2020.black.model.stateModel.MyEvent;
+import ch.bfh.bti7081.s2020.black.views.MyEventViewImplementation;
 
 public class MyEventPresenter extends Presenter implements EventViewInterface {
 
 	public MyEventPresenter(SuperPresenter superPresenter) {
 		super(superPresenter);
 
-		currentView = null;
+		MyEvent myEventState = new MyEvent();
+		superPresenter.setState(myEventState);
+		
+		currentView = new MyEventViewImplementation(this, myEventState.getEventListByAccount(superPresenter.getLoggedInAccount()));
 		superPresenter.addPage(currentView);
 
 	}
@@ -25,7 +32,9 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 		case DETAILS:
 			new PostViewPresenter(superPresenter);
 			break;
-
+		case MARKDONE:
+			new PostViewPresenter(superPresenter);
+			break;
 		}
 	}
 }

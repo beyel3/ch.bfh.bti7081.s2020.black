@@ -49,4 +49,8 @@ public class SuperPresenter {
 	public void setState(StateModel stateModel) {
 		this.stateModel = stateModel;
 	}
+
+	public Account getLoggedInAccount() {
+		return this.account;
+	}
 }

@@ -5,7 +5,8 @@ public interface EventViewInterface {
 	public void buttonClick(EventAction action);
     public enum EventAction{
         CHAT,
-        DETAILS
+        DETAILS,
+        MARKDONE
     }
 	
 
