@@ -22,7 +22,7 @@ public class EventTemplatePresenter extends Presenter {
 
 		
 		this.currentView = new EventTemplateViewImplementation(this, templates);
-		superPresenter.addView(currentView);
+		superPresenter.addPage(currentView);
 
 	}
 		

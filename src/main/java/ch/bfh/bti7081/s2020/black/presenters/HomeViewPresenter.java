@@ -9,7 +9,7 @@ public class HomeViewPresenter extends Presenter implements HomeViewInterface {
 	
 		super(superPresenter);
 		currentView = new HomeViewImplementation(this);
-		superPresenter.addView(currentView);
+		superPresenter.addPage(currentView);
 	}
 	/*
 	@Override

@@ -15,7 +15,7 @@ public class LoginPresenter extends Presenter implements LoginInterface {
         super(superPresenter);
         loginViewImplementation = new LoginViewImplementation(this);
         currentView = loginViewImplementation;
-        superPresenter.addView(currentView);
+        superPresenter.addPage(currentView);
     }
 
     @Override
