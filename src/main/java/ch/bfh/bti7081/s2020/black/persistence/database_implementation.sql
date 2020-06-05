@@ -9,7 +9,7 @@ CREATE TABLE tbl_account (
     level INTEGER NULL,
     accountType VARCHAR
 );
-INSERT INTO tbl_account VALUES (NULL,'Jackson','Michael','jackson@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'RELATIVE');
+INSERT INTO tbl_account VALUES (NULL,'Jackson','Michael','jackson@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Relative',0,'RELATIVE');
 
 DROP TABLE IF EXISTS tbl_friendship;
 CREATE TABLE tbl_friendship (
@@ -117,3 +117,8 @@ CREATE TABLE tbl_tag (
 INSERT INTO tbl_tag VALUES (NULL,'Outdoor');
 INSERT INTO tbl_tag VALUES (NULL,'Indoor');
 INSERT INTO tbl_tag VALUES (NULL,'Sport');
+INSERT INTO tbl_eventTemplate VALUES (NULL,'Test','Test PublicEvent',10.0);
+INSERT INTO tbl_event VALUES (NULL,'Test PublicEvent',TRUE,NULL,'open',4,1,NULL);
+INSERT INTO tbl_tagEventTemplateREL VALUES (1,1);
+INSERT INTO tbl_tagEventTemplateREL VALUES (2,1);
+INSERT INTO tbl_participants VALUES (1,1);

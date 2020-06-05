@@ -16,17 +16,19 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 
 	private static final long serialVersionUID = 1L;
 
-	private HorizontalLayout eventLayout = new HorizontalLayout();
+	private VerticalLayout eventLayout = new VerticalLayout();
 
 	public MyEventViewImplementation(T presenter) {
-		
+		setSizeFull();
+		getStyle().set("align-items", "center");
+		getStyle().set("overflowX", "hidden");
 		Label labelMyEvents = new Label("My Events: ");
 		labelMyEvents.getStyle().set("font-size", "24px");
 		labelMyEvents.getStyle().set("font-weight", "bold");
-		eventLayout.setWidth("100%");
-		eventLayout.setMaxHeight("650px");
-		eventLayout.getStyle().set("overflowX", "auto");
-		eventLayout.setMargin(false);
+		eventLayout.setWidth("35%");
+		eventLayout.setMaxHeight("500px");
+		eventLayout.getStyle().set("overflowY", "auto");
+		eventLayout.getStyle().set("display", "block");
 
 		for (Event e: presenter.getMyEvents()) {
 			

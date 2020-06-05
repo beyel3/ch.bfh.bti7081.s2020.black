@@ -37,9 +37,8 @@ public class JoinPublicEventViewImplementation<T extends JoinPublicEventInterfac
 		Grid.Column<Event> titleColumn = grid.addColumn(event -> event.getEventTemplate().getTitle()).setHeader("Title");
 		Grid.Column<Event> descriptionColumn = grid.addColumn(event -> event.getEventTemplate().getDescription())
 				.setHeader("Description");
-		Grid.Column<Event> tagColumn = grid.addColumn(event -> event.getEventTemplate().getTags().toString().replaceAll("[[]]","")).setHeader("Tags");
-		Grid.Column<Event> paricipantsColumn = grid.addColumn(event -> event.getParticipants().toString().replaceAll("[[]]",""))
-				.setHeader("Participants");
+		Grid.Column<Event> tagColumn = grid.addColumn(event -> event.getEventTemplate().getTags().toString().replaceAll("\\[|\\]", "")).setHeader("Tags");
+		Grid.Column<Event> paricipantsColumn = grid.addColumn(event -> event.getParticipants().toString()).setHeader("Participants");
 		Grid.Column<Event> maxParticipantsColumn = grid.addColumn(Event::getMaxParticipants).setHeader("Max Participants");
 		grid.addComponentColumn(item -> createJoinPublicEventButton(item)).setHeader("Join pulibc Event");
 		descriptionColumn.setFlexGrow(3);
