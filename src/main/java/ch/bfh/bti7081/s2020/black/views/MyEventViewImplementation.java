@@ -34,7 +34,7 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		labelMyEvents.getStyle().set("font-size", "24px");
 		labelMyEvents.getStyle().set("font-weight", "bold");
 		eventLayout.setWidth("35%");
-		eventLayout.setMaxHeight("500px");
+		eventLayout.setMaxHeight("60vh");
 		eventLayout.getStyle().set("overflowY", "auto");
 		eventLayout.getStyle().set("display", "block");
 
