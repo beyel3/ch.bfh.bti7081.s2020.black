@@ -1,6 +1,12 @@
 package ch.bfh.bti7081.s2020.black.views;
 
+import java.util.ArrayList;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.HeaderRow;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -8,6 +14,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.provider.ListDataProvider;
+import com.vaadin.flow.data.value.ValueChangeMode;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
 import ch.bfh.bti7081.s2020.black.model.Event;
@@ -65,13 +73,18 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 			buttonDetails.addClickListener(event -> 
 			presenter.buttonClick(EventViewInterface.EventAction.DETAILS, e));
 			
+			Button buttonMarkDone = new Button("EVENT DONE");
+			buttonMarkDone.addClickListener(event -> 
+			presenter.buttonClick(EventViewInterface.EventAction.MARKDONE, e));
+			buttonMarkDone.setWidth("100%");
+			
 			buttonLayout.add(buttonChat, buttonDetails);
 
 			TextArea participants = new TextArea();
 			participants.setSizeFull();
 			participants.setValue(participantsHelper);
 			participants.setReadOnly(true);
-			layout.add(title, description, tags, progressBar, participants, buttonLayout);
+			layout.add(title, description, tags, progressBar, participants, buttonLayout, buttonMarkDone);
 			layout.getStyle().set("padding", "5px");
 			layout.getStyle().set("margin-left", "2px");
 			layout.getStyle().set("margin-right", "2px");
@@ -80,6 +93,75 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 			eventLayout.add(layout);
 		}
 		
-		add(labelMyEvents, eventLayout);
+		Label labelMyPastEvents = new Label("My Past Events: ");
+		labelMyPastEvents.getStyle().set("font-size", "24px");
+		labelMyPastEvents.getStyle().set("font-weight", "bold");
+		
+		Grid<Event> grid = new Grid<>();
+		ListDataProvider<Event> dataProvider = new ListDataProvider<>(presenter.getMyEvents());
+		grid.setDataProvider(dataProvider);
+
+		Grid.Column<Event> titleColumn = grid.addColumn(event -> event.getEventTemplate().getTitle()).setHeader("Title");
+		Grid.Column<Event> descriptionColumn = grid.addColumn(event -> event.getEventTemplate().getDescription())
+				.setHeader("Description");
+		Grid.Column<Event> tagColumn = grid.addColumn(event -> event.getEventTemplate().getTags().toString().replaceAll("\\[|\\]", "")).setHeader("Tags");
+		Grid.Column<Event> paricipantsColumn = grid.addColumn(event -> event.getParticipants().toString().replaceAll("\\[|\\]", "")).setHeader("Participants");
+		descriptionColumn.setFlexGrow(3);
+
+		grid.addSelectionListener(event -> {
+
+		});
+
+		HeaderRow filterRow = grid.appendHeaderRow();
+		
+		// First filter for rating
+		TextField titleField = new TextField();
+		titleField.addValueChangeListener(event -> dataProvider.addFilter(publicEvent -> StringUtils
+				.containsIgnoreCase(publicEvent.getEventTemplate().getTitle(), titleField.getValue())));
+
+		titleField.setValueChangeMode(ValueChangeMode.EAGER);
+		filterRow.getCell(titleColumn).setComponent(titleField);
+		titleField.setSizeFull();
+		titleField.setPlaceholder("Filter");
+
+		// Second Filter for description
+		TextField descriptionField = new TextField();
+		descriptionField.addValueChangeListener(event -> dataProvider.addFilter(publicEvent -> StringUtils
+				.containsIgnoreCase(publicEvent.getEventTemplate().getDescription(), descriptionField.getValue())));
+
+		descriptionField.setValueChangeMode(ValueChangeMode.EAGER);
+		filterRow.getCell(descriptionColumn).setComponent(descriptionField);
+		descriptionField.setSizeFull();
+		descriptionField.setPlaceholder("Filter");
+
+		// Thrid Filter for tags
+		TextField tagField = new TextField();
+		ArrayList<String> tagList = new ArrayList<>();
+		tagField.addValueChangeListener(event -> dataProvider.addFilter(publicEvent -> StringUtils
+				.containsIgnoreCase(publicEvent.getEventTemplate().getTags().toString(), tagField.getValue())));
+
+		tagField.setValueChangeMode(ValueChangeMode.EAGER);
+
+		filterRow.getCell(tagColumn).setComponent(tagField);
+		tagField.setSizeFull();
+		tagField.setPlaceholder("Filter");
+		
+		// Fourth Filter for participants
+		TextField participantsField = new TextField();
+		ArrayList<String> participantsList = new ArrayList<>();
+		participantsField.addValueChangeListener(event -> dataProvider.addFilter(publicEvent -> StringUtils
+				.containsIgnoreCase(publicEvent.getParticipants().toString(), tagField.getValue())));
+
+		participantsField.setValueChangeMode(ValueChangeMode.EAGER);
+
+		filterRow.getCell(tagColumn).setComponent(tagField);
+		participantsField.setSizeFull();
+		participantsField.setPlaceholder("Filter");
+
+		grid.setWidth("100%");
+		grid.setHeight("400px");
+		grid.getStyle().set("overflowY", "auto");
+		
+		add(labelMyEvents, eventLayout, labelMyPastEvents, grid);
 	}
 }
