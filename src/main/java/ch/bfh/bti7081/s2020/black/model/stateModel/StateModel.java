@@ -211,7 +211,7 @@ public abstract class StateModel {
 		}
 	}
 
-	public ArrayList<Account> getFirends(Account acc){
+	public ArrayList<Account> getFriends(Account acc){
 		ArrayList<Account> friends = new ArrayList<Account>();
 		try {
 			ResultSet accResult = persistence.executeQuery("SELECT a.first_name, a.last_name, a.email, a.accountType, a.level, a.patientInfo FROM tbl_friendship AS f INNER JOIN tbl_account AS a ON f.accountID2 = a.accountID WHERE f.accountID1 = " + acc.getId());

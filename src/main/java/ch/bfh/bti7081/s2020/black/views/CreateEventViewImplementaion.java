@@ -31,7 +31,7 @@ public class CreateEventViewImplementaion<T extends CreateEventInterface> extend
 	private MultiSelectListBox<Tag> tags;
 	private Checkbox publicEvent;
 	private NumberField maxParticipants;
-	private ArrayList<Account> participants = new HardCoded().getCoreUser();
+	private ArrayList<Account> participants;
 	private EventTemplate eventTemplate;
 
 	
@@ -47,6 +47,8 @@ public class CreateEventViewImplementaion<T extends CreateEventInterface> extend
 		publicEvent = new Checkbox();
 		maxParticipants = new NumberField();
 		MultiSelectListBox<Account> participants = new MultiSelectListBox<Account>();
+		// Hier müssen die Freunde des loggedIn Accounts geholt werden
+		// participants =
 		participants.setItems(this.participants);
 		setSizeFull();
 				
