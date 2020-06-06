@@ -15,7 +15,7 @@ import com.vaadin.flow.router.Route;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 
 @Route(value = "Test")
-public class MarkEventDoneViewImplementation extends VerticalLayout{
+public class MarkEventDoneViewImplementation extends VerticalLayout {
 
 //	private T presenter;
 	private TextField title;
@@ -57,7 +57,16 @@ public class MarkEventDoneViewImplementation extends VerticalLayout{
 //		            event.getFileName(),
 //		            buffer.getInputStream(event.getFileName()));
 //		    showOutput(event.getFileName(), component, output);
+			
+//			File fnew= newFile("/tmp/rose.jpg");
+//			BufferedImage originalImage= ImageIO.read(fnew);
+//			ByteArrayOutputStream baos= newByteArrayOutputStream();
+//			ImageIO.write(originalImage, "jpg", baos);
+//			byte[] imageInByte= baos.toByteArray();
 		});
+//		byte[] imageBytes = // your data source here
+//				StreamResource resource = new StreamResource("dummyImageName.jpg", () -> new ByteArrayInputStream(imageBytes));
+//				Image image = new Image(resource, "dummy image");
 		
 		FormLayout form = new FormLayout();		
 		title.setWidth("50%");
@@ -90,5 +99,5 @@ public class MarkEventDoneViewImplementation extends VerticalLayout{
 		formLayout.add(form);
 		add(formLayout);
 	}
-	
+
 }

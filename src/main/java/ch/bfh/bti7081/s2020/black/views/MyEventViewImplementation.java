@@ -214,6 +214,10 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		Image selfie = new Image("https://dummyimage.com/600x400/000/fff","");
 		selfie.setWidth("100%");
 		
+//		byte[] imageBytes = // your data source here
+//				StreamResource resource = new StreamResource("dummyImageName.jpg", () -> new ByteArrayInputStream(imageBytes));
+//				Image image = new Image(resource, "dummy image");
+		
 		layout.add(title, description, tags, progressBar, participants, selfie);
 		layout.setMinWidth("350px");
 		layout.setMaxWidth("100vw");
