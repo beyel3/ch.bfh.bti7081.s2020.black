@@ -58,7 +58,7 @@ public class SignUpViewImplementation<T extends SignUpInterface> extends Vertica
         form.add(accountType);
         form.addFormItem(btnSubmit,"");
 
-        form.getStyle().set("border","1px solid black");
+        form.getStyle().set("border", "2px solid #2f6f91");
         form.setResponsiveSteps(new ResponsiveStep("30em", 1));
         form.setWidth("40%");
 
