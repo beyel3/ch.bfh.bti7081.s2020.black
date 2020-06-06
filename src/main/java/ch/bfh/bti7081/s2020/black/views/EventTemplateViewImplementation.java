@@ -168,6 +168,7 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 				event -> getUI().ifPresent(ui -> ui.navigate("CreateEvent/" + singleTemplate.getTemplateIDforURL())));
 
 		layout.add(title, description, tags, progressBar, button);
+		layout.setMinWidth("350px");
 		templates.add(layout);
 
 		dialogShowTemplate.add(templates);

@@ -1,14 +1,17 @@
 package ch.bfh.bti7081.s2020.black.views;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.HeaderRow;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.progressbar.ProgressBar;
@@ -23,7 +26,7 @@ import ch.bfh.bti7081.s2020.black.model.Tag;
 public class MyEventViewImplementation<T extends EventViewInterface> extends VerticalLayout {
 
 	private static final long serialVersionUID = 1L;
-
+	private Dialog dialogShowEventDetails;
 	private VerticalLayout eventLayout = new VerticalLayout();
 
 	public MyEventViewImplementation(T presenter) {
@@ -109,7 +112,8 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		descriptionColumn.setFlexGrow(3);
 
 		grid.addSelectionListener(event -> {
-
+			Set<Event> temp = event.getAllSelectedItems();
+			createDetailDialogBoxForEvent(temp.iterator().next());
 		});
 
 		HeaderRow filterRow = grid.appendHeaderRow();
@@ -164,4 +168,53 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		
 		add(labelMyEvents, eventLayout, labelMyPastEvents, grid);
 	}
+	
+	private void createDetailDialogBoxForEvent(Event singleEvent) {
+		dialogShowEventDetails = new Dialog();
+		dialogShowEventDetails.setSizeFull();
+
+		VerticalLayout events = new VerticalLayout();
+		events.setWidth("100%");
+		events.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+//		templates.getStyle().set("border", "1px solid black");
+		events.getStyle().set("overflowY", "auto");
+		events.getStyle().set("display", "block");
+		String participantsHelper = new String(singleEvent.getParticipants().toString());
+		participantsHelper = participantsHelper.substring(1, participantsHelper.length() - 1);
+		participantsHelper = participantsHelper.replaceAll(", ", "\n");
+
+		VerticalLayout layout = new VerticalLayout();
+		layout.getStyle().set("border", "1px solid #2f6f91");
+		layout.getStyle().set("margin", "2px");
+
+		TextField title = new TextField();
+		title.setSizeFull();
+		title.setValue(singleEvent.getEventTemplate().getTitle());
+		title.setReadOnly(true);
+
+		TextArea description = new TextArea();
+		description.setSizeFull();
+		description.setValue(singleEvent.getEventTemplate().getDescription());
+		description.setReadOnly(true);
+
+		MultiSelectListBox<Tag> tags = new MultiSelectListBox<Tag>();
+		tags.setItems(singleEvent.getEventTemplate().getTags());
+		tags.setReadOnly(true);
+
+		ProgressBar progressBar = new ProgressBar();
+		progressBar.setValue(singleEvent.getEventTemplate().getAvgRating() / 10);
+		
+		TextArea participants = new TextArea();
+		participants.setSizeFull();
+		participants.setValue(participantsHelper);
+		participants.setReadOnly(true);
+		
+		layout.add(title, description, tags, progressBar, participants);
+		layout.setMinWidth("350px");
+		events.add(layout);
+
+		dialogShowEventDetails.add(events);
+		dialogShowEventDetails.open();
+	}
+	
 }
