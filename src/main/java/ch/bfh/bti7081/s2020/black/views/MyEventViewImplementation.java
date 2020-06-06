@@ -9,6 +9,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.HeaderRow;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -40,6 +41,7 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		eventLayout.setMaxHeight("60vh");
 		eventLayout.getStyle().set("overflowY", "auto");
 		eventLayout.getStyle().set("display", "block");
+		HorizontalLayout topLayout = new HorizontalLayout();
 
 		for (Event e: presenter.getMyEvents()) {
 			
@@ -209,8 +211,12 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		participants.setValue(participantsHelper);
 		participants.setReadOnly(true);
 		
-		layout.add(title, description, tags, progressBar, participants);
+		Image selfie = new Image("https://dummyimage.com/600x400/000/fff","");
+		selfie.setWidth("100%");
+		
+		layout.add(title, description, tags, progressBar, participants, selfie);
 		layout.setMinWidth("350px");
+		layout.setMaxWidth("100vw");
 		events.add(layout);
 
 		dialogShowEventDetails.add(events);
