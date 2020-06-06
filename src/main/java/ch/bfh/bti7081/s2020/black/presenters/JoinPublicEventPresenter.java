@@ -48,7 +48,7 @@ public class JoinPublicEventPresenter extends Presenter implements JoinPublicEve
 
 	@Override
 	public ArrayList<Account> getFriends() {
-		return joinPublicEventsState.getFirends(superPresenter.getLoggedInAccount());
+		return joinPublicEventsState.getFriends(superPresenter.getLoggedInAccount());
 	}
 
 	@Override
