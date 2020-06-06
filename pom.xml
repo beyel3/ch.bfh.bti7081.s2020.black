@@ -121,13 +121,13 @@
 			<version>3.31.1</version>
 		</dependency>
 
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>1.11</version>
-        </dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.11</version>
+		</dependency>
 
-    </dependencies>
+	</dependencies>
 
 
 	<build>
@@ -144,9 +144,10 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.4.19.v20190610</version>
 				<configuration>
+					<reload>manual</reload>
 					<!-- If using IntelliJ IDEA with autocompilation, this might cause lots 
 						of unnecessary compilations in the background. -->
-					<scanIntervalSeconds>2</scanIntervalSeconds>
+					<scanIntervalSeconds>1000</scanIntervalSeconds>
 					<!-- Use war output directory to get the webpack files -->
 					<webAppConfig>
 						<allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
