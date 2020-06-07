@@ -104,18 +104,4 @@ public class CreateEventViewImplementaion<T extends CreateEventInterface> extend
 		VerticalLayout.add(FormLayouts);
 		add(VerticalLayout);
 	}
-	
-
-
-	public void setTemplateInfo(EventTemplate eventTemplate) {
-		
-		this.title.setValue(eventTemplate.getTitle());
-		this.description.setValue(eventTemplate.getDescription());
-		this.tags.setItems(eventTemplate.getTags());
-		
-		this.title.setReadOnly(true);
-		this.description.setReadOnly(true);
-		this.tags.setReadOnly(true);
-		
-	}
 }

@@ -1,47 +1,42 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.vaadin.flow.component.ClickEvent;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.server.StreamResource;
-
+import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.CloseEventViewInterface;
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface.EventAction;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.stateModel.CloseEvent;
-import ch.bfh.bti7081.s2020.black.views.CloseEventViewInterface;
+import ch.bfh.bti7081.s2020.black.views.MarkEventDoneViewImplementation;
 
 public class CloseEventPresenter extends Presenter implements CloseEventViewInterface {
+	
+	private Event event;
 
-	public CloseEventPresenter(SuperPresenter superPresenter) {
+	public CloseEventPresenter(SuperPresenter superPresenter, Event event) {
 		super(superPresenter);
+		
+		this.event = event;
 
 		CloseEvent closeEventState = new CloseEvent();
 		superPresenter.setState(closeEventState);
 
-
+		currentView = new MarkEventDoneViewImplementation<CloseEventViewInterface>(this);
+		superPresenter.addPage(currentView);
 
 	}
 
 	@Override
 	public Event getEvent() {
-
-		return null;
+		return event;
 	}
 
-	@Override
-	public void buttonClick(EventAction openchat, ClickEvent<Button> event) {
 
-	}
-
-	public byte[] getImageBytes() throws IOException {
+	public byte[] getPicture() throws IOException {
 		
 		File fnew = new File("/tmp/rose.jpg");
 		BufferedImage originalImage = ImageIO.read(fnew);
@@ -49,6 +44,12 @@ public class CloseEventPresenter extends Presenter implements CloseEventViewInte
 		ImageIO.write(originalImage, "jpg", baos);
 		byte[] imageInByte = baos.toByteArray();
 		return imageInByte;
+	}
+
+	@Override
+	public void buttonClick(EventAction action) {
+		
+		
 	}
 
 }
