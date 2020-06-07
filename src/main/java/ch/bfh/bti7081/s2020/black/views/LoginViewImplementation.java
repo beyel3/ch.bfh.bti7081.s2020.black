@@ -7,6 +7,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
+import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
@@ -41,7 +42,12 @@ public class LoginViewImplementation<T extends LoginInterface> extends VerticalL
         form.addFormItem(txtPassword, new Icon(VaadinIcon.LOCK));
         form.addFormItem(btnLogin, "");
 
+        Anchor anchor = new Anchor();
+        anchor.setText("Sign Up");
+
+        form.getElement().addEventListener("keypress", event -> presenter.submit(emailField.getValue(), txtPassword.getValue())).setFilter("event.key == 'Enter'");
         btnLogin.addClickListener(e -> presenter.submit(emailField.getValue(), txtPassword.getValue()));
+        anchor.getElement().addEventListener("click", event -> presenter.signUp());
 
         VerticalLayout formLayout = new VerticalLayout();
         formLayout.setWidth("25%");
@@ -49,7 +55,8 @@ public class LoginViewImplementation<T extends LoginInterface> extends VerticalL
         formLayout.getStyle().set("align-items", "center");
         formLayout.getStyle().set("border", "2px solid #2f6f91");
         getStyle().set("align-items", "center");
-        add(formLayout);
+
+        add(formLayout, anchor);
     }
 
     @Override
