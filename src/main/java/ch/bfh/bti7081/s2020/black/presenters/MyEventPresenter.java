@@ -84,6 +84,16 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 	public ArrayList<Event> getMyEvents() {
 		return myEventState.getEventListByAccount(superPresenter.getLoggedInAccount());
 	}
+	
+	@Override
+	public ArrayList<Event> getMyOpenEvents() {
+		return myEventState.getOpenEventListByAccount(superPresenter.getLoggedInAccount());
+	}
+	
+	@Override
+	public ArrayList<Event> getMyDoneEvents() {
+		return myEventState.getDoneEventListByAccount(superPresenter.getLoggedInAccount());
+	}
 
 	@Override
 	public Event getSelectedEvent() {
@@ -98,5 +108,10 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 	@Override
 	public ArrayList<Patient> getAccounts() {
 		return myEventState.getPatientListWithNoRel(superPresenter.getLoggedInAccount());
+	}
+
+	@Override
+	public void addFriend(Patient patient) {
+		myEventState.addFriend(patient, superPresenter.getLoggedInAccount());	
 	}
 }

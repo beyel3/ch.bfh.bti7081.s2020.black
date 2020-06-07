@@ -50,9 +50,9 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		eventLayout.getStyle().set("display", "block");
 		HorizontalLayout topLayout = new HorizontalLayout();
 		topLayout.setWidth("100%");
-		ArrayList<Event> myEvents = presenter.getMyEvents();
+		ArrayList<Event> myOpenEvents = presenter.getMyOpenEvents();
 
-		for (Event e :myEvents) {
+		for (Event e :myOpenEvents) {
 
 			//System.out.println(e.getEventTemplate().getId());
 
@@ -113,7 +113,7 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		labelMyPastEvents.getStyle().set("font-weight", "bold");
 
 		Grid<Event> grid = new Grid<>();
-		ListDataProvider<Event> dataProvider = new ListDataProvider<>(presenter.getMyEvents());
+		ListDataProvider<Event> dataProvider = new ListDataProvider<>(presenter.getMyDoneEvents());
 		grid.setDataProvider(dataProvider);
 
 		Grid.Column<Event> titleColumn = grid.addColumn(event -> event.getEventTemplate().getTitle())
