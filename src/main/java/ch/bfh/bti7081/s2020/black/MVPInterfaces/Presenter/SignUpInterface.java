@@ -7,4 +7,5 @@ public interface SignUpInterface {
                        String password,
                        String confirmPassword,
                        String accountType);
+    public void logIn();
 }
