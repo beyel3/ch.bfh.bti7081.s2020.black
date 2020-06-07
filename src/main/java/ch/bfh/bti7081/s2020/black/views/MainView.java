@@ -11,6 +11,7 @@ import com.vaadin.flow.server.PageConfigurator;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 
+import ch.bfh.bti7081.s2020.black.presenters.CloseEventPresenter;
 import ch.bfh.bti7081.s2020.black.presenters.SuperPresenter;
 
 
@@ -24,7 +25,7 @@ public class MainView extends VerticalLayout implements RouterLayout, PageConfig
 	
 	public MainView() {
 
-		 new SuperPresenter(this);
+		new SuperPresenter(this);
 
     }
     @Override

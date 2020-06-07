@@ -6,8 +6,4 @@ public class CloseEvent extends StateModel {
 		
 	}
 	
-	public void loadPicture(byte [] picture) {
-		
-	}
-
 }
