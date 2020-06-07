@@ -127,8 +127,8 @@ CREATE TABLE tbl_tag (
 INSERT INTO tbl_tag VALUES (NULL,'Outdoor');
 INSERT INTO tbl_tag VALUES (NULL,'Indoor');
 INSERT INTO tbl_tag VALUES (NULL,'Sport');
-INSERT INTO tbl_eventTemplate VALUES (NULL,'Test','Test PublicEvent',10.0);
-INSERT INTO tbl_event VALUES (NULL,'Test PublicEvent',TRUE,NULL,'open',4,1,NULL);
-INSERT INTO tbl_tagEventTemplateREL VALUES (1,1);
-INSERT INTO tbl_tagEventTemplateREL VALUES (2,1);
-INSERT INTO tbl_participants VALUES (1,1);
+--INSERT INTO tbl_eventTemplate VALUES (NULL,'Test','Test PublicEvent',10.0);
+--INSERT INTO tbl_event VALUES (NULL,'Test PublicEvent',1,0,'open',4,1,NULL);
+--INSERT INTO tbl_tagEventTemplateREL VALUES (1,1);
+--INSERT INTO tbl_tagEventTemplateREL VALUES (2,1);
+--INSERT INTO tbl_participants VALUES (1,1);

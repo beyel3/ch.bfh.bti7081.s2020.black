@@ -47,7 +47,6 @@ public class CreateEventViewImplementaion<T extends CreateEventInterface> extend
 		publicEvent = new Checkbox();
 		maxParticipants = new NumberField();
 		MultiSelectListBox<Account> participants = new MultiSelectListBox<Account>();
-		
 		participants.setItems(presenter.getFriendsFromLoggedInAccount());
 		setSizeFull();
 				
@@ -80,6 +79,7 @@ public class CreateEventViewImplementaion<T extends CreateEventInterface> extend
 					publicEvent.getValue(),
 					(int) Math.round(maxParticipants.getValue()),
 					participants.getSelectedItems());
+
 		});
 
 		FormLayoutLeft.addFormItem(title, "Titel");
