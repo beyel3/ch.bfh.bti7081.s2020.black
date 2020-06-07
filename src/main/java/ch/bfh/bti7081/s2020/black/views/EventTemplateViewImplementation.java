@@ -165,7 +165,7 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 
 		Button button = new Button("USE AS TEMPLATE");
 		button.addClickListener(
-				event -> getUI().ifPresent(ui -> ui.navigate("CreateEvent/" + singleTemplate.getTemplateIDforURL())));
+				event -> presenter.buttonClick(singleTemplate));
 
 		layout.add(title, description, tags, progressBar, button);
 		layout.setMinWidth("350px");

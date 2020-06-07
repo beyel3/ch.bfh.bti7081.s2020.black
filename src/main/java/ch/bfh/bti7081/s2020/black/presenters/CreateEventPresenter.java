@@ -45,4 +45,10 @@ public class CreateEventPresenter extends Presenter implements CreateEventInterf
 		
 	}
 
+
+	@Override
+	public ArrayList<Account> getFriendsFromLoggedInAccount() {
+		return createEventState.getFriends(superPresenter.getLoggedInAccount());
+	}
+
 }
