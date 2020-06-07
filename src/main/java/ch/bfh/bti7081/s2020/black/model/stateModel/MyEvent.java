@@ -50,4 +50,5 @@ public class MyEvent extends StateModel {
 	public byte [] loadPicture(Event event) {
 		return null;
 	}
+
 }
