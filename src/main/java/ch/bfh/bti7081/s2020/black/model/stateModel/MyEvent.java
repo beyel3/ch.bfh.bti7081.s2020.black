@@ -19,7 +19,7 @@ public class MyEvent extends StateModel {
 	public ArrayList<Event> getEventListByAccount(Account loggedInAccount) {
 
 		ArrayList<Event> events = new ArrayList<Event>();
-		System.out.println(loggedInAccount.getId());
+
 		try {
 			ResultSet eventResult = persistence.executeQuery("SELECT e.eventID, e.info, e.isPublic, e.maxParticipants, e.rating, e.state, e.imageID FROM tbl_participants AS p INNER JOIN tbl_event AS e ON p.eventID = e.eventID WHERE p.accountID = "+loggedInAccount.getId());
 
@@ -30,6 +30,7 @@ public class MyEvent extends StateModel {
 				event.setPosts(posts);
 				events.add(event);
 			}
+
 			return events;
 		}
 		catch(SQLException e){

@@ -26,6 +26,8 @@ import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 
+import javax.swing.tree.ExpandVetoException;
+
 public class MyEventViewImplementation<T extends EventViewInterface> extends VerticalLayout {
 
 	private static final long serialVersionUID = 1L;
@@ -48,8 +50,11 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		eventLayout.getStyle().set("display", "block");
 		HorizontalLayout topLayout = new HorizontalLayout();
 		topLayout.setWidth("100%");
+		ArrayList<Event> myEvents = presenter.getMyEvents();
 
-		for (Event e : presenter.getMyEvents()) {
+		for (Event e :myEvents) {
+
+			//System.out.println(e.getEventTemplate().getId());
 
 			String participantsHelper = new String(e.getParticipants().toString());
 			participantsHelper = participantsHelper.substring(1, participantsHelper.length() - 1);
