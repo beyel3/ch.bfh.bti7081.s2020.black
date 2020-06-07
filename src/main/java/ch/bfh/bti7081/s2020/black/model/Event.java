@@ -95,10 +95,6 @@ public class Event {
 		return picture;
 	}
 
-	public void setPictureID(byte [] picture) {
-		this.picture = picture;
-	}
-
 	public Status getStatus() {
 		return status;
 	}
