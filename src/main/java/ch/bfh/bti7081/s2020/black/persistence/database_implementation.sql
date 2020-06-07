@@ -10,6 +10,10 @@ CREATE TABLE tbl_account (
     accountType VARCHAR
 );
 INSERT INTO tbl_account VALUES (NULL,'Jackson','Michael','jackson@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Relative',0,'RELATIVE');
+INSERT INTO tbl_account VALUES (NULL,'Mitchell','Billy','mitchell@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'PATIENT');
+INSERT INTO tbl_account VALUES (NULL,'Dover','Ben','dover@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'PATIENT');
+INSERT INTO tbl_account VALUES (NULL,'Hidepain','Harald','hidepain@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'PATIENT');
+INSERT INTO tbl_account VALUES (NULL,'Stark','Jon','stark@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'PATIENT');
 
 DROP TABLE IF EXISTS tbl_friendship;
 CREATE TABLE tbl_friendship (
@@ -25,6 +29,11 @@ CREATE TABLE tbl_friendship (
             ON DELETE CASCADE
             ON UPDATE NO ACTION
 );
+
+INSERT INTO tbl_friendship VALUES (1,2);
+INSERT INTO tbl_friendship VALUES (1,3);
+INSERT INTO tbl_friendship VALUES (1,4);
+INSERT INTO tbl_friendship VALUES (1,5);
 
 DROP TABLE IF EXISTS tbl_participants;
 CREATE TABLE tbl_participants (

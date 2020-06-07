@@ -60,7 +60,7 @@ public class EventTemplate {
 		
 		res += "}";
 		
-		return title + " " + res;
+		return id + " " + title + " " + res;
 	}
 
 	

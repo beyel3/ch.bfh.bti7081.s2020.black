@@ -38,8 +38,9 @@ public class CreateEventPresenter extends Presenter implements CreateEventInterf
 		for(Account a : set) {
 			accounts.add(a);
 		}
+		accounts.add(superPresenter.getLoggedInAccount());
 		Event event = new Event(eventTemplate, isPublic, maxParticipants, accounts);
-		createEventState.saveEvent(event).getMaxParticipants();
+		createEventState.saveEvent(event);
 		
 		new MyEventPresenter(superPresenter);
 		
