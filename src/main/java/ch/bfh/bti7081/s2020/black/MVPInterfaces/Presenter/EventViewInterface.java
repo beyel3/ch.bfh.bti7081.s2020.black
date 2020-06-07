@@ -9,7 +9,8 @@ public interface EventViewInterface {
 	
 	public void buttonClick(EventAction action, Event selected);
 	public ArrayList<Event> getMyEvents();
-	public ArrayList<Post> getPosts();
+	public Event getSelectedEvent();
+	public ArrayList<Post> getPosts(Event event);
 	public void submitPost(String post);
 	    public enum EventAction{
         OPENCHAT,
@@ -17,6 +18,6 @@ public interface EventViewInterface {
         DETAILS,
         MARKDONE
     }
-	
+		
 
 }

@@ -15,17 +15,15 @@ import ch.bfh.bti7081.s2020.black.model.Post;
 
 public class PostViewImplementation<T extends EventViewInterface> extends VerticalLayout {
 
-	private HardCoded postsHardCoded = new HardCoded();
 	private static final long serialVersionUID = 1L;
 
-	private ArrayList<Post> posts = new ArrayList<>(postsHardCoded.getPosts());
-	
 	public PostViewImplementation(T presenter) {
+		
 		
 		setSizeFull();
 		VerticalLayout chatLayout = new VerticalLayout();
 		
-		for (Post p : posts.subList(0, 2)) {
+		for (Post p : presenter.getPosts(presenter.getSelectedEvent())) {
 			VerticalLayout postLayout = new VerticalLayout();
 			HorizontalLayout nameTimeLayout = new HorizontalLayout();
 			

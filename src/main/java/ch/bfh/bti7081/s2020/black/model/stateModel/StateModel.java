@@ -70,7 +70,7 @@ public abstract class StateModel {
 							break;
 					}
 				}
-				Event event = new Event(eventResult.getInt("eventId"), eventTemplate, eventResult.getString("info"), null,eventResult.getBoolean("isPublic"), eventResult.getInt("maxParticipants"), eventResult.getInt("rating"), Status.valueOf(eventResult.getString("state")), eventResult.getInt("imageID"), participants);
+				Event event = new Event(eventResult.getInt("eventId"), eventTemplate, eventResult.getString("info"), null,eventResult.getBoolean("isPublic"), eventResult.getInt("maxParticipants"), eventResult.getInt("rating"), Status.valueOf(eventResult.getString("state")), null, participants);
 				ArrayList<Post> posts = getPostsByEventID(event);
 				event.setPosts(posts);
 				events.add(event);
@@ -211,7 +211,7 @@ public abstract class StateModel {
 		}
 	}
 
-	public ArrayList<Account> getFirends(Account acc){
+	public ArrayList<Account> getFriends(Account acc){
 		ArrayList<Account> friends = new ArrayList<Account>();
 		try {
 			ResultSet accResult = persistence.executeQuery("SELECT a.first_name, a.last_name, a.email, a.accountType, a.level, a.patientInfo FROM tbl_friendship AS f INNER JOIN tbl_account AS a ON f.accountID2 = a.accountID WHERE f.accountID1 = " + acc.getId());

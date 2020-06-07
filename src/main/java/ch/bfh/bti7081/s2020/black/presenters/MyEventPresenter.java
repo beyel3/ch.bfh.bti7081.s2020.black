@@ -6,7 +6,6 @@ import com.vaadin.flow.component.dialog.Dialog;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
 import ch.bfh.bti7081.s2020.black.model.Event;
-import ch.bfh.bti7081.s2020.black.model.HardCoded;
 import ch.bfh.bti7081.s2020.black.model.Post;
 import ch.bfh.bti7081.s2020.black.model.stateModel.MyEvent;
 import ch.bfh.bti7081.s2020.black.views.MyEventViewImplementation;
@@ -26,10 +25,6 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 		
 		currentView = new MyEventViewImplementation<MyEventPresenter>(this);
 		superPresenter.addPage(currentView);
-		
-		dialogPostView = new Dialog();
-		dialogPostView.add(new PostViewImplementation<MyEventPresenter>(this));
-		superPresenter.addPage(dialogPostView);
 
 	}
 
@@ -37,12 +32,13 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 	public void buttonClick(EventAction action, Event selected) {
 
 		this.selected = selected;
-		
-//		superPresenter.removePage(currentView);
-
+			
 		switch (action) {
 		
 		case OPENCHAT:
+			dialogPostView = new Dialog();
+			dialogPostView.add(new PostViewImplementation<MyEventPresenter>(this));
+			superPresenter.addPage(dialogPostView);
 			dialogPostView.open();	
 			break;
 		case CLOSECHAT:
@@ -51,15 +47,16 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 		case DETAILS:
 			break;
 		case MARKDONE:
+			superPresenter.removePage(currentView);
+			new CloseEventPresenter(superPresenter, selected);
 			break;
 		}
 	}
 
 
 	@Override
-	public ArrayList<Post> getPosts() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Post> getPosts(Event event) {
+		return myEventState.getPostsByEventID(event);
 	}
 
 	@Override
@@ -76,8 +73,11 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 
 	@Override
 	public ArrayList<Event> getMyEvents() {
-		
-//		return new HardCoded().getEvent();
 		return myEventState.getEventListByAccount(superPresenter.getLoggedInAccount());
+	}
+
+	@Override
+	public Event getSelectedEvent() {
+		return selected;
 	}
 }

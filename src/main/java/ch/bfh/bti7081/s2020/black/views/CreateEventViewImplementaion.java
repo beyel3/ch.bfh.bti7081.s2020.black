@@ -31,7 +31,7 @@ public class CreateEventViewImplementaion<T extends CreateEventInterface> extend
 	private MultiSelectListBox<Tag> tags;
 	private Checkbox publicEvent;
 	private NumberField maxParticipants;
-	private ArrayList<Account> participants = new HardCoded().getCoreUser();
+	private ArrayList<Account> participants;
 	private EventTemplate eventTemplate;
 
 	
@@ -47,7 +47,8 @@ public class CreateEventViewImplementaion<T extends CreateEventInterface> extend
 		publicEvent = new Checkbox();
 		maxParticipants = new NumberField();
 		MultiSelectListBox<Account> participants = new MultiSelectListBox<Account>();
-		participants.setItems(this.participants);
+		
+		participants.setItems(presenter.getFriendsFromLoggedInAccount());
 		setSizeFull();
 				
 		
@@ -101,19 +102,5 @@ public class CreateEventViewImplementaion<T extends CreateEventInterface> extend
 		VerticalLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 		VerticalLayout.add(FormLayouts);
 		add(VerticalLayout);
-	}
-	
-
-
-	public void setTemplateInfo(EventTemplate eventTemplate) {
-		
-		this.title.setValue(eventTemplate.getTitle());
-		this.description.setValue(eventTemplate.getDescription());
-		this.tags.setItems(eventTemplate.getTags());
-		
-		this.title.setReadOnly(true);
-		this.description.setReadOnly(true);
-		this.tags.setReadOnly(true);
-		
 	}
 }
