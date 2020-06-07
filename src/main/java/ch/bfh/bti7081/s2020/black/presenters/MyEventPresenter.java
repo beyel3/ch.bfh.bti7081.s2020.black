@@ -26,9 +26,7 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 		currentView = new MyEventViewImplementation<MyEventPresenter>(this);
 		superPresenter.addPage(currentView);
 		
-		dialogPostView = new Dialog();
-		dialogPostView.add(new PostViewImplementation<MyEventPresenter>(this));
-		superPresenter.addPage(dialogPostView);
+
 		
 
 	}
@@ -41,6 +39,9 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 		switch (action) {
 		
 		case OPENCHAT:
+			dialogPostView = new Dialog();
+			dialogPostView.add(new PostViewImplementation<MyEventPresenter>(this));
+			superPresenter.addPage(dialogPostView);
 			dialogPostView.open();	
 			break;
 		case CLOSECHAT:
