@@ -74,7 +74,11 @@ public class MarkEventDoneViewImplementation<T extends CloseEventViewInterface> 
 //			ImageIO.write(originalImage, "jpg", baos);
 //			byte[] imageInByte= baos.toByteArray();
 		});
-//		byte[] imageBytes = // your data source here
+		
+		
+		
+		
+		byte[] picture = null;
 //				StreamResource resource = new StreamResource("dummyImageName.jpg", () -> new ByteArrayInputStream(imageBytes));
 //				Image image = new Image(resource, "dummy image");
 		
@@ -82,10 +86,7 @@ public class MarkEventDoneViewImplementation<T extends CloseEventViewInterface> 
 		Button done = new Button("MARK EVENT AS DONE");
 		done.getStyle().set("marginRight", "10px");
 		done.addClickListener(event -> {
-//			presenter.submit(
-//					publicEvent.getValue(),
-//					(int) Math.round(maxParticipants.getValue()),
-//					participants.getSelectedItems());
+			presenter.closeEvent(picture, (int) Math.round(rating.getValue()));
 		});
 		
 
