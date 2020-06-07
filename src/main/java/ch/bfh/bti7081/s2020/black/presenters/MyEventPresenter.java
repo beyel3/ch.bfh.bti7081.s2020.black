@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.vaadin.flow.component.dialog.Dialog;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
+import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.Post;
 import ch.bfh.bti7081.s2020.black.model.stateModel.MyEvent;
@@ -16,6 +17,7 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 	private Dialog dialogPostView;
 	private MyEvent myEventState;
 	private Event selected;
+
 	
 	public MyEventPresenter(SuperPresenter superPresenter) {
 		super(superPresenter);
@@ -79,5 +81,10 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 	@Override
 	public Event getSelectedEvent() {
 		return selected;
+	}
+	
+	@Override
+	public ArrayList<Account> getMyFriends() {
+		return myEventState.getFriends(superPresenter.getLoggedInAccount());
 	}
 }

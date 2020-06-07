@@ -125,6 +125,7 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 
 
 	private Button createUseAsTemplateButton(EventTemplate item) {
+//		System.out.println(item);
 		Button buttonUseAsTemplate = new Button("USE AS TEMPLATE");
 			buttonUseAsTemplate.addClickListener(
 					event -> presenter.buttonClick(item));
