@@ -52,7 +52,7 @@ public class CreateTemplateViewImplementation<T extends EventTemplateInterface> 
 		createTemplate.addClickListener(event -> {
 			presenter.submitNewEventTemplate(title.getValue(), description.getValue(), tags.getValue());
 		});
-
+		// Layout Steps
 		formLayout.setResponsiveSteps(new ResponsiveStep("40em", 1));
 		formLayout.setSizeFull();
 		add(formLayout, createTemplate);
