@@ -187,6 +187,7 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		grid.getStyle().set("overflowY", "auto");
 
 		Button buttonSearchFriends = new Button("SEARCH NEW FRIENDS");
+		buttonSearchFriends.addClickListener(event -> presenter.buttonClick(EventViewInterface.EventAction.ADDFRIEND, null));
 
 		VerticalLayout topLeftLayout = new VerticalLayout(labelMyEvents, eventLayout);
 		topLeftLayout.setWidth("50%");
