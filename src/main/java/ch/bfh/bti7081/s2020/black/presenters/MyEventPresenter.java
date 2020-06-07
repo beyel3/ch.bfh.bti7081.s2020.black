@@ -7,14 +7,17 @@ import com.vaadin.flow.component.dialog.Dialog;
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Event;
+import ch.bfh.bti7081.s2020.black.model.Patient;
 import ch.bfh.bti7081.s2020.black.model.Post;
 import ch.bfh.bti7081.s2020.black.model.stateModel.MyEvent;
+import ch.bfh.bti7081.s2020.black.views.AddFriendsViewImplementation;
 import ch.bfh.bti7081.s2020.black.views.MyEventViewImplementation;
 import ch.bfh.bti7081.s2020.black.views.PostViewImplementation;
 
 public class MyEventPresenter extends Presenter implements EventViewInterface {
 
 	private Dialog dialogPostView;
+	private Dialog dialogAddFriendsView;
 	private MyEvent myEventState;
 	private Event selected;
 
@@ -46,7 +49,11 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 		case CLOSECHAT:
 			dialogPostView.close();	
 			break;
-		case DETAILS:
+		case ADDFRIEND:
+			dialogAddFriendsView = new Dialog();
+			dialogAddFriendsView.add(new AddFriendsViewImplementation<MyEventPresenter>(this));
+			superPresenter.addPage(dialogAddFriendsView);
+			dialogAddFriendsView.open();	
 			break;
 		case MARKDONE:
 			superPresenter.removePage(currentView);
@@ -86,5 +93,10 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 	@Override
 	public ArrayList<Account> getMyFriends() {
 		return myEventState.getFriends(superPresenter.getLoggedInAccount());
+	}
+
+	@Override
+	public ArrayList<Patient> getAccounts() {
+		return myEventState.getPatientListWithNoRel(superPresenter.getLoggedInAccount());
 	}
 }
