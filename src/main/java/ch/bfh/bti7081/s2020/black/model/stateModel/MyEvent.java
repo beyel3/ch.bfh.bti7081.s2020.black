@@ -52,4 +52,24 @@ public class MyEvent extends StateModel {
 		return null;
 	}
 
+	public ArrayList<Patient> getPatientListWithNoRel(Account acc) {
+
+		ArrayList<Patient> list = new ArrayList<>();
+		try {
+
+			ResultSet rs = persistence.executeQuery("SELECT a.first_name, a.last_name, a.email, a.patientInfo FROM tbl_friendship AS f INNER JOIN tbl_account AS a ON f.accountID2 = a.accountID WHERE f.accountID1 != " + acc.getId());
+			while (rs.next()) {
+				Patient us = new Patient(rs.getString(1), rs.getString(2), rs.getString(3));
+				us.setPatientInfo(rs.getString(4));
+				list.add(us);
+			}
+			return list;
+		}
+		catch(SQLException e){
+			// query failed
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }
