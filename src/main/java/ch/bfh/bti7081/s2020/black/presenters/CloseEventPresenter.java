@@ -16,13 +16,14 @@ import ch.bfh.bti7081.s2020.black.views.MarkEventDoneViewImplementation;
 public class CloseEventPresenter extends Presenter implements CloseEventViewInterface {
 	
 	private Event event;
+	private CloseEvent closeEventState; 
 
 	public CloseEventPresenter(SuperPresenter superPresenter, Event event) {
 		super(superPresenter);
 		
 		this.event = event;
 
-		CloseEvent closeEventState = new CloseEvent();
+		closeEventState = new CloseEvent();
 		superPresenter.setState(closeEventState);
 
 		currentView = new MarkEventDoneViewImplementation<CloseEventViewInterface>(this);
@@ -47,9 +48,9 @@ public class CloseEventPresenter extends Presenter implements CloseEventViewInte
 	}
 
 	@Override
-	public void buttonClick(EventAction action) {
-		
-		
+	public void closeEvent(byte[] picture, int rating) {
+		closeEventState.savePicture(picture);
+		event.setRating(rating);
+		closeEventState.setEventRating(event);
 	}
-
 }
