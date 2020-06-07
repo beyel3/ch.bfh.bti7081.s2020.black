@@ -2,6 +2,8 @@ package ch.bfh.bti7081.s2020.black.views;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.SignUpInterface;
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.View.DialogInterface;
+import com.vaadin.flow.component.html.Anchor;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
 import com.vaadin.flow.component.radiobutton.RadioGroupVariant;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -44,6 +46,9 @@ public class SignUpViewImplementation<T extends SignUpInterface> extends Vertica
 
         Button btnSubmit = new Button("Submit");
         FormLayout form = new FormLayout();
+        form.setWidth("80%");
+        Image logo = new Image("./icons/ProjectLogoBlueMedium.png", "");
+        logo.setWidth("100%");
 
         accountType.setLabel("Account Type");
         accountType.setItems("Relative", "Patient");
@@ -58,9 +63,8 @@ public class SignUpViewImplementation<T extends SignUpInterface> extends Vertica
         form.add(accountType);
         form.addFormItem(btnSubmit,"");
 
-        form.getStyle().set("border", "2px solid #2f6f91");
-        form.setResponsiveSteps(new ResponsiveStep("30em", 1));
-        form.setWidth("40%");
+        Anchor anchor = new Anchor();
+        anchor.setText("Login");
 
         btnSubmit.addClickListener(e -> presenter.submit(txtFirstName.getValue(),
                 txtLastName.getValue(),
@@ -68,12 +72,22 @@ public class SignUpViewImplementation<T extends SignUpInterface> extends Vertica
                 txtPassword.getValue(),
                 txtRepeatPassword.getValue(),
                 accountType.getValue()));
+        anchor.getElement().addEventListener("click", event -> presenter.logIn());
+        form.getElement().addEventListener("keypress", event -> presenter.submit(txtFirstName.getValue(),
+                txtLastName.getValue(),
+                emailField.getValue(),
+                txtPassword.getValue(),
+                txtRepeatPassword.getValue(),
+                accountType.getValue())).setFilter("event.key == 'Enter'");
 
-        
-        HorizontalLayout submitLayout = new HorizontalLayout(form);
-        submitLayout.setSizeFull();
-        submitLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-        add(submitLayout);
+
+        VerticalLayout formLayout = new VerticalLayout();
+        formLayout.setWidth("25%");
+        formLayout.add(logo,form);
+        formLayout.getStyle().set("align-items", "center");
+        formLayout.getStyle().set("border", "2px solid #2f6f91");
+        getStyle().set("align-items", "center");
+        add(formLayout, anchor);
     }
 
     @Override
