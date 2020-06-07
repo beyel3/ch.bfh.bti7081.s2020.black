@@ -63,8 +63,7 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 
 		Grid.Column<EventTemplate> titleColumn = grid.addColumn(EventTemplate::getTitle).setHeader("Title");
 		Grid.Column<EventTemplate> descriptionColumn = grid.addColumn(EventTemplate::getDescription).setHeader("Description");
-		Grid.Column<EventTemplate> tagColumn = grid.addColumn(EventTemplate::getTags).setHeader("Tags");
-		
+		Grid.Column<EventTemplate> tagColumn = grid.addColumn(event -> event.getTags().toString().replaceAll("\\[|\\]", "")).setHeader("Tags");
 		Grid.Column<EventTemplate> ratingColumn = grid.addColumn(EventTemplate::getAvgRating).setHeader("Rating");
 		grid.addComponentColumn(item -> createUseAsTemplateButton(item)).setHeader("Use as template");
 		descriptionColumn.setFlexGrow(3);
@@ -169,6 +168,7 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 				event -> getUI().ifPresent(ui -> ui.navigate("CreateEvent/" + singleTemplate.getTemplateIDforURL())));
 
 		layout.add(title, description, tags, progressBar, button);
+		layout.setMinWidth("350px");
 		templates.add(layout);
 
 		dialogShowTemplate.add(templates);

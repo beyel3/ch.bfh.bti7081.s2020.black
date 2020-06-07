@@ -10,29 +10,22 @@ public class CreateEvent extends StateModel {
 
 	public Event saveEvent(Event event) {
 		// Das setzt voraus, dass das Event objekt bereits die EventTemplateID seines EventTemplates kennt
-		//try {
+		try {
 			persistence.executeUpdate("INSERT INTO tbl_event VALUES (NULL,'" + event.getInfo() + "'," + event.isPublic() + "," + event.getRating() + ", '" + event.getStatus().toString() + "'," + event.getMaxParticipants() + "," + event.getEventTemplate().getId() + "," + event.getPictureID() + ")");
 			ResultSet rs = persistence.executeQuery("SELECT LAST_INSERT_ROWID()");
+			event.setId(rs.getInt(1));
 
 			for (Account a:event.getParticipants()){
 				persistence.executeUpdate("INSERT INTO tbl_participants VALUES ("+a.getId()+", "+event.getId()+")");
-
 			}
 
 			return event;
-//		}
-//		catch(SQLException e){
-//			// query failed
-//			e.printStackTrace();
-//			return null;
-//		}
+		}
+		catch(SQLException e){
+			// query failed
+			e.printStackTrace();
+			return null;
+		}
 	}
-	
-	
-	public void addEventToTemplate(Event event) {
-	
-		
-	}
-	
 }
 

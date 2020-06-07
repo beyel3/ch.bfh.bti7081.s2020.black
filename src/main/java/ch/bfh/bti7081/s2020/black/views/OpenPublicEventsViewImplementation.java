@@ -39,9 +39,8 @@ public class OpenPublicEventsViewImplementation<T extends EventTemplateInterface
 		Grid.Column<Event> titleColumn = grid.addColumn(event -> event.getEventTemplate().getTitle()).setHeader("Title");
 		Grid.Column<Event> descriptionColumn = grid.addColumn(event -> event.getEventTemplate().getDescription())
 				.setHeader("Description");
-		Grid.Column<Event> tagColumn = grid.addColumn(event -> event.getEventTemplate().getTags().toString().replaceAll("[[]]","")).setHeader("Tags");
-		Grid.Column<Event> paricipantsColumn = grid.addColumn(event -> event.getParticipants().toString().replaceAll("[[]]",""))
-				.setHeader("Participants");
+		Grid.Column<Event> tagColumn = grid.addColumn(event -> event.getEventTemplate().getTags().toString().replaceAll("\\[|\\]", "")).setHeader("Tags");
+		Grid.Column<Event> paricipantsColumn = grid.addColumn(event -> event.getParticipants().toString()).setHeader("Participants");
 		Grid.Column<Event> maxParticipantsColumn = grid.addColumn(Event::getMaxParticipants).setHeader("Max Participants");
 		grid.addComponentColumn(item -> createJoinPublicEventButton(item)).setHeader("Join pulibc Event");
 		descriptionColumn.setFlexGrow(3);
@@ -87,14 +86,14 @@ public class OpenPublicEventsViewImplementation<T extends EventTemplateInterface
 		// Fourth Filter for participants
 		TextField participantsField = new TextField();
 		ArrayList<String> participantsList = new ArrayList<>();
-		tagField.addValueChangeListener(event -> dataProvider.addFilter(publicEvent -> StringUtils
+		participantsField.addValueChangeListener(event -> dataProvider.addFilter(publicEvent -> StringUtils
 				.containsIgnoreCase(publicEvent.getParticipants().toString(), tagField.getValue())));
 
-		tagField.setValueChangeMode(ValueChangeMode.EAGER);
+		participantsField.setValueChangeMode(ValueChangeMode.EAGER);
 
 		filterRow.getCell(tagColumn).setComponent(tagField);
-		tagField.setSizeFull();
-		tagField.setPlaceholder("Filter");
+		participantsField.setSizeFull();
+		participantsField.setPlaceholder("Filter");
 
 		grid.setWidth("100%");
 		grid.setHeight("68vh");

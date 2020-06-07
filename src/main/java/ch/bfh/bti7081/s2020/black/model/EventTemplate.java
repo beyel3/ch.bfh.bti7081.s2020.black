@@ -12,7 +12,7 @@ public class EventTemplate {
 	private ArrayList<Event> events;
 	private double avgRating;
 	
-	//generate from persistence
+	// generate from persistence
 	public EventTemplate(int id, String title, String description, ArrayList<Tag> tags, ArrayList<Event> events, double avgRating) {
 		
 		this.id = id;
@@ -24,7 +24,7 @@ public class EventTemplate {
 		
 	}
 	
-	//generate new by presenter
+	// generate new by presenter
 	public EventTemplate(String title, String description, ArrayList<Tag> tags) {
 		
 		this.title = title;
@@ -36,7 +36,7 @@ public class EventTemplate {
 
 	public void rate() {
 
-		//Berechne durchschnitt über alle Events
+		// calculate the average rating over all events
 		double count = 0;
 		double sum = 0;
 		for (Event e : events) {
