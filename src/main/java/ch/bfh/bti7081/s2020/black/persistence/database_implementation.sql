@@ -14,6 +14,7 @@ INSERT INTO tbl_account VALUES (NULL,'Mitchell','Billy','mitchell@mail.com','8d9
 INSERT INTO tbl_account VALUES (NULL,'Dover','Ben','dover@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'PATIENT');
 INSERT INTO tbl_account VALUES (NULL,'Hidepain','Harald','hidepain@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'PATIENT');
 INSERT INTO tbl_account VALUES (NULL,'Stark','Jon','stark@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'PATIENT');
+INSERT INTO tbl_account VALUES (NULL,'Shore','Tim','stark@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'PATIENT');
 
 DROP TABLE IF EXISTS tbl_friendship;
 CREATE TABLE tbl_friendship (
