@@ -25,9 +25,6 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 		
 		currentView = new MyEventViewImplementation<MyEventPresenter>(this);
 		superPresenter.addPage(currentView);
-		
-
-		
 
 	}
 
