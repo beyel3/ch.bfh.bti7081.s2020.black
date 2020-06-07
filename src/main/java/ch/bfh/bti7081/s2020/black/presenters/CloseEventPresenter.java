@@ -33,7 +33,7 @@ public class CloseEventPresenter extends Presenter implements CloseEventViewInte
 	@Override
 	public Event getEvent() {
 
-		return closeEventState.getEvent();
+		return null;
 	}
 
 	@Override

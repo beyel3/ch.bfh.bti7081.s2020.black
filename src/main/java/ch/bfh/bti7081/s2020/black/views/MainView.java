@@ -25,8 +25,7 @@ public class MainView extends VerticalLayout implements RouterLayout, PageConfig
 	
 	public MainView() {
 
-		add(new CloseEventViewImplementation(new CloseEventPresenter(new SuperPresenter(this))));
-//		
+		new SuperPresenter(this);
 
     }
     @Override

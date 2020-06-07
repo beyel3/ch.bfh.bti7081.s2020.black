@@ -27,10 +27,10 @@ public class CloseEventViewImplementation<T extends CloseEventViewInterface> ext
 	public CloseEventViewImplementation(T presenter) {
 
 		
-		byte[] imageBytes;
-		StreamResource resource = new StreamResource("dummyImageName.jpg", () -> new ByteArrayInputStream(imageBytes));
-		Image image = new Image(resource, "dummy image");
-		add(image);
+//		byte[] imageBytes;
+//		StreamResource resource = new StreamResource("dummyImageName.jpg", () -> new ByteArrayInputStream(imageBytes));
+//		Image image = new Image(resource, "dummy image");
+//		add(image);
 		
 		event = presenter.getEvent();
 
