@@ -1,19 +1,19 @@
 package ch.bfh.bti7081.s2020.black.model;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Post {
 	
 	private String message;
 	private Event event;
-	private Date date;
+	private Timestamp timeStamp;
 	private Account account;
 	
 	//get from DB
-	public Post(String message, Event event, Date date, Account account) {
+	public Post(String message, Event event, Timestamp timeStamp, Account account) {
 		this.message = message;
-		this.date = date;
+		this.timeStamp = timeStamp;
 		this.account = account;
 		this.event = event;
 	}
@@ -21,9 +21,13 @@ public class Post {
 	//gererated by user
 	public Post(String message, Event event, Account coreuser) {
 		this.message = message;
-		this.date = new Date();
+		this.timeStamp = new Timestamp(System.currentTimeMillis());
 		this.account = coreuser;
 		this.event = event;
+	}
+	
+	public String getDateString() {
+		return "Test DB";
 	}
 	
 	public String getMessage() {
@@ -31,13 +35,15 @@ public class Post {
 	}
 	
 	public String getTimeString() {
-		return date.toString();
+		return timeStamp.toString();
 	}
 	
 	public String getUser() {
 		return account.toString();
 	}
 
-	public Date getDate(){ return this.date;}
+	public Timestamp getDate(){ 
+		return this.timeStamp;
+		}
 
 }

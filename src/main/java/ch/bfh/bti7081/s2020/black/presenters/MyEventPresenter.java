@@ -70,8 +70,8 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 
 	@Override
 	public void submitPost(String post) {
-		myEventState.savePost(post, superPresenter.getLoggedInAccount(), selected);
 		
+		myEventState.savePost(post, superPresenter.getLoggedInAccount(), selected);
 		superPresenter.removePage(dialogPostView);
 		
 		dialogPostView = new Dialog();

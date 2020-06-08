@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2020.black.model.stateModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import ch.bfh.bti7081.s2020.black.model.*;
@@ -159,14 +160,14 @@ public abstract class StateModel {
 				switch (AccountType.valueOf(postResult.getString(4))) {
 					case PATIENT:
 						Patient pat = new Patient(postResult.getString(1), postResult.getString(2), postResult.getString(3),null);
-						pat.setPatientInfo(postResult.getString(6));
-						Post pp = new Post(postResult.getString(7), event, postResult.getDate(8), pat);
+						pat.setPatientInfo(postResult.getString(6));						
+						Post pp = new Post(postResult.getString(7), event, postResult.getTimestamp(8), pat);
 						posts.add(pp);
 						break;
 					case RELATIVE:
 						Relative rel = new Relative(postResult.getString(1), postResult.getString(2), postResult.getString(3),null);
 						rel.setLvl(postResult.getInt(5));
-						Post pr = new Post(postResult.getString(7), event, postResult.getDate(8), rel);
+						Post pr = new Post(postResult.getString(7), event, postResult.getTimestamp(8), rel);
 						posts.add(pr);
 						break;
 					default:
