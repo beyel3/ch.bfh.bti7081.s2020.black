@@ -40,11 +40,6 @@ public class CloseEventPresenter extends Presenter implements CloseEventViewInte
 	}
 
 
-	public byte[] getPicture() throws IOException {
-		
-		return null;
-	}
-
 	@Override
 	public void closeEvent(byte[] picture, int rating) {
 		
@@ -52,7 +47,7 @@ public class CloseEventPresenter extends Presenter implements CloseEventViewInte
 		event.setStatus(Status.done);
 		
 		try {
-			closeEventState.savePicture(picture);
+			closeEventState.savePicture(picture, event);
 		} catch (SerialException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
