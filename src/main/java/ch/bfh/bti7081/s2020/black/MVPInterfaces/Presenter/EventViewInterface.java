@@ -28,6 +28,6 @@ public interface EventViewInterface {
         ADDFRIEND,
         MARKDONE
     }
+		public int getLoggedInAccountID();
 		
-
 }

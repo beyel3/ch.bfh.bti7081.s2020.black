@@ -72,8 +72,8 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 
 	@Override
 	public void submitPost(String post) {
-		myEventState.savePost(post, superPresenter.getLoggedInAccount(), selected);
 		
+		myEventState.savePost(post, superPresenter.getLoggedInAccount(), selected);
 		superPresenter.removePage(dialogPostView);
 		
 		dialogPostView = new Dialog();
@@ -136,4 +136,12 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 	public ArrayList<Event> getPatientEvents(Account acc) {
 		return myEventState.getOpenEventListByAccount(acc);
 	}
+
+	@Override
+	public int getLoggedInAccountID() {
+		return superPresenter.getLoggedInAccount().getId();
+	}
+
+
+
 }

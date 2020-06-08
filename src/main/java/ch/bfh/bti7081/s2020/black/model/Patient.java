@@ -15,6 +15,9 @@ public class Patient extends Account {
 		 super(firstName, lastName, email, null, AccountType.PATIENT);
 	}
 
+	public Patient(int id, String firstName, String lastName, String email, String password) {
+		 super(id, firstName, lastName, email, null, AccountType.PATIENT);
+	}
 	public String getPatientInfo() {
         return patientInfo;
     }

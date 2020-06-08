@@ -68,8 +68,6 @@ CREATE TABLE tbl_post (
             ON UPDATE NO ACTION
 );
 
-INSERT INTO tbl_post VALUES (2,1,'Hey Bro! Ja eh!','2020-06-08 10:30:32.11');
-
 DROP TABLE IF EXISTS tbl_event;
 CREATE TABLE tbl_event (
     eventID INTEGER PRIMARY KEY,
