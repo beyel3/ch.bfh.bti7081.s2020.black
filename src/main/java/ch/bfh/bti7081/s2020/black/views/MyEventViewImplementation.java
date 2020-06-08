@@ -251,8 +251,8 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		
 
 		byte[] imageBytes = presenter.getPicture(singleEvent);
-				StreamResource resource = new StreamResource("eventImage.jpg", () -> new ByteArrayInputStream(imageBytes));
-				Image selfie = new Image(resource, "");
+				StreamResource resource = new StreamResource("dummyImageName.jpg", () -> new ByteArrayInputStream(imageBytes));
+				Image selfie = new Image(resource, "Dummy Image");
 				selfie.setWidth("100%");
 
 		layout.add(title, description, tags, progressBar, participants, selfie);
