@@ -7,6 +7,9 @@ public class Relative extends Account {
     public Relative(String firstName, String lastName, String email, String password){
         super(firstName, lastName, email, password, AccountType.RELATIVE);
     }
+    public Relative(int id, String firstName, String lastName, String email) {
+        super(id, firstName, lastName, email, null, AccountType.PATIENT);
+    }
 
     public int getLvl() {
         return level;
@@ -23,8 +26,6 @@ public class Relative extends Account {
     @Override
     public String toString() {
         //super toString
-        return "Relative{" +
-                "lvl=" + level +
-                '}';
+        return "Relative: " + getFirstName() + " " + getLastName();
     }
 }
