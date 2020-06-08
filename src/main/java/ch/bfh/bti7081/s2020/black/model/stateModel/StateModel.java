@@ -54,17 +54,17 @@ public abstract class StateModel {
 
 			while (eventResult.next()) {
 				ArrayList<Account> participants = new ArrayList<Account>();
-				ResultSet participantsResult = persistence.executeQuery("SELECT a.first_name, a.last_name, a.email, a.accountType, a.level, a.patientInfo, a.accountID FROM tbl_participants AS p INNER JOIN tbl_account AS a ON p.accountID = a.accountID WHERE p.eventID = " + eventResult.getInt("eventID"));
+				ResultSet participantsResult = persistence.executeQuery("SELECT a.accountID, a.first_name, a.last_name, a.email, a.accountType, a.level, a.patientInfo FROM tbl_participants AS p INNER JOIN tbl_account AS a ON p.accountID = a.accountID WHERE p.eventID = " + eventResult.getInt("eventID"));
 				while (participantsResult.next()) {
-					switch (AccountType.valueOf(participantsResult.getString(4))) {
+					switch (AccountType.valueOf(participantsResult.getString(5))) {
 						case PATIENT:
-							Patient pat = new Patient(participantsResult.getInt(7), participantsResult.getString(1), participantsResult.getString(2), participantsResult.getString(3),participantsResult.getString(4));
-							pat.setPatientInfo(participantsResult.getString(6));
+							Patient pat = new Patient(participantsResult.getInt(1),participantsResult.getString(2), participantsResult.getString(3), participantsResult.getString(4));
+							pat.setPatientInfo(participantsResult.getString(7));
 							participants.add(pat);
 							break;
 						case RELATIVE:
-							Relative rel = new Relative(participantsResult.getInt(7), participantsResult.getString(1), participantsResult.getString(2), participantsResult.getString(3),participantsResult.getString(4));
-							rel.setLvl(participantsResult.getInt(5));
+							Relative rel = new Relative(participantsResult.getInt(1),participantsResult.getString(2), participantsResult.getString(3), participantsResult.getString(4));
+							rel.setLvl(participantsResult.getInt(6));
 							participants.add(rel);
 							break;
 						default:
@@ -152,21 +152,21 @@ public abstract class StateModel {
 	
 		ArrayList<Post> posts = new ArrayList<Post>();
 		try {
-			ResultSet postResult = persistence.executeQuery("SELECT a.first_name, a.last_name, a.email, a.accountType, a.level, a.patientInfo, p.content, p.creationTime FROM tbl_post AS p INNER JOIN tbl_account AS a ON p.accountID = a.accountID WHERE p.eventID = " + event.getId());
+			ResultSet postResult = persistence.executeQuery("SELECT a.accountID, a.first_name, a.last_name, a.email, a.accountType, a.level, a.patientInfo, p.content, p.creationTime FROM tbl_post AS p INNER JOIN tbl_account AS a ON p.accountID = a.accountID WHERE p.eventID = " + event.getId());
 
 			while (postResult.next()) {
-				switch (AccountType.valueOf(postResult.getString(4))) {
+				switch (AccountType.valueOf(postResult.getString(5))) {
 					case PATIENT:
-						Patient pat = new Patient(postResult.getString(1), postResult.getString(2), postResult.getString(3),null);
-						pat.setPatientInfo(postResult.getString(6));
-						Post pp = new Post(postResult.getString(7), event, postResult.getTimestamp(8), pat);
+						Patient pat = new Patient(postResult.getInt(1),postResult.getString(2), postResult.getString(3), postResult.getString(4));
+						pat.setPatientInfo(postResult.getString(7));
+						Post pp = new Post(postResult.getString(8), event, postResult.getDate(9), pat);
 						posts.add(pp);
 					
 						break;
 					case RELATIVE:
-						Relative rel = new Relative(postResult.getString(1), postResult.getString(2), postResult.getString(3),null);
-						rel.setLvl(postResult.getInt(5));
-						Post pr = new Post(postResult.getString(7), event, postResult.getTimestamp(8), rel);
+						Relative rel = new Relative(postResult.getInt(1),postResult.getString(2), postResult.getString(3), postResult.getString(4));
+						rel.setLvl(postResult.getInt(6));
+						Post pr = new Post(postResult.getString(8), event, postResult.getDate(9), rel);
 						posts.add(pr);
 						break;
 					default:
@@ -185,17 +185,17 @@ public abstract class StateModel {
 	public ArrayList<Account> getParticipantsByEventID(int id){
 		ArrayList<Account> participants = new ArrayList<Account>();
 		try {
-			ResultSet participantsResult = persistence.executeQuery("SELECT a.first_name, a.last_name, a.email, a.accountType, a.level, a.patientInfo FROM tbl_participants AS p INNER JOIN tbl_account AS a ON p.accountID = a.accountID WHERE p.eventID = " + id);
+			ResultSet participantsResult = persistence.executeQuery("SELECT a.accountID, a.first_name, a.last_name, a.email, a.accountType, a.level, a.patientInfo FROM tbl_participants AS p INNER JOIN tbl_account AS a ON p.accountID = a.accountID WHERE p.eventID = " + id);
 			while (participantsResult.next()) {
-				switch (AccountType.valueOf(participantsResult.getString(4))) {
+				switch (AccountType.valueOf(participantsResult.getString(5))) {
 					case PATIENT:
-						Patient pat = new Patient(participantsResult.getString(1), participantsResult.getString(2), participantsResult.getString(3), participantsResult.getString(4));
-						pat.setPatientInfo(participantsResult.getString(6));
+						Patient pat = new Patient(participantsResult.getInt(1), participantsResult.getString(2), participantsResult.getString(3), participantsResult.getString(4));
+						pat.setPatientInfo(participantsResult.getString(7));
 						participants.add(pat);
 						break;
 					case RELATIVE:
-						Relative rel = new Relative(participantsResult.getString(1), participantsResult.getString(2), participantsResult.getString(3), participantsResult.getString(4));
-						rel.setLvl(participantsResult.getInt(5));
+						Relative rel = new Relative(participantsResult.getInt(1), participantsResult.getString(2), participantsResult.getString(3), participantsResult.getString(4));
+						rel.setLvl(participantsResult.getInt(6));
 						participants.add(rel);
 						break;
 					default:
@@ -214,17 +214,17 @@ public abstract class StateModel {
 	public ArrayList<Account> getFriends(Account acc){
 		ArrayList<Account> friends = new ArrayList<Account>();
 		try {
-			ResultSet accResult = persistence.executeQuery("SELECT a.first_name, a.last_name, a.email, a.accountType, a.level, a.patientInfo FROM tbl_friendship AS f INNER JOIN tbl_account AS a ON f.accountID2 = a.accountID WHERE f.accountID1 = " + acc.getId());
+			ResultSet accResult = persistence.executeQuery("SELECT a.accountID, a.first_name, a.last_name, a.email, a.accountType, a.level, a.patientInfo FROM tbl_friendship AS f INNER JOIN tbl_account AS a ON f.accountID2 = a.accountID WHERE f.accountID1 = " + acc.getId());
 			while (accResult.next()) {
-				switch (AccountType.valueOf(accResult.getString(4))) {
+				switch (AccountType.valueOf(accResult.getString(5))) {
 					case PATIENT:
-						Patient pat = new Patient(accResult.getString(1), accResult.getString(2), accResult.getString(3), accResult.getString(4));
-						pat.setPatientInfo(accResult.getString(6));
+						Patient pat = new Patient(accResult.getInt(1), accResult.getString(2), accResult.getString(3), accResult.getString(4));
+						pat.setPatientInfo(accResult.getString(7));
 						friends.add(pat);
 						break;
 					case RELATIVE:
-						Relative rel = new Relative(accResult.getString(1), accResult.getString(2), accResult.getString(3), accResult.getString(4));
-						rel.setLvl(accResult.getInt(5));
+						Relative rel = new Relative(accResult.getInt(1), accResult.getString(2), accResult.getString(3), accResult.getString(4));
+						rel.setLvl(accResult.getInt(6));
 						friends.add(rel);
 						break;
 					default:
