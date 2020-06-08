@@ -8,11 +8,11 @@ public class Patient extends Account {
 
     private String patientInfo;
 
-	public Patient(String firstName, String lastName, String email, String password) {
+	public Patient( String firstName, String lastName, String email, String password) {
 		 super(firstName, lastName, email, password, AccountType.PATIENT);
 	}
-	public Patient(String firstName, String lastName, String email) {
-		 super(firstName, lastName, email, null, AccountType.PATIENT);
+	public Patient(int id, String firstName, String lastName, String email) {
+		 super(id, firstName, lastName, email, null, AccountType.PATIENT);
 	}
 
 	public Patient(int id, String firstName, String lastName, String email, String password) {
@@ -28,6 +28,6 @@ public class Patient extends Account {
 
     @Override
     public String toString() {
-        return getFirstName() + " " + getLastName();
+        return "Patient: " + getFirstName() + " " + getLastName();
     }
 }
