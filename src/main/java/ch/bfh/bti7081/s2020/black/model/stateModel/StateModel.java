@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2020.black.model.stateModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import ch.bfh.bti7081.s2020.black.model.*;
@@ -146,11 +147,9 @@ public abstract class StateModel {
 		}
 	}
 
-	public void savePost(Post post, Account acc, Event event){
-		persistence.executeUpdate("INSERT INTO tbl_post VALUES ("+acc.getId()+", "+event.getId()+", "+post.getMessage()+", "+post.getDate()+")");
-	}
 
 	public ArrayList<Post> getPostsByEventID(Event event){
+	
 		ArrayList<Post> posts = new ArrayList<Post>();
 		try {
 			ResultSet postResult = persistence.executeQuery("SELECT a.accountID, a.first_name, a.last_name, a.email, a.accountType, a.level, a.patientInfo, p.content, p.creationTime FROM tbl_post AS p INNER JOIN tbl_account AS a ON p.accountID = a.accountID WHERE p.eventID = " + event.getId());
@@ -160,13 +159,14 @@ public abstract class StateModel {
 					case PATIENT:
 						Patient pat = new Patient(postResult.getInt(1),postResult.getString(2), postResult.getString(3), postResult.getString(4));
 						pat.setPatientInfo(postResult.getString(7));
-						Post pp = new Post(postResult.getString(8), event, postResult.getDate(9), pat);
+						Post pp = new Post(postResult.getString(8), event, postResult.getTimestamp(9), pat);
 						posts.add(pp);
+					
 						break;
 					case RELATIVE:
 						Relative rel = new Relative(postResult.getInt(1),postResult.getString(2), postResult.getString(3), postResult.getString(4));
 						rel.setLvl(postResult.getInt(6));
-						Post pr = new Post(postResult.getString(8), event, postResult.getDate(9), rel);
+						Post pr = new Post(postResult.getString(8), event, postResult.getTimestamp(9), rel);
 						posts.add(pr);
 						break;
 					default:

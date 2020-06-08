@@ -44,6 +44,15 @@ public class Event {
 		this.participants = participants;
 		
 	}
+	
+	public String toString() {
+		String part = "";
+		for(Account a : participants) {
+			part += a.getFirstName();
+		}
+		
+		return "ID: " + id + ", " + "TEMPLATE: " + eventTemplate.getTitle() + ", " + part;
+	}
 
 	public void addPicture(byte [] picture){
 		this.picture = picture;

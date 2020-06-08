@@ -4,12 +4,15 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.imageio.ImageIO;
+import javax.sql.rowset.serial.SerialException;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.CloseEventViewInterface;
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface.EventAction;
 import ch.bfh.bti7081.s2020.black.model.Event;
+import ch.bfh.bti7081.s2020.black.model.Status;
 import ch.bfh.bti7081.s2020.black.model.stateModel.CloseEvent;
 import ch.bfh.bti7081.s2020.black.views.MarkEventDoneViewImplementation;
 
@@ -37,20 +40,25 @@ public class CloseEventPresenter extends Presenter implements CloseEventViewInte
 	}
 
 
-	public byte[] getPicture() throws IOException {
-		
-		File fnew = new File("/tmp/rose.jpg");
-		BufferedImage originalImage = ImageIO.read(fnew);
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		ImageIO.write(originalImage, "jpg", baos);
-		byte[] imageInByte = baos.toByteArray();
-		return imageInByte;
-	}
-
 	@Override
 	public void closeEvent(byte[] picture, int rating) {
-		closeEventState.savePicture(picture);
+		
 		event.setRating(rating);
+		event.setStatus(Status.done);
+		
+		try {
+			closeEventState.savePicture(picture, event);
+		} catch (SerialException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		closeEventState.setEventRating(event);
+		closeEventState.setEventStatus(event);
+		
+		superPresenter.removePage(currentView);
+		new MyEventPresenter(superPresenter);
 	}
 }

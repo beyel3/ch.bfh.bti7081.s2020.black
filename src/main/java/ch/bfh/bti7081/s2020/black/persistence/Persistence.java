@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2020.black.persistence;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -87,4 +88,22 @@ public class Persistence {
 
         }
     }
+    
+    public void executePreparedStatement(byte [] picture, Event event) {
+    	
+    	String sql = "INSERT INTO tbl_image (eventID, image) VALUES (?,?)";
+    	
+        try {  	
+        	PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setQueryTimeout(30);
+            stm.setInt(1, event.getId());
+            stm.setBytes(2, picture);
+            stm.executeUpdate();
+            stm.close();
+        }
+        catch(SQLException e) {
+            System.err.println(e);
+        }
+    }
+    
 }

@@ -11,7 +11,11 @@ public class Relative extends Account {
         super(id, firstName, lastName, email, null, AccountType.PATIENT);
     }
 
-    public int getLvl() {
+    public Relative(int id, String firstName, String lastName, String email, String password) {
+    	 super(id, firstName, lastName, email, password, AccountType.RELATIVE);
+	}
+
+	public int getLvl() {
         return level;
     }
 
@@ -22,10 +26,9 @@ public class Relative extends Account {
     public void increaseLevel(int amount){
         level += amount;
     }
-
+    
     @Override
     public String toString() {
-        //super toString
-        return "Relative: " + getFirstName() + " " + getLastName();
+        return getFirstName() + " " + getLastName();
     }
 }

@@ -1,8 +1,10 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.html.Image;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
@@ -12,12 +14,14 @@ import ch.bfh.bti7081.s2020.black.model.Post;
 import ch.bfh.bti7081.s2020.black.model.stateModel.MyEvent;
 import ch.bfh.bti7081.s2020.black.views.AddFriendsViewImplementation;
 import ch.bfh.bti7081.s2020.black.views.MyEventViewImplementation;
+import ch.bfh.bti7081.s2020.black.views.PatientInfoViewImplementation;
 import ch.bfh.bti7081.s2020.black.views.PostViewImplementation;
 
 public class MyEventPresenter extends Presenter implements EventViewInterface {
 
 	private Dialog dialogPostView;
 	private Dialog dialogAddFriendsView;
+	private Dialog dialogPatientInfoView;
 	private MyEvent myEventState;
 	private Event selected;
 
@@ -70,8 +74,8 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 
 	@Override
 	public void submitPost(String post) {
-		myEventState.savePost(post, superPresenter.getLoggedInAccount(), selected);
 		
+		myEventState.savePost(post, superPresenter.getLoggedInAccount(), selected);
 		superPresenter.removePage(dialogPostView);
 		
 		dialogPostView = new Dialog();
@@ -83,6 +87,16 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 	@Override
 	public ArrayList<Event> getMyEvents() {
 		return myEventState.getEventListByAccount(superPresenter.getLoggedInAccount());
+	}
+	
+	@Override
+	public ArrayList<Event> getMyOpenEvents() {
+		return myEventState.getOpenEventListByAccount(superPresenter.getLoggedInAccount());
+	}
+	
+	@Override
+	public ArrayList<Event> getMyDoneEvents() {
+		return myEventState.getDoneEventListByAccount(superPresenter.getLoggedInAccount());
 	}
 
 	@Override
@@ -99,4 +113,51 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 	public ArrayList<Patient> getAccounts() {
 		return myEventState.getPatientListWithNoRel(superPresenter.getLoggedInAccount());
 	}
+
+	@Override
+	public void addFriend(Patient patient) {
+		myEventState.addFriend(patient, superPresenter.getLoggedInAccount());
+		superPresenter.removePage(dialogAddFriendsView);
+		superPresenter.removePage(currentView);
+		currentView = new MyEventViewImplementation<MyEventPresenter>(this);
+		superPresenter.addPage(currentView);
+		dialogAddFriendsView = new Dialog();
+		dialogAddFriendsView.add(new AddFriendsViewImplementation<MyEventPresenter>(this));
+		superPresenter.addPage(dialogAddFriendsView);
+		dialogAddFriendsView.open();
+	}
+
+	@Override
+	public void enablePatientInfoView(Account acc) {
+		dialogPatientInfoView = new Dialog();
+		dialogPatientInfoView.add(new PatientInfoViewImplementation(this, acc));
+		superPresenter.addPage(dialogPatientInfoView);
+		dialogPatientInfoView.open();	
+	}
+
+	@Override
+	public ArrayList<Event> getPatientEvents(Account acc) {
+		return myEventState.getOpenEventListByAccount(acc);
+	}
+
+	@Override
+	public int getLoggedInAccountID() {
+		return superPresenter.getLoggedInAccount().getId();
+	}
+
+	@Override
+	public byte[] getPicture(Event singleEvent) {
+		
+		try {
+			return myEventState.loadPicture(singleEvent);
+		} catch (SQLException e) {
+		
+			
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+
 }

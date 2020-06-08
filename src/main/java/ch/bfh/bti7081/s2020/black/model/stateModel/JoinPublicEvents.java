@@ -8,11 +8,12 @@ import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.Post;
 import ch.bfh.bti7081.s2020.black.model.Status;
+import ch.bfh.bti7081.s2020.black.presenters.SuperPresenter;
 //import ch.bfh.bti7081.s2020.black.model.HardCoded;
 
 public class JoinPublicEvents extends StateModel {
 
-	public ArrayList<Event> getOpenPublicEvents() {
+	public ArrayList<Event> getOpenPublicEvents(Account acc) {
 
 		ArrayList<Event> events = new ArrayList<Event>();
 
@@ -21,10 +22,15 @@ public class JoinPublicEvents extends StateModel {
 
 			while (eventResult.next()) {
 				ArrayList<Account> participants = getParticipantsByEventID(eventResult.getInt(1));
-				Event event = new Event(eventResult.getInt(1), getEventTemplateByID(eventResult.getInt(2)), eventResult.getString(3), null,eventResult.getBoolean(4), eventResult.getInt(5), eventResult.getInt(6), Status.valueOf(eventResult.getString(7)), null, participants);
-				ArrayList<Post> posts = getPostsByEventID(event);
-				event.setPosts(posts);
-				events.add(event);
+				if (participants.contains(acc)) {
+					continue;
+				}
+				else {
+					Event event = new Event(eventResult.getInt(1), getEventTemplateByID(eventResult.getInt(2)), eventResult.getString(3), null, eventResult.getBoolean(4), eventResult.getInt(5), eventResult.getInt(6), Status.valueOf(eventResult.getString(7)), null, participants);
+					ArrayList<Post> posts = getPostsByEventID(event);
+					event.setPosts(posts);
+					events.add(event);
+				}
 			}
 			return events;
 		}
@@ -37,7 +43,6 @@ public class JoinPublicEvents extends StateModel {
 	}
 
 	public void joinPublicEvent(ArrayList<Account> users, Event event){
-		
 		for(Account a : users) {
 		persistence.executeUpdate("INSERT INTO tbl_participants VALUES ("+a.getId()+", "+event.getId()+")");
 		}

@@ -1,7 +1,5 @@
 package ch.bfh.bti7081.s2020.black.views;
 
-import java.util.ArrayList;
-
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -10,7 +8,6 @@ import com.vaadin.flow.component.textfield.TextField;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface.EventAction;
-import ch.bfh.bti7081.s2020.black.model.HardCoded;
 import ch.bfh.bti7081.s2020.black.model.Post;
 
 public class PostViewImplementation<T extends EventViewInterface> extends VerticalLayout {
@@ -30,10 +27,10 @@ public class PostViewImplementation<T extends EventViewInterface> extends Vertic
 			TextField userName = new TextField();
 			userName.setSizeFull();
 			userName.setReadOnly(true);
-			userName.setValue(p.getUser());
+			userName.setValue(p.getUserName());
 			TextField timeStamp = new TextField();
 			timeStamp.setSizeFull();
-			timeStamp.setValue(p.getTimeString().substring(0,p.getTimeString().length() - 10));
+			timeStamp.setValue(p.getTimeString().substring(0,p.getTimeString().length()-4));
 			timeStamp.setReadOnly(true);
 			nameTimeLayout.add(userName, timeStamp);
 			
@@ -43,7 +40,7 @@ public class PostViewImplementation<T extends EventViewInterface> extends Vertic
 			message.setReadOnly(true);
 			message.getStyle().set("margin-top", "2px");
 			
-			if (p.getUser().equalsIgnoreCase("Mario Schläppi")) { // if clause should be the current logged in user from the vaadin session
+			if (p.getAccountID() == presenter.getLoggedInAccountID()) { // if clause should be the current logged in user from the vaadin session
 				message.getStyle().set("background-color", "#2f6f91");
 			} else {
 				message.getStyle().set("background-color", "#95a9c9");
