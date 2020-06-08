@@ -57,6 +57,7 @@ public class JoinPublicEventPresenter extends Presenter implements JoinPublicEve
 		for (Account a : participants) {
 			list.add(a);
 		}
+		list.add(superPresenter.getLoggedInAccount());
 		joinPublicEventsState.joinPublicEvent(list, eventToJoin);
 		
 		superPresenter.removePage(dialogCreateEvent);

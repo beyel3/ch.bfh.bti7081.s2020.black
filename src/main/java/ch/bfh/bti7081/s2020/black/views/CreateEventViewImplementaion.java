@@ -17,7 +17,6 @@ import com.vaadin.flow.component.textfield.TextField;
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.CreateEventInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
-import ch.bfh.bti7081.s2020.black.model.HardCoded;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 
 
@@ -47,7 +46,6 @@ public class CreateEventViewImplementaion<T extends CreateEventInterface> extend
 		publicEvent = new Checkbox();
 		maxParticipants = new NumberField();
 		MultiSelectListBox<Account> participants = new MultiSelectListBox<Account>();
-		
 		participants.setItems(presenter.getFriendsFromLoggedInAccount());
 		setSizeFull();
 				
@@ -80,6 +78,7 @@ public class CreateEventViewImplementaion<T extends CreateEventInterface> extend
 					publicEvent.getValue(),
 					(int) Math.round(maxParticipants.getValue()),
 					participants.getSelectedItems());
+
 		});
 
 		FormLayoutLeft.addFormItem(title, "Titel");

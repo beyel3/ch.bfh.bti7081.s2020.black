@@ -24,13 +24,17 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Event;
+import ch.bfh.bti7081.s2020.black.model.Patient;
 import ch.bfh.bti7081.s2020.black.model.Tag;
+
+import javax.swing.tree.ExpandVetoException;
 
 public class MyEventViewImplementation<T extends EventViewInterface> extends VerticalLayout {
 
 	private static final long serialVersionUID = 1L;
 	private Dialog dialogShowEventDetails;
 	private VerticalLayout eventLayout = new VerticalLayout();
+	private T presenter;
 
 	public MyEventViewImplementation(T presenter) {
 		setSizeFull();
@@ -48,8 +52,11 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		eventLayout.getStyle().set("display", "block");
 		HorizontalLayout topLayout = new HorizontalLayout();
 		topLayout.setWidth("100%");
+		ArrayList<Event> myOpenEvents = presenter.getMyOpenEvents();
 
-		for (Event e : presenter.getMyEvents()) {
+		for (Event e : myOpenEvents) {
+
+			// System.out.println(e.getEventTemplate().getId());
 
 			String participantsHelper = new String(e.getParticipants().toString());
 			participantsHelper = participantsHelper.substring(1, participantsHelper.length() - 1);
@@ -74,8 +81,6 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 			ProgressBar progressBar = new ProgressBar();
 			progressBar.setValue(e.getEventTemplate().getAvgRating() / 10);
 
-//			HorizontalLayout buttonLayout = new HorizontalLayout();
-
 			Button buttonChat = new Button("CHAT");
 			buttonChat.addClickListener(event -> presenter.buttonClick(EventViewInterface.EventAction.OPENCHAT, e));
 			buttonChat.setWidth("100%");
@@ -87,8 +92,6 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 			Button buttonMarkDone = new Button("EVENT DONE");
 			buttonMarkDone.addClickListener(event -> presenter.buttonClick(EventViewInterface.EventAction.MARKDONE, e));
 			buttonMarkDone.setWidth("100%");
-
-//			buttonLayout.add(buttonChat, buttonDetails);
 
 			TextArea participants = new TextArea();
 			participants.setSizeFull();
@@ -108,7 +111,7 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		labelMyPastEvents.getStyle().set("font-weight", "bold");
 
 		Grid<Event> grid = new Grid<>();
-		ListDataProvider<Event> dataProvider = new ListDataProvider<>(presenter.getMyEvents());
+		ListDataProvider<Event> dataProvider = new ListDataProvider<>(presenter.getMyDoneEvents());
 		grid.setDataProvider(dataProvider);
 
 		Grid.Column<Event> titleColumn = grid.addColumn(event -> event.getEventTemplate().getTitle())
@@ -179,15 +182,17 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		gridFriends.setDataProvider(dataProviderFriends);
 		Grid.Column<Account> firstNameColumn = gridFriends.addColumn(acc -> acc.getFirstName()).setHeader("First Name");
 		Grid.Column<Account> lastNameColumn = gridFriends.addColumn(acc -> acc.getLastName()).setHeader("Last Name");
+		gridFriends.addComponentColumn(acc -> createCheckPatientInfoButton(acc)).setHeader("Check Patient Info");
 		gridFriends.getStyle().set("overflowY", "auto");
-		gridFriends.setWidth("50%");
+		gridFriends.setWidth("70%");
 
 		grid.setWidth("100%");
 		grid.setHeight("400px");
 		grid.getStyle().set("overflowY", "auto");
 
 		Button buttonSearchFriends = new Button("SEARCH NEW FRIENDS");
-		buttonSearchFriends.addClickListener(event -> presenter.buttonClick(EventViewInterface.EventAction.ADDFRIEND, null));
+		buttonSearchFriends
+				.addClickListener(event -> presenter.buttonClick(EventViewInterface.EventAction.ADDFRIEND, null));
 
 		VerticalLayout topLeftLayout = new VerticalLayout(labelMyEvents, eventLayout);
 		topLeftLayout.setWidth("50%");
@@ -254,6 +259,12 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 
 		dialogShowEventDetails.add(events);
 		dialogShowEventDetails.open();
+	}
+
+	private Button createCheckPatientInfoButton(Account acc) {
+		Button buttonCheckPatientInfo = new Button("CHECK PATIENT INFO");
+		buttonCheckPatientInfo.addClickListener(event -> presenter.enablePatientInfoView(acc));
+		return buttonCheckPatientInfo;
 	}
 
 }
