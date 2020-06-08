@@ -34,11 +34,9 @@ CREATE TABLE tbl_friendship (
 
 INSERT INTO tbl_friendship VALUES (1,2);
 INSERT INTO tbl_friendship VALUES (1,3);
-INSERT INTO tbl_friendship VALUES (1,4);
 
 INSERT INTO tbl_friendship VALUES (7,4);
 INSERT INTO tbl_friendship VALUES (7,5);
-INSERT INTO tbl_friendship VALUES (7,6);
 
 DROP TABLE IF EXISTS tbl_participants;
 CREATE TABLE tbl_participants (
@@ -72,7 +70,7 @@ CREATE TABLE tbl_post (
             ON UPDATE NO ACTION
 );
 
-INSERT INTO tbl_post VALUES (2,1,'Hey Bro! Ja eh!','2020-06-08 10:30:32.11');
+--INSERT INTO tbl_post VALUES (2,1,'Hey Bro! Ja eh!','2020-06-08 10:30:32.11');
 
 DROP TABLE IF EXISTS tbl_event;
 CREATE TABLE tbl_event (
@@ -139,6 +137,11 @@ CREATE TABLE tbl_tag (
 INSERT INTO tbl_tag VALUES (NULL,'Outdoor');
 INSERT INTO tbl_tag VALUES (NULL,'Indoor');
 INSERT INTO tbl_tag VALUES (NULL,'Sport');
+INSERT INTO tbl_tag VALUES (NULL,'Quick');
+INSERT INTO tbl_tag VALUES (NULL,'Chill');
+INSERT INTO tbl_tag VALUES (NULL,'Active');
+INSERT INTO tbl_tag VALUES (NULL,'Food');
+INSERT INTO tbl_tag VALUES (NULL,'Music');
 
 --INSERT INTO tbl_eventTemplate VALUES (NULL,'Test','Test open PublicEvent',10.0);
 --INSERT INTO tbl_event VALUES (NULL,'Test open PublicEvent',1,0,'open',4,1,NULL);
