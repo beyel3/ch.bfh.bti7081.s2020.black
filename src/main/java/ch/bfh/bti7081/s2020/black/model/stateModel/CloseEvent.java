@@ -1,14 +1,20 @@
 package ch.bfh.bti7081.s2020.black.model.stateModel;
 
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.sql.rowset.serial.SerialException;
 
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 
 public class CloseEvent extends StateModel {
 
-	public void savePicture(byte[] picture) {
-
+	public void savePicture(byte[] picture) throws SerialException, SQLException {
+//		Blob blob = new javax.sql.rowset.serial.SerialBlob(picture);
+//	    insertStatement_logo.bindBlob(2, picture);
+		persistence.executePreparedStatement(picture);
 	}
 
 	public void setEventRating(Event event) {
