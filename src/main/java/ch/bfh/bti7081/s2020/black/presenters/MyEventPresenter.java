@@ -12,12 +12,14 @@ import ch.bfh.bti7081.s2020.black.model.Post;
 import ch.bfh.bti7081.s2020.black.model.stateModel.MyEvent;
 import ch.bfh.bti7081.s2020.black.views.AddFriendsViewImplementation;
 import ch.bfh.bti7081.s2020.black.views.MyEventViewImplementation;
+import ch.bfh.bti7081.s2020.black.views.PatientInfoViewImplementation;
 import ch.bfh.bti7081.s2020.black.views.PostViewImplementation;
 
 public class MyEventPresenter extends Presenter implements EventViewInterface {
 
 	private Dialog dialogPostView;
 	private Dialog dialogAddFriendsView;
+	private Dialog dialogPatientInfoView;
 	private MyEvent myEventState;
 	private Event selected;
 
@@ -112,7 +114,27 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 
 	@Override
 	public void addFriend(Patient patient) {
-		myEventState.addFriend(patient, superPresenter.getLoggedInAccount());	
+		myEventState.addFriend(patient, superPresenter.getLoggedInAccount());
+		superPresenter.removePage(currentView);
+		superPresenter.removePage(dialogAddFriendsView);
+		superPresenter.addPage(currentView);
+		dialogAddFriendsView = new Dialog();
+		dialogAddFriendsView.add(new AddFriendsViewImplementation<MyEventPresenter>(this));
+		superPresenter.addPage(dialogAddFriendsView);
+		dialogAddFriendsView.open();
+	}
+
+	@Override
+	public void enablePatientInfoView(Account acc) {
+		dialogPatientInfoView = new Dialog();
+		dialogPatientInfoView.add(new PatientInfoViewImplementation(this, acc));
+		superPresenter.addPage(dialogPatientInfoView);
+		dialogPatientInfoView.open();	
+	}
+
+	@Override
+	public ArrayList<Event> getPatientEvents(Account acc) {
+		return myEventState.getOpenEventListByAccount(acc);
 	}
 
 	@Override
