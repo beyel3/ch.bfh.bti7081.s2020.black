@@ -39,6 +39,7 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 	private T presenter;
 
 	public MyEventViewImplementation(T presenter) {
+		this.presenter = presenter;
 		setSizeFull();
 		getStyle().set("align-items", "center");
 		getStyle().set("overflowX", "hidden");
@@ -251,7 +252,7 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		
 
 		byte[] imageBytes = presenter.getPicture(singleEvent);
-				StreamResource resource = new StreamResource("dummyImageName.jpg", () -> new ByteArrayInputStream(imageBytes));
+				StreamResource resource = new StreamResource("dummyImageName.png", () -> new ByteArrayInputStream(imageBytes));
 				Image selfie = new Image(resource, "Dummy Image");
 				selfie.setWidth("100%");
 
