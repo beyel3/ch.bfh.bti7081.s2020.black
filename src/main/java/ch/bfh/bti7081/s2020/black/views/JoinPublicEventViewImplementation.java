@@ -109,8 +109,15 @@ public class JoinPublicEventViewImplementation<T extends JoinPublicEventInterfac
 	}
 
 	private Button createJoinPublicEventButton(Event item) {
+		
+		
 		Button buttonJoinOpenEvent = new Button("JOIN");
 		buttonJoinOpenEvent.addClickListener(event -> presenter.selectEvent(item));
+		
+		if(item.getMaxParticipants() >= item.getParticipants().size()) {
+			buttonJoinOpenEvent.setEnabled(true);
+		}
+		
 		return buttonJoinOpenEvent;
 	}
 	

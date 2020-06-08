@@ -74,10 +74,13 @@ public class CreateEventViewImplementaion<T extends CreateEventInterface> extend
 
 		// Event Handler
 		save.addClickListener(event -> {
+			
+			if(((int) Math.round(maxParticipants.getValue()))> 0) {
 			presenter.submit(
 					publicEvent.getValue(),
 					(int) Math.round(maxParticipants.getValue()),
 					participants.getSelectedItems());
+			}
 
 		});
 
