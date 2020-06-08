@@ -159,14 +159,14 @@ public abstract class StateModel {
 					case PATIENT:
 						Patient pat = new Patient(postResult.getInt(1),postResult.getString(2), postResult.getString(3), postResult.getString(4));
 						pat.setPatientInfo(postResult.getString(7));
-						Post pp = new Post(postResult.getString(8), event, postResult.getDate(9), pat);
+						Post pp = new Post(postResult.getString(8), event, postResult.getTimestamp(9), pat);
 						posts.add(pp);
 					
 						break;
 					case RELATIVE:
 						Relative rel = new Relative(postResult.getInt(1),postResult.getString(2), postResult.getString(3), postResult.getString(4));
 						rel.setLvl(postResult.getInt(6));
-						Post pr = new Post(postResult.getString(8), event, postResult.getDate(9), rel);
+						Post pr = new Post(postResult.getString(8), event, postResult.getTimestamp(9), rel);
 						posts.add(pr);
 						break;
 					default:
