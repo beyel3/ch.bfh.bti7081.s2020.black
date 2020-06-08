@@ -69,7 +69,7 @@ public class CreateEventViewImplementaion<T extends CreateEventInterface> extend
 		maxParticipants.setMin(2);
 		
 		
-		Button save = new Button("Event erstellen");
+		Button save = new Button("CREATE EVENT");
 		save.getStyle().set("marginRight", "10px");
 
 		// Event Handler
