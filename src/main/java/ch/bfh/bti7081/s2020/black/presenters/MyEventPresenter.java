@@ -114,4 +114,12 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 	public void addFriend(Patient patient) {
 		myEventState.addFriend(patient, superPresenter.getLoggedInAccount());	
 	}
+
+	@Override
+	public int getLoggedInAccountID() {
+		return superPresenter.getLoggedInAccount().getId();
+	}
+
+
+
 }

@@ -38,12 +38,16 @@ public class Post {
 		return timeStamp.toString();
 	}
 	
-	public String getUser() {
+	public String getUserName() {
 		return account.toString();
 	}
 
 	public Timestamp getDate(){ 
 		return this.timeStamp;
 		}
+
+	public int getAccountID() {
+		return account.getId();
+	}
 
 }
