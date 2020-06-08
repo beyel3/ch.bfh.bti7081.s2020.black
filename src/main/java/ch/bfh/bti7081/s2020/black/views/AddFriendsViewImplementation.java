@@ -67,11 +67,9 @@ public class AddFriendsViewImplementation<T extends EventViewInterface> extends 
 
 	private Button createAddFriendButton(Patient patient) {
 //	System.out.println(patient);
-	Button buttonAddFriend = new Button("ADD FRIEND");
-	buttonAddFriend.addClickListener(
-				event -> presenter.addFriend(patient));
-	return buttonAddFriend;
-}
-
+		Button buttonAddFriend = new Button("ADD FRIEND");
+		buttonAddFriend.addClickListener(event -> presenter.addFriend(patient));
+		return buttonAddFriend;
+	}
 
 }

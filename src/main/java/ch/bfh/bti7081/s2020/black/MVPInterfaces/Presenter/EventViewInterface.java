@@ -12,10 +12,12 @@ public interface EventViewInterface {
 	
 	public void buttonClick(EventAction action, Event selected);
 	public ArrayList<Event> getMyEvents();
+	public ArrayList<Event> getPatientEvents(Account acc);
 	public ArrayList<Event> getMyOpenEvents();
 	public ArrayList<Event> getMyDoneEvents();
 	public ArrayList<Account> getMyFriends();
 	public ArrayList<Patient> getAccounts();
+	public void enablePatientInfoView(Account acc);
 	public void addFriend(Patient patient);
 	public Event getSelectedEvent();
 	public ArrayList<Post> getPosts(Event event);
