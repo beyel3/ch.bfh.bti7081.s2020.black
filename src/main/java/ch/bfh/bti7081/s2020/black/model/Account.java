@@ -146,4 +146,14 @@ public class Account {
     }
 
      */
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Account) {
+			Account account = (Account)obj;
+			return account.getId() == this.id;
+		} else {
+			return false;
+		}
+	}
+    
 }
