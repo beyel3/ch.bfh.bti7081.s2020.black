@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.View.HeaderInterface;
+import ch.bfh.bti7081.s2020.black.model.AccountType;
 import ch.bfh.bti7081.s2020.black.model.stateModel.JoinPublicEvents;
 import ch.bfh.bti7081.s2020.black.views.HeaderViewImplementation;
 
@@ -11,7 +12,11 @@ public class HeaderPresenter extends Presenter implements HeaderInterface {
     public HeaderPresenter(SuperPresenter superPresenter){
 
         super(superPresenter);
-        this.headerViewImplementation = new HeaderViewImplementation(this);
+        if (superPresenter.getLoggedInAccount().getAccountType() == AccountType.ADMIN){
+            this.headerViewImplementation = new HeaderViewImplementation(this, true);
+        } else {
+            this.headerViewImplementation = new HeaderViewImplementation(this, false);
+        }
         currentView = this.headerViewImplementation;
         headerViewImplementation.setUsername(superPresenter.getLoggedInUserName());
         superPresenter.addHeader(currentView);
@@ -22,16 +27,14 @@ public class HeaderPresenter extends Presenter implements HeaderInterface {
     	
     	 superPresenter.clearView();
     	
-        switch (action){    
-        
+        switch (action){
             case HOME:
                 new HomeViewPresenter(superPresenter);
                 break;
-            case LOGIN:
+            case LOGOUT:
+                superPresenter.removeLoggedInAccount();
+                superPresenter.removeHeader(currentView);
                 new LoginPresenter(superPresenter);
-                break;
-            case SIGNUP:
-                new SignUpPresenter(superPresenter);
                 break;
             case MYEVENTS:
             	new MyEventPresenter(superPresenter);
@@ -41,6 +44,9 @@ public class HeaderPresenter extends Presenter implements HeaderInterface {
                 break;
             case JOINPUBLICEVENT:
             	new JoinPublicEventPresenter(superPresenter);
+                break;
+            case ADMIN:
+
                 break;
         }
     }
