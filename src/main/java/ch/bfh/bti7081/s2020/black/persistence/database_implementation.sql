@@ -97,8 +97,14 @@ CREATE TABLE tbl_event (
 
 DROP TABLE IF EXISTS tbl_image;
 CREATE TABLE tbl_image (
-    imageID INTEGER PRIMARY KEY,
-    image BLOB
+
+	eventID INTEGER,
+    image BLOB,
+    
+     FOREIGN KEY (eventID)
+        REFERENCES tbl_event (eventID)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION
 );
 
 DROP TABLE IF EXISTS tbl_eventTemplate;

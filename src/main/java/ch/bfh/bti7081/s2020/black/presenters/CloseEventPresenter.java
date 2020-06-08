@@ -4,8 +4,10 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.imageio.ImageIO;
+import javax.sql.rowset.serial.SerialException;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.CloseEventViewInterface;
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface.EventAction;
@@ -38,18 +40,21 @@ public class CloseEventPresenter extends Presenter implements CloseEventViewInte
 	}
 
 
-	public byte[] getPicture() throws IOException {
-		
-		return null;
-	}
-
 	@Override
 	public void closeEvent(byte[] picture, int rating) {
 		
 		event.setRating(rating);
 		event.setStatus(Status.done);
 		
-		closeEventState.savePicture(picture);
+		try {
+			closeEventState.savePicture(picture, event);
+		} catch (SerialException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		closeEventState.setEventRating(event);
 		closeEventState.setEventStatus(event);
 		

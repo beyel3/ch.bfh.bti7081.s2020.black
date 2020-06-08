@@ -1,8 +1,10 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.html.Image;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
@@ -140,6 +142,19 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 	@Override
 	public int getLoggedInAccountID() {
 		return superPresenter.getLoggedInAccount().getId();
+	}
+
+	@Override
+	public byte[] getPicture(Event singleEvent) {
+		
+		try {
+			return myEventState.loadPicture(singleEvent);
+		} catch (SQLException e) {
+		
+			
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 

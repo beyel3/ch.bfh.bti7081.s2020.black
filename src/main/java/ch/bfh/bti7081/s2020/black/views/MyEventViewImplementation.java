@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2020.black.views;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -20,6 +21,7 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.data.value.ValueChangeMode;
+import com.vaadin.flow.server.StreamResource;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
@@ -245,12 +247,13 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		participants.setValue(participantsHelper);
 		participants.setReadOnly(true);
 
-		Image selfie = new Image("https://dummyimage.com/600x400/000/fff", "");
-		selfie.setWidth("100%");
+//		Image selfie = new Image("https://dummyimage.com/600x400/000/fff", "");
+		
 
-//		byte[] imageBytes = // your data source here
-//				StreamResource resource = new StreamResource("dummyImageName.jpg", () -> new ByteArrayInputStream(imageBytes));
-//				Image image = new Image(resource, "dummy image");
+		byte[] imageBytes = presenter.getPicture(singleEvent);
+				StreamResource resource = new StreamResource("dummyImageName.jpg", () -> new ByteArrayInputStream(imageBytes));
+				Image selfie = new Image(resource, "Dummy Image");
+				selfie.setWidth("100%");
 
 		layout.add(title, description, tags, progressBar, participants, selfie);
 		layout.setMinWidth("350px");

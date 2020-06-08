@@ -1,9 +1,15 @@
 package ch.bfh.bti7081.s2020.black.model.stateModel;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+
+import org.apache.commons.io.IOUtils;
 
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Event;
@@ -90,8 +96,21 @@ public class MyEvent extends StateModel {
 		persistence.executeUpdate("INSERT INTO tbl_post VALUES (" + acc.getId() + ", " + event.getId() + ",'" + post.getMessage() + "', '" + post.getDate() + "')");
 	}
 
-	public byte [] loadPicture(Event event) {
-		return null;
+	
+	public byte [] loadPicture(Event event) throws SQLException {
+		
+		ResultSet rs = persistence.executeQuery("SELECT iamge FROM tbl_image WHERE eventID =" + event.getId());
+		
+		InputStream  test = rs.getBinaryStream(2);
+		byte[] blobAsBytes = null;
+		try {
+			blobAsBytes = IOUtils.toByteArray(test);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return blobAsBytes;
 	}
 	
 	public ArrayList<Patient> getPatientListWithNoRel(Account acc) {
