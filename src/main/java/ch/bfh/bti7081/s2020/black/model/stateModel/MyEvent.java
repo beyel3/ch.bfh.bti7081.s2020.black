@@ -34,7 +34,6 @@ public class MyEvent extends StateModel {
 			e.printStackTrace();
 			return null;
 		}
-	//return  new HardCoded().getEvent();
 	}
 	
 	public ArrayList<Event> getOpenEventListByAccount(Account loggedInAccount) {
@@ -59,7 +58,6 @@ public class MyEvent extends StateModel {
 			e.printStackTrace();
 			return null;
 		}
-	//return  new HardCoded().getEvent();
 	}
 	
 	public ArrayList<Event> getDoneEventListByAccount(Account loggedInAccount) {
@@ -84,7 +82,6 @@ public class MyEvent extends StateModel {
 			e.printStackTrace();
 			return null;
 		}
-	//return  new HardCoded().getEvent();
 	}
 	
 	public void savePost(String message, Account acc, Event event){

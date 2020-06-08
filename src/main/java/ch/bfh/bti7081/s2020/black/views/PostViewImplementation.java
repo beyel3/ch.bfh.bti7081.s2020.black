@@ -27,7 +27,7 @@ public class PostViewImplementation<T extends EventViewInterface> extends Vertic
 			TextField userName = new TextField();
 			userName.setSizeFull();
 			userName.setReadOnly(true);
-			userName.setValue(p.getUser());
+			userName.setValue(p.getUserName());
 			TextField timeStamp = new TextField();
 			timeStamp.setSizeFull();
 			timeStamp.setValue(p.getTimeString().substring(0,p.getTimeString().length()-4));
@@ -40,7 +40,7 @@ public class PostViewImplementation<T extends EventViewInterface> extends Vertic
 			message.setReadOnly(true);
 			message.getStyle().set("margin-top", "2px");
 			
-			if (p.getUser().equalsIgnoreCase("Mario Schläppi")) { // if clause should be the current logged in user from the vaadin session
+			if (p.getAccountID() == presenter.getLoggedInAccountID()) { // if clause should be the current logged in user from the vaadin session
 				message.getStyle().set("background-color", "#2f6f91");
 			} else {
 				message.getStyle().set("background-color", "#95a9c9");
