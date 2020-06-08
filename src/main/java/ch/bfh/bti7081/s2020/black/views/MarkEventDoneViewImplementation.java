@@ -86,7 +86,8 @@ public class MarkEventDoneViewImplementation<T extends CloseEventViewInterface> 
 		Button done = new Button("MARK EVENT AS DONE");
 		done.getStyle().set("marginRight", "10px");
 		done.addClickListener(event -> {
-			presenter.closeEvent(imageBytes, (int) Math.round(rating.getValue()));
+			//presenter.closeEvent(imageBytes, (int) Math.round(rating.getValue()));
+			presenter.closeEvent(imageBytes, 5);
 		});
 		
 
@@ -95,7 +96,7 @@ public class MarkEventDoneViewImplementation<T extends CloseEventViewInterface> 
 		form.addFormItem(tags, "Tags");
 		form.addFormItem(participants, "Participants");
 		form.addFormItem(upload, "Upload selfie");
-		form.add(preview);
+		//form.add(preview);
 		form.addFormItem(rating, "Rate the event");
 		form.addFormItem(done, "");
 		form.setResponsiveSteps(new ResponsiveStep("40em", 1));
