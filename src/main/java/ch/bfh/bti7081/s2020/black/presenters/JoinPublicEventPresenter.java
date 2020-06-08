@@ -53,6 +53,7 @@ public class JoinPublicEventPresenter extends Presenter implements JoinPublicEve
 
 	@Override
 	public void joinPublicEvent(Set<Account> participants) {
+		
 		ArrayList<Account> list = new ArrayList<>();
 		for (Account a : participants) {
 			list.add(a);

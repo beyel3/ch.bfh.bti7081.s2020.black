@@ -33,22 +33,6 @@ public class EventTemplate {
 		
 	}
 
-
-	public void rate() {
-
-		// calculate the average rating over all events
-		double count = 0;
-		double sum = 0;
-		for (Event e : events) {
-			if (e.getRating() != 0) {
-				sum += e.getRating();
-				count++;
-			}
-		}
-		
-		this.avgRating = sum/count;
-		
-	}
 	
 	public String toString() {
 		

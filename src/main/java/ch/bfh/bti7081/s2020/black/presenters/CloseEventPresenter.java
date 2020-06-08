@@ -49,14 +49,17 @@ public class CloseEventPresenter extends Presenter implements CloseEventViewInte
 		try {
 			closeEventState.savePicture(picture, event);
 		} catch (SerialException e) {
-			// TODO Auto-generated catch block
+			
+
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
+		
 		closeEventState.setEventRating(event);
 		closeEventState.setEventStatus(event);
+		closeEventState.updateAvgRating(event.getEventTemplate());
 		
 		superPresenter.removePage(currentView);
 		new MyEventPresenter(superPresenter);
