@@ -7,13 +7,14 @@ import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventTemplateInterface;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 
-public class CreateTemplateViewImplementation<T extends EventTemplateInterface> extends HorizontalLayout {
+public class CreateTemplateViewImplementation<T extends EventTemplateInterface> extends VerticalLayout {
 
 	private TextField title;
 	private TextArea description;
@@ -52,7 +53,7 @@ public class CreateTemplateViewImplementation<T extends EventTemplateInterface> 
 		createTemplate.addClickListener(event -> {
 			presenter.submitNewEventTemplate(title.getValue(), description.getValue(), tags.getValue());
 		});
-
+		// Layout Steps
 		formLayout.setResponsiveSteps(new ResponsiveStep("40em", 1));
 		formLayout.setSizeFull();
 		add(formLayout, createTemplate);

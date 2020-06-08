@@ -46,6 +46,13 @@ public class LoginPresenter extends Presenter implements LoginInterface {
         }
     }
 
+    @Override
+    public void signUp() {
+        //go to signup
+        superPresenter.removePage(currentView);
+        new SignUpPresenter(superPresenter);
+    }
+
     private boolean inputIsEmpty(String email, String password){
         if (email.isEmpty()){
             loginViewImplementation.dialogMessage("Please enter an email    ");
