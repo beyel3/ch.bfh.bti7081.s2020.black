@@ -45,7 +45,7 @@ public class JoinPublicEventViewImplementation<T extends JoinPublicEventInterfac
 		Grid.Column<Event> descriptionColumn = grid.addColumn(event -> event.getEventTemplate().getDescription())
 				.setHeader("Description");
 		Grid.Column<Event> tagColumn = grid.addColumn(event -> event.getEventTemplate().getTags().toString().replaceAll("\\[|\\]", "")).setHeader("Tags");
-		Grid.Column<Event> paricipantsColumn = grid.addColumn(event -> event.getParticipants().toString()).setHeader("Participants");
+		Grid.Column<Event> paricipantsColumn = grid.addColumn(event -> event.getParticipants().toString().replaceAll("\\[|\\]", "")).setHeader("Participants");
 		Grid.Column<Event> maxParticipantsColumn = grid.addColumn(Event::getMaxParticipants).setHeader("Max Participants");
 		grid.addComponentColumn(item -> createJoinPublicEventButton(item)).setHeader("Join Public Event");
 		descriptionColumn.setFlexGrow(3);
@@ -109,8 +109,15 @@ public class JoinPublicEventViewImplementation<T extends JoinPublicEventInterfac
 	}
 
 	private Button createJoinPublicEventButton(Event item) {
+		
+		
 		Button buttonJoinOpenEvent = new Button("JOIN");
 		buttonJoinOpenEvent.addClickListener(event -> presenter.selectEvent(item));
+		
+		if(item.getMaxParticipants() >= item.getParticipants().size()) {
+			buttonJoinOpenEvent.setEnabled(true);
+		}
+		
 		return buttonJoinOpenEvent;
 	}
 	

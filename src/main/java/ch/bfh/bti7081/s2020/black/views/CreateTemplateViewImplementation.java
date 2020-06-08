@@ -43,11 +43,11 @@ public class CreateTemplateViewImplementation<T extends EventTemplateInterface> 
 		this.tags.setItems(presenter.getTags());
 
 		FormLayout formLayout = new FormLayout();
-		formLayout.addFormItem(title, "Titel");
-		formLayout.addFormItem(description, "Beschreibung");
-		formLayout.addFormItem(this.tags, "Wähle Tags");
+		formLayout.addFormItem(title, "Title");
+		formLayout.addFormItem(description, "Description");
+		formLayout.addFormItem(this.tags, "Choose Tags");
 
-		createTemplate = new Button("Template erstellen");
+		createTemplate = new Button("CREATE TEMPLATE");
 		createTemplate.getStyle().set("marginRight", "10px");
 		
 		createTemplate.addClickListener(event -> {

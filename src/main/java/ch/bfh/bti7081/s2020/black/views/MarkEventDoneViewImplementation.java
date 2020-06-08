@@ -91,13 +91,13 @@ public class MarkEventDoneViewImplementation<T extends CloseEventViewInterface> 
 		});
 		
 
-		form.addFormItem(title, "Titel");
+		form.addFormItem(title, "Title");
 		form.addFormItem(description, "Description");
 		form.addFormItem(tags, "Tags");
 		form.addFormItem(participants, "Participants");
-		form.addFormItem(upload, "Upload selfie");
+		form.addFormItem(upload, "Upload Selfie");
 		//form.add(preview);
-		form.addFormItem(rating, "Rate the event");
+		form.addFormItem(rating, "Rate The Event");
 		form.addFormItem(done, "");
 		form.setResponsiveSteps(new ResponsiveStep("40em", 1));
 		formLayout.add(form);
@@ -115,7 +115,7 @@ public class MarkEventDoneViewImplementation<T extends CloseEventViewInterface> 
 		}
 	}
 	private Image getPreviewImage(byte[] imageBytes){
-		StreamResource streamResource = new StreamResource("eventImage.jpg", () -> new ByteArrayInputStream(imageBytes));
+		StreamResource streamResource = new StreamResource("eventImage.png", () -> new ByteArrayInputStream(imageBytes));
 		return new Image(streamResource, "event image");
 	}
 }

@@ -69,29 +69,32 @@ public class CreateEventViewImplementaion<T extends CreateEventInterface> extend
 		maxParticipants.setMin(2);
 		
 		
-		Button save = new Button("Event erstellen");
+		Button save = new Button("CREATE EVENT");
 		save.getStyle().set("marginRight", "10px");
 
 		// Event Handler
 		save.addClickListener(event -> {
+			
+			if(((int) Math.round(maxParticipants.getValue()))> 0) {
 			presenter.submit(
 					publicEvent.getValue(),
 					(int) Math.round(maxParticipants.getValue()),
 					participants.getSelectedItems());
+			}
 
 		});
 
-		FormLayoutLeft.addFormItem(title, "Titel");
-		FormLayoutLeft.addFormItem(description, "Beschreibung");
+		FormLayoutLeft.addFormItem(title, "Title");
+		FormLayoutLeft.addFormItem(description, "Description");
 		FormLayoutLeft.addFormItem(tags, "Tags");
-		FormLayoutLeft.addFormItem(publicEvent, "Öffentlich");
-		FormLayoutLeft.addFormItem(maxParticipants, "Maximale Teilnehmer");
+		FormLayoutLeft.addFormItem(publicEvent, "Public");
+		FormLayoutLeft.addFormItem(maxParticipants, "Maximum Participants");
 		FormLayoutLeft.addFormItem(save, "");
 		FormLayoutLeft.setResponsiveSteps(new ResponsiveStep("40em", 1));
 		
 		//Add Patient
 		FormLayout FormLayoutRight = new FormLayout();		
-		FormLayoutRight.addFormItem(participants, "Patienten hinzufügen:");
+		FormLayoutRight.addFormItem(participants, "Add Patient:");
 		
 		HorizontalLayout FormLayouts = new HorizontalLayout();
 		FormLayouts.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
