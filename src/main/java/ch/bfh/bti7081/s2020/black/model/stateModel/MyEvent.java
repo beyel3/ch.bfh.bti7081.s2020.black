@@ -1,5 +1,7 @@
 package ch.bfh.bti7081.s2020.black.model.stateModel;
 
+import java.sql.Blob;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLOutput;
@@ -90,8 +92,14 @@ public class MyEvent extends StateModel {
 		persistence.executeUpdate("INSERT INTO tbl_post VALUES (" + acc.getId() + ", " + event.getId() + ",'" + post.getMessage() + "', '" + post.getDate() + "')");
 	}
 
-	public byte [] loadPicture(Event event) {
-		return null;
+	public byte [] loadPicture(Event event) throws SQLException {
+		ResultSet rs = persistence.executeQuery("SELECT * FROM tbl_image");
+		Blob blob = rs.getBlob("image");
+		int blobLength = (int) blob.length();  
+		byte[] blobAsBytes = blob.getBytes(1, blobLength);
+		//release the blob and free up memory. (since JDBC 4.0)
+		blob.free();
+		return blobAsBytes;
 	}
 	
 	public ArrayList<Patient> getPatientListWithNoRel(Account acc) {

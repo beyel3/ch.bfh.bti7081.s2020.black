@@ -28,6 +28,7 @@ public interface EventViewInterface {
         ADDFRIEND,
         MARKDONE
     }
-		public int getLoggedInAccountID();
+	public int getLoggedInAccountID();
+	public byte[] getPicture(Event singleEvent);
 		
 }

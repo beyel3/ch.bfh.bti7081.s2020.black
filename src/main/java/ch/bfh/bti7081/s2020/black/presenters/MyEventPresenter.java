@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.vaadin.flow.component.dialog.Dialog;
@@ -140,6 +141,17 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 	@Override
 	public int getLoggedInAccountID() {
 		return superPresenter.getLoggedInAccount().getId();
+	}
+
+	@Override
+	public byte[] getPicture(Event singleEvent) {
+		try {
+			return myEventState.loadPicture(singleEvent);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 
