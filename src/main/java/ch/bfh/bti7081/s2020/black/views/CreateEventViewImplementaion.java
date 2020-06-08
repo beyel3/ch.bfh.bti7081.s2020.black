@@ -17,7 +17,6 @@ import com.vaadin.flow.component.textfield.TextField;
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.CreateEventInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
-import ch.bfh.bti7081.s2020.black.model.HardCoded;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 
 
