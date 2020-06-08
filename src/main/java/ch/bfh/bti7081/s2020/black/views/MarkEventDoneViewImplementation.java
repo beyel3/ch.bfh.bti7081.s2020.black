@@ -3,17 +3,27 @@ package ch.bfh.bti7081.s2020.black.views;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.upload.Upload;
+import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
 import com.vaadin.flow.component.upload.receivers.MultiFileMemoryBuffer;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.CloseEventViewInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Tag;
+import com.vaadin.flow.server.StreamResource;
+import org.apache.commons.io.IOUtils;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class MarkEventDoneViewImplementation<T extends CloseEventViewInterface> extends VerticalLayout {
@@ -25,6 +35,8 @@ public class MarkEventDoneViewImplementation<T extends CloseEventViewInterface> 
 	private NumberField rating;
 	private MultiFileMemoryBuffer buffer;
 	private Upload upload;
+	private byte[] imageBytes;
+	private Image preview = new Image();
 
 	public MarkEventDoneViewImplementation(T presenter) {
 		
@@ -59,34 +71,23 @@ public class MarkEventDoneViewImplementation<T extends CloseEventViewInterface> 
 		rating.setStep(1);
 		rating.setMin(1);
 		rating.setMax(10);
-		
-		buffer = new MultiFileMemoryBuffer();
-		upload = new Upload(buffer);
-		upload.addSucceededListener(event -> {
-//		    Component component = createComponent(event.getMIMEType(),
-//		            event.getFileName(),
-//		            buffer.getInputStream(event.getFileName()));
-//		    showOutput(event.getFileName(), component, output);
-			
-//			File fnew= newFile("/tmp/rose.jpg");
-//			BufferedImage originalImage= ImageIO.read(fnew);
-//			ByteArrayOutputStream baos= newByteArrayOutputStream();
-//			ImageIO.write(originalImage, "jpg", baos);
-//			byte[] imageInByte= baos.toByteArray();
+
+		preview.setMaxWidth("600px");
+		preview.setMaxHeight("400px");
+
+		MemoryBuffer memoryBuffer = new MemoryBuffer();
+		Upload upload = new Upload(memoryBuffer);
+		upload.addFinishedListener(e -> {
+			imageBytes = getImageByteArray(memoryBuffer);
+			preview = getPreviewImage(imageBytes);
+			add(getPreviewImage(imageBytes));
 		});
-		
-		
-		
-		
-		byte[] picture = null;
-//				StreamResource resource = new StreamResource("dummyImageName.jpg", () -> new ByteArrayInputStream(imageBytes));
-//				Image image = new Image(resource, "dummy image");
-		
-		
+
 		Button done = new Button("MARK EVENT AS DONE");
 		done.getStyle().set("marginRight", "10px");
 		done.addClickListener(event -> {
-			presenter.closeEvent(picture, (int) Math.round(rating.getValue()));
+			//presenter.closeEvent(imageBytes, (int) Math.round(rating.getValue()));
+			presenter.closeEvent(imageBytes, 5);
 		});
 		
 
@@ -95,6 +96,7 @@ public class MarkEventDoneViewImplementation<T extends CloseEventViewInterface> 
 		form.addFormItem(tags, "Tags");
 		form.addFormItem(participants, "Participants");
 		form.addFormItem(upload, "Upload selfie");
+		//form.add(preview);
 		form.addFormItem(rating, "Rate the event");
 		form.addFormItem(done, "");
 		form.setResponsiveSteps(new ResponsiveStep("40em", 1));
@@ -102,5 +104,18 @@ public class MarkEventDoneViewImplementation<T extends CloseEventViewInterface> 
 		add(formLayout);
 
 	}
-	
+	private byte[] getImageByteArray(MemoryBuffer memoryBuffer){
+		InputStream inputStream = memoryBuffer.getInputStream();
+		try {
+			byte[] imageBytes = IOUtils.toByteArray(inputStream);
+			return imageBytes;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	private Image getPreviewImage(byte[] imageBytes){
+		StreamResource streamResource = new StreamResource("eventImage.jpg", () -> new ByteArrayInputStream(imageBytes));
+		return new Image(streamResource, "event image");
+	}
 }
