@@ -91,13 +91,13 @@ public class MarkEventDoneViewImplementation<T extends CloseEventViewInterface> 
 		});
 		
 
-		form.addFormItem(title, "Titel");
+		form.addFormItem(title, "Title");
 		form.addFormItem(description, "Description");
 		form.addFormItem(tags, "Tags");
 		form.addFormItem(participants, "Participants");
-		form.addFormItem(upload, "Upload selfie");
+		form.addFormItem(upload, "Upload Selfie");
 		//form.add(preview);
-		form.addFormItem(rating, "Rate the event");
+		form.addFormItem(rating, "Rate The Event");
 		form.addFormItem(done, "");
 		form.setResponsiveSteps(new ResponsiveStep("40em", 1));
 		formLayout.add(form);
