@@ -1,9 +1,14 @@
 package ch.bfh.bti7081.s2020.black.views;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.HeaderRow;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.provider.ListDataProvider;
+import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 
 import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventTemplateInterface;
@@ -28,6 +33,29 @@ public class AddFriendsViewImplementation<T extends EventViewInterface> extends 
 		Grid.Column<Patient> lastNameColumn = gridFriends.addColumn(acc -> acc.getLastName()).setHeader("Last Name");
 		gridFriends.addComponentColumn(item -> createAddFriendButton(item)).setHeader("Add Friend");
 		
+		HeaderRow filterRow = gridFriends.appendHeaderRow();
+		// First filter for first name
+		TextField firstNameField = new TextField();
+		firstNameField.addValueChangeListener(event -> dataProviderFriends.addFilter(
+				firstName -> StringUtils.containsIgnoreCase(firstName.getFirstName(), firstNameField.getValue())));
+
+		firstNameField.setValueChangeMode(ValueChangeMode.EAGER);
+
+		filterRow.getCell(firstNameColumn).setComponent(firstNameField);
+		firstNameField.setSizeFull();
+		firstNameField.setPlaceholder("Filter");
+		
+		// Second filter for last name
+		TextField lastNameField = new TextField();
+		lastNameField.addValueChangeListener(event -> dataProviderFriends.addFilter(
+				lastName -> StringUtils.containsIgnoreCase(lastName.getLastName(), lastNameField.getValue())));
+
+		lastNameField.setValueChangeMode(ValueChangeMode.EAGER);
+
+		filterRow.getCell(lastNameColumn).setComponent(lastNameField);
+		lastNameField.setSizeFull();
+		lastNameField.setPlaceholder("Filter");
+		
 		gridFriends.getStyle().set("overflowY", "auto");
 		gridFriends.setWidth("100%");
 
@@ -38,7 +66,7 @@ public class AddFriendsViewImplementation<T extends EventViewInterface> extends 
 	}
 
 	private Button createAddFriendButton(Patient patient) {
-//	System.out.println(item);
+//	System.out.println(patient);
 	Button buttonAddFriend = new Button("ADD FRIEND");
 	buttonAddFriend.addClickListener(
 				event -> presenter.addFriend(patient));

@@ -112,6 +112,13 @@ public class MyEventPresenter extends Presenter implements EventViewInterface {
 
 	@Override
 	public void addFriend(Patient patient) {
-		myEventState.addFriend(patient, superPresenter.getLoggedInAccount());	
+		myEventState.addFriend(patient, superPresenter.getLoggedInAccount());
+		superPresenter.removePage(currentView);
+		superPresenter.removePage(dialogAddFriendsView);
+		superPresenter.addPage(currentView);
+		dialogAddFriendsView = new Dialog();
+		dialogAddFriendsView.add(new AddFriendsViewImplementation<MyEventPresenter>(this));
+		superPresenter.addPage(dialogAddFriendsView);
+		dialogAddFriendsView.open();
 	}
 }

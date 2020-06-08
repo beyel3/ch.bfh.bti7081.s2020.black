@@ -79,8 +79,6 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 			ProgressBar progressBar = new ProgressBar();
 			progressBar.setValue(e.getEventTemplate().getAvgRating() / 10);
 
-//			HorizontalLayout buttonLayout = new HorizontalLayout();
-
 			Button buttonChat = new Button("CHAT");
 			buttonChat.addClickListener(event -> presenter.buttonClick(EventViewInterface.EventAction.OPENCHAT, e));
 			buttonChat.setWidth("100%");
@@ -92,8 +90,6 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 			Button buttonMarkDone = new Button("EVENT DONE");
 			buttonMarkDone.addClickListener(event -> presenter.buttonClick(EventViewInterface.EventAction.MARKDONE, e));
 			buttonMarkDone.setWidth("100%");
-
-//			buttonLayout.add(buttonChat, buttonDetails);
 
 			TextArea participants = new TextArea();
 			participants.setSizeFull();
