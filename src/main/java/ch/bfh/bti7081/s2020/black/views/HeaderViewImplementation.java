@@ -15,13 +15,16 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.theme.lumo.Lumo;
 
+import javax.imageio.plugins.jpeg.JPEGImageWriteParam;
+
 public class HeaderViewImplementation<T extends HeaderInterface> extends VerticalLayout implements UserNameInterface {
 
 	private static final long serialVersionUID = 1L;
 	private final HorizontalLayout rightLayout;
 	private final HorizontalLayout menuBarLayout;
 	private final HorizontalLayout menuBar;
-	private Label userName = new Label("");
+	//private Label userName = new Label("");
+	private Button userName = new Button("");
 
 	private T presenter;
 
@@ -63,11 +66,12 @@ public class HeaderViewImplementation<T extends HeaderInterface> extends Vertica
 
 		//Click Listeners
 		logo.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.HOME));
-		logOutButton.addClickListener(evenr -> presenter.buttonClick(HeaderInterface.HeaderAction.LOGOUT));
+		logOutButton.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.LOGOUT));
 		homeButton.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.HOME));
 		createEvent.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.CREATEEVENT));
 		myEvent.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.MYEVENTS));
 		adminPanel.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.ADMIN));
+		userName.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.MYEVENTS));
 
 		menuBar.add(homeButton);
 		menuBar.add(createEvent);
