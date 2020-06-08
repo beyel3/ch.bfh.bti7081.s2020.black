@@ -17,7 +17,7 @@ public class AddPatientView<T extends JoinPublicEventInterface> extends Vertical
 		participants.setItems(presenter.getFriends());
 		
 		FormLayout FormLayout = new FormLayout();		
-		FormLayout.addFormItem(participants, "Patienten hinzufügen:");
+		FormLayout.addFormItem(participants, "Add Patient:");
 		
 		Button save = new Button("JOIN EVENT");
 		save.getStyle().set("marginRight", "10px");

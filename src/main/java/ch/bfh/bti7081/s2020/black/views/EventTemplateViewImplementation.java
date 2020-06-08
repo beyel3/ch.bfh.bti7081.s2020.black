@@ -65,7 +65,7 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 		Grid.Column<EventTemplate> descriptionColumn = grid.addColumn(EventTemplate::getDescription).setHeader("Description");
 		Grid.Column<EventTemplate> tagColumn = grid.addColumn(event -> event.getTags().toString().replaceAll("\\[|\\]", "")).setHeader("Tags");
 		Grid.Column<EventTemplate> ratingColumn = grid.addColumn(EventTemplate::getAvgRating).setHeader("Rating");
-		grid.addComponentColumn(item -> createUseAsTemplateButton(item)).setHeader("Use as template");
+		grid.addComponentColumn(item -> createUseAsTemplateButton(item)).setHeader("Use As Template");
 		descriptionColumn.setFlexGrow(3);
 
 		grid.addSelectionListener(event -> {
@@ -114,7 +114,7 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 		
 		Label labelOpenEventCreator = new Label(
 				"If no template fits, you can create a new template here to create your event: ");
-		Button buttonOpenEventCreator = new Button("Create New Template", event -> {
+		Button buttonOpenEventCreator = new Button("CREATE NEW TEMPLATE", event -> {
 			presenter.openCreateTemplateDialog();
 		});
 

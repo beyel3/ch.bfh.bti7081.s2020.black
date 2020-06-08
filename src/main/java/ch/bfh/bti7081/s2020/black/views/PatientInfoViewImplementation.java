@@ -23,18 +23,18 @@ public class PatientInfoViewImplementation<T extends EventViewInterface> extends
 	
 	public PatientInfoViewImplementation(T presenter, Account acc) {
 
-		Label labelPatientEvents = new Label("Patient Events: ");
+		Label labelPatientEvents = new Label(acc.getFirstName() +"'s Events: ");
 		labelPatientEvents.getStyle().set("font-size", "24px");
 		labelPatientEvents.getStyle().set("font-weight", "bold");
 		
-		eventLayout.setWidth("80%");
+		eventLayout.setWidth("100%");
 		eventLayout.setMaxHeight("60vh");
 		eventLayout.getStyle().set("overflowY", "auto");
 		eventLayout.getStyle().set("display", "block");
 		
 		setMaxHeight("900px");
 		setMinHeight("500px");
-		setMinWidth("500px");
+		setMinWidth("700px");
 		
 		ArrayList<Event> patientEvents = presenter.getPatientEvents(acc);
 		
@@ -77,5 +77,6 @@ public class PatientInfoViewImplementation<T extends EventViewInterface> extends
 
 			eventLayout.add(layout);
 		}
+		add(labelPatientEvents, eventLayout);
 	}
 }

@@ -42,7 +42,7 @@ public class OpenPublicEventsViewImplementation<T extends EventTemplateInterface
 		Grid.Column<Event> tagColumn = grid.addColumn(event -> event.getEventTemplate().getTags().toString().replaceAll("\\[|\\]", "")).setHeader("Tags");
 		Grid.Column<Event> paricipantsColumn = grid.addColumn(event -> event.getParticipants().toString()).setHeader("Participants");
 		Grid.Column<Event> maxParticipantsColumn = grid.addColumn(Event::getMaxParticipants).setHeader("Max Participants");
-		grid.addComponentColumn(item -> createJoinPublicEventButton(item)).setHeader("Join pulibc Event");
+		grid.addComponentColumn(item -> createJoinPublicEventButton(item)).setHeader("Join Public Event");
 		descriptionColumn.setFlexGrow(3);
 
 		grid.addSelectionListener(event -> {
