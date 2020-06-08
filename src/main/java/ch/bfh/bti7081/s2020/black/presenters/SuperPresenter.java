@@ -58,6 +58,7 @@ public class SuperPresenter {
 		new HomeViewPresenter(this);
 	}
 	public void setLoggedInAccount(Account account){this.account = account;}
+	public void removeLoggedInAccount(){ this.account = null;}
 	public Account getLoggedInAccount() {
 		return this.account;
 	}

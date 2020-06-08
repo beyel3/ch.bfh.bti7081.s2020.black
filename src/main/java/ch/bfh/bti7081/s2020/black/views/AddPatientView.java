@@ -25,6 +25,6 @@ public class AddPatientView<T extends JoinPublicEventInterface> extends Vertical
 		save.addClickListener(event -> {
 			presenter.joinPublicEvent(participants.getSelectedItems());
 		});
-		
+		add(FormLayout, save);
 	}
 }

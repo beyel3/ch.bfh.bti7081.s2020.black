@@ -262,7 +262,6 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 	}
 
 	private Button createCheckPatientInfoButton(Account acc) {
-		System.out.println(acc.toString());
 		Button buttonCheckPatientInfo = new Button("CHECK PATIENT INFO");
 		buttonCheckPatientInfo.addClickListener(event -> presenter.enablePatientInfoView(acc));
 		return buttonCheckPatientInfo;

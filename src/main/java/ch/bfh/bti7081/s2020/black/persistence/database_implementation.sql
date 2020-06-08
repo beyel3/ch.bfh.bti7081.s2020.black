@@ -9,12 +9,13 @@ CREATE TABLE tbl_account (
     level INTEGER NULL,
     accountType VARCHAR
 );
-INSERT INTO tbl_account VALUES (NULL,'Jackson','Michael','jackson@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Relative',0,'RELATIVE');
-INSERT INTO tbl_account VALUES (NULL,'Mitchell','Billy','mitchell@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'PATIENT');
-INSERT INTO tbl_account VALUES (NULL,'Dover','Ben','dover@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'PATIENT');
-INSERT INTO tbl_account VALUES (NULL,'Hidepain','Harald','hidepain@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'PATIENT');
-INSERT INTO tbl_account VALUES (NULL,'Stark','Jon','stark@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'PATIENT');
-INSERT INTO tbl_account VALUES (NULL,'Shore','Tim','stark@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'PATIENT');
+INSERT INTO tbl_account VALUES (NULL,'Michael','Jackson','jackson@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Relative',0,'RELATIVE');
+INSERT INTO tbl_account VALUES (NULL,'Billy','Mitchell','mitchell@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'PATIENT');
+INSERT INTO tbl_account VALUES (NULL,'Ben','Dover','dover@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'PATIENT');
+INSERT INTO tbl_account VALUES (NULL,'Harald','Hidepain','hidepain@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'PATIENT');
+INSERT INTO tbl_account VALUES (NULL,'Jon','Stark','stark@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'PATIENT');
+INSERT INTO tbl_account VALUES (NULL,'Tim','Shore','shore@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Patient',0,'PATIENT');
+INSERT INTO tbl_account VALUES (NULL,'Peter','Reber','reber@mail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Ich bin ein Relative',0,'RELATIVE');
 
 DROP TABLE IF EXISTS tbl_friendship;
 CREATE TABLE tbl_friendship (
@@ -34,7 +35,10 @@ CREATE TABLE tbl_friendship (
 INSERT INTO tbl_friendship VALUES (1,2);
 INSERT INTO tbl_friendship VALUES (1,3);
 INSERT INTO tbl_friendship VALUES (1,4);
-INSERT INTO tbl_friendship VALUES (1,5);
+
+INSERT INTO tbl_friendship VALUES (7,4);
+INSERT INTO tbl_friendship VALUES (7,5);
+INSERT INTO tbl_friendship VALUES (7,6);
 
 DROP TABLE IF EXISTS tbl_participants;
 CREATE TABLE tbl_participants (
@@ -130,16 +134,16 @@ INSERT INTO tbl_tag VALUES (NULL,'Outdoor');
 INSERT INTO tbl_tag VALUES (NULL,'Indoor');
 INSERT INTO tbl_tag VALUES (NULL,'Sport');
 
-INSERT INTO tbl_eventTemplate VALUES (NULL,'Test','Test open PublicEvent',10.0);
-INSERT INTO tbl_event VALUES (NULL,'Test open PublicEvent',1,0,'open',4,1,NULL);
-INSERT INTO tbl_tagEventTemplateREL VALUES (1,1);
-INSERT INTO tbl_tagEventTemplateREL VALUES (2,1);
-INSERT INTO tbl_participants VALUES (1,1);
-INSERT INTO tbl_participants VALUES (2,1);
+--INSERT INTO tbl_eventTemplate VALUES (NULL,'Test','Test open PublicEvent',10.0);
+--INSERT INTO tbl_event VALUES (NULL,'Test open PublicEvent',1,0,'open',4,1,NULL);
+--INSERT INTO tbl_tagEventTemplateREL VALUES (1,1);
+--INSERT INTO tbl_tagEventTemplateREL VALUES (2,1);
+--INSERT INTO tbl_participants VALUES (1,1);
+--INSERT INTO tbl_participants VALUES (2,1);
 
-INSERT INTO tbl_eventTemplate VALUES (NULL,'Test 2','Test closed PublicEvent',8.0);
-INSERT INTO tbl_event VALUES (NULL,'Test closed PublicEvent',1,0,'done',4,2,NULL);
-INSERT INTO tbl_tagEventTemplateREL VALUES (1,2);
-INSERT INTO tbl_tagEventTemplateREL VALUES (2,2);
-INSERT INTO tbl_participants VALUES (1,2);
-INSERT INTO tbl_participants VALUES (2,2);
+--INSERT INTO tbl_eventTemplate VALUES (NULL,'Test 2','Test closed PublicEvent',8.0);
+--INSERT INTO tbl_event VALUES (NULL,'Test closed PublicEvent',1,0,'done',4,2,NULL);
+--INSERT INTO tbl_tagEventTemplateREL VALUES (1,2);
+--INSERT INTO tbl_tagEventTemplateREL VALUES (2,2);
+--INSERT INTO tbl_participants VALUES (1,2);
+--INSERT INTO tbl_participants VALUES (2,2);
