@@ -42,12 +42,12 @@ public class MyEvent extends StateModel {
 		}
 	}
 	
-	public ArrayList<Event> getOpenEventListByAccount(Account loggedInAccount) {
+	public ArrayList<Event> getOpenEventListByAccount(Account account) {
 
 		ArrayList<Event> events = new ArrayList<Event>();
 
 		try {
-			ResultSet eventResult = persistence.executeQuery("SELECT e.eventID, e.eventTemplateID, e.info, e.isPublic, e.maxParticipants, e.rating, e.state, e.imageID FROM tbl_participants AS p INNER JOIN tbl_event AS e ON p.eventID = e.eventID WHERE e.state = 'open' AND p.accountID = "+loggedInAccount.getId());
+			ResultSet eventResult = persistence.executeQuery("SELECT e.eventID, e.eventTemplateID, e.info, e.isPublic, e.maxParticipants, e.rating, e.state, e.imageID FROM tbl_participants AS p INNER JOIN tbl_event AS e ON p.eventID = e.eventID WHERE e.state = 'open' AND p.accountID = "+account.getId());
 
 			while (eventResult.next()) {
 				ArrayList<Account> participants = getParticipantsByEventID(eventResult.getInt(1));
@@ -99,9 +99,9 @@ public class MyEvent extends StateModel {
 	
 	public byte [] loadPicture(Event event) throws SQLException {
 		
-		ResultSet rs = persistence.executeQuery("SELECT iamge FROM tbl_image WHERE eventID =" + event.getId());
+		ResultSet rs = persistence.executeQuery("SELECT image FROM tbl_image WHERE eventID =" + event.getId());
 		
-		InputStream  test = rs.getBinaryStream(2);
+		InputStream test = rs.getBinaryStream(1);
 		byte[] blobAsBytes = null;
 		try {
 			blobAsBytes = IOUtils.toByteArray(test);

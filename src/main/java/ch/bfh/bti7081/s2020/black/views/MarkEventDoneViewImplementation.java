@@ -115,7 +115,7 @@ public class MarkEventDoneViewImplementation<T extends CloseEventViewInterface> 
 		}
 	}
 	private Image getPreviewImage(byte[] imageBytes){
-		StreamResource streamResource = new StreamResource("eventImage.jpg", () -> new ByteArrayInputStream(imageBytes));
+		StreamResource streamResource = new StreamResource("eventImage.png", () -> new ByteArrayInputStream(imageBytes));
 		return new Image(streamResource, "event image");
 	}
 }

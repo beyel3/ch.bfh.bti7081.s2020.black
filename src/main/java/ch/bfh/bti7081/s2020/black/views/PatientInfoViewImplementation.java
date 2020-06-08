@@ -19,11 +19,10 @@ public class PatientInfoViewImplementation<T extends EventViewInterface> extends
 
 	private static final long serialVersionUID = 1L;
 	
-	private T presenter;
 	private VerticalLayout eventLayout = new VerticalLayout();
 	
 	public PatientInfoViewImplementation(T presenter, Account acc) {
-		this.presenter = presenter;
+
 		Label labelPatientEvents = new Label("Patient Events: ");
 		labelPatientEvents.getStyle().set("font-size", "24px");
 		labelPatientEvents.getStyle().set("font-weight", "bold");
