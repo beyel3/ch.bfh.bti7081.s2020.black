@@ -26,7 +26,7 @@ public class JoinPublicEvents extends StateModel {
 					continue;
 				}
 				else {
-					Event event = new Event(eventResult.getInt(1), getEventTemplateByID(eventResult.getInt(2)), eventResult.getString(3), null, eventResult.getBoolean(4), eventResult.getInt(5), eventResult.getInt(6), Status.valueOf(eventResult.getString(7)), null, participants);
+					Event event = new Event(eventResult.getInt(1), getEventTemplateByID(eventResult.getInt(2)), null, eventResult.getBoolean(4), eventResult.getInt(5), eventResult.getInt(6), Status.valueOf(eventResult.getString(7)), participants);
 					ArrayList<Post> posts = getPostsByEventID(event);
 					event.setPosts(posts);
 					events.add(event);

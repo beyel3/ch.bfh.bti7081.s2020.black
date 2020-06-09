@@ -12,14 +12,11 @@ public class HeaderPresenter extends Presenter implements HeaderInterface {
     public HeaderPresenter(SuperPresenter superPresenter){
 
         super(superPresenter);
-        if (superPresenter.getLoggedInAccount().getAccountType() == AccountType.ADMIN){
             this.headerViewImplementation = new HeaderViewImplementation(this, true);
-        } else {
-            this.headerViewImplementation = new HeaderViewImplementation(this, false);
-        }
         currentView = this.headerViewImplementation;
         headerViewImplementation.setUsername(superPresenter.getLoggedInUserName());
         superPresenter.addHeader(currentView);
+        
     }
 
     @Override
