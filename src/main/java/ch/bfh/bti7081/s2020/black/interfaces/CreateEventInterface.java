@@ -1,4 +1,4 @@
-package ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter;
+package ch.bfh.bti7081.s2020.black.interfaces;
 
 import java.util.ArrayList;
 import java.util.Set;

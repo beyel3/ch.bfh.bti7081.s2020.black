@@ -9,11 +9,27 @@ import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 
 public class ChooseTemplate extends StateModel {
+	
+	public ArrayList<Tag> getTagList() {
+		ArrayList<Tag> tags = new ArrayList<Tag>();
 
+		try {
+			ResultSet tagResult = persistence.executeQuery("SELECT * FROM tbl_tag");
+			while (tagResult.next()) {
+				Tag t = new Tag(tagResult.getInt(1), tagResult.getString(2));
+				tags.add(t);
+			}
+			return tags;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	
 	public EventTemplate saveEventTemplate(String title, String description, ArrayList<Tag> tags) {
 
 		EventTemplate et = new EventTemplate(title, description, tags);
-
 		try {
 
 			persistence.executeUpdate("INSERT INTO tbl_eventTemplate VALUES (NULL, '" + et.getTitle() + "', '"

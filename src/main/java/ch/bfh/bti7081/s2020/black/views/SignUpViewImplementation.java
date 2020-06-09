@@ -1,7 +1,5 @@
 package ch.bfh.bti7081.s2020.black.views;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.SignUpInterface;
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.View.DialogInterface;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
@@ -24,6 +22,8 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.bti7081.s2020.black.interfaces.DialogInterface;
+import ch.bfh.bti7081.s2020.black.interfaces.SignUpInterface;
 import ch.bfh.bti7081.s2020.black.persistence.Persistence;
 
 public class SignUpViewImplementation<T extends SignUpInterface> extends VerticalLayout implements DialogInterface {

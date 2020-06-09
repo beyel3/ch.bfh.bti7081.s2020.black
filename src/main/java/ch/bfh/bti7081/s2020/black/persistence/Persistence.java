@@ -89,21 +89,19 @@ public class Persistence {
         }
     }
     
-    public void executePreparedStatement(byte [] picture, Event event) {
+    public PreparedStatement getPreparedStatement(String sql) {
     	
-    	String sql = "INSERT INTO tbl_image (eventID, image) VALUES (?,?)";
-    	
+    	PreparedStatement stm;
+    	    	
         try {  	
-        	PreparedStatement stm = connection.prepareStatement(sql);
+        	stm = connection.prepareStatement(sql);
             stm.setQueryTimeout(30);
-            stm.setInt(1, event.getId());
-            stm.setBytes(2, picture);
-            stm.executeUpdate();
-            stm.close();
+            return stm;
         }
         catch(SQLException e) {
-            System.err.println(e);
+        	System.err.println(e);
+        	return null;
+            
         }
     }
-    
 }

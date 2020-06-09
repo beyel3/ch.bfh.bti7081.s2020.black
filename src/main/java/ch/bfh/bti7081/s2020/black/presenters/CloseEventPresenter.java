@@ -9,8 +9,8 @@ import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.sql.rowset.serial.SerialException;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.CloseEventViewInterface;
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface.EventAction;
+import ch.bfh.bti7081.s2020.black.interfaces.CloseEventViewInterface;
+import ch.bfh.bti7081.s2020.black.interfaces.EventViewInterface.EventAction;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.Status;
 import ch.bfh.bti7081.s2020.black.model.stateModel.CloseEvent;

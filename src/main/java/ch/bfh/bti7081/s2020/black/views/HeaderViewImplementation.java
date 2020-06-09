@@ -1,7 +1,5 @@
 package ch.bfh.bti7081.s2020.black.views;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.View.HeaderInterface;
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.View.UserNameInterface;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
@@ -14,6 +12,9 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.theme.lumo.Lumo;
+
+import ch.bfh.bti7081.s2020.black.interfaces.HeaderInterface;
+import ch.bfh.bti7081.s2020.black.interfaces.UserNameInterface;
 
 import javax.imageio.plugins.jpeg.JPEGImageWriteParam;
 
@@ -47,7 +48,6 @@ public class HeaderViewImplementation<T extends HeaderInterface> extends Vertica
 		Button homeButton = new Button("Home");
 		Button createEvent = new Button("Create Event");
 		Button myEvent = new Button("My Events");
-		Button adminPanel = new Button("Admin Pannel");
 
 		Icon iconTheme = VaadinIcon.SUN_O.create();
 		Button iconToggleThemeButton = new Button(iconTheme, click -> {
@@ -70,7 +70,6 @@ public class HeaderViewImplementation<T extends HeaderInterface> extends Vertica
 		homeButton.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.HOME));
 		createEvent.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.CREATEEVENT));
 		myEvent.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.MYEVENTS));
-		adminPanel.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.ADMIN));
 		userName.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.MYEVENTS));
 
 		menuBar.add(homeButton);
@@ -87,7 +86,7 @@ public class HeaderViewImplementation<T extends HeaderInterface> extends Vertica
 		rightLayout.setWidth("100%");
 		rightLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
 		if (admin) {
-			rightLayout.add(logo, iconToggleThemeButton, adminPanel, logOutButton, userName);
+			rightLayout.add(logo, iconToggleThemeButton, logOutButton, userName);
 		} else {
 			rightLayout.add(logo, iconToggleThemeButton, logOutButton, userName);
 		}

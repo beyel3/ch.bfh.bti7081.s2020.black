@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2020.black.model;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Post {

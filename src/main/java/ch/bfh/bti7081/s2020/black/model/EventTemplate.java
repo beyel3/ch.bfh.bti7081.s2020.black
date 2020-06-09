@@ -9,28 +9,22 @@ public class EventTemplate {
 	private String title;
 	private String description;
 	private ArrayList<Tag> tags;
-	private ArrayList<Event> events;
 	private double avgRating;
 	
 	// generate from persistence
-	public EventTemplate(int id, String title, String description, ArrayList<Tag> tags, ArrayList<Event> events, double avgRating) {
-		
+	public EventTemplate(int id, String title, String description, ArrayList<Tag> tags, double avgRating) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.tags = tags;
-		this.events = events;
 		this.avgRating = avgRating;	
-		
 	}
 	
 	// generate new by presenter
 	public EventTemplate(String title, String description, ArrayList<Tag> tags) {
-		
 		this.title = title;
 		this.description = description;
-		this.tags = tags;
-		
+		this.tags = tags;	
 	}
 
 	
@@ -60,44 +54,15 @@ public class EventTemplate {
 		return title;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 	public String getDescription() {
 		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public ArrayList<Tag> getTags() {
 		return tags;
 	}
 
-	public void setTags(ArrayList<Tag> tags) {
-		this.tags = tags;
-	}
-
-	public ArrayList<Event> getEvents() {
-		return events;
-	}
-
-	public void setEvents(ArrayList<Event> events) {
-		this.events = events;
-	}
-
 	public double getAvgRating() {
 		return avgRating;
 	}
-
-	public void setAvgRating(double avgRating) {
-		this.avgRating = avgRating;
-	}
-
-	public String getTemplateIDforURL() {
-		return Integer.toString(id);
-	}
-
 }

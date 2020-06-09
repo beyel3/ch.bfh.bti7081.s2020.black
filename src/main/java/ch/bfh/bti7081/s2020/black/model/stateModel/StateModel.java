@@ -15,7 +15,6 @@ public abstract class StateModel {
 	protected Persistence persistence;
 	protected SuperPresenter presenter;
 	
-	
 	public StateModel() {
 		
 		try {
@@ -25,27 +24,24 @@ public abstract class StateModel {
 		}
 	}
 	
+	// Get Event Templates
     public ArrayList<EventTemplate> getEventTemplateList() {
         ArrayList<EventTemplate> eventTemplateList = new ArrayList<EventTemplate>();
         try {
-           
             ResultSet rs = persistence.executeQuery("SELECT * FROM tbl_eventTemplate");
-
             while (rs.next()) {
 				ArrayList<Tag> tags = getTagsByTemplateID(rs.getInt("eventTemplateId"));
-				EventTemplate eT = new EventTemplate(rs.getInt("eventTemplateId"), rs.getString("title"), rs.getString("description"), tags, null, rs.getDouble("rating"));
-                ArrayList<Event> events = getEventListByTemplate(eT);
-				eT.setEvents(events);
+				EventTemplate eT = new EventTemplate(rs.getInt("eventTemplateId"), rs.getString("title"), rs.getString("description"), tags, rs.getDouble("rating"));
                 eventTemplateList.add(eT);
             }
             return eventTemplateList;
         } catch (SQLException e) {
-            // query failed
 			e.printStackTrace();
             return null;
         }
     }
 
+    // Get Events from specific Template
 	public ArrayList<Event> getEventListByTemplate(EventTemplate eventTemplate) {
 
 		ArrayList<Event> events = new ArrayList<Event>();
@@ -64,14 +60,13 @@ public abstract class StateModel {
 							break;
 						case RELATIVE:
 							Relative rel = new Relative(participantsResult.getInt(1),participantsResult.getString(2), participantsResult.getString(3), participantsResult.getString(4));
-							rel.setLvl(participantsResult.getInt(6));
 							participants.add(rel);
 							break;
 						default:
 							break;
 					}
 				}
-				Event event = new Event(eventResult.getInt("eventId"), eventTemplate, eventResult.getString("info"), null,eventResult.getBoolean("isPublic"), eventResult.getInt("maxParticipants"), eventResult.getInt("rating"), Status.valueOf(eventResult.getString("state")), null, participants);
+				Event event = new Event(eventResult.getInt("eventId"), eventTemplate, null,eventResult.getBoolean("isPublic"), eventResult.getInt("maxParticipants"), eventResult.getInt("rating"), Status.valueOf(eventResult.getString("state")), participants);
 				ArrayList<Post> posts = getPostsByEventID(event);
 				event.setPosts(posts);
 				events.add(event);
@@ -85,35 +80,7 @@ public abstract class StateModel {
 		}
 	}
 
-	public Tag saveTag(Tag t) {
-
-		try {
-			persistence.executeUpdate("INSERT INTO tbl_tag VALUES (NULL, '"+t.getTagName()+"')");
-			ResultSet id = persistence.executeQuery("SELECT LAST_INSERT_ROWID()");
-			t.setId(id.getInt(1));
-
-			return t;
-		}
-		catch(SQLException e){
-			// query failed
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	public Tag getTagById(int id) {
-		try {
-			ResultSet tr = persistence.executeQuery("SELECT tagID, tag_name FROM tbl_tag WHERE tagID = "+id);
-			Tag t = new Tag(tr.getInt(1), tr.getString(2));
-			return t;
-		}
-		catch(SQLException e){
-			// query failed
-			e.printStackTrace();
-			return null;
-		}
-	}
-
+	// Get Tags from from specific Template
 	public ArrayList<Tag> getTagsByTemplateID(int id) {
 		ArrayList<Tag> tags = new ArrayList<Tag>();
 		try {
@@ -126,22 +93,6 @@ public abstract class StateModel {
 		}
 		catch(SQLException e){
 			// query failed
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	public ArrayList<Tag> getTagList() {
-		ArrayList<Tag> tags = new ArrayList<Tag>();
-
-		try {
-			ResultSet tagResult = persistence.executeQuery("SELECT * FROM tbl_tag");
-			while (tagResult.next()) {
-				Tag t = new Tag(tagResult.getInt(1), tagResult.getString(2));
-				tags.add(t);
-			}
-			return tags;
-		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -165,7 +116,6 @@ public abstract class StateModel {
 						break;
 					case RELATIVE:
 						Relative rel = new Relative(postResult.getInt(1),postResult.getString(2), postResult.getString(3), postResult.getString(4));
-						rel.setLvl(postResult.getInt(6));
 						Post pr = new Post(postResult.getString(8), event, postResult.getTimestamp(9), rel);
 						posts.add(pr);
 						break;
@@ -195,7 +145,7 @@ public abstract class StateModel {
 						break;
 					case RELATIVE:
 						Relative rel = new Relative(participantsResult.getInt(1), participantsResult.getString(2), participantsResult.getString(3), participantsResult.getString(4));
-						rel.setLvl(participantsResult.getInt(6));
+
 						participants.add(rel);
 						break;
 					default:
@@ -224,7 +174,6 @@ public abstract class StateModel {
 						break;
 					case RELATIVE:
 						Relative rel = new Relative(accResult.getInt(1), accResult.getString(2), accResult.getString(3), accResult.getString(4));
-						rel.setLvl(accResult.getInt(6));
 						friends.add(rel);
 						break;
 					default:
@@ -239,6 +188,8 @@ public abstract class StateModel {
 			return null;
 		}
 	}
+	
+	
 	public EventTemplate getEventTemplateByID(int eventTemplateID) {
 
 		try {
@@ -251,7 +202,7 @@ public abstract class StateModel {
 			}
 
 			ResultSet templateResult = persistence.executeQuery("SELECT * FROM tbl_eventTemplate WHERE eventTemplateID = " + eventTemplateID);
-			EventTemplate et = new EventTemplate(templateResult.getInt("eventTemplateId"), templateResult.getString("title"), templateResult.getString("description"), tags, null, templateResult.getDouble("rating"));
+			EventTemplate et = new EventTemplate(templateResult.getInt("eventTemplateId"), templateResult.getString("title"), templateResult.getString("description"), tags, templateResult.getDouble("rating"));
 
 			return et;
 		}
@@ -261,116 +212,4 @@ public abstract class StateModel {
 			return null;
 		}
 	}
-
-//	public ArrayList<Patient> getPatientListWithNoRel(Account acc) {
-//
-//		ArrayList<Patient> list = new ArrayList<>();
-//		try {
-//
-//			ResultSet rs = persistence.executeQuery("SELECT a.first_name, a.last_name, a.email, a.patientInfo FROM tbl_friendship AS f INNER JOIN tbl_account AS a ON f.accountID2 = a.accountID WHERE f.accountID1 != " + acc.getId());
-//			while (rs.next()) {
-//				Patient us = new Patient(rs.getString(1), rs.getString(2), rs.getString(3));
-//				us.setPatientInfo(rs.getString(4));
-//				list.add(us);
-//			}
-//			return list;
-//		}
-//		catch(SQLException e){
-//			// query failed
-//			e.printStackTrace();
-//			return null;
-//		}
-//	}
-//	public EventTemplate saveEventTemplate(EventTemplate et) throws SQLException{
-//		ArrayList<Tag> tags = et.getTags();
-//
-//		try {
-//
-//			Statement statement = this.connection.createStatement();
-//			statement.setQueryTimeout(30);  // set timeout to 30 sec.
-//			statement.executeUpdate("INSERT INTO tbl_eventTemplate VALUES (NULL, '"+et.getTitle()+"', '"+et.getDescription()+"', '"+et.getAvgRating()+"')");
-//			ResultSet id = statement.executeQuery("SELECT LAST_INSERT_ROWID()");
-//			et.setId(id.getInt(1));
-//
-//			for (Tag t:tags) {
-//				statement.executeUpdate("INSERT INTO tbl_tagEventTemplateREL(tagID,eventTemplateID) SELECT "+t.getId()+", '"+et.getId()+"' WHERE NOT EXISTS(SELECT 1 FROM tbl_tagEventTemplateREL WHERE tagID = "+t.getId()+" AND eventTemplateID = "+et.getId()+");");
-//			}
-//
-//			//return eventTemplate with updated id
-//			return et;
-//		}
-//		catch(SQLException e) {
-//			// query failed
-//			System.err.println(e);
-//			return null;
-//		}
-//	}
-//
-//	public EventTemplate getEventTemplateByID(int eventTemplateID) {
-//
-//		try {
-//			ArrayList<Tag> tags = new ArrayList<Tag>();
-//
-//			ResultSet tagResult = persistence.executeQuery("SELECT t.tagID, t.tag_name FROM tbl_tagEventTemplateREL as tr INNER JOIN tbl_tag as t on tr.tagID = t.tagID WHERE tr.eventTemplateID =" + eventTemplateID);
-//			while (tagResult.next()) {
-//				Tag t = new Tag(tagResult.getInt(1), tagResult.getString(2));
-//				tags.add(t);
-//			}
-//
-//			//return persistence.getEventTemplateById(eventTemplateID);
-//			ResultSet templateResult = persistence.executeQuery("SELECT * FROM tbl_eventTemplate WHERE eventTemplateID = " + eventTemplateID);
-//			EventTemplate et = new EventTemplate(templateResult.getInt("eventTemplateId"), templateResult.getString("title"), templateResult.getString("description"), tags, null, templateResult.getDouble("rating"));
-//
-//
-//			et.setEvents(getEventListByTemplateId(eventTemplateID));
-//			return et;
-//		}
-//		catch(SQLException e) {
-//			// query failed
-//			System.err.println(e);
-//			return null;
-//		}
-//	}
-//
-//    public EventTemplate getEventTemplateById(int id) throws SQLException {
-//        ArrayList<Event> events = getEventsByTemplateId(id);
-//        ArrayList<Tag> tags = getTagsByTemplateID(id);
-//        try {
-//            Statement statement = this.connection.createStatement();
-//            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-//
-//            ResultSet templateResult = statement.executeQuery("SELECT * FROM tbl_eventTemplate WHERE eventTemplateID = "+id);
-//            EventTemplate eT = new EventTemplate(templateResult.getInt("eventTemplateId"), templateResult.getString("title"), templateResult.getString("description"), tags, events, templateResult.getDouble("rating"));
-//
-//            return eT;
-//        }
-//
-//        catch(SQLException e){
-//            // query failed
-//            System.err.println(e);
-//            return null;
-//        }
-//    }
-//
-//    public ArrayList<EventTemplate> getEventTemplateList() throws SQLException {
-//        ArrayList<EventTemplate> eventTemplateList = new ArrayList<EventTemplate>();
-//        try {
-//            Statement statement = this.connection.createStatement();
-//            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-//            ResultSet rs = statement.executeQuery("SELECT * FROM tbl_eventTemplate");
-//
-//            while (rs.next()) {
-//                ArrayList<Event> events = getEventsByTemplateId(rs.getInt("eventTemplateId"));
-//                ArrayList<Tag> tags = getTagsByTemplateID(rs.getInt("eventTemplateId"));
-//                EventTemplate eT = new EventTemplate(rs.getInt("eventTemplateId"), rs.getString("title"), rs.getString("description"), tags, events, rs.getDouble("rating"));
-//                eventTemplateList.add(eT);
-//            }
-//            return eventTemplateList;
-//        } catch (SQLException e) {
-//            // query failed
-//            System.err.println(e);
-//            return null;
-//        }
-//    }
-
 }
