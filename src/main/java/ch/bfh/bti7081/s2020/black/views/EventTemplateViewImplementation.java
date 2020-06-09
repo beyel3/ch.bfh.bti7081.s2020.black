@@ -64,7 +64,12 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 		Grid.Column<EventTemplate> titleColumn = grid.addColumn(EventTemplate::getTitle).setHeader("Title");
 		Grid.Column<EventTemplate> descriptionColumn = grid.addColumn(EventTemplate::getDescription).setHeader("Description");
 		Grid.Column<EventTemplate> tagColumn = grid.addColumn(event -> event.getTags().toString().replaceAll("\\[|\\]", "")).setHeader("Tags");
-		Grid.Column<EventTemplate> ratingColumn = grid.addColumn(EventTemplate::getAvgRating).setHeader("Rating");
+		Grid.Column<EventTemplate> ratingColumn = grid.addColumn(event -> {
+		    if(event.getAvgRating() == 0.0){
+			    return "no rating";
+			} else
+				return event.getAvgRating();});
+		ratingColumn.setHeader("Rating");
 		grid.addComponentColumn(item -> createUseAsTemplateButton(item)).setHeader("Use As Template");
 		descriptionColumn.setFlexGrow(3);
 
