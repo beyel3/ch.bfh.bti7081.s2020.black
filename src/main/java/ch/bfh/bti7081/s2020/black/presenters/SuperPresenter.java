@@ -4,7 +4,6 @@ import com.vaadin.flow.component.Component;
 
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.stateModel.StateModel;
-import ch.bfh.bti7081.s2020.black.views.HeaderViewImplementation;
 import ch.bfh.bti7081.s2020.black.views.MainView;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 

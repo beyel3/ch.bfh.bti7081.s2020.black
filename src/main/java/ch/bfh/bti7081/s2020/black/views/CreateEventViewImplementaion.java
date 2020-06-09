@@ -22,7 +22,8 @@ import ch.bfh.bti7081.s2020.black.model.Tag;
 
 public class CreateEventViewImplementaion<T extends CreateEventInterface> extends VerticalLayout {
 
-	
+	private static final long serialVersionUID = 1L;
+
 	private T presenter;
 	
 	private TextField title;

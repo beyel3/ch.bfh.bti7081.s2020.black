@@ -1,12 +1,9 @@
 package ch.bfh.bti7081.s2020.black.views;
 
-import java.util.ArrayList;
-
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
@@ -16,6 +13,7 @@ import ch.bfh.bti7081.s2020.black.model.Tag;
 
 public class CreateTemplateViewImplementation<T extends EventTemplateInterface> extends VerticalLayout {
 
+	private static final long serialVersionUID = 1L;
 	private TextField title;
 	private TextArea description;
 	private MultiSelectListBox<Tag> tags;

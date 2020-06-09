@@ -10,9 +10,6 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 import ch.bfh.bti7081.s2020.black.interfaces.HomeViewInterface;
 
-
-//@Route(value = "HomeView", layout = MainView.class)
-//@RouteAlias(value = "", layout = MainView.class)
 public class HomeViewImplementation<T extends HomeViewInterface> extends VerticalLayout {
 	
 	private static final long serialVersionUID = 1L;

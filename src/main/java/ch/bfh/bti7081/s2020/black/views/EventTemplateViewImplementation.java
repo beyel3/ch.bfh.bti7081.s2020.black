@@ -23,10 +23,8 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import ch.bfh.bti7081.s2020.black.interfaces.EventTemplateInterface;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Tag;
-import ch.bfh.bti7081.s2020.black.presenters.EventTemplatePresenter;
 
 
-//@Route(value = "EventTemplateView", layout = MainView.class)
 public class EventTemplateViewImplementation<T extends EventTemplateInterface> extends HorizontalLayout {
 
 	private static final long serialVersionUID = 1L;
@@ -143,7 +141,6 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 		VerticalLayout templates = new VerticalLayout();
 		templates.setWidth("100%");
 		templates.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-//		templates.getStyle().set("border", "1px solid black");
 		templates.getStyle().set("overflowY", "auto");
 		templates.getStyle().set("display", "block");
 

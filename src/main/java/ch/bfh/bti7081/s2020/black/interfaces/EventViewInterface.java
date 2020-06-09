@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Event;
-import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Patient;
 import ch.bfh.bti7081.s2020.black.model.Post;
 

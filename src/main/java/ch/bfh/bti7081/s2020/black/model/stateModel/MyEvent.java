@@ -2,11 +2,8 @@ package ch.bfh.bti7081.s2020.black.model.stateModel;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Blob;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;

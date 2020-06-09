@@ -10,7 +10,8 @@ import ch.bfh.bti7081.s2020.black.model.Account;
 
 public class AddPatientView<T extends JoinPublicEventInterface> extends VerticalLayout {
 	
-	
+	private static final long serialVersionUID = 1L;
+
 	public AddPatientView(T presenter) {
 		
 		MultiSelectListBox<Account> participants = new MultiSelectListBox<Account>();

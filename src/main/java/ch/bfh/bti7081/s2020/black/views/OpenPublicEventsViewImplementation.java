@@ -1,14 +1,11 @@
 package ch.bfh.bti7081.s2020.black.views;
 
 import java.util.ArrayList;
-import java.util.Set;
-
 import org.apache.commons.lang3.StringUtils;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.HeaderRow;
-import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.provider.ListDataProvider;
@@ -16,7 +13,6 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 
 import ch.bfh.bti7081.s2020.black.interfaces.EventTemplateInterface;
 import ch.bfh.bti7081.s2020.black.model.Event;
-import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 
 public class OpenPublicEventsViewImplementation<T extends EventTemplateInterface> extends VerticalLayout {
 

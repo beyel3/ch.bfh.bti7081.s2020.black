@@ -55,9 +55,6 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		ArrayList<Event> myOpenEvents = presenter.getMyOpenEvents();
 
 		for (Event e : myOpenEvents) {
-
-			// System.out.println(e.getEventTemplate().getId());
-
 			String participantsHelper = new String(e.getParticipants().toString());
 			participantsHelper = participantsHelper.substring(1, participantsHelper.length() - 1);
 			participantsHelper = participantsHelper.replaceAll(", ", "\n");
@@ -208,7 +205,6 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		VerticalLayout events = new VerticalLayout();
 		events.setWidth("100%");
 		events.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-//		templates.getStyle().set("border", "1px solid black");
 		events.getStyle().set("overflowY", "auto");
 		events.getStyle().set("display", "block");
 		String participantsHelper = new String(singleEvent.getParticipants().toString());

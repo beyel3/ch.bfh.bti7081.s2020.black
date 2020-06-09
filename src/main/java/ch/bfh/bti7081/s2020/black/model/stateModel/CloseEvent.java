@@ -9,11 +9,9 @@ import javax.sql.rowset.serial.SerialException;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 
-import java.util.ArrayList;
-
 public class CloseEvent extends StateModel {
 
-	//Speichere Bild in DB
+	// Save image to DB
 	public void savePicture(byte[] picture, Event event) throws SerialException, SQLException {
 		
 		String sql = "INSERT INTO tbl_image (eventID, image) VALUES (?,?)";
@@ -28,20 +26,20 @@ public class CloseEvent extends StateModel {
 	}
 
 
-	//Setzte Rating des durchgeführten Event
+	// Set rating of the done event
 	public void setEventRating(Event event) {
 		persistence.executeUpdate(
 				"UPDATE tbl_event SET rating = " + event.getRating() + " WHERE eventID = " + event.getId());
 	}
 
-	//Setzte Status des durchgeführten Event
+	// Set status for the done event
 	public void setEventStatus(Event event) {
 		persistence.executeUpdate(
 				"UPDATE tbl_event SET state = '" + event.getStatus() + "' WHERE eventID = " + event.getId());
 
 	}
 
-	//Berechne das neue durchschnittliche Rating eines Template
+	// Calculate the average rating of an event template
 	public void updateAvgRating(EventTemplate eventTemplate) {
 		ArrayList<Event> events = getEventListByTemplate(eventTemplate);
 

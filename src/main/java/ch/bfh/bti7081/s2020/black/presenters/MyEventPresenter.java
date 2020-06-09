@@ -4,8 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.vaadin.flow.component.dialog.Dialog;
-import com.vaadin.flow.component.html.Image;
-
 import ch.bfh.bti7081.s2020.black.interfaces.EventViewInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Event;
