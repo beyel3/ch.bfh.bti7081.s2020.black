@@ -32,6 +32,7 @@ public class CloseEvent extends StateModel {
 
 		double count = 0;
 		double sum = 0;
+		
 		for (Event e : events) {
 			if (e.getRating() != 0) {
 				sum += e.getRating();
