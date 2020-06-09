@@ -26,10 +26,7 @@ import com.vaadin.flow.server.StreamResource;
 import ch.bfh.bti7081.s2020.black.interfaces.EventViewInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Event;
-import ch.bfh.bti7081.s2020.black.model.Patient;
 import ch.bfh.bti7081.s2020.black.model.Tag;
-
-import javax.swing.tree.ExpandVetoException;
 
 public class MyEventViewImplementation<T extends EventViewInterface> extends VerticalLayout {
 
@@ -87,10 +84,6 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 			Button buttonChat = new Button("CHAT");
 			buttonChat.addClickListener(event -> presenter.buttonClick(EventViewInterface.EventAction.OPENCHAT, e));
 			buttonChat.setWidth("100%");
-
-//			Button buttonDetails = new Button("DETAILS");
-//			buttonDetails.addClickListener(event -> 
-//			presenter.buttonClick(EventViewInterface.EventAction.DETAILS, e));
 
 			Button buttonMarkDone = new Button("EVENT DONE");
 			buttonMarkDone.addClickListener(event -> presenter.buttonClick(EventViewInterface.EventAction.MARKDONE, e));
@@ -246,10 +239,7 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		TextArea participants = new TextArea();
 		participants.setSizeFull();
 		participants.setValue(participantsHelper);
-		participants.setReadOnly(true);
-
-//		Image selfie = new Image("https://dummyimage.com/600x400/000/fff", "");
-		
+		participants.setReadOnly(true);		
 
 		byte[] imageBytes = presenter.getPicture(singleEvent);
 				StreamResource resource = new StreamResource("dummyImageName.png", () -> new ByteArrayInputStream(imageBytes));
