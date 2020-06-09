@@ -48,7 +48,6 @@ public class HeaderViewImplementation<T extends HeaderInterface> extends Vertica
 		Button homeButton = new Button("Home");
 		Button createEvent = new Button("Create Event");
 		Button myEvent = new Button("My Events");
-		Button adminPanel = new Button("Admin Pannel");
 
 		Icon iconTheme = VaadinIcon.SUN_O.create();
 		Button iconToggleThemeButton = new Button(iconTheme, click -> {
@@ -71,7 +70,6 @@ public class HeaderViewImplementation<T extends HeaderInterface> extends Vertica
 		homeButton.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.HOME));
 		createEvent.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.CREATEEVENT));
 		myEvent.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.MYEVENTS));
-		adminPanel.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.ADMIN));
 		userName.addClickListener(event -> presenter.buttonClick(HeaderInterface.HeaderAction.MYEVENTS));
 
 		menuBar.add(homeButton);
@@ -88,7 +86,7 @@ public class HeaderViewImplementation<T extends HeaderInterface> extends Vertica
 		rightLayout.setWidth("100%");
 		rightLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
 		if (admin) {
-			rightLayout.add(logo, iconToggleThemeButton, adminPanel, logOutButton, userName);
+			rightLayout.add(logo, iconToggleThemeButton, logOutButton, userName);
 		} else {
 			rightLayout.add(logo, iconToggleThemeButton, logOutButton, userName);
 		}

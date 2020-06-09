@@ -258,7 +258,8 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 
 		layout.add(title, description, tags, progressBar, participants, selfie);
 		layout.setMinWidth("350px");
-		layout.setMaxWidth("100vw");
+		layout.setMaxWidth("60vw");
+		layout.setMaxHeight("90vw");
 		events.add(layout);
 
 		dialogShowEventDetails.add(events);
