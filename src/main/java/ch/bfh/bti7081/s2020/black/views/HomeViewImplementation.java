@@ -3,15 +3,13 @@ package ch.bfh.bti7081.s2020.black.views;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.HomeViewInterface;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
+import ch.bfh.bti7081.s2020.black.interfaces.HomeViewInterface;
 
-//@Route(value = "HomeView", layout = MainView.class)
-//@RouteAlias(value = "", layout = MainView.class)
 public class HomeViewImplementation<T extends HomeViewInterface> extends VerticalLayout {
 	
 	private static final long serialVersionUID = 1L;

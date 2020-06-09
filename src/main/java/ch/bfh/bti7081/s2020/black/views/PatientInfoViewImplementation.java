@@ -2,7 +2,6 @@ package ch.bfh.bti7081.s2020.black.views;
 
 import java.util.ArrayList;
 
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -10,7 +9,7 @@ import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
+import ch.bfh.bti7081.s2020.black.interfaces.EventViewInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.Tag;
@@ -39,9 +38,6 @@ public class PatientInfoViewImplementation<T extends EventViewInterface> extends
 		ArrayList<Event> patientEvents = presenter.getPatientEvents(acc);
 		
 		for (Event e : patientEvents) {
-
-			// System.out.println(e.getEventTemplate().getId());
-
 			String participantsHelper = new String(e.getParticipants().toString());
 			participantsHelper = participantsHelper.substring(1, participantsHelper.length() - 1);
 			participantsHelper = participantsHelper.replaceAll(", ", "\n");

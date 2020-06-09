@@ -9,7 +9,6 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.HeaderRow;
-import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -19,10 +18,8 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.data.value.ValueChangeMode;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventTemplateInterface;
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.JoinPublicEventInterface;
+import ch.bfh.bti7081.s2020.black.interfaces.JoinPublicEventInterface;
 import ch.bfh.bti7081.s2020.black.model.Event;
-import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 
 public class JoinPublicEventViewImplementation<T extends JoinPublicEventInterface> extends VerticalLayout {
@@ -128,7 +125,6 @@ public class JoinPublicEventViewImplementation<T extends JoinPublicEventInterfac
 		VerticalLayout events = new VerticalLayout();
 		events.setWidth("100%");
 		events.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-//		templates.getStyle().set("border", "1px solid black");
 		events.getStyle().set("overflowY", "auto");
 		events.getStyle().set("display", "block");
 		String participantsHelper = new String(singleEvent.getParticipants().toString());

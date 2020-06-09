@@ -6,27 +6,23 @@ public class Event {
 	
 	private int id;
 	private EventTemplate eventTemplate;
-	private String info;
 	private ArrayList<Post> posts;
  	private boolean isPublic;
  	private int maxParticipants;
 	private ArrayList<Account> participants;
 	private Status status;
 	private int rating;
-	private byte[] picture;
 	
 	//Persistence Constructor
-	public Event(int id, EventTemplate eventTemplate, String info, ArrayList<Post> posts, boolean isPublic, int maxParticipants, int rating, Status status, byte [] picture, ArrayList<Account> participants) {
+	public Event(int id, EventTemplate eventTemplate, ArrayList<Post> posts, boolean isPublic, int maxParticipants, int rating, Status status, ArrayList<Account> participants) {
 		
 		this.id = id;
 		this.eventTemplate = eventTemplate;
-		this.info = info;
 		this.posts = posts;
 		this.isPublic = isPublic;
 		this.maxParticipants = maxParticipants;
 		this.rating = rating;
-		this.status = status;
-		this.picture = picture;		
+		this.status = status;	
 		this.participants = participants;
 		
 	}
@@ -53,10 +49,6 @@ public class Event {
 		
 		return "ID: " + id + ", " + "TEMPLATE: " + eventTemplate.getTitle() + ", " + part;
 	}
-
-	public void addPicture(byte [] picture){
-		this.picture = picture;
-	}
 	
 	public void setStatus(Status status) {
 		this.status = status;
@@ -73,8 +65,6 @@ public class Event {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getInfo(){return info;}
 
 	public EventTemplate getEventTemplate() {
 		return eventTemplate;
@@ -100,10 +90,6 @@ public class Event {
 		this.participants = participants;
 	}
 
-	public byte [] getPicture() {
-		return picture;
-	}
-
 	public Status getStatus() {
 		return status;
 	}
@@ -124,7 +110,4 @@ public class Event {
 		return maxParticipants;
 	}
 
-	public void setMaxParticipants(int maxParticipants) {
-		this.maxParticipants = maxParticipants;
-	}
 }

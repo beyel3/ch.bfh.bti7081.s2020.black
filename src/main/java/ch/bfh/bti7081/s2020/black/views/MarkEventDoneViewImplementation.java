@@ -5,16 +5,13 @@ import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.listbox.MultiSelectListBox;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
-import com.vaadin.flow.component.upload.receivers.MultiFileMemoryBuffer;
-
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.CloseEventViewInterface;
+import ch.bfh.bti7081.s2020.black.interfaces.CloseEventViewInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 import com.vaadin.flow.server.StreamResource;
@@ -23,18 +20,16 @@ import org.apache.commons.io.IOUtils;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.concurrent.atomic.AtomicReference;
 
 
 public class MarkEventDoneViewImplementation<T extends CloseEventViewInterface> extends VerticalLayout {
 
+	private static final long serialVersionUID = 1L;
 	private TextField title;
 	private TextArea description;
 	private MultiSelectListBox<Tag> tags;
 	private MultiSelectListBox<Account> participants;
 	private NumberField rating;
-	private MultiFileMemoryBuffer buffer;
-	private Upload upload;
 	private byte[] imageBytes;
 	private Image preview = new Image();
 

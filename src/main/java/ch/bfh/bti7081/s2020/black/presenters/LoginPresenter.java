@@ -1,11 +1,8 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.LoginInterface;
-import ch.bfh.bti7081.s2020.black.model.Account;
+import ch.bfh.bti7081.s2020.black.interfaces.LoginInterface;
 import ch.bfh.bti7081.s2020.black.model.stateModel.Login;
-import ch.bfh.bti7081.s2020.black.model.stateModel.StateModel;
 import ch.bfh.bti7081.s2020.black.views.LoginViewImplementation;
-import com.vaadin.flow.component.notification.Notification;
 
 
 public class LoginPresenter extends Presenter implements LoginInterface {

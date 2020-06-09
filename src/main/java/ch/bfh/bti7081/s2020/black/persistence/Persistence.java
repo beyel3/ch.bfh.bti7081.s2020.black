@@ -5,12 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-
-import ch.bfh.bti7081.s2020.black.model.Event;
-import ch.bfh.bti7081.s2020.black.model.EventTemplate;
-import ch.bfh.bti7081.s2020.black.model.Patient;
-import ch.bfh.bti7081.s2020.black.model.Tag;
 
 public class Persistence {
 
@@ -89,21 +83,19 @@ public class Persistence {
         }
     }
     
-    public void executePreparedStatement(byte [] picture, Event event) {
+    public PreparedStatement getPreparedStatement(String sql) {
     	
-    	String sql = "INSERT INTO tbl_image (eventID, image) VALUES (?,?)";
-    	
+    	PreparedStatement stm;
+    	    	
         try {  	
-        	PreparedStatement stm = connection.prepareStatement(sql);
+        	stm = connection.prepareStatement(sql);
             stm.setQueryTimeout(30);
-            stm.setInt(1, event.getId());
-            stm.setBytes(2, picture);
-            stm.executeUpdate();
-            stm.close();
+            return stm;
         }
         catch(SQLException e) {
-            System.err.println(e);
+        	System.err.println(e);
+        	return null;
+            
         }
     }
-    
 }

@@ -14,7 +14,7 @@ import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.CreateEventInterface;
+import ch.bfh.bti7081.s2020.black.interfaces.CreateEventInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Tag;
@@ -22,7 +22,8 @@ import ch.bfh.bti7081.s2020.black.model.Tag;
 
 public class CreateEventViewImplementaion<T extends CreateEventInterface> extends VerticalLayout {
 
-	
+	private static final long serialVersionUID = 1L;
+
 	private T presenter;
 	
 	private TextField title;

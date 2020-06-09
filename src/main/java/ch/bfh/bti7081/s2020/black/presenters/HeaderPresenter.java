@@ -1,8 +1,6 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.View.HeaderInterface;
-import ch.bfh.bti7081.s2020.black.model.AccountType;
-import ch.bfh.bti7081.s2020.black.model.stateModel.JoinPublicEvents;
+import ch.bfh.bti7081.s2020.black.interfaces.HeaderInterface;
 import ch.bfh.bti7081.s2020.black.views.HeaderViewImplementation;
 
 public class HeaderPresenter extends Presenter implements HeaderInterface {
@@ -12,14 +10,11 @@ public class HeaderPresenter extends Presenter implements HeaderInterface {
     public HeaderPresenter(SuperPresenter superPresenter){
 
         super(superPresenter);
-        if (superPresenter.getLoggedInAccount().getAccountType() == AccountType.ADMIN){
             this.headerViewImplementation = new HeaderViewImplementation(this, true);
-        } else {
-            this.headerViewImplementation = new HeaderViewImplementation(this, false);
-        }
         currentView = this.headerViewImplementation;
         headerViewImplementation.setUsername(superPresenter.getLoggedInUserName());
         superPresenter.addHeader(currentView);
+        
     }
 
     @Override
@@ -46,7 +41,6 @@ public class HeaderPresenter extends Presenter implements HeaderInterface {
             	new JoinPublicEventPresenter(superPresenter);
                 break;
             case ADMIN:
-
                 break;
         }
     }

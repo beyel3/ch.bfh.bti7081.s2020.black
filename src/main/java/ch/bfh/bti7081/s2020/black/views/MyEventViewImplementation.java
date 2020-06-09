@@ -23,13 +23,10 @@ import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.server.StreamResource;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
+import ch.bfh.bti7081.s2020.black.interfaces.EventViewInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Event;
-import ch.bfh.bti7081.s2020.black.model.Patient;
 import ch.bfh.bti7081.s2020.black.model.Tag;
-
-import javax.swing.tree.ExpandVetoException;
 
 public class MyEventViewImplementation<T extends EventViewInterface> extends VerticalLayout {
 
@@ -58,9 +55,6 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		ArrayList<Event> myOpenEvents = presenter.getMyOpenEvents();
 
 		for (Event e : myOpenEvents) {
-
-			// System.out.println(e.getEventTemplate().getId());
-
 			String participantsHelper = new String(e.getParticipants().toString());
 			participantsHelper = participantsHelper.substring(1, participantsHelper.length() - 1);
 			participantsHelper = participantsHelper.replaceAll(", ", "\n");
@@ -87,10 +81,6 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 			Button buttonChat = new Button("CHAT");
 			buttonChat.addClickListener(event -> presenter.buttonClick(EventViewInterface.EventAction.OPENCHAT, e));
 			buttonChat.setWidth("100%");
-
-//			Button buttonDetails = new Button("DETAILS");
-//			buttonDetails.addClickListener(event -> 
-//			presenter.buttonClick(EventViewInterface.EventAction.DETAILS, e));
 
 			Button buttonMarkDone = new Button("EVENT DONE");
 			buttonMarkDone.addClickListener(event -> presenter.buttonClick(EventViewInterface.EventAction.MARKDONE, e));
@@ -215,7 +205,6 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		VerticalLayout events = new VerticalLayout();
 		events.setWidth("100%");
 		events.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-//		templates.getStyle().set("border", "1px solid black");
 		events.getStyle().set("overflowY", "auto");
 		events.getStyle().set("display", "block");
 		String participantsHelper = new String(singleEvent.getParticipants().toString());
@@ -246,10 +235,7 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 		TextArea participants = new TextArea();
 		participants.setSizeFull();
 		participants.setValue(participantsHelper);
-		participants.setReadOnly(true);
-
-//		Image selfie = new Image("https://dummyimage.com/600x400/000/fff", "");
-		
+		participants.setReadOnly(true);		
 
 		byte[] imageBytes = presenter.getPicture(singleEvent);
 				StreamResource resource = new StreamResource("dummyImageName.png", () -> new ByteArrayInputStream(imageBytes));
@@ -258,7 +244,8 @@ public class MyEventViewImplementation<T extends EventViewInterface> extends Ver
 
 		layout.add(title, description, tags, progressBar, participants, selfie);
 		layout.setMinWidth("350px");
-		layout.setMaxWidth("100vw");
+		layout.setMaxWidth("60vw");
+		layout.setMaxHeight("90vw");
 		events.add(layout);
 
 		dialogShowEventDetails.add(events);

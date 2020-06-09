@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2020.black.model.stateModel;
 
-import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.AccountType;
 import org.apache.commons.codec.digest.DigestUtils;
 

@@ -70,8 +70,6 @@ CREATE TABLE tbl_post (
             ON UPDATE NO ACTION
 );
 
---INSERT INTO tbl_post VALUES (2,1,'Hey Bro! Ja eh!','2020-06-08 10:30:32.11');
-
 DROP TABLE IF EXISTS tbl_event;
 CREATE TABLE tbl_event (
     eventID INTEGER PRIMARY KEY,
@@ -142,17 +140,3 @@ INSERT INTO tbl_tag VALUES (NULL,'Chill');
 INSERT INTO tbl_tag VALUES (NULL,'Active');
 INSERT INTO tbl_tag VALUES (NULL,'Food');
 INSERT INTO tbl_tag VALUES (NULL,'Music');
-
---INSERT INTO tbl_eventTemplate VALUES (NULL,'Test','Test open PublicEvent',10.0);
---INSERT INTO tbl_event VALUES (NULL,'Test open PublicEvent',1,0,'open',4,1,NULL);
---INSERT INTO tbl_tagEventTemplateREL VALUES (1,1);
---INSERT INTO tbl_tagEventTemplateREL VALUES (2,1);
---INSERT INTO tbl_participants VALUES (1,1);
---INSERT INTO tbl_participants VALUES (2,1);
-
---INSERT INTO tbl_eventTemplate VALUES (NULL,'Test 2','Test closed PublicEvent',8.0);
---INSERT INTO tbl_event VALUES (NULL,'Test closed PublicEvent',1,0,'done',4,2,NULL);
---INSERT INTO tbl_tagEventTemplateREL VALUES (1,2);
---INSERT INTO tbl_tagEventTemplateREL VALUES (2,2);
---INSERT INTO tbl_participants VALUES (1,2);
---INSERT INTO tbl_participants VALUES (2,2);

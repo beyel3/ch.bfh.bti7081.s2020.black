@@ -2,11 +2,8 @@ package ch.bfh.bti7081.s2020.black.model.stateModel;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Blob;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;
@@ -28,7 +25,7 @@ public class MyEvent extends StateModel {
 
 			while (eventResult.next()) {
 				ArrayList<Account> participants = getParticipantsByEventID(eventResult.getInt(1));
-				Event event = new Event(eventResult.getInt(1), getEventTemplateByID(eventResult.getInt(2)), eventResult.getString(3), null,eventResult.getBoolean(4), eventResult.getInt(5), eventResult.getInt(6), Status.valueOf(eventResult.getString(7)), null, participants);
+				Event event = new Event(eventResult.getInt(1), getEventTemplateByID(eventResult.getInt(2)), null,eventResult.getBoolean(4), eventResult.getInt(5), eventResult.getInt(6), Status.valueOf(eventResult.getString(7)), participants);
 				ArrayList<Post> posts = getPostsByEventID(event);
 				event.setPosts(posts);
 				events.add(event);
@@ -51,7 +48,7 @@ public class MyEvent extends StateModel {
 
 			while (eventResult.next()) {
 				ArrayList<Account> participants = getParticipantsByEventID(eventResult.getInt(1));
-				Event event = new Event(eventResult.getInt(1), getEventTemplateByID(eventResult.getInt(2)), eventResult.getString(3), null,eventResult.getBoolean(4), eventResult.getInt(5), eventResult.getInt(6), Status.valueOf(eventResult.getString(7)), null, participants);
+				Event event = new Event(eventResult.getInt(1), getEventTemplateByID(eventResult.getInt(2)), null,eventResult.getBoolean(4), eventResult.getInt(5), eventResult.getInt(6), Status.valueOf(eventResult.getString(7)), participants);
 				ArrayList<Post> posts = getPostsByEventID(event);
 				event.setPosts(posts);
 				events.add(event);
@@ -75,7 +72,7 @@ public class MyEvent extends StateModel {
 
 			while (eventResult.next()) {
 				ArrayList<Account> participants = getParticipantsByEventID(eventResult.getInt(1));
-				Event event = new Event(eventResult.getInt(1), getEventTemplateByID(eventResult.getInt(2)), eventResult.getString(3), null,eventResult.getBoolean(4), eventResult.getInt(5), eventResult.getInt(6), Status.valueOf(eventResult.getString(7)), null, participants);
+				Event event = new Event(eventResult.getInt(1), getEventTemplateByID(eventResult.getInt(2)), null,eventResult.getBoolean(4), eventResult.getInt(5), eventResult.getInt(6), Status.valueOf(eventResult.getString(7)), participants);
 				ArrayList<Post> posts = getPostsByEventID(event);
 				event.setPosts(posts);
 				events.add(event);

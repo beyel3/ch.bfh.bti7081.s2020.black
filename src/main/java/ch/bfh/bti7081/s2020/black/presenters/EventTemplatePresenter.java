@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.vaadin.flow.component.dialog.Dialog;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventTemplateInterface;
+import ch.bfh.bti7081.s2020.black.interfaces.EventTemplateInterface;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 import ch.bfh.bti7081.s2020.black.model.stateModel.ChooseTemplate;
