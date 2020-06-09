@@ -86,8 +86,7 @@ public class MarkEventDoneViewImplementation<T extends CloseEventViewInterface> 
 		Button done = new Button("MARK EVENT AS DONE");
 		done.getStyle().set("marginRight", "10px");
 		done.addClickListener(event -> {
-			//presenter.closeEvent(imageBytes, (int) Math.round(rating.getValue()));
-			presenter.closeEvent(imageBytes, 5);
+			presenter.closeEvent(imageBytes, (int) Math.round(rating.getValue()));
 		});
 		
 
