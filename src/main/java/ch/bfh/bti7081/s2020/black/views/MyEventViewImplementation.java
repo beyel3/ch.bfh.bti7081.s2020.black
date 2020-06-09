@@ -23,7 +23,7 @@ import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.server.StreamResource;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
+import ch.bfh.bti7081.s2020.black.interfaces.EventViewInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.Patient;

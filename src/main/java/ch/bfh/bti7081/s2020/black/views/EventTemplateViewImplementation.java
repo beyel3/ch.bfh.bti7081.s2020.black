@@ -20,7 +20,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.data.value.ValueChangeMode;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventTemplateInterface;
+import ch.bfh.bti7081.s2020.black.interfaces.EventTemplateInterface;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 import ch.bfh.bti7081.s2020.black.presenters.EventTemplatePresenter;
@@ -55,8 +55,6 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 
 		setFlexGrow(1, contentLayoutFirstRow, contentLayoutSecondRow);
 
-		
-
 		Grid<EventTemplate> grid = new Grid<>();
 		ListDataProvider<EventTemplate> dataProvider = new ListDataProvider<>(presenter.getEventTemplates());
 		grid.setDataProvider(dataProvider);
@@ -74,6 +72,7 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 		});
 
 		HeaderRow filterRow = grid.appendHeaderRow();
+		
 		// First filter for rating
 		TextField titleField = new TextField();
 		titleField.addValueChangeListener(event -> dataProvider.addFilter(
@@ -99,8 +98,8 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 		// Thrid Filter for tags
 		TextField tagField = new TextField();
 		ArrayList<String> tagList = new ArrayList<>();
+		
 		tagField.addValueChangeListener(event -> dataProvider.addFilter(eventTemplate -> StringUtils.containsIgnoreCase(eventTemplate.getTags().toString(), tagField.getValue())));
-
 		tagField.setValueChangeMode(ValueChangeMode.EAGER);
 
 		filterRow.getCell(tagColumn).setComponent(tagField);
@@ -125,7 +124,6 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 
 
 	private Button createUseAsTemplateButton(EventTemplate item) {
-//		System.out.println(item);
 		Button buttonUseAsTemplate = new Button("USE AS TEMPLATE");
 			buttonUseAsTemplate.addClickListener(
 					event -> presenter.buttonClick(item));
@@ -133,6 +131,7 @@ public class EventTemplateViewImplementation<T extends EventTemplateInterface> e
 	}
 
 	private void createDialogBoxForTemplate(EventTemplate singleTemplate) {
+		
 		dialogShowTemplate = new Dialog();
 		dialogShowTemplate.setSizeFull();
 

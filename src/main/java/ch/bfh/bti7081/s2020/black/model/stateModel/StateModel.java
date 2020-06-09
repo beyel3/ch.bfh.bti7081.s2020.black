@@ -15,7 +15,6 @@ public abstract class StateModel {
 	protected Persistence persistence;
 	protected SuperPresenter presenter;
 	
-	
 	public StateModel() {
 		
 		try {
@@ -25,27 +24,24 @@ public abstract class StateModel {
 		}
 	}
 	
+	// Get Event Templates
     public ArrayList<EventTemplate> getEventTemplateList() {
         ArrayList<EventTemplate> eventTemplateList = new ArrayList<EventTemplate>();
         try {
-           
             ResultSet rs = persistence.executeQuery("SELECT * FROM tbl_eventTemplate");
-
             while (rs.next()) {
 				ArrayList<Tag> tags = getTagsByTemplateID(rs.getInt("eventTemplateId"));
-				EventTemplate eT = new EventTemplate(rs.getInt("eventTemplateId"), rs.getString("title"), rs.getString("description"), tags, null, rs.getDouble("rating"));
-                ArrayList<Event> events = getEventListByTemplate(eT);
-				eT.setEvents(events);
+				EventTemplate eT = new EventTemplate(rs.getInt("eventTemplateId"), rs.getString("title"), rs.getString("description"), tags, rs.getDouble("rating"));
                 eventTemplateList.add(eT);
             }
             return eventTemplateList;
         } catch (SQLException e) {
-            // query failed
 			e.printStackTrace();
             return null;
         }
     }
 
+    // Get Events from specific Template
 	public ArrayList<Event> getEventListByTemplate(EventTemplate eventTemplate) {
 
 		ArrayList<Event> events = new ArrayList<Event>();
@@ -84,35 +80,7 @@ public abstract class StateModel {
 		}
 	}
 
-	public Tag saveTag(Tag t) {
-
-		try {
-			persistence.executeUpdate("INSERT INTO tbl_tag VALUES (NULL, '"+t.getTagName()+"')");
-			ResultSet id = persistence.executeQuery("SELECT LAST_INSERT_ROWID()");
-			t.setId(id.getInt(1));
-
-			return t;
-		}
-		catch(SQLException e){
-			// query failed
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	public Tag getTagById(int id) {
-		try {
-			ResultSet tr = persistence.executeQuery("SELECT tagID, tag_name FROM tbl_tag WHERE tagID = "+id);
-			Tag t = new Tag(tr.getInt(1), tr.getString(2));
-			return t;
-		}
-		catch(SQLException e){
-			// query failed
-			e.printStackTrace();
-			return null;
-		}
-	}
-
+	// Get Tags from from specific Template
 	public ArrayList<Tag> getTagsByTemplateID(int id) {
 		ArrayList<Tag> tags = new ArrayList<Tag>();
 		try {
@@ -125,22 +93,6 @@ public abstract class StateModel {
 		}
 		catch(SQLException e){
 			// query failed
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	public ArrayList<Tag> getTagList() {
-		ArrayList<Tag> tags = new ArrayList<Tag>();
-
-		try {
-			ResultSet tagResult = persistence.executeQuery("SELECT * FROM tbl_tag");
-			while (tagResult.next()) {
-				Tag t = new Tag(tagResult.getInt(1), tagResult.getString(2));
-				tags.add(t);
-			}
-			return tags;
-		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -236,6 +188,8 @@ public abstract class StateModel {
 			return null;
 		}
 	}
+	
+	
 	public EventTemplate getEventTemplateByID(int eventTemplateID) {
 
 		try {
@@ -248,7 +202,7 @@ public abstract class StateModel {
 			}
 
 			ResultSet templateResult = persistence.executeQuery("SELECT * FROM tbl_eventTemplate WHERE eventTemplateID = " + eventTemplateID);
-			EventTemplate et = new EventTemplate(templateResult.getInt("eventTemplateId"), templateResult.getString("title"), templateResult.getString("description"), tags, null, templateResult.getDouble("rating"));
+			EventTemplate et = new EventTemplate(templateResult.getInt("eventTemplateId"), templateResult.getString("title"), templateResult.getString("description"), tags, templateResult.getDouble("rating"));
 
 			return et;
 		}

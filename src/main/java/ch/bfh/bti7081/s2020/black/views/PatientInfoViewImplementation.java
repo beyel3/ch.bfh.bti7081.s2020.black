@@ -10,7 +10,7 @@ import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
+import ch.bfh.bti7081.s2020.black.interfaces.EventViewInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.Tag;

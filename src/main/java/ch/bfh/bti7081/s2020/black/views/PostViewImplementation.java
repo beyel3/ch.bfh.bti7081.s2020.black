@@ -6,8 +6,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface;
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventViewInterface.EventAction;
+import ch.bfh.bti7081.s2020.black.interfaces.EventViewInterface;
+import ch.bfh.bti7081.s2020.black.interfaces.EventViewInterface.EventAction;
 import ch.bfh.bti7081.s2020.black.model.Post;
 
 public class PostViewImplementation<T extends EventViewInterface> extends VerticalLayout {

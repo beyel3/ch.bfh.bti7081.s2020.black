@@ -14,7 +14,6 @@ import ch.bfh.bti7081.s2020.black.presenters.SuperPresenter;
 public class JoinPublicEvents extends StateModel {
 
 	public ArrayList<Event> getOpenPublicEvents(Account acc) {
-
 		ArrayList<Event> events = new ArrayList<Event>();
 
 		try {

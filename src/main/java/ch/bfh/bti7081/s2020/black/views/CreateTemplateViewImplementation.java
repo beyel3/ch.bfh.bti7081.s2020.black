@@ -11,7 +11,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.EventTemplateInterface;
+import ch.bfh.bti7081.s2020.black.interfaces.EventTemplateInterface;
 import ch.bfh.bti7081.s2020.black.model.Tag;
 
 public class CreateTemplateViewImplementation<T extends EventTemplateInterface> extends VerticalLayout {

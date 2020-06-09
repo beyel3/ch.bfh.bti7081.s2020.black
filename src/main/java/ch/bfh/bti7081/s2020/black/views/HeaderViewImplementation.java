@@ -1,7 +1,5 @@
 package ch.bfh.bti7081.s2020.black.views;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.View.HeaderInterface;
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.View.UserNameInterface;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
@@ -14,6 +12,9 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.theme.lumo.Lumo;
+
+import ch.bfh.bti7081.s2020.black.interfaces.HeaderInterface;
+import ch.bfh.bti7081.s2020.black.interfaces.UserNameInterface;
 
 import javax.imageio.plugins.jpeg.JPEGImageWriteParam;
 

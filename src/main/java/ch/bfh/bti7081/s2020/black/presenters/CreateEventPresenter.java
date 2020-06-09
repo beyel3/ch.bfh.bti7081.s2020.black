@@ -3,7 +3,7 @@ package ch.bfh.bti7081.s2020.black.presenters;
 import java.util.ArrayList;
 import java.util.Set;
 
-import ch.bfh.bti7081.s2020.black.MVPInterfaces.Presenter.CreateEventInterface;
+import ch.bfh.bti7081.s2020.black.interfaces.CreateEventInterface;
 import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.Event;
 import ch.bfh.bti7081.s2020.black.model.EventTemplate;

@@ -110,7 +110,4 @@ public class Event {
 		return maxParticipants;
 	}
 
-	public void setMaxParticipants(int maxParticipants) {
-		this.maxParticipants = maxParticipants;
-	}
 }
