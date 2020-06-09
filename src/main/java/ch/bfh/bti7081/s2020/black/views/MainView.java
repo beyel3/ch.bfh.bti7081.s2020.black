@@ -2,7 +2,6 @@ package ch.bfh.bti7081.s2020.black.views;
 
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.BodySize;
-import com.vaadin.flow.component.page.Viewport;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.flow.server.InitialPageSettings;
@@ -11,7 +10,6 @@ import com.vaadin.flow.server.PageConfigurator;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 
-import ch.bfh.bti7081.s2020.black.presenters.CloseEventPresenter;
 import ch.bfh.bti7081.s2020.black.presenters.SuperPresenter;
 
 

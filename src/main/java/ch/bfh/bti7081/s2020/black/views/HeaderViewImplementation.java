@@ -4,7 +4,6 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -15,8 +14,6 @@ import com.vaadin.flow.theme.lumo.Lumo;
 
 import ch.bfh.bti7081.s2020.black.interfaces.HeaderInterface;
 import ch.bfh.bti7081.s2020.black.interfaces.UserNameInterface;
-
-import javax.imageio.plugins.jpeg.JPEGImageWriteParam;
 
 public class HeaderViewImplementation<T extends HeaderInterface> extends VerticalLayout implements UserNameInterface {
 

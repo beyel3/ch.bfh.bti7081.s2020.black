@@ -2,7 +2,6 @@ package ch.bfh.bti7081.s2020.black.presenters;
 
 
 import ch.bfh.bti7081.s2020.black.interfaces.SignUpInterface;
-import ch.bfh.bti7081.s2020.black.model.Account;
 import ch.bfh.bti7081.s2020.black.model.AccountType;
 import ch.bfh.bti7081.s2020.black.model.stateModel.SignUp;
 import ch.bfh.bti7081.s2020.black.views.SignUpViewImplementation;

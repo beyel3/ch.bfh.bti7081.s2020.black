@@ -1,8 +1,6 @@
 package ch.bfh.bti7081.s2020.black.presenters;
 
 import ch.bfh.bti7081.s2020.black.interfaces.HeaderInterface;
-import ch.bfh.bti7081.s2020.black.model.AccountType;
-import ch.bfh.bti7081.s2020.black.model.stateModel.JoinPublicEvents;
 import ch.bfh.bti7081.s2020.black.views.HeaderViewImplementation;
 
 public class HeaderPresenter extends Presenter implements HeaderInterface {
@@ -43,7 +41,6 @@ public class HeaderPresenter extends Presenter implements HeaderInterface {
             	new JoinPublicEventPresenter(superPresenter);
                 break;
             case ADMIN:
-
                 break;
         }
     }

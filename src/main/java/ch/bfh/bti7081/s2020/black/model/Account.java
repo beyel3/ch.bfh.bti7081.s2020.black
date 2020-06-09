@@ -1,13 +1,5 @@
 package ch.bfh.bti7081.s2020.black.model;
 
-import ch.bfh.bti7081.s2020.black.persistence.Persistence;
-import com.vaadin.flow.component.notification.Notification;
-import org.apache.commons.codec.digest.DigestUtils;
-//import sun.awt.PeerEvent;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 public class Account {
 
     private int id;
